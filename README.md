@@ -1,0 +1,3 @@
+# ElasticBLAST documentation
+
+Coming soon.

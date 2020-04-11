@@ -1,0 +1,3 @@
+sphinyx
+sphinx-copybutton
+recommonmark

@@ -1,8 +1,11 @@
+License
+=======
+
 PUBLIC DOMAIN NOTICE
-====================
+--------------------
 
 National Center for Biotechnology Information
----------------------------------------------
+*********************************************
 
 This software/database is a "United States Government Work" under the
 terms of the United States Copyright Act.  It was written as part of

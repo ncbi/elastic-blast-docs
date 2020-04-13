@@ -1,13 +1,33 @@
+.. _support:
+
 Support
 =======
 
-**N.B.**: Please help the development team help you: please consider using the
+**N.B.**: Please help the development team help you: consider using the
 unix ``screen`` tool to capture the output of your usage of ElasticBLAST and
 attaching the session log to your problem report. Thanks! :)
 
-For general questions/debugging/help, please reach out the development team via slack at ``#elastic-blast``.
+General questions/debugging/help
+--------------------------------
 
-For feature requests, please create a JIRA ticket of type *Discussion* in the `EB project <https://jira.ncbi.nlm.nih.gov/browse/EB>`_.
+Please reach out the development team via slack at ``#elastic-blast``.
 
-For bug reports, please create a JIRA ticket of type *Bug* in the `EB project <https://jira.ncbi.nlm.nih.gov/browse/EB>`_.
+Bug reports
+-----------
+
+Please run the commands below and include them in a new JIRA ticket of type *Bug* in the `EB project <https://jira.ncbi.nlm.nih.gov/browse/EB>`_. 
+
+.. code-block:: bash
+
+    make show_config
+    make check_k8s
+    make monitor
+    make progress
+    make ps
+    make logs
+
+Feature requests
+----------------
+
+Please create a JIRA ticket of type *Discussion* in the `EB project <https://jira.ncbi.nlm.nih.gov/browse/EB>`_.
 

@@ -15,6 +15,6 @@ databases.
    quickstart
    configuration
    support
-   debugging
+   troubleshooting
    LICENSE
 

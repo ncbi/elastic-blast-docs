@@ -1,5 +1,5 @@
 # elbdoc
 
 [![Documentation
-Status](https://readthedocs.org/projects/user-scripts-demo/badge/?version=latest)](https://user-scripts-demo.readthedocs.io/en/latest/?badge=latest)
+Status](https://readthedocs.org/projects/elbdoc/badge/?version=latest)](https://elbdoc.readthedocs.io/en/latest/?badge=latest)
 

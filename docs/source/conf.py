@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'elb'
+project = 'ElasticBLAST'
 copyright = '2020, Christiam Camacho'
 author = 'Christiam Camacho'
 

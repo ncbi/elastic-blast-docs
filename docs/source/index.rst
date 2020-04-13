@@ -1,41 +1,20 @@
-Welcome to elb's documentation!
-===============================
+ElasticBLAST
+============
 
-What is?
-^^^^^^^^
+ElasticBLAST is a *cloud-based* tool that faciliates running BLAST on *large
+amounts* (100,000+) of query sequence data against popular NCBI provided BLAST
+databases.
 
-This is to search large ...
-
-
-How to use it?
-^^^^^^^^^^^^^^
-
-# Get the software
-
-# Configure it
-
-# Run it
-
+**This tool is under active development.**
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
-   README
+   requirements
+   quickstart
+   configuration
+   support
    debugging
-   getting-elb
+   LICENSE
 
-
-.. code-block:: python
-
-    >>> print("Hello world!")
-    Hello world!
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-* :doc:`README`

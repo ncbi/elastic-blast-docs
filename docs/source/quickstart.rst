@@ -13,14 +13,19 @@ Download and unpack the tarball artifact from the `automated builds <https://tea
     cd elastic-blast
     tar axvf elb-${VERSION}.tgz
 
-
 Configure it
 ------------
 
 Edit one of the sample configuration files (e.g.: ``config/setenv-nr.sh``) and
 load it in your environment (assumes ``bash`` shell):
 
-The minimal set of configuration variables you *must* set are:
+.. code-block:: bash
+
+    cp config/setenv-nt.sh config/my-elastic-blast-config.sh
+    vim config/my-elastic-blast-config.sh
+    source config/my-elastic-blast-config.sh
+
+The *minimal* set of configuration variables you *must* set are:
 
 #. ``ELB_GCP_PROJECT``
 #. ``ELB_GCP_REGION``
@@ -29,15 +34,6 @@ The minimal set of configuration variables you *must* set are:
 #. ``ELB_DB``
 #. ``ELB_NUM_NODES``
 
-Please modify one of the configuration files provided to configure your
-ElasticBLAST search:
-
-.. code-block:: bash
-
-    cp config/setenv-nt.sh config/my-elastic-blast-config.sh
-    vim config/my-elastic-blast-config.sh
-    source config/my-elastic-blast-config.sh
-
 See :ref:`configuration` for details on the configuration parameters.
 
 Run it!
@@ -45,6 +41,7 @@ Run it!
 
 .. code-block:: bash
 
+    make all 
     make run
 
 **NOTE**: currently you can only have **one** ElasticBLAST search running at a time.

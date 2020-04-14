@@ -5,7 +5,6 @@ Configuration variables
 
 Cloud provider configuration
 ----------------------------
-
 ``ELB_GCP_PROJECT``
     Name of the GCP project to use.
 ``ELB_GCP_REGION``
@@ -15,7 +14,6 @@ Cloud provider configuration
 
 Cluster configuration
 ---------------------
-
 ``ELB_CLUSTER_NAME``
     Name of the GKE cluster created. Default: ``${USER}-elastic-blast``.
 ``ELB_MACHINE_TYPE``
@@ -38,7 +36,6 @@ Cluster configuration
 
 BLAST configuration options
 ---------------------------
-
 ``ELB_BLAST_PROGRAM`` 
     Program to run; one of: ``blast[pnx], tblast[nx], rpstblastn``. Default: ``blastn``.
 ``ELB_BLAST_OPTIONS`` 
@@ -56,17 +53,6 @@ BLAST configuration options
 ``ELB_MEM_LIMIT`` 
     Maximum amount of RAM that a BLAST job can use.
 
-Timeout configurations
-----------------------
-``ELB_JOB_TIMEOUT`` 
-    Timeout for the **entire** ElasticBLAST run. Default: 2m
-``ELB_BLAST_TIMEOUT`` 
-    Timeout in seconds after which kubernetes will terminate a single BLAST job (i.e.: that corresponds to one of the query batches). Default: 3600
-``ELB_INIT_BLASTDB_TIMEOUT`` 
-    Timeout to wait for the persistent disk to be initialized with the BLASTDB. Default: 1 week
-``ELB_COPY_QUERIES_TIMEOUT`` 
-    Timeout to wait for the query splits to be copied onto the persistent disk. Default: 1 week
-
 Input/output configuration options
 ----------------------------------
 ``ELB_QUERIES`` 
@@ -76,3 +62,13 @@ Input/output configuration options
 ``ELB_JOB_PATH`` 
     Path/URI to save batch job files. Default: jobs.
 
+Timeout configurations
+----------------------
+``ELB_JOB_TIMEOUT`` 
+    **Applicable only** if ``make timed_run`` is used. Timeout for the **entire** ElasticBLAST run. Default: 2m
+``ELB_BLAST_TIMEOUT`` 
+    Timeout in seconds after which kubernetes will terminate a single BLAST job (i.e.: that corresponds to one of the query batches). Default: 3600
+``ELB_INIT_BLASTDB_TIMEOUT`` 
+    Timeout to wait for the persistent disk to be initialized with the BLASTDB. Default: 1 week
+``ELB_COPY_QUERIES_TIMEOUT`` 
+    Timeout to wait for the query splits to be copied onto the persistent disk. Default: 1 week

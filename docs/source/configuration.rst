@@ -18,6 +18,11 @@ Cluster configuration
     Name of the GKE cluster created. Default: ``${USER}-elastic-blast``.
 ``ELB_MACHINE_TYPE``
     Type of GCP machine to start as kubernetes worker. Default: ``n1-standard-32``.
+
+    Please see the `GCP documentation <https://cloud.google.com/compute/docs/machine-types#general_purpose>`_ for available options.
+
+    Please *ensure* that the machine type you select has enough RAM to fit the BLASTDB of your choice in it.
+
 ``ELB_NUM_NODES``
     Number of nodes to start in the kubernetes cluster.
 ``ELB_USE_PREEMPTIBLE``

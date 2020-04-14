@@ -22,14 +22,15 @@ load it in your environment (assumes ``bash`` shell):
 
 The minimal set of configuration variables you *must* set are:
 
-# ``ELB_GCP_PROJECT``
-# ``ELB_GCP_REGION``
-# ``ELB_GCP_ZONE``
-# ``ELB_PROGRAM``
-# ``ELB_DB``
-# ``ELB_NUM_NODES``
+#. ``ELB_GCP_PROJECT``
+#. ``ELB_GCP_REGION``
+#. ``ELB_GCP_ZONE``
+#. ``ELB_PROGRAM``
+#. ``ELB_DB``
+#. ``ELB_NUM_NODES``
 
-Here are a few commands to get you started:
+Please modify one of the configuration files provided to configure your
+ElasticBLAST search:
 
 .. code-block:: bash
 
@@ -54,6 +55,8 @@ To monitor its progress, run the commands:
 
     make monitor 
     make progress
+
+Problems? Search taking too long? Please see :ref:`support`.
 
 Get results
 -----------

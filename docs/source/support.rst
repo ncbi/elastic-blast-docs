@@ -7,11 +7,6 @@ Support
 unix ``screen`` tool to capture the output of your usage of ElasticBLAST and
 attaching the session log to your problem report. Thanks! :)
 
-General questions/debugging/help
---------------------------------
-
-Please reach out the development team via slack at ``#elastic-blast``.
-
 Bug reports
 -----------
 
@@ -25,6 +20,9 @@ Please run the commands below and include them in a new JIRA ticket of type *Bug
     make progress
     make ps
     make logs
+
+Please feel free to also reach out the development team via slack at
+``#elastic-blast``.
 
 Feature requests
 ----------------

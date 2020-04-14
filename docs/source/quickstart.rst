@@ -11,7 +11,7 @@ Download and unpack the tarball artifact from the `automated builds <https://tea
 
     mkdir elastic-blast
     cd elastic-blast
-    tar axvf elb-${VERSION}.tgz
+    tar axvf elb-{VERSION}.tgz
 
 Configure it
 ------------

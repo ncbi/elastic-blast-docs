@@ -60,3 +60,18 @@ html_static_path = ['_static']
 
 # CopyButton configuration
 copybutton_prompt_text = ">>> "
+
+# From https://github.com/sphinx-doc/sphinx/issues/4054
+def ultimateReplace(app, docname, source):
+    result = source[0]
+    for key in app.config.ultimate_replacements:
+        result = result.replace(key, app.config.ultimate_replacements[key])
+    source[0] = result
+
+ultimate_replacements = {
+    "{VERSION}" : release
+}
+
+def setup(app):
+   app.add_config_value('ultimate_replacements', {}, True)
+   app.connect('source-read', ultimateReplace)

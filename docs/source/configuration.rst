@@ -29,7 +29,7 @@ Cluster configuration
 ``ELB_MAX_NODES``
     *Applies to autoscaling only*: specifies the maximum number of nodes to grow the kubernetes cluster to.
 ``ELB_PD_SIZE``
-    Size of the persistent disk attached to the cluster. Default: ``1000G``.
+    Size of the persistent disk attached to the cluster. Default: ``500G``. Smaller disks than that result in performance degradation.
 ``ELB_LABELS``
     Labels for cloud resources, must be in the form ``key1=value1,key2=value2,...``. 
     They are handy for tracking costs in GCP. Default: ``program=$ELB_BLAST_PROGRAM,db=$ELB_DB``.

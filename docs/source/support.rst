@@ -19,6 +19,7 @@ Please run the commands below and include them in a new JIRA ticket of type *Bug
     make monitor
     make progress
     make ps
+    make top
     make logs
 
 Please feel free to also reach out the development team via slack at

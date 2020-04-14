@@ -21,18 +21,12 @@ Cluster configuration
 ``ELB_NUM_NODES``
     Number of nodes to start in the kubernetes cluster.
 ``ELB_USE_PREEMPTIBLE``
-    Experimental feature to use pre-emptible nodes in the kubernetes cluster. Set to any value to enable. Default: disabled.
-``ELB_MIN_NODES``
-    *Applies to autoscaling only*: specifies the minimum number of nodes to keep in the kubernetes cluster.
-``ELB_MAX_NODES``
-    *Applies to autoscaling only*: specifies the maximum number of nodes to grow the kubernetes cluster to.
+    Use `pre-emptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ in the kubernetes cluster. Set to any value to enable. Default: disabled.
 ``ELB_PD_SIZE``
     Size of the persistent disk attached to the cluster. Default: ``500G``. Smaller disks than that result in performance degradation.
 ``ELB_LABELS``
     Labels for cloud resources, must be in the form ``key1=value1,key2=value2,...``. 
     They are handy for tracking costs in GCP. Default: ``program=$ELB_BLAST_PROGRAM,db=$ELB_DB``.
-``ELB_ENABLE_STACKDRIVER_K8S``
-    Enable stackdriver logging/monitoring for kubernetes. Default: disabled.
 
 BLAST configuration options
 ---------------------------
@@ -43,9 +37,19 @@ BLAST configuration options
 ``ELB_OUTFMT``
     `BLAST output format <https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a>`_ to use. Default: 11.
 ``ELB_DB`` 
-    BLAST database name to search.
+    BLAST database name to search. Run the command below to get a list of available options:
+
+.. code-block:: bash
+
+    update_blastdb.pl --source gcp --showall pretty
+
 ``ELB_BATCH_LEN`` 
-    Number of bases/residues per query batch. Default: 5,000,000
+    Number of bases/residues per query batch. Default: 5,000,000. 
+
+    **NOTE**: this value should change along with ``BLAST_PROGRAM``. Please use
+    100,000 for ``blastp`` and ``rpstblastn``. Please consult with the
+    development team for other programs.
+
 ``ELB_NUM_CPUS`` 
     Number of CPUs to use per BLAST execution (in a kubernetes job). Default: 30
 ``ELB_MEM_REQUEST`` 
@@ -59,11 +63,9 @@ Input/output configuration options
     Query sequence data for BLAST.
 ``ELB_RESULTS_BUCKET`` 
     where to save the output from ElasticBLAST.
-``ELB_JOB_PATH`` 
-    Path/URI to save batch job files. Default: jobs.
 
-Timeout configurations
-----------------------
+Timeout configuration options
+-----------------------------
 ``ELB_JOB_TIMEOUT`` 
     **Applicable only** if ``make timed_run`` is used. Timeout for the **entire** ElasticBLAST run. Default: 2m
 ``ELB_BLAST_TIMEOUT`` 
@@ -72,3 +74,14 @@ Timeout configurations
     Timeout to wait for the persistent disk to be initialized with the BLASTDB. Default: 1 week
 ``ELB_COPY_QUERIES_TIMEOUT`` 
     Timeout to wait for the query splits to be copied onto the persistent disk. Default: 1 week
+
+Developer configuration options
+-------------------------------
+``ELB_JOB_PATH`` 
+    Path/URI to save batch job files. Default: jobs.
+``ELB_MIN_NODES``
+    *Applies to autoscaling only*: specifies the minimum number of nodes to keep in the kubernetes cluster.
+``ELB_MAX_NODES``
+    *Applies to autoscaling only*: specifies the maximum number of nodes to grow the kubernetes cluster to.
+``ELB_ENABLE_STACKDRIVER_K8S``
+    Enable stackdriver logging/monitoring for kubernetes. Default: disabled.

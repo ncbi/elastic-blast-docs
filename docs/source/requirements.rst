@@ -10,4 +10,9 @@ Requirements
 * `git <https://git-scm.com/>`_
 * You are authenticated and have the necessary permissions in your GCP
   project. If working on a newly created GCP instance, this likely requires ``gcloud auth login``.
+
+  * GCP permissions
+
+    * GKE: to manage a kubernetes cluster on which to run ElasticBLAST.
+    * GCS: to store results and query splits.
 * The configuration scripts assume that you use the ``bash`` shell.

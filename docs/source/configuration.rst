@@ -6,6 +6,8 @@ Configuration variables
 Cloud provider configuration
 ----------------------------
 
+.. _elb_gcp_project:
+
 ``ELB_GCP_PROJECT``
 ^^^^^^^^^^^^^^^^^^^
 
@@ -14,6 +16,8 @@ Cloud provider configuration
 
     Name of the GCP project to use.
 
+.. _elb_gcp_region:
+
 ``ELB_GCP_REGION``
 ^^^^^^^^^^^^^^^^^^
 
@@ -21,6 +25,8 @@ Cloud provider configuration
     * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
 
     Name of the GCP region to use. Recommended value: ``us-east4``.
+
+.. _elb_gcp_zone:
 
 ``ELB_GCP_ZONE`` 
 ^^^^^^^^^^^^^^^^
@@ -33,6 +39,8 @@ Cloud provider configuration
 Cluster configuration
 ---------------------
 
+.. _elb_cluster_name:
+
 ``ELB_CLUSTER_NAME``
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -40,6 +48,8 @@ Cluster configuration
     * Values: String
 
     Name of the GKE cluster created. 
+
+.. _elb_machine_type:
 
 ``ELB_MACHINE_TYPE``
 ^^^^^^^^^^^^^^^^^^^^
@@ -53,6 +63,8 @@ Cluster configuration
 
     We recommend that you choose a machine with at least 50% more RAM than the BLASTDB size.
 
+.. _elb_num_nodes:
+
 ``ELB_NUM_NODES``
 ^^^^^^^^^^^^^^^^^
 
@@ -61,6 +73,8 @@ Cluster configuration
 
     Number of nodes to start in the kubernetes cluster.
 
+.. _elb_use_preemptible:
+
 ``ELB_USE_PREEMPTIBLE``
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -68,6 +82,8 @@ Cluster configuration
     * Values: Any string. Set to any value to enable.
 
     Use `pre-emptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ in the kubernetes cluster.
+
+.. _elb_pd_size:
 
 ``ELB_PD_SIZE``
 ^^^^^^^^^^^^^^^
@@ -81,6 +97,8 @@ Cluster configuration
 
     **Note**: Smaller disks than ``500G`` result in performance degradation.
 
+.. _elb_labels:
+
 ``ELB_LABELS``
 ^^^^^^^^^^^^^^
 
@@ -93,6 +111,8 @@ Cluster configuration
 BLAST configuration options
 ---------------------------
 
+.. _elb_blast_program:
+
 ``ELB_BLAST_PROGRAM`` 
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -100,6 +120,8 @@ BLAST configuration options
     * Values: One of: ``blastp``, ``blastn``, ``blastx``, ``tblastn``, ``tblastx``, ``rpstblastn``
 
     BLAST program to run.
+
+.. _elb_blast_options:
 
 ``ELB_BLAST_OPTIONS`` 
 ^^^^^^^^^^^^^^^^^^^^^
@@ -109,6 +131,8 @@ BLAST configuration options
 
     BLAST options to customize BLAST invocation.
 
+.. _elb_outfmt:
+
 ``ELB_OUTFMT``
 ^^^^^^^^^^^^^^
 
@@ -116,6 +140,8 @@ BLAST configuration options
     * Values: String, see `BLAST+ options <https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a>`_
 
     `BLAST output format <https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a>`_ to use.
+
+.. _elb_db:
 
 ``ELB_DB`` 
 ^^^^^^^^^^
@@ -128,6 +154,8 @@ BLAST configuration options
 .. code-block:: bash
 
     update_blastdb.pl --source gcp --showall pretty
+
+.. _elb_batch_len:
 
 ``ELB_BATCH_LEN`` 
 ^^^^^^^^^^^^^^^^^
@@ -142,6 +170,8 @@ BLAST configuration options
     Please use ``100000`` for ``blastp`` and ``rpstblastn`` and consult with the
     development team for other programs.
 
+.. _elb_num_cpus:
+
 ``ELB_NUM_CPUS`` 
 ^^^^^^^^^^^^^^^^
 
@@ -154,6 +184,8 @@ BLAST configuration options
 
     For smaller BLAST databases (e.g.: ``swissprot``, ``pdbnt``) a smaller value (e.g.: 4) results in faster runtimes. For ``nt``, consider using a value of 30.
 
+.. _elb_mem_request:
+
 ``ELB_MEM_REQUEST`` 
 ^^^^^^^^^^^^^^^^^^^
 
@@ -165,6 +197,8 @@ BLAST configuration options
     Format as <number> immediately followed by G for gigabytes, M for megabytes.
 
     Must be less than available RAM for the chosen `ELB_MACHINE_TYPE`_.
+
+.. _elb_mem_limit:
 
 ``ELB_MEM_LIMIT`` 
 ^^^^^^^^^^^^^^^^^
@@ -181,6 +215,8 @@ BLAST configuration options
 Input/output configuration options
 ----------------------------------
 
+.. _elb_queries:
+
 ``ELB_QUERIES`` 
 ^^^^^^^^^^^^^^^
 
@@ -190,6 +226,8 @@ Input/output configuration options
     Query sequence data for BLAST. 
 
     Can be provided as a local path or GCS bucket URI to a single file/tarball.
+
+.. _elb_results_bucket:
 
 ``ELB_RESULTS_BUCKET`` 
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -202,6 +240,8 @@ Input/output configuration options
 Timeout configuration options
 -----------------------------
 
+.. _elb_blast_timeout:
+
 ``ELB_BLAST_TIMEOUT`` 
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -209,6 +249,8 @@ Timeout configuration options
     * Values: Positive integer
 
     Timeout in seconds after which kubernetes will terminate a single BLAST job (i.e.: that corresponds to one of the query batches).
+
+.. _elb_job_timeout:
 
 ``ELB_JOB_TIMEOUT`` 
 ^^^^^^^^^^^^^^^^^^^
@@ -224,6 +266,8 @@ Timeout configuration options
     for hours (see `timeout flag in kubectl wait documetation
     <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#wait>`_).
 
+.. _elb_init_blastdb_timeout:
+
 ``ELB_INIT_BLASTDB_TIMEOUT`` 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -235,6 +279,8 @@ Timeout configuration options
     Format as <number> immediately followed by s for seconds, m for minutes, h
     for hours (see `timeout flag in kubectl wait documetation
     <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#wait>`_).
+
+.. _elb_copy_queries_timeout:
 
 ``ELB_COPY_QUERIES_TIMEOUT`` 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -251,6 +297,8 @@ Timeout configuration options
 Developer configuration options
 -------------------------------
 
+.. _elb_job_path:
+
 ``ELB_JOB_PATH`` 
 ^^^^^^^^^^^^^^^^
 
@@ -258,6 +306,8 @@ Developer configuration options
     * Values: String
 
     Path/GCS bucket URI to save batch job files.
+
+.. _elb_min_nodes:
 
 ``ELB_MIN_NODES``
 ^^^^^^^^^^^^^^^^^
@@ -267,6 +317,8 @@ Developer configuration options
 
     *Applies to autoscaling only*: specifies the minimum number of nodes to keep in the kubernetes cluster.
 
+.. _elb_max_nodes:
+
 ``ELB_MAX_NODES``
 ^^^^^^^^^^^^^^^^^
 
@@ -274,6 +326,8 @@ Developer configuration options
     * Values: Positive integer
 
     *Applies to autoscaling only*: specifies the maximum number of nodes to grow the kubernetes cluster to.
+
+.. _elb_enable_stackdriver_k8s:
 
 ``ELB_ENABLE_STACKDRIVER_K8S``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

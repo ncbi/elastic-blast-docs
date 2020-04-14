@@ -27,12 +27,14 @@ load it in your environment (assumes ``bash`` shell):
 
 The *minimal* set of configuration variables you *must* set are:
 
-#. ``ELB_GCP_PROJECT``
-#. ``ELB_GCP_REGION``
-#. ``ELB_GCP_ZONE``
-#. ``ELB_PROGRAM``
-#. ``ELB_DB``
-#. ``ELB_NUM_NODES``
+#. :ref:`ELB_GCP_PROJECT`
+#. :ref:`ELB_GCP_REGION`
+#. :ref:`ELB_GCP_ZONE`
+#. :ref:`ELB_BLAST_PROGRAM`
+#. :ref:`ELB_DB`
+#. :ref:`ELB_QUERIES`
+#. :ref:`ELB_RESULTS_BUCKET`
+#. :ref:`ELB_NUM_NODES`
 
 See :ref:`configuration` for details on the configuration parameters.
 

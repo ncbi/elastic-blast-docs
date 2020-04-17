@@ -7,6 +7,9 @@ databases.
 
 **This tool is under active development.**
 
+Features
+--------
+
 .. toctree::
    :maxdepth: 1
    :caption: Contents:

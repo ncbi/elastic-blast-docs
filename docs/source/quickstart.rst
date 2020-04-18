@@ -5,14 +5,12 @@ Quickstart
 
 Get the sources
 ---------------
-Download and unpack the tarball artifact from the `automated builds <https://teamcity.ncbi.nlm.nih.gov/buildConfiguration/Blast_ElasticBlast_TestReleaseTarball?branch=&mode=builds>`_.
-In the code snippet below, ``${DOWNLOAD_DIRECTORY}`` is the directory where you saved the tarball.
 
 .. code-block:: shell
 
     mkdir elastic-blast
     cd elastic-blast
-    tar axvf ${DOWNLOAD_DIRECTORY}/elb-{VERSION}.tgz
+    gzip -cd /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/elb-${VERSION}.tgz | tar xvf -
 
 Configure it
 ------------
@@ -54,6 +52,9 @@ To monitor its progress, run the commands:
 
     make monitor 
     make progress
+
+The `GCP web console <https://console.cloud.google.com/kubernetes/list>`_
+provides a graphical user interface to monitor your kubernetes cluster.
 
 Problems? Search taking too long? Please see :ref:`support`.
 

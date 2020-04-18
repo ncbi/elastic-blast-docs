@@ -81,7 +81,9 @@ Cluster configuration
     * Default: Disabled
     * Values: Any string. Set to any value to enable.
 
-    Use `pre-emptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ in the kubernetes cluster.
+    Use `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ in the kubernetes cluster.
+
+    **Note**: This is only recommended if your ElasticBLAST search will take a few hours (less than 24).
 
 .. _elb_pd_size:
 

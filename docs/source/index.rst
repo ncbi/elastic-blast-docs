@@ -10,6 +10,9 @@ databases.
 Features
 --------
 
+* Supports :ref:`preemptible nodes<ELB_USE_PREEMPTIBLE>` for cost savings
+* Experimental: :ref:`cost`
+
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
@@ -19,5 +22,7 @@ Features
    configuration
    support
    troubleshooting
+   cost
+   issues
    LICENSE
 

@@ -18,7 +18,9 @@ command:
 
 .. code-block:: bash
 
-    tools/elb-cost.py owner:${USER}
+    make .env
+    source .env/bin/activate
+    elb-cost owner:${USER}
 
 **Note**: 
 
@@ -30,7 +32,7 @@ To see the online help for this tool, please run the command:
 
 .. code-block:: bash
 
-    tools/elb-cost.py -h
+    elb-cost -h
 
 You can also add your own custom labels by setting the :ref:`ELB_LABELS`
 configuration parameter.
@@ -39,5 +41,5 @@ configuration parameter.
 
     export ELB_LABELS=search:my-test-search
     # Run ElasticBLAST, wait for 24 hours, then run the command below
-    tools/elb-cost.py ${ELB_LABELS}  --date-range `date +%F --date='-1 day'`:`date +%F`
+    elb-cost ${ELB_LABELS}  --date-range `date +%F --date='-1 day'`:`date +%F`
 

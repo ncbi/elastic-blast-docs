@@ -15,7 +15,7 @@ Get the sources
 Configure it
 ------------
 
-Edit one of the sample configuration files (e.g.: ``config/setenv-nr.sh``), providing
+Edit one of the sample configuration files (e.g.: ``share/config/setenv-nr.sh``), providing
 at least the following configuration variables:
 
 #. :ref:`ELB_GCP_PROJECT`
@@ -32,7 +32,7 @@ Then load that file in your environment (assumes ``bash`` shell) with the comman
 
 .. code-block:: bash
 
-    source config/setenv-nr.sh
+    source share/config/setenv-nr.sh
 
 See :ref:`configuration` for details on the configuration parameters.
 

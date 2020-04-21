@@ -10,7 +10,7 @@ Get the sources
 
     mkdir elastic-blast
     cd elastic-blast
-    gzip -cd /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/elb-${VERSION}.tgz | tar xvf -
+    gzip -cd /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/elb-{VERSION}.tgz | tar xvf -
 
 Configure it
 ------------

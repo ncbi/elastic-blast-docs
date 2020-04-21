@@ -24,7 +24,9 @@ command:
 
 **Note**: 
 
-* It is recommended that you use the ``--date-range`` option to this tool. 
+* It is recommended that you use the ``--date-range`` option to this tool. Cost
+  tracking is based on searching a BigQuery dataset and this option narrows
+  down the search and makes it faster and cheaper. 
 * There is a lag of about 24 hours for the cost data to be available via this tool.
 
 

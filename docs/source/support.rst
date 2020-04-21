@@ -7,6 +7,10 @@ Support
 unix ``screen`` tool to capture the output of your usage of ElasticBLAST and
 attaching the session log to your problem report. Thanks! :)
 
+.. Please see also the list of :ref:`known issues<Known issues>`.
+
+Please see also the list of :ref:`known issues<issues>`.
+
 Bug reports
 -----------
 

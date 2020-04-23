@@ -18,11 +18,15 @@ command:
 
 .. code-block:: bash
 
-    tools/elb-cost.py owner:${USER}
+    make .env
+    source .env/bin/activate
+    elb-cost owner:${USER}
 
 **Note**: 
 
-* It is recommended that you use the ``--date-range`` option to this tool. 
+* It is recommended that you use the ``--date-range`` option to this tool. Cost
+  tracking is based on searching a BigQuery dataset and this option narrows
+  down the search and makes it faster and cheaper. 
 * There is a lag of about 24 hours for the cost data to be available via this tool.
 
 
@@ -30,7 +34,7 @@ To see the online help for this tool, please run the command:
 
 .. code-block:: bash
 
-    tools/elb-cost.py -h
+    elb-cost -h
 
 You can also add your own custom labels by setting the :ref:`ELB_LABELS`
 configuration parameter.
@@ -39,5 +43,5 @@ configuration parameter.
 
     export ELB_LABELS=search:my-test-search
     # Run ElasticBLAST, wait for 24 hours, then run the command below
-    tools/elb-cost.py ${ELB_LABELS}  --date-range `date +%F --date='-1 day'`:`date +%F`
+    elb-cost ${ELB_LABELS}  --date-range `date +%F --date='-1 day'`:`date +%F`
 

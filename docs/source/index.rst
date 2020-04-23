@@ -24,5 +24,6 @@ Features
    troubleshooting
    cost
    issues
+   runsummary
    LICENSE
 

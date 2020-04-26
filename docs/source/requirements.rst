@@ -6,7 +6,7 @@ Requirements
 * `envsubst <https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html>`_
   from the GNU gettext utilities package
 * `GNU make <https://www.gnu.org/software/make/>`_
-* `python3 <https://www.python.org/downloads/>`_
+* `python3.6 or better <https://www.python.org/downloads/>`_
 * `git <https://git-scm.com/>`_
 * You are authenticated and have the necessary permissions in your GCP
   project. If working on a newly created GCP instance, this likely requires ``gcloud auth login``.

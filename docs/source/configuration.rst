@@ -6,9 +6,9 @@ Configuration variables
 Cloud provider configuration
 ----------------------------
 
-.. _gcp project:
+.. _elb_gcp_project:
 
-``GCP Project``
+``GCP project``
 ^^^^^^^^^^^^^^^
 
     Name of the GCP project to use.
@@ -23,9 +23,9 @@ Cloud provider configuration
     [cloud-provider]
     gcp-project = my-gcp-project
 
-.. _gcp region:
+.. _elb_gcp_region:
 
-``GCP Region``
+``GCP region``
 ^^^^^^^^^^^^^^
 
     Name of the GCP region to use. Recommended value: ``us-east4``.
@@ -33,20 +33,24 @@ Cloud provider configuration
     * Default: None
     * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
 
+    Also supported via the environment variable: ``ELB_GCP_REGION``.
+
 .. code-block::
 
     [cloud-provider]
     gcp-region = us-east4
 
-.. _gcp zone:
+.. _elb_gcp_zone:
 
-``GCP Zone`` 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``GCP zone`` 
+^^^^^^^^^^^^
 
     Name of the GCP zone to use. Recommended value: ``us-east4-b``.
 
     * Default: None
     * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
+
+    Also supported via the environment variable: ``ELB_GCP_ZONE``.
 
 .. code-block::
 
@@ -59,7 +63,7 @@ Cluster configuration
 
 .. _elb_cluster_name:
 
-``Cluster Name``
+``Cluster name``
 ^^^^^^^^^^^^^^^^
 
     Name of the GKE cluster created. 
@@ -67,19 +71,54 @@ Cluster configuration
     * Default: ``${USER}-elastic-blast``.
     * Values: String
 
+    Also supported via the environment variable: ``ELB_CLUSTER_NAME``.
+
 .. code-block::
 
     [cluster]
     name = my-cluster
 
+.. _elb_num_nodes:
+
+``Number of worker nodes``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Number of :ref:`machine type <elb_machine_type>` nodes to start in the kubernetes cluster.
+
+    * Default: ``1``
+    * Values: Positive integer
+
+.. code-block::
+
+    [cluster]
+    num-nodes = 4
+
+.. _elb_use_preemptible:
+
+``Use preemptible nodes``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Use `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ in the kubernetes cluster.
+
+    **Note**: This is only recommended if your ElasticBLAST search will take a few hours (less than 24).
+
+    * Default: ``no``
+    * Values: Any string. Set to ``yes`` enable.
+
+.. code-block::
+
+    [cluster]
+    use-preemptible = yes
+
 .. _elb_machine_type:
 
-``Machine Type``
+``Machine type``
 ^^^^^^^^^^^^^^^^
 
     Type of GCP machine to start as kubernetes worker. 
 
-    **NOTE**: The machine's available RAM must be as large as the size of the BLASTDB specified by `DB`_.
+    **NOTE**: The machine's available RAM must be as large as the size of the
+    BLASTDB specified by `BLAST database`_.
 
     We recommend that you choose a machine with at least 50% more RAM than the BLASTDB size.
 
@@ -91,282 +130,290 @@ Cluster configuration
     [cluster]
     machine-type = n1-standard-32
 
-.. _num nodes:
+.. _elb_num_cpus:
 
-``Number of nodes``
-^^^^^^^^^^^^^^^^^^^
+``Number of CPUs`` 
+^^^^^^^^^^^^^^^^^^
 
-    * Default: ``1``
+    Number of CPUs to use per BLAST execution in a kubernetes job. 
+
+    Must be less than the number of CPUs for the chosen :ref:`machine type <elb_machine_type>`.
+
+    For smaller BLAST databases (e.g.: ``swissprot``, ``pdbnt``) a smaller value (e.g.: 4) results in faster runtimes. For ``nt``, experiment using values of 15 and/or 30.
+
+    * Default: ``30``
     * Values: Positive integer
 
-    Number of nodes to start in the kubernetes cluster.
+.. code-block::
 
-.. _elb_use_preemptible:
-
-``ELB_USE_PREEMPTIBLE``
-^^^^^^^^^^^^^^^^^^^^^^^
-
-    * Default: Disabled
-    * Values: Any string. Set to any value to enable.
-
-    Use `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ in the kubernetes cluster.
-
-    **Note**: This is only recommended if your ElasticBLAST search will take a few hours (less than 24).
+    [cluster]
+    num-cpus = 30
 
 .. _elb_pd_size:
 
-``ELB_PD_SIZE``
-^^^^^^^^^^^^^^^
+``Persistent disk size``
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-    * Default: ``500G``
-    * Values: String
-
-    Size of the persistent disk attached to the cluster. 
+    Size of the persistent disk attached to the cluster. This should be large
+    enough to store the BLAST database, query sequence data and the BLAST
+    results.
 
     Format as <number> immediately followed by G for gigabytes, M for megabytes.
 
     **Note**: Smaller disks than ``500G`` result in performance degradation.
 
-.. _elb_labels:
+    * Default: ``500G``
+    * Values: String
 
-``ELB_LABELS``
-^^^^^^^^^^^^^^
+.. code-block::
 
-    * Default: ``program=$ELB_BLAST_PROGRAM,db=$ELB_DB``
-    * Values: String, see `GCP label format documentation <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_
+    [cluster]
+    pd-size = 1000G
 
-    Labels for cloud resources, must be in the form ``key1=value1,key2=value2,...``. 
-    They are handy for tracking costs in GCP. 
+.. .. _elb_labels:
+.. 
+.. ``ELB_LABELS``
+.. ^^^^^^^^^^^^^^
+.. 
+..     * Default: ``program=$ELB_BLAST_PROGRAM,db=$ELB_DB``
+..     * Values: String, see `GCP label format documentation <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_
+.. 
+..     Labels for cloud resources, must be in the form ``key1=value1,key2=value2,...``. 
+..     They are handy for tracking costs in GCP. 
 
 BLAST configuration options
 ---------------------------
 
-.. _blast program:
+.. _elb_blast_program:
 
-``BLAST Program`` 
+``BLAST program`` 
 ^^^^^^^^^^^^^^^^^
 
     BLAST program to run.
 
     * Default: ``blastn``
-    * Values: One of: ``blastp``, ``blastn``
+    * Values: One of: ``blastp``, ``blastn``, ``megablast``, ``rpstblastn``
 
-.. * Values: One of: ``blastp``, ``blastn``, ``blastx``, ``tblastn``, ``tblastx``, ``rpstblastn``
+.. NOTE: keep these values in sync with get_query_batch_size
+
+.. code-block::
+
+    [blast]
+    program = blastp
 
 .. _elb_blast_options:
 
-``ELB_BLAST_OPTIONS`` 
-^^^^^^^^^^^^^^^^^^^^^
+``BLAST options`` 
+^^^^^^^^^^^^^^^^^
+
+    BLAST options to customize BLAST invocation.
+
+    *Note*: the default output format in ElasticBLAST is 11.
 
     * Default: None
     * Values: String, see `BLAST+ options <https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a>`_
 
-    BLAST options to customize BLAST invocation.
+.. code-block::
 
-.. _elb_outfmt:
+    [blast]
+    options = -task blastp-fast -outfmt 7
 
-``ELB_OUTFMT``
-^^^^^^^^^^^^^^
-
-    * Default: ``11``
-    * Values: String, see `BLAST+ options <https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a>`_
-
-    `BLAST output format <https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a>`_ to use.
-
-.. _db:
+.. _elb_db:
 
 ``BLAST database`` 
 ^^^^^^^^^^^^^^^^^^
 
-    * Default: None
-    * Values: String
+    BLAST database name to search. 
 
-    BLAST database name to search. Run the command below to get a list of available options:
+    * Default: None
+    * Values: String. Run the command below to get a list of available options:
 
 .. code-block:: bash
 
     update_blastdb.pl --source gcp --showall pretty
 
+.. code-block::
+    :caption: Sample BLAST database configuration
+
+    [blast]
+    db = nr
+
 .. _elb_batch_len:
 
-``ELB_BATCH_LEN`` 
-^^^^^^^^^^^^^^^^^
-
-    * Default: ``5000000``
-    * Values: Positive integer
+``Batch length`` 
+^^^^^^^^^^^^^^^^
 
     Number of bases/residues per query batch.
 
-    **NOTE**: this value should change along with `BLAST PROGRAM`_. 
+    **NOTE**: this value should change along with `BLAST program`_. 
 
     Please use ``100000`` for ``blastp`` and ``rpstblastn`` and consult with the
     development team for other programs.
 
-.. _elb_num_cpus:
-
-``ELB_NUM_CPUS`` 
-^^^^^^^^^^^^^^^^
-
-    * Default: ``30``
+    * Default: `Auto-configured for supported programs`.
     * Values: Positive integer
 
-    Number of CPUs to use per BLAST execution in a kubernetes job. 
+    Also supported via the environment variable: ``ELB_BATCH_LEN``.
 
-    Must be less than the number of CPUs for the chosen `ELB_MACHINE_TYPE`_.
+.. code-block::
 
-    For smaller BLAST databases (e.g.: ``swissprot``, ``pdbnt``) a smaller value (e.g.: 4) results in faster runtimes. For ``nt``, consider using a value of 30.
+    [blast]
+    batch-len = 100000
 
 .. _elb_mem_request:
 
-``ELB_MEM_REQUEST`` 
-^^^^^^^^^^^^^^^^^^^
+``Memory request for BLAST search`` 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    * Default: None
-    * Values: String
-
-    Minimum amount of RAM to allocate to a BLAST job.
+    Minimum amount of RAM to allocate to a BLAST search.
 
     Format as <number> immediately followed by G for gigabytes, M for megabytes.
 
-    Must be less than available RAM for the chosen `ELB_MACHINE_TYPE`_.
+    Must be less than available RAM for the chosen :ref:`machine type <elb_machine_type>`.
+
+    * Default: `Auto-configured based on database choice`
+    * Values: String
+
+.. code-block::
+
+    [blast]
+    mem-request = 95G
 
 .. _elb_mem_limit:
 
-``ELB_MEM_LIMIT`` 
-^^^^^^^^^^^^^^^^^
+``Memory limit for BLAST search`` 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    * Default: None
-    * Values: String
-
-    Maximum amount of RAM that a BLAST job can use.
+    Maximum amount of RAM that a BLAST search can use.
 
     Format as <number> immediately followed by G for gigabytes, M for megabytes.
 
-    Must be less than available RAM for the chosen `ELB_MACHINE_TYPE`_.
+    Must be less than available RAM for the chosen :ref:`machine type <elb_machine_type>`.
+
+    * Default: `Auto-configured based on database choice`
+    * Values: String
+
+.. code-block::
+
+    [blast]
+    mem-limit = 115G
 
 Input/output configuration options
 ----------------------------------
 
-.. _queries:
+.. _elb_queries:
 
-``QUERIES`` 
-^^^^^^^^^^^^^^^
-
-    * Default: None
-    * Values: String 
+``Query sequence data`` 
+^^^^^^^^^^^^^^^^^^^^^^^
 
     Query sequence data for BLAST. 
 
     Can be provided as a local path or GCS bucket URI to a single file/tarball.
 
-.. _results bucket:
-
-``RESULTS BUCKET`` 
-^^^^^^^^^^^^^^^^^^^^^^
-
     * Default: None
-    * Values: String
+    * Values: String 
+
+.. code-block::
+
+    [blast]
+    queries = /home/${USER}/blast-queries.tar.gz
+
+.. _elb_results_bucket:
+
+``Results bucket`` 
+^^^^^^^^^^^^^^^^^^
 
     GCS bucket URI where to save the output from ElasticBLAST.
+
+    * Default: ``gs://${USER}-test``
+    * Values: String
+
+    Also supported via the environment variable: ``ELB_RESULTS_BUCKET``.
+
+.. code-block::
+
+    [blast]
+    results-bucket = ${YOUR_RESULTS_BUCKET}
 
 Timeout configuration options
 -----------------------------
 
 .. _elb_blast_timeout:
 
-``ELB_BLAST_TIMEOUT`` 
-^^^^^^^^^^^^^^^^^^^^^
+``BLAST timeout`` 
+^^^^^^^^^^^^^^^^^
 
-    * Default: ``3600``
+    Timeout in minutes after which kubernetes will terminate a single BLAST job (i.e.: that corresponds to one of the query batches).
+
+    * Default: ``60``
     * Values: Positive integer
 
-    Timeout in seconds after which kubernetes will terminate a single BLAST job (i.e.: that corresponds to one of the query batches).
+.. code-block::
 
-.. _elb_job_timeout:
-
-``ELB_JOB_TIMEOUT`` 
-^^^^^^^^^^^^^^^^^^^
-
-    * Default: 2m
-    * Values: String
-
-    **Applicable only** if ``make timed_run`` is used. 
-
-    Timeout for the **entire** ElasticBLAST run.
-
-    Format as <number> immediately followed by s for seconds, m for minutes, h
-    for hours (see `timeout flag in kubectl wait documetation
-    <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#wait>`_).
+    [timeouts]
+    blast-k8s-job = 60
 
 .. _elb_init_blastdb_timeout:
 
-``ELB_INIT_BLASTDB_TIMEOUT`` 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``BLASTDB initialization timeout`` 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    * Default: 1 week
-    * Values: String
+    Timeout in minutes to wait for the :ref:`persistent disk <elb_pd_size>` to be initialized with the selected :ref:`elb_db`.
 
-    Timeout to wait for the persistent disk to be initialized with the BLASTDB.
+    * Default: ``45``
+    * Values: Positive integer
 
-    Format as <number> immediately followed by s for seconds, m for minutes, h
-    for hours (see `timeout flag in kubectl wait documetation
-    <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#wait>`_).
+.. code-block::
+
+    [timeouts]
+    init-pv = 45
 
 .. _elb_copy_queries_timeout:
 
-``ELB_COPY_QUERIES_TIMEOUT`` 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``Query initialization timeout`` 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    * Default: 1 week
-    * Values: String
+    Timeout in minutes to wait for the query splits to be copied onto the :ref:`persistent disk <elb_pd_size>`.
 
-    Timeout to wait for the query splits to be copied onto the persistent disk.
-
-    Format as <number> immediately followed by s for seconds, m for minutes, h
-    for hours (see `timeout flag in kubectl wait documetation
-    <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#wait>`_).
-
-Developer configuration options
--------------------------------
-
-.. _elb_job_path:
-
-``ELB_JOB_PATH`` 
-^^^^^^^^^^^^^^^^
-
-    * Default: ``jobs``
-    * Values: String
-
-    Path/GCS bucket URI to save batch job files.
-
-.. _elb_min_nodes:
-
-``ELB_MIN_NODES``
-^^^^^^^^^^^^^^^^^
-
-    * Default: ``1``
+    * Default: ``15``
     * Values: Positive integer
 
-    *Applies to autoscaling only*: specifies the minimum number of nodes to keep in the kubernetes cluster.
+.. code-block::
 
-.. _elb_max_nodes:
+    [timeouts]
+    copy-queries-to-pd = 15
 
-``ELB_MAX_NODES``
-^^^^^^^^^^^^^^^^^
-
-    * Default: ``8``
-    * Values: Positive integer
-
-    *Applies to autoscaling only*: specifies the maximum number of nodes to grow the kubernetes cluster to.
-
-.. _elb_enable_stackdriver_k8s:
-
-``ELB_ENABLE_STACKDRIVER_K8S``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-    * Default: Disabled
-    * Values: Any string. Set to any value to enable.
-
-    Enable stackdriver logging/monitoring for kubernetes.
-
-    Please see `GCP stackdriver documentation for associated pricing <https://cloud.google.com/stackdriver/pricing>_`.
+.. Developer configuration options
+.. -------------------------------
+.. 
+.. .. _elb_min_nodes:
+.. 
+.. ``ELB_MIN_NODES``
+.. ^^^^^^^^^^^^^^^^^
+.. 
+..     * Default: ``1``
+..     * Values: Positive integer
+.. 
+..     *Applies to autoscaling only*: specifies the minimum number of nodes to keep in the kubernetes cluster.
+.. 
+.. .. _elb_max_nodes:
+.. 
+.. ``ELB_MAX_NODES``
+.. ^^^^^^^^^^^^^^^^^
+.. 
+..     * Default: ``8``
+..     * Values: Positive integer
+.. 
+..     *Applies to autoscaling only*: specifies the maximum number of nodes to grow the kubernetes cluster to.
+.. 
+.. .. _elb_enable_stackdriver_k8s:
+.. 
+.. ``ELB_ENABLE_STACKDRIVER_K8S``
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. 
+..     * Default: Disabled
+..     * Values: Any string. Set to any value to enable.
+.. 
+..     Enable stackdriver logging/monitoring for kubernetes.
+.. 
+..     Please see `GCP stackdriver documentation for associated pricing <https://cloud.google.com/stackdriver/pricing>_`.

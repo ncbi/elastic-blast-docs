@@ -16,25 +16,12 @@ Configure it
 
 The minimal configuration requires: 
 
-#. Google Cloud Platform (GCP) parameters: 
+#. Google Cloud Platform (GCP) parameters (:ref:`project <elb_gcp_project>`, :ref:`region <elb_gcp_region>`, and :ref:`zone <elb_gcp_zone>`),
 
-   #. :ref:`GCP Project`
-   #. :ref:`GCP Region`
-   #. :ref:`GCP Zone`
+#. :ref:`query sequences <elb_queries>` in a single file or tarball, a :ref:`GCP bucket for results <elb_results_bucket>`,
 
-#. Query input, results bucket,
-
-   #. :ref:`Queries`
-   #. :ref:`Results Bucket`
-
-#. Basic BLAST parameters, and
- 
-   #. :ref:`BLAST Program`
-   #. :ref:`DB`
-
-#. Number of nodes to start
- 
-   #. :ref:`Num nodes`
+#. Basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
+#. :ref:`elb_num_nodes` to start.
  
 
 They can be provided on a standard ini configuration file, e.g.:
@@ -55,7 +42,7 @@ They can be provided on a standard ini configuration file, e.g.:
     program = blastp
     db = nr
     queries = gs://elastic-blast-samples/queries/protein/dark-matter-500000.faa.gz
-    results-bucket = gs://my-test-bucket
+    results-bucket = ${YOUR_RESULTS_BUCKET}
 
 
 
@@ -105,8 +92,9 @@ Run the command below to download the results
 
     gsutil -qm cp ${YOUR_RESULTS_BUCKET}/*.out.gz .
 
-If you are working at an NCBI workstation, you can optionally run the command
-below to perform basic sanity checks on the result files.
+If you are working at an NCBI workstation, after downloading the results you
+can optionally run the command below to perform basic sanity checks on the
+result files.
 
 .. code-block:: bash
 

@@ -3,54 +3,93 @@
 Quickstart
 ==========
 
-Get the sources
----------------
+Get ElasticBlast
+----------------
 
 .. code-block:: shell
 
-    gzip -cd /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/elb-{VERSION}.tgz | tar xvf -
-    cd elb-{VERSION}
+    cp -p /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/{VERSION}/elastic-blast . 
+    md5sum -c /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/{VERSION}/elastic-blast.md5
 
 Configure it
 ------------
 
-Edit one of the sample configuration files (e.g.: ``share/config/setenv-nr.sh``), providing
-at least the following configuration variables:
+The minimal configuration requires: 
 
-#. :ref:`ELB_GCP_PROJECT`
-#. :ref:`ELB_GCP_REGION`
-#. :ref:`ELB_GCP_ZONE`
-#. :ref:`ELB_BLAST_PROGRAM`
-#. :ref:`ELB_DB`
-#. :ref:`ELB_QUERIES`
-#. :ref:`ELB_RESULTS_BUCKET`
-#. :ref:`ELB_NUM_NODES`
+#. Google Cloud Platform (GCP) parameters: 
+
+   #. :ref:`GCP Project`
+   #. :ref:`GCP Region`
+   #. :ref:`GCP Zone`
+
+#. Query input, results bucket,
+
+   #. :ref:`Queries`
+   #. :ref:`Results Bucket`
+
+#. Basic BLAST parameters, and
+ 
+   #. :ref:`BLAST Program`
+   #. :ref:`DB`
+
+#. Number of nodes to start
+ 
+   #. :ref:`Num nodes`
+ 
+
+They can be provided on a standard ini configuration file, e.g.:
+
+.. code-block::
+    :name: minimal-config
+    :linenos:
+
+    [cloud-provider]
+    gcp-project = ${YOUR_GCP_PROJECT}
+    gcp-region = us-east4   # recommended value
+    gcp-zone = us-east4-b   # Any zone in us-east4 should work equally well
+
+    [cluster]
+    num-nodes = 10
+
+    [blast]
+    program = blastp
+    db = nr
+    queries = gs://elastic-blast-samples/queries/protein/dark-matter-500000.faa.gz
+    results-bucket = gs://my-test-bucket
 
 
-Then load that file in your environment (assumes ``bash`` shell) with the command below:
 
-.. code-block:: bash
-
-    source share/config/setenv-nr.sh
-
-See :ref:`configuration` for details on the configuration parameters.
+See :ref:`configuration` for details on all the configuration parameters.
 
 Run it!
 -------
 
 .. code-block:: bash
 
-    make all 
-    make run
+    ./elastic-blast submit --cfg ${CONFIG_FILE} --loglevel DEBUG
 
 **NOTE**: currently you can only have **one** ElasticBLAST search running at a time.
 
-To monitor its progress, run the commands:
+
+Monitor progress
+----------------
+To check on the progress of the search, run the command below:
 
 .. code-block:: bash
+    :name: status
 
-    make monitor 
-    make progress
+    ./elastic-blast status --cfg ${CONFIG_FILE} --loglevel DEBUG
+
+
+An alternate way to monitor the progress is to inspect the kubernetes
+pods/nodes activity:
+
+.. code-block:: bash
+    :name: kubectl-monitor
+
+    kubectl get pods -o wide
+    kubectl top pods --containers
+    kubectl top nodes
 
 The `GCP web console <https://console.cloud.google.com/kubernetes/list>`_
 provides a graphical user interface to monitor your kubernetes cluster.
@@ -64,14 +103,18 @@ Run the command below to download the results
 
 .. code-block:: bash
 
-    make get_results
+    gsutil -qm cp ${YOUR_RESULTS_BUCKET}/*.out.gz .
 
 If you are working at an NCBI workstation, you can optionally run the command
 below to perform basic sanity checks on the result files.
 
 .. code-block:: bash
 
-    make test_asn_results
+    find . -name "batch*.out.gz" -type f -print0 | \
+        xargs -0 -P8 -I{} -t gzip -t {}
+    find . -name "batch*.out.gz" -type f -print0 | \
+        xargs -0 -P8 -I{} -t bash -c "zcat {} |
+        datatool -m /netopt/ncbi_tools64/c++.metastable/src/objects/blast/blast.asn -M /am/ncbiapdata/asn/asn.all -v - -e /dev/null"
 
 Clean up
 --------
@@ -81,6 +124,6 @@ ElasticBLAST search.
 
 .. code-block:: bash
 
-    make clean
+    ./elastic-blast delete --cfg ${CONFIG_FILE}
 
 

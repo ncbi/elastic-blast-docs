@@ -6,67 +6,95 @@ Configuration variables
 Cloud provider configuration
 ----------------------------
 
-.. _elb_gcp_project:
+.. _gcp project:
 
-``ELB_GCP_PROJECT``
-^^^^^^^^^^^^^^^^^^^
+``GCP Project``
+^^^^^^^^^^^^^^^
+
+    Name of the GCP project to use.
 
     * Default: None
     * Values: String
 
-    Name of the GCP project to use.
+    Also supported via the environment variable: ``ELB_GCP_PROJECT``.
 
-.. _elb_gcp_region:
+.. code-block::
 
-``ELB_GCP_REGION``
-^^^^^^^^^^^^^^^^^^
+    [cloud-provider]
+    gcp-project = my-gcp-project
 
-    * Default: None
-    * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
+.. _gcp region:
+
+``GCP Region``
+^^^^^^^^^^^^^^
 
     Name of the GCP region to use. Recommended value: ``us-east4``.
 
-.. _elb_gcp_zone:
+    * Default: None
+    * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
 
-``ELB_GCP_ZONE`` 
-^^^^^^^^^^^^^^^^
+.. code-block::
+
+    [cloud-provider]
+    gcp-region = us-east4
+
+.. _gcp zone:
+
+``GCP Zone`` 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Name of the GCP zone to use. Recommended value: ``us-east4-b``.
 
     * Default: None
     * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
 
-    Name of the GCP zone to use. Recommended value: ``us-east4-b``.
+.. code-block::
+
+    [cloud-provider]
+    gcp-zone = us-east4-b
+
 
 Cluster configuration
 ---------------------
 
 .. _elb_cluster_name:
 
-``ELB_CLUSTER_NAME``
-^^^^^^^^^^^^^^^^^^^^
+``Cluster Name``
+^^^^^^^^^^^^^^^^
+
+    Name of the GKE cluster created. 
 
     * Default: ``${USER}-elastic-blast``.
     * Values: String
 
-    Name of the GKE cluster created. 
+.. code-block::
+
+    [cluster]
+    name = my-cluster
 
 .. _elb_machine_type:
 
-``ELB_MACHINE_TYPE``
-^^^^^^^^^^^^^^^^^^^^
+``Machine Type``
+^^^^^^^^^^^^^^^^
+
+    Type of GCP machine to start as kubernetes worker. 
+
+    **NOTE**: The machine's available RAM must be as large as the size of the BLASTDB specified by `DB`_.
+
+    We recommend that you choose a machine with at least 50% more RAM than the BLASTDB size.
 
     * Default: ``n1-standard-32``.
     * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-types#general_purpose>`_
 
-    Type of GCP machine to start as kubernetes worker. 
+.. code-block::
 
-    **NOTE**: The machine's available RAM must be as large as the size of the BLASTDB specified by `ELB_DB`_.
+    [cluster]
+    machine-type = n1-standard-32
 
-    We recommend that you choose a machine with at least 50% more RAM than the BLASTDB size.
+.. _num nodes:
 
-.. _elb_num_nodes:
-
-``ELB_NUM_NODES``
-^^^^^^^^^^^^^^^^^
+``Number of nodes``
+^^^^^^^^^^^^^^^^^^^
 
     * Default: ``1``
     * Values: Positive integer
@@ -113,15 +141,17 @@ Cluster configuration
 BLAST configuration options
 ---------------------------
 
-.. _elb_blast_program:
+.. _blast program:
 
-``ELB_BLAST_PROGRAM`` 
-^^^^^^^^^^^^^^^^^^^^^
-
-    * Default: ``blastn``
-    * Values: One of: ``blastp``, ``blastn``, ``blastx``, ``tblastn``, ``tblastx``, ``rpstblastn``
+``BLAST Program`` 
+^^^^^^^^^^^^^^^^^
 
     BLAST program to run.
+
+    * Default: ``blastn``
+    * Values: One of: ``blastp``, ``blastn``
+
+.. * Values: One of: ``blastp``, ``blastn``, ``blastx``, ``tblastn``, ``tblastx``, ``rpstblastn``
 
 .. _elb_blast_options:
 
@@ -143,10 +173,10 @@ BLAST configuration options
 
     `BLAST output format <https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a>`_ to use.
 
-.. _elb_db:
+.. _db:
 
-``ELB_DB`` 
-^^^^^^^^^^
+``BLAST database`` 
+^^^^^^^^^^^^^^^^^^
 
     * Default: None
     * Values: String
@@ -167,7 +197,7 @@ BLAST configuration options
 
     Number of bases/residues per query batch.
 
-    **NOTE**: this value should change along with `ELB_BLAST_PROGRAM`_. 
+    **NOTE**: this value should change along with `BLAST PROGRAM`_. 
 
     Please use ``100000`` for ``blastp`` and ``rpstblastn`` and consult with the
     development team for other programs.
@@ -217,9 +247,9 @@ BLAST configuration options
 Input/output configuration options
 ----------------------------------
 
-.. _elb_queries:
+.. _queries:
 
-``ELB_QUERIES`` 
+``QUERIES`` 
 ^^^^^^^^^^^^^^^
 
     * Default: None
@@ -229,9 +259,9 @@ Input/output configuration options
 
     Can be provided as a local path or GCS bucket URI to a single file/tarball.
 
-.. _elb_results_bucket:
+.. _results bucket:
 
-``ELB_RESULTS_BUCKET`` 
+``RESULTS BUCKET`` 
 ^^^^^^^^^^^^^^^^^^^^^^
 
     * Default: None

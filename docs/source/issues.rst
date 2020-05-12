@@ -13,10 +13,8 @@ process of determining reasonable defaults for various programs.
 
 .. _disk_leak:
 
-Persistent disk is not cleaned up
----------------------------------
+Sub-optimal cluster performance
+-------------------------------
 
-If you interrupt the creation of the cluster (``make all``) or its deletion (``make clean``)
-you may end up with GCP resources that are not cleaned up by ElasticBLAST.
+See details in EB-239.
 
-*Please clean these up manually until this issue is addressed*.

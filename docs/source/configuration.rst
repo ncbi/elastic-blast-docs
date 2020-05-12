@@ -208,7 +208,10 @@ BLAST configuration options
 
     BLAST options to customize BLAST invocation.
 
-    *Note*: the default output format in ElasticBLAST is 11.
+    *Note*: the default output format in ElasticBLAST is 11. 
+
+    Please use `blast_formatter <https://www.ncbi.nlm.nih.gov/books/NBK279697/>`_ to format
+    the results in any desired output format.
 
     * Default: None
     * Values: String, see `BLAST+ options <https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a>`_

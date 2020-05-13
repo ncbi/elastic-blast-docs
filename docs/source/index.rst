@@ -11,7 +11,6 @@ Features
 --------
 
 * Supports :ref:`preemptible nodes<ELB_USE_PREEMPTIBLE>` for cost savings
-* Experimental: :ref:`cost`
 
 .. toctree::
    :maxdepth: 1
@@ -22,8 +21,6 @@ Features
    configuration
    support
    troubleshooting
-   cost
    issues
-   runsummary
    LICENSE
 

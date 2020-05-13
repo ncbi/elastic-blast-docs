@@ -5,18 +5,31 @@ Known issues
 
 .. _elb_batch_len_setting:
 
-ELB_BATCH_LEN setting
----------------------
+Batch length setting
+--------------------
 
 The value of :ref:`ELB_BATCH_LEN` greatly affects performance. We are in the
 process of determining reasonable defaults for various programs.
 
-.. _disk_leak:
+.. _suboptimal_performance:
 
-Persistent disk is not cleaned up
----------------------------------
+Sub-optimal cluster performance
+-------------------------------
 
-If you interrupt the creation of the cluster (``make all``) or its deletion (``make clean``)
-you may end up with GCP resources that are not cleaned up by ElasticBLAST.
+See details in EB-239.
 
-*Please clean these up manually until this issue is addressed*.
+
+.. _pd_leak
+
+Persistent disk not properly deleted
+------------------------------------
+
+As part of its normal operation ElasticBLAST starts a
+:ref:`persistent disk <elb_pd_size>` and sometimes this is not properly
+deleted. To double check and delete it, please run the commands below
+accordingly:
+
+.. code-block:: bash
+
+   gcloud compute disks list # to list disks in GCP
+   gcloud compute disks delete ${DISK_NAME}  # to delete relevant disks

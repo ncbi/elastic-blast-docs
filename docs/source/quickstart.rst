@@ -60,7 +60,8 @@ Run it!
 
 Monitor progress
 ----------------
-To check on the progress of the search, run the command below:
+To check on the progress of the search, inspect the logfile
+(`elastic-blast.log` by default) and/or run the command below:
 
 .. code-block:: bash
     :name: status

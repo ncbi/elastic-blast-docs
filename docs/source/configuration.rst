@@ -321,7 +321,7 @@ BLAST configuration options
 ``BLAST database memory margin`` 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Source from where to get the BLAST databases.
+    This value specifies how much larger should the `Memory request for BLAST search`_  be made relative to the size of the `BLAST database`_ by default.
 
     * Default: ``1.1``
     * Values: A value over 1.0.
@@ -343,7 +343,7 @@ BLAST configuration options
 
     Must be less than available RAM for the chosen :ref:`machine type <elb_machine_type>`.
 
-    * Default: `Auto-configured based on database choice`
+    * Default: `Auto-configured based on database choice`. Minimal value is ``0.5G``.
     * Values: String
 
     See also: 
@@ -367,7 +367,7 @@ BLAST configuration options
 
     Must be less than available RAM for the chosen :ref:`machine type <elb_machine_type>`.
 
-    * Default: `Auto-configured based on database choice`
+    * Default: `Auto-configured based on database choice`. Maximal value is ``0.95`` of the RAM available in the :ref:`machine type <elb_machine_type>`.
     * Values: String
 
     See also: 

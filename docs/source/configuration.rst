@@ -303,7 +303,7 @@ BLAST configuration options
 
     **NOTE**: this value should change along with `BLAST program`_. 
 
-    Please use ``100000`` for ``blastp`` and ``rpstblastn`` and consult with the
+    Please use ``10000`` for ``blastp`` and ``rpstblastn`` and consult with the
     development team for other programs.
 
     * Default: `Auto-configured for supported programs`.
@@ -314,7 +314,7 @@ BLAST configuration options
 .. code-block::
 
     [blast]
-    batch-len = 100000
+    batch-len = 10000
 
 .. _elb_blast_db_margin:
 

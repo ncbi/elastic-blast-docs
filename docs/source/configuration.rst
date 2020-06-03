@@ -208,16 +208,21 @@ Cluster configuration
     [cluster]
     max-nodes = 1
 
-.. .. _elb_labels:
-.. 
-.. ``ELB_LABELS``
-.. ^^^^^^^^^^^^^^
-.. 
-..     * Default: ``program=$ELB_BLAST_PROGRAM,db=$ELB_DB``
-..     * Values: String, see `GCP label format documentation <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_
-.. 
-..     Labels for cloud resources, must be in the form ``key1=value1,key2=value2,...``. 
-..     They are handy for tracking costs in GCP. 
+.. _elb_labels:
+
+``Cloud resource labels``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Specifies the labels to attach to cloud resources created by ElasticBLAST.
+
+    * Default: ``cluster-name={cluster_name},client-hostname={hostname},created={create_date},owner={username},project=elastic-blast,creator={username},program={blast_program},db={db}``
+    * Values: String of key-value pairs separated by commas. See `GCP documetation on labels <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_ for details.
+
+.. code-block::
+
+    [cluster]
+    labels = key1=value1,key2=value2
+
 
 BLAST configuration options
 ---------------------------
@@ -279,20 +284,22 @@ BLAST configuration options
     [blast]
     db = nr
 
-.. _elb_blast_dbsrc:
-
-``BLAST database source`` 
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-    Source from where to get the BLAST databases.
-
-    * Default: ``gcp``
-    * Values: One of ``gcp``, ``ncbi`` or ``aws``
-
-.. code-block::
-
-    [blast]
-    blastdb-src = gcp
+..
+.. .. _elb_blast_dbsrc:
+.. 
+.. ``BLAST database source`` 
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^
+.. 
+..     Source from where to get the BLAST databases.
+.. 
+..     * Default: ``gcp``
+..     * Values: One of ``gcp``, ``ncbi`` or ``aws``
+.. 
+.. .. code-block::
+.. 
+..     [blast]
+..     blastdb-src = gcp
+..
 
 .. _elb_batch_len:
 

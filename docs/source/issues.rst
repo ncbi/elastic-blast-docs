@@ -12,7 +12,7 @@ The value of :ref:`ELB_BATCH_LEN` greatly affects performance. We are in the
 process of determining reasonable defaults for various programs.
 
 
-.. _pd_leak
+.. _pd_leak:
 
 Persistent disk not properly deleted
 ------------------------------------

@@ -160,9 +160,9 @@ Cluster configuration
 
     Format as <number> immediately followed by G for gigabytes, M for megabytes.
 
-    **Note**: Smaller disks than ``500G`` result in performance degradation.
+    **Note**: Smaller disks than ``1000G`` result in performance degradation.
 
-    * Default: ``500G``
+    * Default: ``3000G``
     * Values: String
 
 .. code-block::
@@ -170,16 +170,59 @@ Cluster configuration
     [cluster]
     pd-size = 1000G
 
-.. .. _elb_labels:
-.. 
-.. ``ELB_LABELS``
-.. ^^^^^^^^^^^^^^
-.. 
-..     * Default: ``program=$ELB_BLAST_PROGRAM,db=$ELB_DB``
-..     * Values: String, see `GCP label format documentation <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_
-.. 
-..     Labels for cloud resources, must be in the form ``key1=value1,key2=value2,...``. 
-..     They are handy for tracking costs in GCP. 
+.. _elb_min_nodes:
+
+``Minimum number of nodes``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    **Experimental**.
+
+    Specifies the minimum number of nodes in the kubernetes cluster, enabling auto-scaling.
+
+    Requires `Maximum number of nodes`_.
+
+    * Default: None
+    * Values: Positive integer
+
+.. code-block::
+
+    [cluster]
+    min-nodes = 1
+
+.. _elb_max_nodes:
+
+``Maximum number of nodes``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    **Experimental**.
+
+    Specifies the maximum number of nodes in the kubernetes cluster, enabling auto-scaling.
+
+    Requires `Minimum number of nodes`_.
+
+    * Default: None
+    * Values: Positive integer
+
+.. code-block::
+
+    [cluster]
+    max-nodes = 1
+
+.. _elb_labels:
+
+``Cloud resource labels``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Specifies the labels to attach to cloud resources created by ElasticBLAST.
+
+    * Default: ``cluster-name={cluster_name},client-hostname={hostname},created={create_date},owner={username},project=elastic-blast,creator={username},program={blast_program},db={db}``
+    * Values: String of key-value pairs separated by commas. See `GCP documetation on labels <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_ for details.
+
+.. code-block::
+
+    [cluster]
+    labels = key1=value1,key2=value2
+
 
 BLAST configuration options
 ---------------------------
@@ -241,6 +284,23 @@ BLAST configuration options
     [blast]
     db = nr
 
+..
+.. .. _elb_blast_dbsrc:
+.. 
+.. ``BLAST database source`` 
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^
+.. 
+..     Source from where to get the BLAST databases.
+.. 
+..     * Default: ``gcp``
+..     * Values: One of ``gcp``, ``ncbi`` or ``aws``
+.. 
+.. .. code-block::
+.. 
+..     [blast]
+..     blastdb-src = gcp
+..
+
 .. _elb_batch_len:
 
 ``Batch length`` 
@@ -250,7 +310,7 @@ BLAST configuration options
 
     **NOTE**: this value should change along with `BLAST program`_. 
 
-    Please use ``100000`` for ``blastp`` and ``rpstblastn`` and consult with the
+    Please use ``10000`` for ``blastp`` and ``rpstblastn`` and consult with the
     development team for other programs.
 
     * Default: `Auto-configured for supported programs`.
@@ -261,7 +321,23 @@ BLAST configuration options
 .. code-block::
 
     [blast]
-    batch-len = 100000
+    batch-len = 10000
+
+.. _elb_blast_db_margin:
+
+``BLAST database memory margin`` 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    This value specifies how much larger should the `Memory request for BLAST search`_  be made relative to the size of the `BLAST database`_ by default.
+
+    * Default: ``1.1``
+    * Values: A value over 1.0.
+
+.. code-block::
+
+    [blast]
+    db-memory-margin = 1.1
+
 
 .. _elb_mem_request:
 
@@ -274,8 +350,13 @@ BLAST configuration options
 
     Must be less than available RAM for the chosen :ref:`machine type <elb_machine_type>`.
 
-    * Default: `Auto-configured based on database choice`
+    * Default: `Auto-configured based on database choice`. Minimal value is ``0.5G``.
     * Values: String
+
+    See also: 
+
+    * `Motivation for memory requests and limits <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#motivation-for-memory-requests-and-limits>`_
+    * `Exceed a container's memory limit <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-containers-memory-limit>`_
 
 .. code-block::
 
@@ -293,8 +374,13 @@ BLAST configuration options
 
     Must be less than available RAM for the chosen :ref:`machine type <elb_machine_type>`.
 
-    * Default: `Auto-configured based on database choice`
+    * Default: `Auto-configured based on database choice`. Maximal value is ``0.95`` of the RAM available in the :ref:`machine type <elb_machine_type>`.
     * Values: String
+
+    See also: 
+
+    * `Motivation for memory requests and limits <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#motivation-for-memory-requests-and-limits>`_
+    * `Exceed a container's memory limit <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-containers-memory-limit>`_
 
 .. code-block::
 
@@ -371,44 +457,34 @@ Timeout configuration options
     [timeouts]
     init-pv = 45
 
-.. _elb_copy_queries_timeout:
+Developer configuration options
+-------------------------------
 
-``Query initialization timeout`` 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _elb_dont_delete_setup_jobs:
 
-    Timeout in minutes to wait for the query splits to be copied onto the :ref:`persistent disk <elb_pd_size>`.
+``ELB_DONT_DELETE_SETUP_JOBS``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    * Default: ``15``
-    * Values: Positive integer
+    **Set via an environment variable**.
 
-.. code-block::
+    * Default: Disabled
+    * Values: Any string. Set to any value to enable.
 
-    [timeouts]
-    copy-queries-to-pd = 15
+    Do not delete the kubernetes setup jobs after they complete.
 
-.. Developer configuration options
-.. -------------------------------
-.. 
-.. .. _elb_min_nodes:
-.. 
-.. ``ELB_MIN_NODES``
-.. ^^^^^^^^^^^^^^^^^
-.. 
-..     * Default: ``1``
-..     * Values: Positive integer
-.. 
-..     *Applies to autoscaling only*: specifies the minimum number of nodes to keep in the kubernetes cluster.
-.. 
-.. .. _elb_max_nodes:
-.. 
-.. ``ELB_MAX_NODES``
-.. ^^^^^^^^^^^^^^^^^
-.. 
-..     * Default: ``8``
-..     * Values: Positive integer
-.. 
-..     *Applies to autoscaling only*: specifies the maximum number of nodes to grow the kubernetes cluster to.
-.. 
+.. _elb_pause_after_init_pv:
+
+``ELB_PAUSE_AFTER_INIT_PV``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    **Set via an environment variable**.
+
+    * Default: 120
+    * Values: Positive integer.
+
+    Time in seconds to wait after persistent volume gets initialized to prevent
+    mount errors on BLAST kubernetes jobs.
+
 .. .. _elb_enable_stackdriver_k8s:
 .. 
 .. ``ELB_ENABLE_STACKDRIVER_K8S``

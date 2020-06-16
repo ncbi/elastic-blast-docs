@@ -18,6 +18,7 @@ Features
 
    requirements
    quickstart
+   exit-codes
    configuration
    support
    troubleshooting

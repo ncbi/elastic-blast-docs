@@ -6,6 +6,8 @@ Quickstart
 Get ElasticBlast
 ----------------
 
+*NCBI only!*
+
 .. code-block:: shell
 
     cp -p /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/{VERSION}/elastic-blast . 
@@ -31,9 +33,9 @@ They can be provided on a standard ini configuration file, e.g.:
     :linenos:
 
     [cloud-provider]
-    gcp-project = ${YOUR_GCP_PROJECT}
-    gcp-region = us-east4   # recommended value
-    gcp-zone = us-east4-b   # Any zone in us-east4 should work equally well
+    gcp-project = ${YOUR_GCP_PROJECT_ID}
+    gcp-region = us-east4   
+    gcp-zone = us-east4-b
 
     [cluster]
     num-nodes = 10

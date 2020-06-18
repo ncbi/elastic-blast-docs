@@ -11,10 +11,10 @@ Cloud provider configuration
 ``GCP project``
 ^^^^^^^^^^^^^^^
 
-    Name of the GCP project to use.
+    GCP project ID to use.
 
     * Default: None
-    * Values: String
+    * Values: String, see `Identifying projects <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_
 
     Also supported via the environment variable: ``ELB_GCP_PROJECT``.
 
@@ -412,7 +412,7 @@ Input/output configuration options
 ``Results bucket`` 
 ^^^^^^^^^^^^^^^^^^
 
-    GCS bucket URI where to save the output from ElasticBLAST.
+    GCS bucket URI where to save the output from ElasticBLAST. This bucket *must* exist prior to invoking ElasticBLAST.
 
     * Default: ``gs://${USER}-test``
     * Values: String
@@ -434,13 +434,13 @@ Timeout configuration options
 
     Timeout in minutes after which kubernetes will terminate a single BLAST job (i.e.: that corresponds to one of the query batches).
 
-    * Default: ``60``
+    * Default: ``10080``     (1 week)
     * Values: Positive integer
 
 .. code-block::
 
     [timeouts]
-    blast-k8s-job = 60
+    blast-k8s-job = 10080
 
 .. _elb_init_blastdb_timeout:
 

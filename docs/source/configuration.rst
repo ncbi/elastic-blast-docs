@@ -434,13 +434,13 @@ Timeout configuration options
 
     Timeout in minutes after which kubernetes will terminate a single BLAST job (i.e.: that corresponds to one of the query batches).
 
-    * Default: ``604800``
+    * Default: ``10080``     (1 week)
     * Values: Positive integer
 
 .. code-block::
 
     [timeouts]
-    blast-k8s-job = 60
+    blast-k8s-job = 10080
 
 .. _elb_init_blastdb_timeout:
 

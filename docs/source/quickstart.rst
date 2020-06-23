@@ -8,8 +8,9 @@ Get ElasticBlast
 
 .. code-block:: shell
 
-    # Replace ${PWD} with the desired installation path
+    # Optional: replace ${PWD} with the desired installation path
     gsutil -mq rsync -r gs://elastic-blast/release/{VERSION}/ ${PWD}
+    # Check the integrity of the downloaded files
     find ${PWD} -name "*.md5" | xargs -t -I{} md5sum -c {} 
 
 Configure it

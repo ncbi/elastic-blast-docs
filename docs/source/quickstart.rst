@@ -6,12 +6,11 @@ Quickstart
 Get ElasticBlast
 ----------------
 
-*NCBI only!*
-
 .. code-block:: shell
 
-    cp -p /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/{VERSION}/elastic-blast . 
-    md5sum -c /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/{VERSION}/elastic-blast.md5
+    # Replace ${PWD} with the desired installation path
+    gsutil -mq rsync -r gs://elastic-blast/release/{VERSION}/ ${PWD}
+    find ${PWD} -name "*.md5" | xargs -t -I{} md5sum -c {} 
 
 Configure it
 ------------

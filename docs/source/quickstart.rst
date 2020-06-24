@@ -10,7 +10,8 @@ Get ElasticBlast
 
     # Optional: replace ${PWD} with the desired installation path
     gsutil -mq rsync -r gs://elastic-blast/release/{VERSION}/ ${PWD}
-    # Check the integrity of the downloaded files
+    find ${PWD} -type f -name "elastic-blast*" ! -name "*.md5" | xargs chmod +x
+    # Optional: Check the integrity of the downloaded files
     find ${PWD} -name "*.md5" | xargs -t -I{} md5sum -c {} 
 
 Configure it
@@ -45,7 +46,6 @@ They can be provided on a standard ini configuration file, e.g.:
     db = nr
     queries = gs://elastic-blast-samples/queries/protein/dark-matter-500000.faa.gz
     results-bucket = ${YOUR_RESULTS_BUCKET}
-
 
 
 See :ref:`configuration` for details on all the configuration parameters.

@@ -10,7 +10,7 @@ Get ElasticBlast
 
     # Optional: replace ${PWD} with the desired installation path
     gsutil -mq rsync -r gs://elastic-blast/release/{VERSION}/ ${PWD}
-    find ${PWD} -type f -name "elastic-blast*" ! -name "*.md5" | xargs chmod +x
+    find ${PWD} -type f ! -name "*.md5" | xargs chmod +x
 
 
 The code examples below assume that ElasticBLAST was installed in the current working directory.

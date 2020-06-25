@@ -17,6 +17,7 @@ Please help the development team help you:
     python3 -m sysconfig
     env
     gcloud info
+    gcloud projects get-iam-policy $(gcloud config get-value project 2>&1 |tail -1) --flatten="bindings[].members" --format='table(bindings.role)' --filter="bindings.members:$(gcloud config get-value account 2>&1 |tail -1)"
 
 
 * Always use the ``--loglevel DEBUG`` option (for now).

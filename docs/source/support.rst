@@ -5,16 +5,24 @@ Support
 
 Please help the development team help you: 
 
-#. Always use the ``--loglevel DEBUG`` option (for now).
-#. When reporting problems, please provide us with the the logfile (``elastic-blast.log`` by default) and your
-   configuration file.
-#. Consider using the unix ``screen`` tool to capture the output of your usage
-   of ElasticBLAST and attaching the session log to your problem report. 
+* When reporting problems, please provide us with:
+
+   * Your configuration file
+   * The ElasticBLAST logfile (``elastic-blast.log`` by default)
+   * Your system's information, i.e. the output of the commands below:
 
 .. code-block:: bash
 
-    # Linux only: this command will generate a file called typescript with information to share along your bug report
-    script -c './elastic-blast status --cfg ${YOUR_CONFIG_FILE} --loglevel DEBUG; cat elastic-blast.log; cat ${YOUR_CONFIG_FILE}'
+    uname -a
+    python3 -m sysconfig
+    env
+    gcloud info
+
+
+* Always use the ``--loglevel DEBUG`` option (for now).
+* Consider using the unix ``screen`` (`wikipedia <https://en.wikipedia.org/wiki/Script_(Unix)>`_, `man page <https://man7.org/linux/man-pages/man1/script.1.html>`_) tool to capture the
+  output of your usage of ElasticBLAST and attaching the session log to your
+  problem report. 
 
 Thanks! :)
 

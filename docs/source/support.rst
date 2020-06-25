@@ -16,6 +16,7 @@ Please help the development team help you:
     uname -a
     python3 -m sysconfig
     env
+    gcloud info
 
 
 * Always use the ``--loglevel DEBUG`` option (for now).

@@ -3,6 +3,25 @@
 Troubleshooting
 ===============
 
+How do I report ElasticBLAST problems?
+--------------------------------------
+
+Please see :ref:`support`.
+
+How do I see resources created by ElasticBLAST?
+-----------------------------------------------
+
+Please run the commands below or check the GCP web console:
+
+* https://console.cloud.google.com/kubernetes/list
+* https://console.cloud.google.com/compute/disks
+
+.. code-block:: bash
+
+   gcloud container clusters list
+   gcloud compute disks list
+
+
 My search seems to be stalled
 -----------------------------
 
@@ -21,10 +40,5 @@ resources created by ElasticBLAST. Your input file(s) will not be modified.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG --logfile stderr
-
-How to debug ElasticBLAST?
---------------------------
-
-Please see :ref:`support`.
+    ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG
 

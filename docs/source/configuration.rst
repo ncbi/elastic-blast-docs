@@ -235,7 +235,7 @@ BLAST configuration options
     BLAST program to run.
 
     * Default: ``blastn``
-    * Values: One of: ``blastp``, ``blastn``, ``megablast``, ``rpstblastn``
+    * Values: One of: ``blastp``, ``blastn``, ``megablast``, ``blastx``, ``tblastn``, ``tblastx``, ``psiblast``, ``rpsblast``, ``rpstblastn``
 
 .. NOTE: keep these values in sync with get_query_batch_size
 

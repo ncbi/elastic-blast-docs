@@ -14,7 +14,7 @@ Please help the development team help you:
 .. code-block:: bash
 
     uname -a
-    python -m sysconfig
+    python3 -m sysconfig
     env
 
 

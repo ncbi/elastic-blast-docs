@@ -18,9 +18,9 @@ Persistent disk not properly deleted
 ------------------------------------
 
 As part of its normal operation ElasticBLAST starts a
-:ref:`persistent disk <elb_pd_size>` and sometimes this is not properly
-deleted. To double check and delete it, please run the commands below
-accordingly:
+:ref:`persistent disk <elb_pd_size>` and under some circumstances it
+is not properly deleted. To double check and delete it, please run the commands
+below accordingly:
 
 .. code-block:: bash
 

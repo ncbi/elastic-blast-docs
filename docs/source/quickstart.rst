@@ -6,12 +6,15 @@ Quickstart
 Get ElasticBlast
 ----------------
 
-*NCBI only!*
-
 .. code-block:: shell
 
-    cp -p /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/{VERSION}/elastic-blast . 
-    md5sum -c /panfs/pan1.be-md.ncbi.nlm.nih.gov/blastprojects/releases/elastic-blast/{VERSION}/elastic-blast.md5
+    # Optional: replace ${PWD} with the desired installation path
+    gsutil -mq rsync -r gs://elastic-blast/release/{VERSION}/ ${PWD}
+    find ${PWD} -type f ! -name "*.md5" | xargs chmod +x
+
+
+The code examples below assume that ElasticBLAST was installed in the current working directory.
+
 
 Configure it
 ------------
@@ -47,7 +50,6 @@ They can be provided on a standard ini configuration file, e.g.:
     results-bucket = ${YOUR_RESULTS_BUCKET}
 
 
-
 See :ref:`configuration` for details on all the configuration parameters.
 
 Run it!
@@ -63,7 +65,7 @@ Run it!
 Monitor progress
 ----------------
 To check on the progress of the search, inspect the logfile
-(`elastic-blast.log` by default) and/or run the command below:
+(``elastic-blast.log`` by default) and/or run the command below:
 
 .. code-block:: bash
     :name: status
@@ -95,18 +97,6 @@ Run the command below to download the results
 
     gsutil -qm cp ${YOUR_RESULTS_BUCKET}/*.out.gz .
 
-If you are working at an NCBI workstation, after downloading the results you
-can optionally run the command below to perform basic sanity checks on the
-result files.
-
-.. code-block:: bash
-
-    find . -name "batch*.out.gz" -type f -print0 | \
-        xargs -0 -P8 -I{} -t gzip -t {}
-    find . -name "batch*.out.gz" -type f -print0 | \
-        xargs -0 -P8 -I{} -t bash -c "zcat {} |
-        datatool -m /netopt/ncbi_tools64/c++.metastable/src/objects/blast/blast.asn -M /am/ncbiapdata/asn/asn.all -v - -e /dev/null"
-
 Clean up
 --------
 This step is **critical**, please do not omit it, even if you ran Ctrl-C when
@@ -115,6 +105,6 @@ ElasticBLAST search.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg ${CONFIG_FILE}
+    ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG
 
 

@@ -8,12 +8,12 @@ Exit code  Meaning                                                              
 1          Error in query sequence(s), BLAST options, or ElasticBLAST configuration     Submit
 2          Error in BLAST database                                                      Submit
 6          Error creating output files                                                  Submit, status
+7          Missing required dependency                                                  All
+9          Operation interrupted                                                        All
 =========  ============================================================================ ============================
 .. 3          Error in BLAST engine                                                        Submit, status
 .. 4          Out of memory                                                                Submit, status
 .. 5          Timeout                                                                      Submit, status
-.. 7          Missing required dependency                                                  All
 .. 8          Error communicating with cluster                                             All
-.. 9          Operation interrupted                                                        All
 .. 10         Search is in progress                                                        Status, if flag is provided
 .. 255        Unknown error                                                                All

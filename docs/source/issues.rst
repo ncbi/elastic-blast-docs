@@ -27,6 +27,8 @@ below accordingly:
    gcloud compute disks delete ${DISK_NAME}  # to delete relevant disks
 
 
+.. _cluster_leak:
+
 Compute cluster not properly deleted
 ------------------------------------
 
@@ -37,6 +39,8 @@ ElasticBLAST allocates a :ref:`compute cluster <elb_cluster_name>` in the cloud 
    gcloud container clusters list  # to list GKE clusters
    gcloud container clusters delete ${ELB_CLUSTER_NAME}  # to delete your cluster
 
+
+.. _file_leak:
 
 Files left in cloud storage
 ---------------------------
@@ -55,7 +59,18 @@ ElasticBLAST uses cloud storage to temporally store query sequences and internal
    gsutil -m rm gs://${ELB_RESULTS_BUCKET}/logs/*  # to delete metadata files
 
 
+.. _early_shutdown:
+
 A synchronous search may shut down too early
 --------------------------------------------
 
 When doing a synchronous search (submitted with the ``--sync`` option), ElasticBLAST is continuously probing for search status to know when the search is done. When the status check times out ElasticBLAST interprets it as search failure and shuts down the cluster.
+
+.. _too_many_jobs:
+
+Too many jobs leads to a failed execution
+-----------------------------------------
+
+ElasticBLAST divides query sequences into batches and searches them in parallel. The :ref:`ELB_BATCH_LEN` parameter controls the size of a single batch. If the ElasticBLAST configuration leads to more than 5,000 query batches
+kubernetes jobs created, ElasticBLAST will disconnect from the cluster and it
+will be deleted without producing results.

@@ -71,6 +71,6 @@ When doing a synchronous search (submitted with the ``--sync`` option), ElasticB
 Too many jobs leads to a failed execution
 -----------------------------------------
 
-If the ElasticBLAST configuration leads to too many (e.g.: over 5,000)
+ElasticBLAST divides query sequences into batches and searches them in parallel. The `batch-len` parameter controls the size of a single batch. If the ElasticBLAST configuration leads to more than 5,000 query batches
 kubernetes jobs created, ElasticBLAST will disconnect from the cluster and it
 will be deleted without producing results.

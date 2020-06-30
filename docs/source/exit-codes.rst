@@ -10,10 +10,10 @@ Exit code  Meaning                                                              
 6          Error creating output files                                                  Submit, status
 7          Missing required dependency                                                  All
 9          Operation interrupted                                                        All
+255        Unknown error                                                                All
 =========  ============================================================================ ============================
 .. 3          Error in BLAST engine                                                        Submit, status
 .. 4          Out of memory                                                                Submit, status
 .. 5          Timeout                                                                      Submit, status
 .. 8          Error communicating with cluster                                             All
 .. 10         Search is in progress                                                        Status, if flag is provided
-.. 255        Unknown error                                                                All

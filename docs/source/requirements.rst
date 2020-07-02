@@ -12,3 +12,24 @@ Requirements
 
     * GKE: to manage a kubernetes cluster on which to run ElasticBLAST.
     * GCS: to store results and query splits.
+
+
+
+
+Tips
+----
+
+.. In the Cloud Console, on the Navigation menu (Navigation menu), click APIs & services > Library.
+.. I.e.: go to https://console.cloud.google.com/apis/library, search for kubernetes and storage
+
+#. To check the GCP permissions with the Cloud Console, visit the URLs below and ensure that the API is **enabled**.
+
+   * https://console.cloud.google.com/apis/api/storage-component.googleapis.com/overview
+   * https://console.cloud.google.com/apis/api/container.googleapis.com/overview
+
+#. If you are working on ubuntu system and have ``root`` permissions, you can install kubectl and python-distutils as follows:
+
+.. code-block:: shell
+
+   sudo apt-get install -yq kubectl python3-distutils
+

@@ -27,7 +27,7 @@ Tips
    * https://console.cloud.google.com/apis/api/storage-component.googleapis.com/overview
    * https://console.cloud.google.com/apis/api/container.googleapis.com/overview
 
-#. If you are working on Ubuntu system and have ``root`` permissions, you can install kubectl and python-distutils as follows:
+#. If you are working on Debian or Ubuntu Linux distribution and have ``root`` permissions, you can install kubectl and python-distutils as follows:
 
 .. code-block:: shell
 

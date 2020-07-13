@@ -68,7 +68,7 @@ When doing a synchronous search (submitted with the ``--sync`` option), ElasticB
 
 .. _too_many_jobs:
 
-Too many query batches
+Too many query batches leads to failed execution
 -----------------------------------------
 
 ElasticBLAST divides query sequences into batches and searches them in parallel. The :ref:`ELB_BATCH_LEN` parameter controls the size of a single batch. If the ElasticBLAST configuration leads to more than 5,000 query batches, ElasticBLAST will exit with an error message prompting you to increase :ref:`ELB_BATCH_LEN` parameter to decrease the number of query batches.

@@ -269,7 +269,7 @@ BLAST configuration options
 ``BLAST database`` 
 ^^^^^^^^^^^^^^^^^^
 
-    BLAST database name to search. 
+    BLAST database name to search. To search a database provided in the cloud by NCBI use database name. To search your own custom database, upload database files to a cloud storage bucket and provide bucket's universal resource identifier (URI) plus database name (see code block below).
 
     * Default: None
     * Values: String. Run the command below to get a list of available options:
@@ -283,6 +283,12 @@ BLAST configuration options
 
     [blast]
     db = nr
+
+.. code-block::
+    :caption: Sample custom BLAST database configuration
+
+    [blast]
+    db = gs://my-database-bucket/mydatabase
 
 ..
 .. .. _elb_blast_dbsrc:

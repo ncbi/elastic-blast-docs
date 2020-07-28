@@ -290,23 +290,6 @@ BLAST configuration options
     [blast]
     db = gs://my-database-bucket/mydatabase
 
-..
-.. .. _elb_blast_dbsrc:
-.. 
-.. ``BLAST database source`` 
-.. ^^^^^^^^^^^^^^^^^^^^^^^^^
-.. 
-..     Source from where to get the BLAST databases.
-.. 
-..     * Default: ``gcp``
-..     * Values: One of ``gcp``, ``ncbi`` or ``aws``
-.. 
-.. .. code-block::
-.. 
-..     [blast]
-..     blastdb-src = gcp
-..
-
 .. _elb_batch_len:
 
 ``Batch length`` 

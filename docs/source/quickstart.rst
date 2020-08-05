@@ -54,6 +54,7 @@ They can be provided on a standard ini configuration file, e.g.:
     options = -task blastp-fast -evalue 0.01 -outfmt 7 
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
+The search above should take about 30 minutes to run.
 
 See :ref:`configuration` for details on all the configuration parameters.
 
@@ -107,8 +108,8 @@ Run the command below to download the results
 Clean up
 --------
 This step is **critical**, please do not omit it, even if you ran Ctrl-C when
-starting ElasticBLAST. If your cluster stays up, this will accrue charges from
-your cloue provider.  It is also recommended each time you start a new
+starting ElasticBLAST. If your cluster stays up, you will accrue charges from
+your cloud provider.  It is also recommended each time you start a new
 ElasticBLAST search. 
 
 .. code-block:: bash
@@ -122,3 +123,5 @@ You may verify that your cluster has been deleted by running:
 .. code-block:: bash
 
   gcloud container clusters list 
+
+This will show all clusters running in your project (even from other users).  If nothing is returned, then no clusters are running.

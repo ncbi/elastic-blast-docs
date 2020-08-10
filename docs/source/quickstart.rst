@@ -25,7 +25,7 @@ The minimal configuration requires:
 
 #. :ref:`query sequences <elb_queries>` in a single file or tarball, 
 
-#. a :ref:`GCP bucket for results <elb_results_bucket>`,  The name of this bucket will start with gs://
+#. a :ref:`GCP bucket for results <elb_results_bucket>`.  The name of this bucket must start with gs://
 
 #. Basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
 #. :ref:`elb_num_nodes` to start.
@@ -122,6 +122,6 @@ You may verify that your cluster has been deleted by running:
 
 .. code-block:: bash
 
-  gcloud container clusters list 
+  gcloud container clusters list --project <your-gcp-project-id>
 
 This will show all clusters running in your project (even from other users).  If nothing is returned, then no clusters are running.

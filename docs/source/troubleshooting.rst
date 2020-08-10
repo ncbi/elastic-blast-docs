@@ -63,12 +63,6 @@ I get a message about not being able write into the bucket with submit command
 
 Things to check:
 
-* The project name is correct.  The project name and not the project ID is required in the config file.  It should correspond to what is returned by the command:
-
-.. code-block:: bash
-
-   gcloud config get-value project
-
 * You are logged in with the correct account (e.g., your institutional GCP account and not your personal gmail account).  Check this with:
 
 .. code-block:: bash

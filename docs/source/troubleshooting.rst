@@ -42,3 +42,39 @@ resources created by ElasticBLAST. Your input file(s) will not be modified.
 
     ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG
 
+
+I cannot find python or an expected version when I run elastic-blast
+--------------------------------------------------------------------
+
+Run
+
+.. code-block:: bash
+
+    python --version 
+
+to see which version of python you have (or if it's even installed).  If python is not found or
+it's not one of the supported versions (3.6, 3.7 or 3.8), you'll need to install it (3.8 recommended). 
+If one of versions from 3.6, 3.7 or 3.8 is found, then you can try the corresponding elastic-blast 
+script (e.g., `elastic-blast3.8`).
+
+
+I get a message about not being able write into the bucket with submit command
+------------------------------------------------------------------------------
+
+Things to check:
+
+* You are logged in with the correct account (e.g., your institutional GCP account and not your personal gmail account).  Check this with:
+
+.. code-block:: bash
+
+   gcloud config get-value account
+
+* The bucket URI (in the "results-bucket" field of the config file) starts with "gs://".  For example, the bucket URI should be "gs://sarahtest" but instead you have "sarahtest".
+
+* The bucket URI is correct and you have permission to write to it.  The GCP page on bucket permissions is at https://cloud.google.com/storage/docs/gsutil/commands/acl but it is probably easiest to try and copy a file into your bucket with:
+
+.. code-block:: bash
+
+    date > date.txt
+    gsutil cp date.txt ${YOUR_RESULTS_BUCKET}
+    

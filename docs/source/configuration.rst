@@ -251,10 +251,11 @@ BLAST configuration options
 
     BLAST options to customize BLAST invocation.
 
-    *Note*: the default output format in ElasticBLAST is 11. 
+    *Note*: the default output format in ElasticBLAST is 11 (BLAST archive). 
 
-    Please use `blast_formatter <https://www.ncbi.nlm.nih.gov/books/NBK279697/>`_ to format
-    the results in any desired output format.
+    If you do not specify an output format (with -outfmt), you can use `blast_formatter <https://www.ncbi.nlm.nih.gov/books/NBK279697/>`_ to format the results in any desired output format.  
+
+    Below, we have specified "-outfmt 7" for the BLAST tabular format and requested blastp-fast mode.
 
     * Default: None
     * Values: String, see `BLAST+ options <https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a>`_
@@ -297,10 +298,7 @@ BLAST configuration options
 
     Number of bases/residues per query batch.
 
-    **NOTE**: this value should change along with `BLAST program`_. 
-
-    Please use ``10000`` for ``blastp`` and ``rpstblastn`` and consult with the
-    development team for other programs.
+    **NOTE**: this value should change with `BLAST program`_. 
 
     * Default: `Auto-configured for supported programs`.
     * Values: Positive integer

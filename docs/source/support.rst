@@ -3,6 +3,8 @@
 Support
 =======
 
+You can email help requests to elastic-blast-support@ncbi.nlm.nih.gov
+
 Please help the development team help you: 
 
 * When reporting problems, please provide us with:

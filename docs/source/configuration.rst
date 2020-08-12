@@ -100,7 +100,7 @@ Cluster configuration
 
     Use `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ in the kubernetes cluster.
 
-    **Note**: This is only recommended if your ElasticBLAST search will take a few hours (less than 24).
+    **Note**: This is only recommended if your ElasticBLAST search will take less than 24 hours.
 
     * Default: ``no``
     * Values: Any string. Set to ``yes`` enable.
@@ -312,8 +312,8 @@ BLAST configuration options
 
 .. _elb_blast_db_margin:
 
-``BLAST database memory margin`` 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``BLAST database memory margin (NOT currently supported)`` 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     This value specifies how much larger should the `Memory request for BLAST search`_  be made relative to the size of the `BLAST database`_ by default.
 

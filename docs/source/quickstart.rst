@@ -3,6 +3,16 @@
 Quickstart
 ==========
 
+The Big Picture
+---------------
+
+.. figure:: elboverview.png
+   :alt: Elastic-BLAST overview
+   :class: with-border
+
+   Elastic-BLAST overview
+
+
 Get ElasticBlast
 ----------------
 
@@ -14,6 +24,22 @@ Get ElasticBlast
 
 
 The code examples below assume that ElasticBLAST was installed in the current working directory.
+
+
+See version and help
+--------------------
+
+To see the version of elastic-blast you are using:
+
+.. code-block:: shell
+
+   ./elastic-blast --version
+
+To see the help message:
+
+.. code-block:: shell
+
+   ./elastic-blast --help
 
 
 Configure it

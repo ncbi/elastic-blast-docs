@@ -216,7 +216,7 @@ Cluster configuration
     Specifies the labels to attach to cloud resources created by ElasticBLAST.
 
     * Default: ``cluster-name={cluster_name},client-hostname={hostname},created={create_date},owner={username},project=elastic-blast,creator={username},program={blast_program},db={db}``
-    * Values: String of key-value pairs separated by commas. See `GCP documetation on labels <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_ for details.
+    * Values: String of key-value pairs separated by commas. See `GCP documentation on labels <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_ for details.
 
 .. code-block::
 

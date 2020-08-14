@@ -7,13 +7,13 @@ The Big Picture
 ---------------
 
 .. figure:: elboverview.png
-   :alt: Elastic-BLAST overview
+   :alt: ElasticBLAST overview
    :class: with-border
 
-   Elastic-BLAST overview
+   ElasticBLAST overview
 
 
-Get ElasticBlast
+Get ElasticBLAST
 ----------------
 
 .. code-block:: shell
@@ -148,7 +148,7 @@ ElasticBLAST search.
 
 
 The delete command will take a few minutes to run as it needs to shut the cluster down.
-You may verify that your cluster and disk has been deleted by running: 
+You may verify that your cluster and disk have been deleted by running: 
 
 .. code-block:: bash
 

@@ -12,6 +12,7 @@ Exit code  Meaning                                                              
 9          Operation interrupted                                                        All
 255        Unknown error                                                                All
 =========  ============================================================================ ============================
+
 .. 3          Error in BLAST engine                                                        Submit, status
 .. 4          Out of memory                                                                Submit, status
 .. 5          Timeout                                                                      Submit, status

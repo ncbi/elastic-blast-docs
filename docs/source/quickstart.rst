@@ -3,7 +3,17 @@
 Quickstart
 ==========
 
-Get ElasticBlast
+The Big Picture
+---------------
+
+.. figure:: elboverview.png
+   :alt: ElasticBLAST overview
+   :class: with-border
+
+   ElasticBLAST overview
+
+
+Get ElasticBLAST
 ----------------
 
 .. code-block:: shell
@@ -14,6 +24,22 @@ Get ElasticBlast
 
 
 The code examples below assume that ElasticBLAST was installed in the current working directory.
+
+
+See version and help
+--------------------
+
+To see the version of elastic-blast you are using:
+
+.. code-block:: shell
+
+   ./elastic-blast --version
+
+To see the help message:
+
+.. code-block:: shell
+
+   ./elastic-blast --help
 
 
 Configure it
@@ -54,7 +80,7 @@ They can be provided on a standard ini configuration file, e.g.:
     options = -task blastp-fast -evalue 0.01 -outfmt 7 
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
-The search above should take about 30 minutes to run.
+The search above should take about 30 minutes to run and cost less than $3.  Using :ref:`preemptible nodes<ELB_USE_PREEMPTIBLE>` can make it less expensive.
 
 See :ref:`configuration` for details on all the configuration parameters.
 
@@ -67,6 +93,12 @@ Run it!
 
 The submit command can take several minutes as it brings up your cluster and downloads your BLAST database.
 **NOTE**: currently you can only have **one** ElasticBLAST search running at a time.
+
+You can also add --sync to the above command-line, in which case elastic-blast will automatically shut 
+down your cluster when it's done.  In this case, it's important that your computer stays powered up and connected 
+to the internet, so that elastic-blast can issue the command to delete the cluster. If you lose the network connection during the search, you will have to shut the cluster down manually (see delete command below).
+
+If you are running `elastic-blast --sync` in a remote/shared linux server, please consider using `nohup` or a terminal multiplexer (e.g.: `screen` or `tmux`) to keep the process alive in the event of network disconnection or log out.
 
 
 Monitor progress
@@ -118,10 +150,11 @@ ElasticBLAST search.
 
 
 The delete command will take a few minutes to run as it needs to shut the cluster down.
-You may verify that your cluster has been deleted by running: 
+You may verify that your cluster and disk have been deleted by running: 
 
 .. code-block:: bash
 
   gcloud container clusters list --project <your-gcp-project-id>
+  gcloud compute disks list --project <your-gcp-project-id>
 
-This will show all clusters running in your project (even from other users).  If nothing is returned, then no clusters are running.
+This will show all clusters and disks in your project (even from other users).  If nothing is returned, then no clusters are running and no disks are being used.  Please see :ref:`PD_LEAK` if your cluster or disk is not properly deleted for instructions on deleting them.

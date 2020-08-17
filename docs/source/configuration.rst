@@ -100,7 +100,7 @@ Cluster configuration
 
     Use `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ in the kubernetes cluster.
 
-    **Note**: This is only recommended if your ElasticBLAST search will take less than 24 hours.
+    **Note**: Pre-emptible nodes are rebooted after 24 hours (by GCP).  This is fine in most cases as Kubernetes will restart the node and resubmit the search (i.e., batch) that was interrupted.  The batches that have already been processed are not lost.  The only issue is if a single batch takes longer than 24 hours.   We expect the overwhelming majority of Elastic-BLAST searches to take at most several hours, so this should not be an issue at all.
 
     * Default: ``no``
     * Values: Any string. Set to ``yes`` enable.
@@ -309,22 +309,6 @@ BLAST configuration options
 
     [blast]
     batch-len = 10000
-
-.. _elb_blast_db_margin:
-
-``BLAST database memory margin (NOT currently supported)`` 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-    This value specifies how much larger should the `Memory request for BLAST search`_  be made relative to the size of the `BLAST database`_ by default.
-
-    * Default: ``1.1``
-    * Values: A value over 1.0.
-
-.. code-block::
-
-    [blast]
-    db-memory-margin = 1.1
-
 
 .. _elb_mem_request:
 

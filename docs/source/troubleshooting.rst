@@ -84,7 +84,7 @@ I get a message about a project not existing
 
 Things to check:
 
-* Make sure you are using the GCP project ID.  Every GCP project has a name, an ID and a number.  The name and ID consist of lower-case letters and dashes and possibly numbers.  The project number is simply an integer.  See all three by going to your dashboard at https://console.cloud.google.com/home/dashboard
+* Make sure you are using the GCP project ID.  Every GCP project has a name, an ID and a number.  The ID consist of lower-case letters and dashes and possibly numbers.  The project number is simply an integer.  See all three by going to your dashboard at https://console.cloud.google.com/home/dashboard
 
 * Verify that you have the correct project set with:
 

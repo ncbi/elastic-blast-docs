@@ -96,7 +96,9 @@ The submit command can take several minutes as it brings up your cluster and dow
 
 You can also add --sync to the above command-line, in which case elastic-blast will automatically shut 
 down your cluster when it's done.  In this case, it's important that your computer stays powered up and connected 
-to the internet, so that elastic-blast can issue the command to delete the cluster.
+to the internet, so that elastic-blast can issue the command to delete the cluster. If you lose the network connection during the search, you will have to shut the cluster down manually (see delete command below).
+
+If you are running `elastic-blast --sync` in a remote/shared linux server, please consider using `nohup` or a terminal multiplexer (e.g.: `screen` or `tmux`) to keep the process alive in the event of network disconnection or log out.
 
 
 Monitor progress

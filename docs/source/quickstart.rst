@@ -18,9 +18,11 @@ Get ElasticBLAST
 
 .. code-block:: shell
 
-    # Optional: replace ${PWD} with the desired installation path
-    gsutil -mq rsync -r gs://elastic-blast/release/{VERSION}/ ${PWD}
-    find ${PWD} -type f ! -name "*.md5" | xargs chmod +x
+    curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast
+    curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast.md5
+    md5sum -c elastic-blast.md5
+    chmod +x elastic-blast
+    # Optional: move elastic-blast to the desired installation path
 
 
 The code examples below assume that ElasticBLAST was installed in the current working directory.

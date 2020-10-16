@@ -57,6 +57,76 @@ Cloud provider configuration
     [cloud-provider]
     gcp-zone = us-east4-b
 
+.. _elb_aws_region:
+
+``AWS Region``
+^^^^^^^^^^^^^^
+
+    Name of the AWS region to use. Recommended value: ``us-east-1``.
+
+    * Default: None
+    * Values: String, any region that supports Batch, see `AWS documentation for details <https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/>`_
+
+    Also supported via the environment variable: ``ELB_GCP_REGION``.
+
+    For background information about AWS regions, please see the `AWS
+    documentation
+    <https://aws.amazon.com/about-aws/global-infrastructure/regions_az/>`_.
+
+.. code-block::
+
+    [cloud-provider]
+    aws-region = us-east-1
+
+.. _elb_aws_subnet:
+
+``AWS Subnet``
+^^^^^^^^^^^^^^
+
+    Name of the AWS subnet to use; must exist in the chosen :ref:`region
+    <elb_aws_region>`.
+
+    * Default: None
+    * Values: String
+
+.. code-block::
+
+    [cloud-provider]
+    aws-subnet = subnet-a43744d3
+
+.. _elb_aws_security_group:
+
+``AWS Security Group``
+^^^^^^^^^^^^^^^^^^^^^^
+
+    Name of the AWS security group to use; must exist in the chosen :ref:`region
+    <elb_aws_region>`.
+
+    * Default: None
+    * Values: String
+
+.. code-block::
+
+    [cloud-provider]
+    aws-security-group = sg-6cae8d08
+
+.. _elb_aws_key_pair:
+
+``AWS Key Pair``
+^^^^^^^^^^^^^^^^
+
+    This is an optional configuration setting: Name of the AWS key pair to use to login to EC2 instances; must exist in the chosen :ref:`region
+    <elb_aws_region>`.
+
+    * Default: None
+    * Values: String
+
+.. code-block::
+
+    [cloud-provider]
+    aws-key-pair = my-aws-key-name
+
+
 
 Cluster configuration
 ---------------------
@@ -237,6 +307,8 @@ BLAST configuration options
     * Default: ``blastn``
     * Values: One of: ``blastp``, ``blastn``, ``megablast``, ``blastx``, ``tblastn``, ``tblastx``, ``psiblast``, ``rpsblast``, ``rpstblastn``
 
+    **NOTE**: Currently only ``blastn`` is supported in AWS.
+
 .. NOTE: keep these values in sync with get_query_batch_size
 
 .. code-block::
@@ -383,9 +455,12 @@ Input/output configuration options
 ``Results bucket`` 
 ^^^^^^^^^^^^^^^^^^
 
-    GCS bucket URI where to save the output from ElasticBLAST. This bucket *must* exist prior to invoking ElasticBLAST.
+    GCS or AWS S3 bucket URI where to save the output from ElasticBLAST. 
 
-    * Default: ``gs://${USER}-test``
+    **Note**: This bucket *must* exist prior to invoking ElasticBLAST and it
+    *must* include the ``gs://`` or ``s3://`` prefix.
+
+    * Default: ``gs://${USER}-test`` for :ref:`GCP <gcp>`; ``s3://elasticblast-${USER}`` for :ref:`AWS <aws>`
     * Values: String
 
     Also supported via the environment variable: ``ELB_RESULTS_BUCKET``.

@@ -15,7 +15,8 @@ The minimum required configuration parameters for running ElasticBLAST in AWS in
 
 * :ref:`region <elb_aws_region>`
 * :ref:`subnet <elb_aws_subnet>`
-* :ref:`security-group <elb_aws_security_group>`
+* :ref:`security group <elb_aws_security_group>`
+* :ref:`key pair <elb_aws_key_pair>`
 
 In addition, you must have the necessary credentials and permissions to run the AWS services required by ElasticBLAST.
 

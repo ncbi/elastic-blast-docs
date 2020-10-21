@@ -92,7 +92,7 @@ Cloud provider configuration
 .. code-block::
 
     [cloud-provider]
-    aws-subnet = subnet-a43744d3
+    aws-subnet = subnet-SOME-RANDOM-STRING
 
 .. _elb_aws_security_group:
 
@@ -108,14 +108,14 @@ Cloud provider configuration
 .. code-block::
 
     [cloud-provider]
-    aws-security-group = sg-6cae8d08
+    aws-security-group = sg-SOME-RANDOM-STRING
 
 .. _elb_aws_key_pair:
 
 ``AWS Key Pair``
 ^^^^^^^^^^^^^^^^
 
-    This is an optional configuration setting: Name of the AWS key pair to use to login to EC2 instances; must exist in the chosen :ref:`region
+    Name of the AWS key pair to use to login to EC2 instances; must exist in the chosen :ref:`region
     <elb_aws_region>`.
 
     * Default: None

@@ -10,7 +10,7 @@ databases.
 Features
 --------
 
-* Supports :ref:`preemptible nodes<ELB_USE_PREEMPTIBLE>` for cost savings
+* Supports :ref:`preemptible nodes<ELB_USE_PREEMPTIBLE>` in GCP for cost savings
 
 .. toctree::
    :maxdepth: 1

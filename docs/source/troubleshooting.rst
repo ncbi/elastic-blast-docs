@@ -11,7 +11,9 @@ Please see :ref:`support`.
 How do I see resources created by ElasticBLAST?
 -----------------------------------------------
 
-Please run the commands below or check the GCP web console:
+**If you are running ElasticBLAST on GCP**:
+
+Please check the GCP web console or run the commands below:
 
 * https://console.cloud.google.com/kubernetes/list
 * https://console.cloud.google.com/compute/disks
@@ -22,10 +24,23 @@ Please run the commands below or check the GCP web console:
    gcloud compute disks list
 
 
+**If you are running ElasticBLAST on AWS**:
+
+Please check the AWS web console or run the commands below:
+
+* https://console.aws.amazon.com/cloudformation
+* https://console.aws.amazon.com/batch
+
+.. code-block:: bash
+
+   aws cloudformation describe-stacks --stack-name elasticblast-${USER} --output text 
+   aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Owner,Values=${USER} --query "Reservations[*].Instances[*].InstanceId" --output text 
+
+
 My search seems to be stalled
 -----------------------------
 
-Run the commands below to see what is running in your cluster:
+Run the commands below to see what is running in your GCP GKE cluster:
 
 .. code-block:: bash
     
@@ -53,7 +68,7 @@ Run
     python --version 
 
 to see which version of python you have (or if it's even installed).  If python is not found or
-it's not one of the supported versions (3.6, 3.7 or 3.8), you'll need to install it (3.8 recommended). 
+it is not one of the supported versions (3.6, 3.7 or 3.8), you will need to install it (3.8 recommended). 
 If one of versions from 3.6, 3.7 or 3.8 is found, then you can try the corresponding elastic-blast 
 script (e.g., `elastic-blast3.8`).
 
@@ -69,7 +84,7 @@ Things to check:
 
    gcloud config get-value account
 
-* The bucket URI (in the "results-bucket" field of the config file) starts with "gs://".  For example, the bucket URI should be "gs://sarahtest" but instead you have "sarahtest".
+* The bucket URI (in the "results-bucket" field of the config file) starts with ``gs://``.  For example, the bucket URI should be ``gs://sarahtest`` but instead you have "sarahtest".
 
 * The bucket URI is correct and you have permission to write to it.  The GCP page on bucket permissions is at https://cloud.google.com/storage/docs/gsutil/commands/acl but it is probably easiest to try and copy a file into your bucket with:
 

@@ -67,8 +67,6 @@ Cloud provider configuration
     * Default: None
     * Values: String, any region that supports Batch, see `AWS documentation for details <https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/>`_
 
-    Also supported via the environment variable: ``ELB_GCP_REGION``.
-
     For background information about AWS regions, please see the `AWS
     documentation
     <https://aws.amazon.com/about-aws/global-infrastructure/regions_az/>`_.

@@ -81,7 +81,7 @@ Cloud provider configuration
 ``AWS Subnet``
 ^^^^^^^^^^^^^^
 
-    Name of the AWS subnet to use; must exist in the chosen :ref:`region
+    Optional: Name of the AWS subnet to use; must exist in the chosen :ref:`region
     <elb_aws_region>`.
 
     * Default: None
@@ -97,7 +97,7 @@ Cloud provider configuration
 ``AWS Security Group``
 ^^^^^^^^^^^^^^^^^^^^^^
 
-    Name of the AWS security group to use; must exist in the chosen :ref:`region
+    Optional: Name of the AWS security group to use; must exist in the chosen :ref:`region
     <elb_aws_region>`.
 
     * Default: None
@@ -113,8 +113,7 @@ Cloud provider configuration
 ``AWS Key Pair``
 ^^^^^^^^^^^^^^^^
 
-    Name of the AWS key pair to use to login to EC2 instances; must exist in the chosen :ref:`region
-    <elb_aws_region>`.
+    Optional: Name of the AWS key pair to use to login to EC2 instances; must exist in the chosen :ref:`region <elb_aws_region>`.
 
     * Default: None
     * Values: String

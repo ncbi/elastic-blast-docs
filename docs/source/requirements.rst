@@ -44,4 +44,5 @@ Tips for GCP
 
 .. code-block:: shell
 
+   sudo apt-get -y -m update
    sudo apt-get install -yq kubectl python3-distutils

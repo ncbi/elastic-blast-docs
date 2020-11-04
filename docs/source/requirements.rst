@@ -2,7 +2,7 @@ Requirements
 ============
 
 * `python3.6 or newer <https://www.python.org/downloads/>`_
-* `python3-distutils`
+* ``python3-distutils``
 
 Google Cloud Platform (GCP)
 ---------------------------

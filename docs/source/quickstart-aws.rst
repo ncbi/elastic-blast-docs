@@ -24,7 +24,8 @@ Get ElasticBLAST
     # Optional: move elastic-blast to the desired installation path
 
 
-The code examples below assume that ElasticBLAST was installed in the current working directory.
+The code examples below assume that ElasticBLAST was installed in the current
+working directory and that the :ref:`requirements <requirements>` have been met.
 
 
 Set up an output bucket (if one doesn't exist)
@@ -91,11 +92,13 @@ They can be provided on a standard ini configuration file, e.g.:
     num-nodes = 1
 
     [blast]
-    program = blastn
-    db = pdbnt
-    queries = s3://elasticblast-test/queries/MANE.GRCh38.v0.8.select_refseq_rna.fna 
+    program = blastp
+    db = swissprot
+    queries = s3://elasticblast-test/queries/BDQE01.1.fsa_aa
     results-bucket = ${YOUR_RESULTS_BUCKET}
+    options = -task blastp-fast -evalue 0.01 -outfmt 7 
 
+In addition to the minimal parameters, the configuration file above includes some BLAST options.
 See :ref:`configuration` for details on all the configuration parameters.
 
 Run it!

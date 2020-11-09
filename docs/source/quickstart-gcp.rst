@@ -23,7 +23,8 @@ Get ElasticBLAST
     # Optional: move elastic-blast to the desired installation path
 
 
-The code examples below assume that ElasticBLAST was installed in the current working directory.
+The code examples below assume that ElasticBLAST was installed in the current
+working directory and that the :ref:`requirements <requirements>` have been met.
 
 
 Configure it

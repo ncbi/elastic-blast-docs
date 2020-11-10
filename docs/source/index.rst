@@ -17,7 +17,9 @@ Features
    :caption: Contents:
 
    requirements
-   quickstart
+   overview
+   quickstart-aws
+   quickstart-gcp
    exit-codes
    configuration
    support

@@ -1,8 +1,10 @@
+.. _requirements:
+
 Requirements
 ============
 
 * `python3.6 or newer <https://www.python.org/downloads/>`_
-* `python3-distutils`
+* ``python3-distutils``
 
 Google Cloud Platform (GCP)
 ---------------------------
@@ -10,7 +12,8 @@ Google Cloud Platform (GCP)
 * `GCP SDK CLI <https://cloud.google.com/sdk>`_
 * `kubectl <https://kubernetes.io/docs/tasks/tools/install-kubectl>`_
 * You are authenticated and have the necessary permissions in your GCP
-  project. If working on a newly created GCP instance, this likely requires ``gcloud auth login``.
+  project. If working on a newly created GCP instance, this likely requires
+  running the command ``gcloud auth login``.
 
   * GCP permissions
 
@@ -43,4 +46,5 @@ Tips for GCP
 
 .. code-block:: shell
 
+   sudo apt-get -y -m update
    sudo apt-get install -yq kubectl python3-distutils

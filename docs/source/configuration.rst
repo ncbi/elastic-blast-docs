@@ -81,7 +81,7 @@ Cloud provider configuration
 ``AWS Subnet``
 ^^^^^^^^^^^^^^
 
-    Name of the AWS subnet to use; must exist in the chosen :ref:`region
+    Optional: Name of the AWS subnet to use; must exist in the chosen :ref:`region
     <elb_aws_region>`.
 
     * Default: None
@@ -97,7 +97,7 @@ Cloud provider configuration
 ``AWS Security Group``
 ^^^^^^^^^^^^^^^^^^^^^^
 
-    Name of the AWS security group to use; must exist in the chosen :ref:`region
+    Optional: Name of the AWS security group to use; must exist in the chosen :ref:`region
     <elb_aws_region>`.
 
     * Default: None
@@ -113,8 +113,7 @@ Cloud provider configuration
 ``AWS Key Pair``
 ^^^^^^^^^^^^^^^^
 
-    Name of the AWS key pair to use to login to EC2 instances; must exist in the chosen :ref:`region
-    <elb_aws_region>`.
+    Optional: Name of the AWS key pair to use to login to EC2 instances; must exist in the chosen :ref:`region <elb_aws_region>`.
 
     * Default: None
     * Values: String
@@ -458,7 +457,7 @@ Input/output configuration options
     **Note**: This bucket *must* exist prior to invoking ElasticBLAST and it
     *must* include the ``gs://`` or ``s3://`` prefix.
 
-    * Default: ``gs://${USER}-test`` for :ref:`GCP <gcp>`; ``s3://elasticblast-${USER}`` for :ref:`AWS <aws>`
+    * Default: ``gs://${USER}-test`` for GCP; ``s3://elasticblast-${USER}`` for AWS.
     * Values: String
 
     Also supported via the environment variable: ``ELB_RESULTS_BUCKET``.

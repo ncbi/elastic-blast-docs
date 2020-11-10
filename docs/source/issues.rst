@@ -66,6 +66,13 @@ A synchronous search may shut down too early
 
 When doing a synchronous search (submitted with the ``--sync`` option), ElasticBLAST is continuously probing for search status to know when the search is done. When the status check times out ElasticBLAST interprets it as search failure and shuts down the cluster.
 
+.. _sync_doesnt_work:
+
+No synchronous/asynchronous option in AWS
+-----------------------------------------
+
+This hasn't been tested.
+
 .. _too_many_jobs:
 
 Too many query batches leads to failed execution

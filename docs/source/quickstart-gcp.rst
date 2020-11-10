@@ -1,15 +1,14 @@
-.. _quickstart:
+.. _quickstart-gcp:
 
-Quickstart
-==========
+Quickstart for GCP
+==================
 
-Overview of ElasticBLAST usage
-------------------------------
+Overview of ElasticBLAST on GCP
+-------------------------------
 
-.. figure:: ElasticBlastOperations.png
-   :alt: Overview of ElasticBLAST usage
+.. figure:: persistent-disk-architecture.png
+   :alt: Overview of ElasticBLAST at GCP
    :class: with-border
-
 
 
 Get ElasticBLAST
@@ -24,23 +23,8 @@ Get ElasticBLAST
     # Optional: move elastic-blast to the desired installation path
 
 
-The code examples below assume that ElasticBLAST was installed in the current working directory.
-
-
-See version and help
---------------------
-
-To see the version of ``elastic-blast`` you are using:
-
-.. code-block:: shell
-
-   ./elastic-blast --version
-
-To see the help message:
-
-.. code-block:: shell
-
-   ./elastic-blast --help
+The code examples below assume that ElasticBLAST was installed in the current
+working directory and that the :ref:`requirements <requirements>` have been met.
 
 
 Configure it
@@ -48,11 +32,11 @@ Configure it
 
 The minimal configuration requires: 
 
-#. Cloud service provider configuration (see :ref:`GCP <gcp>` or :ref:`AWS <aws>` for details),
+#. Cloud service provider configuration (see :ref:`GCP configuration <gcp_conf>` for details),
 
 #. :ref:`query sequences <elb_queries>` in a single file or tarball, 
 
-#. a :ref:`cloud storage bucket for results <elb_results_bucket>`. This value must start with ``gs://`` or ``s3://``.
+#. a :ref:`cloud storage bucket for results <elb_results_bucket>`. This value must start with ``gs://``.
 
 #. basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
 
@@ -121,8 +105,7 @@ To check on the progress of the search, inspect the logfile
 
 The status command will not return proper results until the submit command has finished.
 
-**If you are running ElasticBLAST on GCP**, an alternate way to monitor the
-progress is to inspect the kubernetes pods/nodes activity:
+An alternate way to monitor the progress is to inspect the kubernetes pods/nodes activity:
 
 .. code-block:: bash
     :name: kubectl-monitor
@@ -134,24 +117,16 @@ progress is to inspect the kubernetes pods/nodes activity:
 The `GCP web console <https://console.cloud.google.com/kubernetes/list>`_
 provides a graphical user interface to monitor your kubernetes cluster.
 
-**If you are running ElasticBLAST on AWS**, you can visit the web intefaces for 
-`CloudFormation <https://console.aws.amazon.com/cloudformation/>`_ and
-`Batch <https://console.aws.amazon.com/batch/>`_ 
-to monitor the progress of your cloud resource creation and jobs respectively.
-
 Problems? Search taking too long? Please see :ref:`support`.
 
 Get results
 -----------
 
-Run one of the commands (depending on which cloud service provider you used) below to download the results:
+Run the command below to download the results:
 
 .. code-block:: bash
 
-    # For GCP
     gsutil -qm cp ${YOUR_RESULTS_BUCKET}/*.out.gz .
-    # For AWS, requires AWS CLI SDK
-    aws s3 cp ${YOUR_RESULTS_BUCKET}/*.out.gz . 
 
 Clean up
 --------
@@ -167,7 +142,7 @@ ElasticBLAST search.
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.
 
-**If you are running ElasticBLAST on GCP**, you may verify that your cloud resources have been deleted by running: 
+You may verify that your cloud resources have been deleted by running: 
 
 .. code-block:: bash
 
@@ -179,13 +154,16 @@ If nothing is returned, then no clusters are running and no disks are being
 used. Please see :ref:`PD_LEAK` if your cluster or disk are not properly
 deleted for instructions on deleting them.
 
-**If you are running ElasticBLAST on AWS**, you may verify that your cloud resources have been deleted by running: 
+.. _gcp_conf:
 
-.. code-block:: bash
+GCP Configuration
+-----------------
 
-  aws cloudformation describe-stacks --stack-name elasticblast-${USER} --output text 
-  aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Owner,Values=${USER} --query "Reservations[*].Instances[*].InstanceId" --output text 
+The minimum required configuration parameters for running ElasticBLAST in GCP include:
 
-These commands will show the CloudFormation stack created by ElasticBLAST by
-default as well as the instance IDs of the EC2 instances it created. If you run into difficulty, please
-contact us via the information provided in :ref:`support`.
+* :ref:`project <elb_gcp_project>`
+* :ref:`region <elb_gcp_region>`
+* :ref:`zone <elb_gcp_zone>`
+
+In addition, you must be authenticated with the GCP project in the environment you are working on.
+A convenient way to accomplish this is to work on the `GCP cloud shell <https://console.cloud.google.com/?cloudshell=true>`_.

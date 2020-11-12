@@ -27,6 +27,14 @@ The code examples below assume that ElasticBLAST was installed in the current
 working directory and that the :ref:`requirements <requirements>` have been met.
 
 
+Set up an output bucket (if one doesn't exist)
+----------------------------------------------
+
+.. code-block:: shell
+
+    gsutil ls gs://${USER}-test >& /dev/null || gsutil mb gs://${USER}-test
+
+
 Configure it
 ------------
 

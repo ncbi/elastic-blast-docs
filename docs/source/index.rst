@@ -25,5 +25,6 @@ Features
    support
    troubleshooting
    issues
+   privacy
    LICENSE
 

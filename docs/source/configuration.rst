@@ -427,6 +427,19 @@ BLAST configuration options
     [blast]
     mem-limit = 115G
 
+.. _elb_usage_reporting:
+
+``BLAST_USAGE_REPORT`` 
+^^^^^^^^^^^^^^^^^^^^^^
+
+    Controls the usage reporting via the environment variable ``BLAST_USAGE_REPORT``.
+
+    For additional details, please see the `BLAST+ privacy statement <https://www.ncbi.nlm.nih.gov/books/NBK563686/>`_.
+
+    * Default: ``true``
+    * Values: ``true`` or ``false``
+
+
 Input/output configuration options
 ----------------------------------
 

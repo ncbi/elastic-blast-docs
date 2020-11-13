@@ -70,7 +70,7 @@ Run
 to see which version of python you have (or if it's even installed).  If python is not found or
 it is not one of the supported versions (3.6, 3.7 or 3.8), you will need to install it (3.8 recommended). 
 If one of versions from 3.6, 3.7 or 3.8 is found, then you can try the corresponding elastic-blast 
-script (e.g., `elastic-blast3.8`).
+script (e.g., ``elastic-blast3.8``).
 
 
 I get a message about not being able write into the bucket with submit command

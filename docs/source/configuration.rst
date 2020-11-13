@@ -135,6 +135,8 @@ Cluster configuration
 
     Name of the GKE cluster created or the AWS CloudFormation stack (and related resources).  
 
+    The name may contain only lowercase alphanumerics and ‘-’, must start with a letter and end with an alphanumeric, and must be no longer than 40 characters.
+
     * Default: ``elasticblast-${USER}``
     * Values: String
 

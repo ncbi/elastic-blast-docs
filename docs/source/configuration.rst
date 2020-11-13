@@ -133,9 +133,11 @@ Cluster configuration
 ``Cluster name``
 ^^^^^^^^^^^^^^^^
 
-    Name of the GKE cluster created. 
+    Name of the GKE cluster created or the AWS CloudFormation stack (and related resources).  
 
-    * Default: ``${USER}-elastic-blast``.
+    The name may contain only lowercase alphanumerics and ‘-’, must start with a letter and end with an alphanumeric, and must be no longer than 40 characters.
+
+    * Default: ``elasticblast-${USER}``
     * Values: String
 
     Also supported via the environment variable: ``ELB_CLUSTER_NAME``.
@@ -182,7 +184,7 @@ Cluster configuration
 ``Machine type``
 ^^^^^^^^^^^^^^^^
 
-    Type of GCP machine to start as kubernetes worker. 
+    Type of GCP or AWS machine to start as worker node(s). 
 
     **NOTE**: The machine's available RAM must be as large as the size of the
     BLASTDB specified by `BLAST database`_.
@@ -202,7 +204,7 @@ Cluster configuration
 ``Number of CPUs`` 
 ^^^^^^^^^^^^^^^^^^
 
-    Number of CPUs to use per BLAST execution in a kubernetes job. 
+    Number of CPUs to use per BLAST execution in a kubernetes or AWS Batch job. 
 
     Must be less than the number of CPUs for the chosen :ref:`machine type <elb_machine_type>`.
 
@@ -242,9 +244,9 @@ Cluster configuration
 ``Minimum number of nodes``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    **Experimental**.
+    **Experimental in GCP**.
 
-    Specifies the minimum number of nodes in the kubernetes cluster, enabling auto-scaling.
+    Specifies the minimum number of worker nodes to use, enabling auto-scaling.
 
     Requires `Maximum number of nodes`_.
 
@@ -261,9 +263,9 @@ Cluster configuration
 ``Maximum number of nodes``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    **Experimental**.
+    **Experimental in GCP**.
 
-    Specifies the maximum number of nodes in the kubernetes cluster, enabling auto-scaling.
+    Specifies the maximum number of worker nodes to use, enabling auto-scaling.
 
     Requires `Minimum number of nodes`_.
 
@@ -280,7 +282,7 @@ Cluster configuration
 ``Cloud resource labels``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Specifies the labels to attach to cloud resources created by ElasticBLAST.
+    Specifies the labels to attach to cloud resources created by ElasticBLAST in GCP.
 
     * Default: ``cluster-name={cluster_name},client-hostname={hostname},created={create_date},owner={username},project=elastic-blast,creator={username},program={blast_program},db={db}``
     * Values: String of key-value pairs separated by commas. See `GCP documentation on labels <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_ for details.
@@ -304,7 +306,7 @@ BLAST configuration options
     * Default: ``blastn``
     * Values: One of: ``blastp``, ``blastn``, ``megablast``, ``blastx``, ``tblastn``, ``tblastx``, ``psiblast``, ``rpsblast``, ``rpstblastn``
 
-    **NOTE**: Currently only ``blastn`` is supported in AWS.
+    **NOTE**: Currently only ``blastn`` and ``blastp`` are supported in AWS.
 
 .. NOTE: keep these values in sync with get_query_batch_size
 
@@ -521,7 +523,7 @@ Developer configuration options
 ``ELB_DONT_DELETE_SETUP_JOBS``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    **Set via an environment variable**.
+    **Set via an environment variable, applies to GCP only**.
 
     * Default: Disabled
     * Values: Any string. Set to any value to enable.
@@ -533,7 +535,7 @@ Developer configuration options
 ``ELB_PAUSE_AFTER_INIT_PV``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    **Set via an environment variable**.
+    **Set via an environment variable, applies to GCP only**.
 
     * Default: 120
     * Values: Positive integer.

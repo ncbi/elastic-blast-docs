@@ -11,14 +11,18 @@ Google Cloud Platform (GCP)
 
 * `GCP SDK CLI <https://cloud.google.com/sdk>`_
 * `kubectl <https://kubernetes.io/docs/tasks/tools/install-kubectl>`_
-* You are authenticated and have the necessary permissions in your GCP
-  project. If working on a newly created GCP instance, this likely requires
-  running the command ``gcloud auth login``.
+* You are authenticated, have the necessary APIs enabled, and have the
+  necessary permissions in your GCP project. If working on a newly created GCP
+  instance, this likely requires running the command ``gcloud auth login``.
 
   * GCP permissions
 
     * GKE: to manage a kubernetes cluster on which to run ElasticBLAST.
     * GCS: to store results and query splits.
+
+    You can find guidance on how to :ref:`enable the GCP APIs here <enable_apis_on_gcp>`.
+
+Please visit also our page with :ref:`tips for GCP <gcp-tips>`.
 
 Amazon Web Services (AWS)
 -------------------------
@@ -29,22 +33,3 @@ Amazon Web Services (AWS)
   * EC2
   * ECS
   * S3
-
-
-Tips for GCP
-------------
-
-.. In the Cloud Console, on the Navigation menu (Navigation menu), click APIs & services > Library.
-.. I.e.: go to https://console.cloud.google.com/apis/library, search for kubernetes and storage
-
-#. To check the GCP permissions with the Cloud Console, visit the URLs below and ensure that the API is **enabled**.
-
-   * https://console.cloud.google.com/apis/api/storage-component.googleapis.com/overview
-   * https://console.cloud.google.com/apis/api/container.googleapis.com/overview
-
-#. If you are working on Debian or Ubuntu Linux distribution and have ``root`` permissions, you can install kubectl and python-distutils as follows:
-
-.. code-block:: shell
-
-   sudo apt-get -y -m update
-   sudo apt-get install -yq kubectl python3-distutils

@@ -22,6 +22,7 @@ Features
    quickstart-gcp
    exit-codes
    configuration
+   tips-gcp
    support
    troubleshooting
    issues

@@ -17,27 +17,6 @@ or via the ``gcloud`` command:
 
     gcloud alpha cloud-shell ssh --ssh-flag=-A
 
-
-.. _enable_apis_on_gcp:
-
-How to enable the necessary GCP APIs for elastic-blast?
--------------------------------------------------------
-
-.. In the Cloud Console, on the Navigation menu (Navigation menu), click APIs & services > Library.
-.. I.e.: go to https://console.cloud.google.com/apis/library, search for kubernetes and storage
-
-To check the GCP permissions with the Cloud Console, visit the URLs below and ensure that the API is **enabled**.
-
-   * https://console.cloud.google.com/apis/api/storage-component.googleapis.com/overview
-   * https://console.cloud.google.com/apis/api/container.googleapis.com/overview
-
-To enable them on the command line, run the command below:
-
-.. code-block:: shell
-
-    gcloud services enable container.googleapis.com storage.googleapis.com
-
-
 .. _install_deps:
 
 How to install dependencies on Debian/Ubuntu machines?

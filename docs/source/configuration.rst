@@ -169,7 +169,7 @@ Cluster configuration
 
     Use `spot instances <https://aws.amazon.com/ec2/spot/>`_ and `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ to run ElasticBLAST.
 
-    **Note**: This is an *experimental* feature in AWS.
+    **Note**: This is an *experimental* feature in AWS. Turning this on bids on instance prices up to full price.
 
     **Note**: Pre-emptible nodes are rebooted after 24 hours (by GCP).  This is
     fine in most cases as Kubernetes will restart the node and resubmit the

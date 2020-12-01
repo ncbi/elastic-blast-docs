@@ -167,12 +167,22 @@ Cluster configuration
 ``Use preemptible nodes``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Use `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ in the kubernetes cluster.
+    Use `spot instances <https://aws.amazon.com/ec2/spot/>`_ and `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ to run ElasticBLAST.
 
-    **Note**: Pre-emptible nodes are rebooted after 24 hours (by GCP).  This is fine in most cases as Kubernetes will restart the node and resubmit the search (i.e., batch) that was interrupted.  The batches that have already been processed are not lost.  The only issue is if a single batch takes longer than 24 hours.   We expect the overwhelming majority of Elastic-BLAST searches to take at most several hours, so this should not be an issue at all.
+    **Note**: This is an *experimental* feature in AWS. Turning this on bids on instance prices up to full price, which is almost guaranteed to save you money.
+
+    **Note**: Pre-emptible nodes are rebooted after 24 hours (by GCP).  This is
+    fine in most cases as Kubernetes will restart the node and resubmit the
+    search (i.e., batch) that was interrupted.  The batches that have already
+    been processed are not lost.  The only issue is if a single batch takes
+    longer than 24 hours. We expect the overwhelming majority of
+    Elastic-BLAST searches to take at most several hours, so this should not be
+    an issue at all.
 
     * Default: ``no``
     * Values: Any string. Set to ``yes`` enable.
+
+    Also supported via the environment variable: ``ELB_USE_PREEMPTIBLE``.
 
 .. code-block::
 

@@ -182,6 +182,8 @@ Cluster configuration
     * Default: ``no``
     * Values: Any string. Set to ``yes`` enable.
 
+    Also supported via the environment variable: ``ELB_USE_PREEMPTIBLE``.
+
 .. code-block::
 
     [cluster]

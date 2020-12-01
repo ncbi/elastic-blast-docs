@@ -108,9 +108,6 @@ Run it!
 
     ./elastic-blast submit --cfg ${CONFIG_FILE} --loglevel DEBUG
 
-**NOTE: currently you can only have one ElasticBLAST search running at a time**.
-
-
 Monitor progress
 ----------------
 To check on the progress of the search, inspect the logfile

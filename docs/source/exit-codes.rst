@@ -7,6 +7,7 @@ Exit code  Meaning                                                              
 0          Success                                                                      All
 1          Error in query sequence(s), BLAST options, or ElasticBLAST configuration     Submit
 2          Error in BLAST database                                                      Submit
+5          Timeout                                                                      Submit
 6          Error creating output files                                                  Submit, status
 7          Missing required dependency                                                  All
 9          Operation interrupted                                                        All

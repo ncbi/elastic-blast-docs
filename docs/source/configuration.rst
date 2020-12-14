@@ -372,6 +372,12 @@ BLAST configuration options
     [blast]
     db = gs://my-database-bucket/mydatabase
 
+
+**Tip**: to upload your BLAST database to a cloud bucket, please refer to the
+cloud vendor documentation (`AWS <https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html>`_
+or `GCP <https://cloud.google.com/storage/docs/uploading-objects>`_).
+
+
 .. _elb_batch_len:
 
 ``Batch length`` 

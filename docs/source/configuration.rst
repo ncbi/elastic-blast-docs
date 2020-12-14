@@ -488,7 +488,7 @@ Input/output configuration options
     **Note**: This bucket *must* exist prior to invoking ElasticBLAST and it
     *must* include the ``gs://`` or ``s3://`` prefix.
 
-    * Default: ``gs://${USER}-test`` for GCP; ``s3://elasticblast-${USER}`` for AWS.
+    * Default: ``gs://elasticblast-${USER}`` for GCP; ``s3://elasticblast-${USER}`` for AWS.
     * Values: String
 
     Also supported via the environment variable: ``ELB_RESULTS_BUCKET``.

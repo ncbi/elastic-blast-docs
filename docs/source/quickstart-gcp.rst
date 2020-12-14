@@ -32,7 +32,7 @@ Set up an output bucket (if one doesn't exist)
 
 .. code-block:: shell
 
-    gsutil ls gs://${USER}-test >& /dev/null || gsutil mb gs://${USER}-test
+    gsutil ls gs://elasticblast-${USER} >& /dev/null || gsutil mb gs://elasticblast-${USER}
 
 
 Configure it

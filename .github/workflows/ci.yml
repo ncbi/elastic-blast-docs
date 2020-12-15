@@ -27,7 +27,7 @@ jobs:
         run: make -C docs man 
 
       - name: Install latexpdf
-        run: sudo apt-get install texlive-latex-base latexmk xzdec cmap
+        run: sudo apt-get install texlive-latex-base latexmk xzdec
 
       - name: Generate documentation in PDF format
         run: make -C docs latexpdf 

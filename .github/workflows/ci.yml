@@ -3,15 +3,7 @@
 name: CI
 
 # Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [push, pull_request]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,12 +17,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Check links
+      - name: Check links stemming from documentation
         run: make -C docs linkcheck 
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Generate documentation in HTML format
+        run: make -C docs html 
+
+      - name: Generate documentation in man page format
+        run: make -C docs man 
+
+          #- name: Generate documentation in PDF format
+          #  run: make -C docs latexpdf 
+
+      - name: Produce downloadable documentation
+        uses: actions/upload-artifact@v2
+        with:
+          name: elastic-blast-documentation
+          path: |
+            docs/build/html
+            docs/build/man
+              #docs/build/latex
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn` 

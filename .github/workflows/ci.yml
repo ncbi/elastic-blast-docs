@@ -17,18 +17,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
       - name: Check links stemming from documentation
         run: make -C docs linkcheck 
 
-      # Runs a set of commands using the runners shell
-      - name: Generate HTML tarball
-        run: |
-          make -C docs html 
-          tar -acvf html-docs.tgz -C docs/build html
+      - name: Generate documentation in HTML format
+        run: make -C docs html 
 
-      - name: Archive code coverage results
+      - name: Generate documentation in man page format
+        run: make -C docs man 
+
+      - name: Generate documentation in PDF format
+        run: make -C docs latexpdf 
+
+      - name: Produce downloadable documentation
         uses: actions/upload-artifact@v2
         with:
-          name: HTML documentation
-          path: html-docs.tgz
+          name: elastic-blast-documentation
+          path: |
+            - docs/build/html
+            - docs/build/man
+            - docs/build/latex
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn` 

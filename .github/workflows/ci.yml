@@ -26,8 +26,11 @@ jobs:
       - name: Generate documentation in man page format
         run: make -C docs man 
 
-          #- name: Generate documentation in PDF format
-          #  run: make -C docs latexpdf 
+      - name: Install latexpdf
+        run: sudo apt-get install texlive-latex-base
+
+      - name: Generate documentation in PDF format
+        run: make -C docs latexpdf 
 
       - name: Produce downloadable documentation
         uses: actions/upload-artifact@v2
@@ -36,5 +39,5 @@ jobs:
           path: |
             docs/build/html
             docs/build/man
-              #docs/build/latex
+            docs/build/latex
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn` 

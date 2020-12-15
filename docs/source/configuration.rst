@@ -414,7 +414,7 @@ or `GCP <https://cloud.google.com/storage/docs/uploading-objects>`_).
     See also: 
 
     * `Motivation for memory requests and limits <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#motivation-for-memory-requests-and-limits>`_
-    * `Exceed a container's memory limit <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-containers-memory-limit>`_
+    * `Exceed a container's memory limit <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-container-s-memory-limit>`_
 
 .. code-block::
 
@@ -438,7 +438,7 @@ or `GCP <https://cloud.google.com/storage/docs/uploading-objects>`_).
     See also: 
 
     * `Motivation for memory requests and limits <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#motivation-for-memory-requests-and-limits>`_
-    * `Exceed a container's memory limit <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-containers-memory-limit>`_
+    * `Exceed a container's memory limit <https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-container-s-memory-limit>`_
 
 .. code-block::
 

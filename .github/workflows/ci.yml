@@ -27,7 +27,9 @@ jobs:
         run: make -C docs man 
 
       - name: Install latexpdf
-        run: sudo apt-get install texlive-latex-base
+        run: |
+          sudo apt-get install texlive-latex-base latexmk
+          which latexmk
 
       - name: Generate documentation in PDF format
         run: make -C docs latexpdf 

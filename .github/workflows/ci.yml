@@ -37,4 +37,4 @@ jobs:
             - docs/build/html
             - docs/build/man
             - docs/build/latex
-          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn` 
+              #if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn` 

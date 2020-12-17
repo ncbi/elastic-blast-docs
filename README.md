@@ -1,13 +1,13 @@
-# ElasticBLAST documentation
+# Repository for the ElasticBLAST documentation
 
-Please visit https://blast.ncbi.nlm.nih.gov/Doc/elastic-blast
+To read the documentation, please visit
+https://blast.ncbi.nlm.nih.gov/doc/elastic-blast
 
 ## Maintainer's instructions
 
-    ```bash 
-    make -C docs linkcheck man html
-    cp docs/elastic-blast-docs.tar.bz2 $YOUR_ELASTIC_BLAST_REPO
-    cd $YOUR_ELASTIC_BLAST_REPO
-    share/tools/deploy-elastic-blast-docs.sh -c "COMMENT" -a $OLDPWD/elastic-blast-docs.tar.bz2 -n
-    ```
+Check out this repo and run the commands below to deploy the documentation
+inhouse:
+
+    make -C docs linkcheck man elastic-blast-docs.tar.bz2 
+    $YOUR_ELASTIC_BLAST_REPO/share/tools/deploy-elastic-blast-docs.sh -c "COMMENT" -a docs/elastic-blast-docs.tar.bz2
 

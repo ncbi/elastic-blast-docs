@@ -313,7 +313,7 @@ BLAST configuration options
 
     BLAST program to run.
 
-    * Default: ``blastn``
+    * Default: None
     * Values: One of: ``blastp``, ``blastn``, ``megablast``, ``blastx``, ``tblastn``, ``tblastx``, ``psiblast``, ``rpsblast``, ``rpstblastn``
 
     **NOTE**: Currently only ``blastn`` and ``blastp`` are supported in AWS.

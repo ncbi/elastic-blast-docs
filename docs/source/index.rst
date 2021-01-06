@@ -23,6 +23,7 @@ Features
    exit-codes
    configuration
    tips-gcp
+   taxid-filtering
    support
    troubleshooting
    issues

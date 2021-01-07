@@ -3,7 +3,7 @@
 Limiting search by taxonomy
 ===========================
 
-To limit a BLAST search by taxonomy, one needs to provide the `NCBI taxonomy ID(s) (taxid) <https://www.ncbi.nlm.nih.gov/books/NBK53758/#_taxonomyqs_Data_Model_>` for given taxonomic group(s). A taxid is simply a number that specifies a node in the taxonomic tree.
+To limit a BLAST search by taxonomy, one needs to provide the `NCBI taxonomy ID(s) (taxid) <https://www.ncbi.nlm.nih.gov/books/NBK53758/#_taxonomyqs_Data_Model_>`_ for given taxonomic group(s). A taxid is simply a number that specifies a node in the taxonomic tree.
 
 Taxids can be provided to ElasticBLAST using BLAST command-line options (see :ref:`BLAST options <elb_blast_options>`):
 

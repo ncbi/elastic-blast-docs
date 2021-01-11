@@ -34,5 +34,5 @@ Below is an example ElasticBLAST configuration file that limits search results b
     program = blastn
     db = pdbnt
     queries = s3://elasticblast-test/queries/RFQT01.1.fsa_nt.gz
-    results-bucket = ${YOUR_RESULTS_BUCKET}
+    results = ${YOUR_RESULTS_BUCKET}
     options = -outfmt 7 -taxids 1866885,1804623

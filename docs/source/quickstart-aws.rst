@@ -70,7 +70,7 @@ The minimal configuration requires:
 #. :ref:`AWS region <elb_aws_region>` to run ElasticBLAST on (``us-east-1`` recommended, see :ref:`AWS configuration <aws_conf>` for additional details),
 #. :ref:`query sequences <elb_queries>` in a single file or tarball, 
 
-#. a :ref:`cloud storage bucket for results <elb_results_bucket>`. This value must start with ``s3://``.
+#. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``s3://`` and _uniquely_ identifies your ElasticBLAST search. **Please keept track of this**.
 
 #. basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
 
@@ -95,7 +95,7 @@ They can be provided on a standard ini configuration file, e.g.:
     program = blastp
     db = swissprot
     queries = s3://elasticblast-test/queries/BDQE01.1.fsa_aa
-    results-bucket = ${YOUR_RESULTS_BUCKET}
+    results = ${YOUR_RESULTS_BUCKET}
     options = -task blastp-fast -evalue 0.01 -outfmt 7 
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.

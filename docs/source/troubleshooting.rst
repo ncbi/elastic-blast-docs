@@ -84,7 +84,7 @@ Things to check:
 
    gcloud config get-value account
 
-* The bucket URI (in the "results-bucket" field of the config file) starts with ``gs://``.  For example, the bucket URI should be ``gs://sarahtest`` but instead you have "sarahtest".
+* The bucket URI (in the "results" field of the config file) starts with ``gs://``.  For example, the bucket URI should be ``gs://sarahtest`` but instead you have "sarahtest".
 
 * The bucket URI is correct and you have permission to write to it.  The GCP page on bucket permissions is at https://cloud.google.com/storage/docs/gsutil/commands/acl but it is probably easiest to try and copy a file into your bucket with:
 

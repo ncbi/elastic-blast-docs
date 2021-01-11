@@ -478,25 +478,23 @@ Input/output configuration options
     [blast]
     queries = /home/${USER}/blast-queries.tar.gz
 
-.. _elb_results_bucket:
+.. _elb_results:
 
-``Results bucket`` 
-^^^^^^^^^^^^^^^^^^
+``Results`` 
+^^^^^^^^^^^
 
-    GCS or AWS S3 bucket URI where to save the output from ElasticBLAST. 
+    GCS or AWS S3 bucket URI where to save the results from ElasticBLAST. 
 
     **Note**: This bucket *must* exist prior to invoking ElasticBLAST and it
     *must* include the ``gs://`` or ``s3://`` prefix.
 
-    * Default: ``gs://elasticblast-${USER}`` for GCP; ``s3://elasticblast-${USER}`` for AWS.
+    * Default: None
     * Values: String
-
-    Also supported via the environment variable: ``ELB_RESULTS_BUCKET``.
 
 .. code-block::
 
     [blast]
-    results-bucket = ${YOUR_RESULTS_BUCKET}
+    results = ${YOUR_RESULTS_BUCKET}
 
 Timeout configuration options
 -----------------------------

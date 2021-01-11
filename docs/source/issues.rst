@@ -45,18 +45,22 @@ ElasticBLAST allocates a :ref:`compute cluster <elb_cluster_name>` in the cloud 
 Files left in cloud storage
 ---------------------------
 
-ElasticBLAST uses cloud storage to temporally store query sequences and internal logs and metadata so that they are easily accessible during its operation. Sometimes deleting these files after the search is not successful. To double check and delete them, please run the commands below:
+ElasticBLAST uses cloud storage to temporally store query sequences and
+internal logs and metadata so that they are easily accessible during its
+operation. Sometimes deleting these files after the search is not successful.
+To double check and delete them, please run the commands below. 
+``ELB_RESULTS`` below represents the location where your results are stored.
 
 .. code-block:: bash
 
-   gsutil ls gs://${ELB_RESULTS_BUCKET}/query_batches  # to list query files
-   gsutil -m rm gs://${ELB_RESULTS_BUCKET}/query_batches/*  # to delete query files
+   gsutil ls gs://${ELB_RESULTS}/query_batches  # to list query files
+   gsutil -m rm gs://${ELB_RESULTS}/query_batches/*  # to delete query files
 
-   gsutil ls gs://${ELB_RESULTS_BUCKET}/logs  # to list log files
-   gsutil -m rm gs://${ELB_RESULTS_BUCKET}/logs/*  # to delete log files
+   gsutil ls gs://${ELB_RESULTS}/logs  # to list log files
+   gsutil -m rm gs://${ELB_RESULTS}/logs/*  # to delete log files
 
-   gsutil ls gs://${ELB_RESULTS_BUCKET}/metadata  # list metadata files
-   gsutil -m rm gs://${ELB_RESULTS_BUCKET}/logs/*  # to delete metadata files
+   gsutil ls gs://${ELB_RESULTS}/metadata  # list metadata files
+   gsutil -m rm gs://${ELB_RESULTS}/logs/*  # to delete metadata files
 
 
 .. _early_shutdown:

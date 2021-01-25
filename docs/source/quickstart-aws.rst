@@ -144,7 +144,7 @@ Run the command below to download the results.
 Clean up
 --------
 This step is **critical**, please do not omit it, even if you ran Ctrl-C when
-starting ElasticBLAST. If you do not clean up your cloud resources, you will accrue charges from
+starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
 your cloud service provider.  It is also recommended each time you start a new
 ElasticBLAST search. 
 

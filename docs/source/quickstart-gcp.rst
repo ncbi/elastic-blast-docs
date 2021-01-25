@@ -88,19 +88,6 @@ Run it!
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 **NOTE: currently you can only have one ElasticBLAST search running at a time**.
 
-You can also add ``--sync`` to the above command-line, in which case ``elastic-blast`` will aim to shut 
-down cloud resources when it is done.  In this case, it is important that your computer stays powered up and connected 
-to the internet, so that ``elastic-blast`` can properly manage resources.
-However, because ``elastic-blast`` is still in active development, it is
-**required** that you run ``elastic-blast delete`` after every ElasticBLAST
-invocation.
-
-If you are running ``elastic-blast --sync`` in a remote/shared linux server,
-please consider using ``nohup`` or a terminal multiplexer (e.g.: ``screen`` or
-``tmux``) to keep the process alive in the event of network disconnection or log
-out.
-
-
 Monitor progress
 ----------------
 To check on the progress of the search, inspect the logfile
@@ -139,7 +126,7 @@ Run the command below to download the results:
 Clean up
 --------
 This step is **critical**, please do not omit it, even if you ran Ctrl-C when
-starting ElasticBLAST. If you do not clean up your cloud resources, you will accrue charges from
+starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
 your cloud service provider.  It is also recommended each time you start a new
 ElasticBLAST search. 
 

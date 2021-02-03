@@ -10,6 +10,7 @@ Exit code  Meaning                                                              
 5          Timeout                                                                      Submit
 6          Error creating output files                                                  Submit, status
 7          Missing required dependency                                                  All
+8          Error communicating with the cluster                                         All
 9          Operation interrupted                                                        All
 255        Unknown error                                                                All
 =========  ============================================================================ ============================

@@ -127,8 +127,8 @@ Clean up
 --------
 This step is **critical**, please do not omit it, even if you ran Ctrl-C when
 starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
-your cloud service provider.  It is also recommended each time you start a new
-ElasticBLAST search. 
+your cloud service provider or you may end up running out of available quota.
+It is also recommended each time you start a new ElasticBLAST search. 
 
 .. code-block:: bash
 

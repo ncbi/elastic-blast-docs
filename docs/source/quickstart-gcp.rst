@@ -88,6 +88,8 @@ Run it!
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 **NOTE: currently you can only have one ElasticBLAST search running at a time**.
 
+For helpful demos associated with ElasticBLAST, please visit https://github.com/ncbi/elastic-blast-demos
+
 Monitor progress
 ----------------
 To check on the progress of the search, inspect the logfile

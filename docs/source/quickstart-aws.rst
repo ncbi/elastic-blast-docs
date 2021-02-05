@@ -108,7 +108,7 @@ Run it!
 
     ./elastic-blast submit --cfg ${CONFIG_FILE} --loglevel DEBUG
 
-**NOTE: currently you can only have one ElasticBLAST search running at a time**.
+The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
 For helpful demos associated with ElasticBLAST, please visit https://github.com/ncbi/elastic-blast-demos
 

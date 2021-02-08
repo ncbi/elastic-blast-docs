@@ -14,10 +14,15 @@ for cloud expenses incurred on your behalf by elastic-blast.
 Below are a few relevant links to documentation for AWS and GCP:
 
 https://aws.amazon.com/aws-cost-management/aws-budgets/
+
 https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitoring-costs.html
+
 https://aws.amazon.com/blogs/aws-cost-management/update-cost-explorer-forecasting-api-improvement/
 
+
 https://cloud.google.com/cost-management
+
 https://cloud.google.com/billing/docs/how-to/budgets
+
 https://cloud.google.com/billing/docs/reports
 

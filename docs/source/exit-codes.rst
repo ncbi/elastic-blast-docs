@@ -9,7 +9,7 @@ Exit code  Meaning                                                              
 2          Error in BLAST database                                                      Submit
 5          Timeout                                                                      Submit
 6          Error creating output files                                                  Submit, status
-7          Missing required dependency                                                  All
+7          Missing required dependency or cloud vendor limit exceeded                   All
 8          Error communicating with the cluster                                         All
 9          Operation interrupted                                                        All
 255        Unknown error                                                                All

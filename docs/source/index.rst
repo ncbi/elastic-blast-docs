@@ -18,6 +18,7 @@ Features
 
    requirements
    overview
+   budget
    quickstart-aws
    quickstart-gcp
    exit-codes

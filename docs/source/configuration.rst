@@ -468,7 +468,7 @@ Input/output configuration options
 
     Query sequence data for BLAST. 
 
-    Can be provided as a local path or GCS or AWS bucket URI to a file/tarball. Multiple file can be provided as as space-separated list or in list files. Any file with extension ``.query-list`` is considered a list file, where each line contains a local path or a cloud bucket URI.
+    Can be provided as a local path or GCS or AWS bucket URI to a file/tarball. Multiple files can be provided as as space-separated list or in "list files". Any file with the file extension ``.query-list`` is considered a "list file", where each line contains a local path or a cloud bucket URI.
 
     * Default: None
     * Values: String 

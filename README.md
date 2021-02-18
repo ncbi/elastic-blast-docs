@@ -11,3 +11,8 @@ inhouse:
     make -C docs linkcheck man elastic-blast-docs.tar.bz2 
     $YOUR_ELASTIC_BLAST_REPO/share/tools/deploy-elastic-blast-docs.sh -c "COMMENT" -a docs/elastic-blast-docs.tar.bz2
 
+
+To preview the documentation, generate the HTML in the local file system as
+follows:
+    
+    make -C docs html

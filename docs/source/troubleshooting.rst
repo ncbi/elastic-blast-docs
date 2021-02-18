@@ -100,3 +100,32 @@ I get a message about a project not existing
 Things to check:
 
 * Make sure you are using the GCP project ID.  Every GCP project has a name, an ID and a number.  The ID consist of lower-case letters and dashes and possibly numbers.  The project number is simply an integer.  See all three by going to your dashboard at https://console.cloud.google.com/home/dashboard
+
+
+I see 'AccessDeniedException' errors in the log file
+----------------------------------------------------
+
+If you see error message(s) similar to the one below:
+
+.. code-block:: bash
+
+    AccessDeniedException: 403 HttpError accessing <https://storage.googleapis.com/download/storage/v1/b/elb-test/o/tmp%2Fquery_batches%2Fbatch_000.fa?generation=1613505095926154&alt=media>: response: <{'x-guploader-uploadid': 'ABg5-Uw9u0gHzPyMeFeaQFUgPaHW5bgVbUbPs2rlk9yr6vPEbif6MainD6pvytbh7IAj82KJYlnVrpndRQ3fm3y5Dy8', 'content-type': 'text/html; charset=UTF-8', 'date': 'Tue, 16 Feb 2021 19:55:30 GMT', 'vary': 'Origin, X-Origin', 'expires': 'Tue, 16 Feb 2021 19:55:30 GMT', 'cache-control': 'private, max-age=0', 'content-length': '128', 'server': 'UploadServer', 'status': '403'}>, content <1234567890-compute@developer.gserviceaccount.com does not have storage.objects.get access to the Google Cloud Storage object.>
+
+Run the command below and check whether the service account ``1234567890-compute@developer.gserviceaccount.com`` is listed.
+
+.. code-block:: bash
+
+    gsutil iam get ${YOUR_RESULTS_BUCKET}
+
+If it is not listed, you may need to run a command along the lines of the
+examples below (only one of them, both are *not* required).
+Please refer to `the GCP documentation
+<https://cloud.google.com/storage/docs/access-control/using-iam-permissions#gsutil>`_
+for further details.
+
+
+.. code-block:: bash
+
+    gsutil iam set serviceAccount:1234567890.gserviceaccount.com:roles/storage.admin ${YOUR_RESULTS_BUCKET}
+    gsutil iam set user:${YOUR_GCP_ACCOUNT_ADDRESS}:roles/storage.admin ${YOUR_RESULTS_BUCKET}
+

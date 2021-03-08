@@ -44,7 +44,7 @@ The minimal configuration requires:
 
 #. :ref:`query sequences <elb_queries>` in a single file or tarball, 
 
-#. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``gs://`` and _uniquely_ identifies your ElasticBLAST search. **Please keept track of this**.
+#. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``gs://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
 
 #. basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
 

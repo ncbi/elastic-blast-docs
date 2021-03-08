@@ -140,7 +140,7 @@ Run the command below to download the results.
 
 .. code-block:: bash
 
-    aws s3 cp ${YOUR_RESULTS_BUCKET}/*.out.gz . 
+    aws s3 cp ${YOUR_RESULTS_BUCKET}/ . --exclude "*" --include "*.out.gz" --recursive
 
 Clean up
 --------

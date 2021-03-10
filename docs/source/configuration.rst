@@ -152,7 +152,11 @@ Cluster configuration
 ``Number of worker nodes``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Number of :ref:`machine type <elb_machine_type>` nodes to start in the kubernetes cluster.
+    This configuration setting operates slightly differently depending on whether ElasticBLAST runs on AWS or GCP.
+
+    In GCP this parameter indicates the number of nodes to start in the kubernetes cluster.
+
+    In AWS this parameter indicates the **maximum** number of EC2 instances that will be started by AWS Batch (i.e.: similar to :ref:`max-nodes <elb_max_nodes>` for GCP).
 
     * Default: ``1``
     * Values: Positive integer
@@ -258,6 +262,8 @@ Cluster configuration
 
     Specifies the minimum number of worker nodes to use, enabling auto-scaling.
 
+    **Applies to GCP only**.
+
     Requires `Maximum number of nodes`_.
 
     * Default: None
@@ -275,7 +281,9 @@ Cluster configuration
 
     **Experimental in GCP**.
 
-    Specifies the maximum number of worker nodes to use, enabling auto-scaling.
+    Specifies the maximum number of worker nodes to use, enabling auto-scaling. 
+
+    **Applies to GCP only**.
 
     Requires `Minimum number of nodes`_.
 

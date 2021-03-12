@@ -35,55 +35,38 @@ Set up an output bucket (if one doesn't exist)
     gsutil ls gs://elasticblast-${USER} >& /dev/null || gsutil mb gs://elasticblast-${USER}
 
 
-Configure it
-------------
-
-The minimal configuration requires: 
-
-#. Cloud service provider configuration (see :ref:`GCP configuration <gcp_conf>` for details),
-
-#. :ref:`query sequences <elb_queries>`, 
-
-#. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``gs://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
-
-#. basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
-
-#. :ref:`elb_num_nodes` to start.
-
-
-
-They can be provided on a standard ini configuration file, e.g.:
-
-.. code-block::
-    :name: minimal-config
-    :linenos:
-
-    [cloud-provider]
-    gcp-project = ${YOUR_GCP_PROJECT_ID}
-    gcp-region = us-east4   
-    gcp-zone = us-east4-b
-
-    [cluster]
-    num-nodes = 3
-
-    [blast]
-    program = blastp
-    db = nr
-    queries = gs://elastic-blast-samples/queries/protein/BDQE01.1.fsa_aa
-    results = ${YOUR_RESULTS_BUCKET}
-    options = -task blastp-fast -evalue 0.01 -outfmt 7 
-
-In addition to the minimal parameters, the configuration file above includes some BLAST options.
-The search above should take about 30 minutes to run and cost less than $3 in GCP in July 2020.  Using :ref:`preemptible nodes<ELB_USE_PREEMPTIBLE>` can make it less expensive.
-
 See :ref:`configuration` for details on all the configuration parameters.
 
 Run it!
 -------
 
+ElasticBLAST requires the following parameters to submit a search:
+
+#. Cloud service provider configuration (see :ref:`GCP configuration <gcp_conf>` for details),
+#. :ref:`query sequences <elb_queries>`, 
+#. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``gs://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
+#. basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
+#. :ref:`elb_num_nodes` to start.
+
+In addition to these, an ini-style configuration file can be provided for additional configuration options.
+Please see :ref:`configuration` for details on all the configuration parameters.
+
 .. code-block:: bash
 
-    ./elastic-blast submit --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast submit \
+        --program blastp \
+        --query gs://elastic-blast-samples/queries/protein/BDQE01.1.fsa_aa \
+        --db nr \
+        --results gs://${YOUR_RESULTS_BUCKET} \
+        --gcp-project ${YOUR_GCP_PROJECT_ID} \
+        --gcp-region us-east4 \
+        --gcp-zone us-east4-b
+        --num-nodes 2 \
+        --loglevel DEBUG
+        -- -task blastp-fast -evalue 0.01 -outfmt 7 
+
+In addition to the minimal parameters, the configuration file above includes some BLAST options after the `--` argument.
+The search took about 30 minutes to run and cost less than $3 in GCP in July 2020.  Using :ref:`preemptible nodes<ELB_USE_PREEMPTIBLE>` can make it less expensive.
 
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
@@ -97,7 +80,7 @@ To check on the progress of the search, inspect the logfile
 .. code-block:: bash
     :name: status
 
-    ./elastic-blast status --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast status --results gs://${YOUR_RESULTS_BUCKET} --loglevel DEBUG
 
 The status command will not return proper results until the submit command has finished.
 
@@ -133,7 +116,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast delete --results gs://${YOUR_RESULTS_BUCKET} --loglevel DEBUG
 
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.

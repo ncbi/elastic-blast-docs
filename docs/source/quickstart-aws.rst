@@ -62,51 +62,31 @@ accomplished by setting up environment variables or by saving those values in
     echo 'aws_secret_access_key = <YOUR_SECRET_ACCESS_KEY>' >> ~/.aws/config
 
 
-Configure it
-------------
-
-The minimal configuration requires: 
-
-#. :ref:`AWS region <elb_aws_region>` to run ElasticBLAST on (``us-east-1`` recommended, see :ref:`AWS configuration <aws_conf>` for additional details),
-#. :ref:`query sequences <elb_queries>`,
-
-#. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``s3://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
-
-#. basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
-
-#. :ref:`elb_num_nodes` to start.
-
-
-
-They can be provided on a standard ini configuration file, e.g.:
-
-.. code-block::
-    :name: minimal-config
-    :linenos:
-
-    [cloud-provider]
-    aws-region = us-east-1
-
-    [cluster]
-    machine-type = m5.8xlarge
-    num-nodes = 1
-
-    [blast]
-    program = blastp
-    db = swissprot
-    queries = s3://elasticblast-test/queries/BDQE01.1.fsa_aa
-    results = ${YOUR_RESULTS_BUCKET}
-    options = -task blastp-fast -evalue 0.01 -outfmt 7 
-
-In addition to the minimal parameters, the configuration file above includes some BLAST options.
-See :ref:`configuration` for details on all the configuration parameters.
-
 Run it!
 -------
 
+ElasticBLAST requires the following parameters to submit a search:
+
+#. :ref:`AWS region <elb_aws_region>` to run ElasticBLAST on (``us-east-1`` recommended, see :ref:`AWS configuration <aws_conf>` for additional details),
+#. :ref:`query sequences <elb_queries>`,
+#. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``s3://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
+#. basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
+#. :ref:`elb_num_nodes` to start.
+
+In addition to these, an ini-style configuration file can be provided for additional configuration options.
+Please see :ref:`configuration` for details on all the configuration parameters.
+
 .. code-block:: bash
 
-    ./elastic-blast submit --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast submit \
+        --program blastp \
+        --query s3://elasticblast-test/queries/BDQE01.1.fsa_aa \
+        --db swissprot \
+        --results s3://${YOUR_RESULTS_BUCKET} \
+        --aws-region us-east-1 \
+        --num-nodes 2 \
+        --loglevel DEBUG
+        -- -task blastp-fast -evalue 0.01 -outfmt 7 
 
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
@@ -120,7 +100,7 @@ To check on the progress of the search, inspect the logfile
 .. code-block:: bash
     :name: status
 
-    ./elastic-blast status --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast status --results s3://${YOUR_RESULTS_BUCKET} --loglevel DEBUG
 
 The status command will not return proper results until the submit command has finished.
 
@@ -152,7 +132,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast delete --results s3://${YOUR_RESULTS_BUCKET} --loglevel DEBUG
 
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.

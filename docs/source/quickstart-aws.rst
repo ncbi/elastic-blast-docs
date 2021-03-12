@@ -68,7 +68,7 @@ Configure it
 The minimal configuration requires: 
 
 #. :ref:`AWS region <elb_aws_region>` to run ElasticBLAST on (``us-east-1`` recommended, see :ref:`AWS configuration <aws_conf>` for additional details),
-#. :ref:`query sequences <elb_queries>` in a single file or tarball, 
+#. :ref:`query sequences <elb_queries>`,
 
 #. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``s3://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
 

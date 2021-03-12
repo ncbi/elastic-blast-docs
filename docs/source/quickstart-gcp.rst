@@ -42,7 +42,7 @@ The minimal configuration requires:
 
 #. Cloud service provider configuration (see :ref:`GCP configuration <gcp_conf>` for details),
 
-#. :ref:`query sequences <elb_queries>` in a single file or tarball, 
+#. :ref:`query sequences <elb_queries>`, 
 
 #. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``gs://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
 

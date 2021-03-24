@@ -76,13 +76,24 @@ Cloud provider configuration
     [cloud-provider]
     aws-region = us-east-1
 
+.. _elb_aws_vpc:
+
+``AWS VPC``
+^^^^^^^^^^^
+
+    Optional: AWS VPC ID to use; must exist in the chosen :ref:`AWS region
+    <elb_aws_region>`.
+
+    * Default: None
+    * Values: String
+
 .. _elb_aws_subnet:
 
 ``AWS Subnet``
 ^^^^^^^^^^^^^^
 
-    Optional: Name of the AWS subnet to use; must exist in the chosen :ref:`region
-    <elb_aws_region>`.
+    Optional: A comma-separated list of AWS Subnet IDs to use; must exist in the chosen :ref:`AWS region
+    <elb_aws_region>` and :ref:`AWS VPC <elb_aws_vpc>`.
 
     * Default: None
     * Values: String
@@ -97,7 +108,7 @@ Cloud provider configuration
 ``AWS Security Group``
 ^^^^^^^^^^^^^^^^^^^^^^
 
-    Optional: Name of the AWS security group to use; must exist in the chosen :ref:`region
+    Optional: Name of the AWS security group to use; must exist in the chosen :ref:`AWS region
     <elb_aws_region>`.
 
     * Default: None
@@ -113,7 +124,7 @@ Cloud provider configuration
 ``AWS Key Pair``
 ^^^^^^^^^^^^^^^^
 
-    Optional: Name of the AWS key pair to use to login to EC2 instances; must exist in the chosen :ref:`region <elb_aws_region>`.
+    Optional: Name of the AWS key pair to use to login to EC2 instances; must exist in the chosen :ref:`AWS region <elb_aws_region>`.
 
     * Default: None
     * Values: String

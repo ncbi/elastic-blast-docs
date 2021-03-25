@@ -110,7 +110,7 @@ Run it!
 
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
-For a helpful script to run ElasticBLLST, wait for results and clean up, please see https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh
+For a helpful script to run ElasticBLAST, wait for results and clean up, please see https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh
 
 Monitor progress
 ----------------

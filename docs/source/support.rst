@@ -23,6 +23,7 @@ Please help the development team help you:
     # For AWS only
     aws sts get-caller-identity
     aws configure list
+    aws cloudformation describe-stack-events --stack-name $(awk '/name.:/ {print $NF}' elastic-blast.log | tr -d ",'" | head -1) --region $(awk '/region.:/ {print $NF}' elastic-blast.log | tr -d ",}'" | head -1) --output json
 
 
 * **Always run elastic-blast delete after/before every ElasticBLAST search**.

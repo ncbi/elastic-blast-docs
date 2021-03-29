@@ -64,6 +64,7 @@ They can be provided on a standard ini configuration file, e.g.:
     gcp-zone = us-east4-b
 
     [cluster]
+    num-cpus = 30
     num-nodes = 3
 
     [blast]

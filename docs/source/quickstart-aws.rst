@@ -89,6 +89,7 @@ They can be provided on a standard ini configuration file, e.g.:
 
     [cluster]
     machine-type = m5.8xlarge
+    num-cpus = 30
     num-nodes = 1
 
     [blast]

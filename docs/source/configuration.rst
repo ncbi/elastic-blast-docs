@@ -186,9 +186,13 @@ Cluster configuration
 
     This configuration setting operates slightly differently depending on whether ElasticBLAST runs on AWS or GCP.
 
-    In GCP this parameter indicates the number of nodes to start in the kubernetes cluster.
+    **GCP**
 
-    In AWS this parameter indicates the **maximum** number of EC2 instances that will be started by AWS Batch (i.e.: similar to :ref:`max-nodes <elb_max_nodes>` for GCP).
+    Indicates the number of nodes of the configured :ref:`machine type <elb_machine_type>` to start in the kubernetes cluster.
+
+    **AWS**
+
+    Indicates the **maximum** number of EC2 instances of the configured :ref:`instance type <elb_machine_type>` that will be started by AWS Batch (i.e.: similar to :ref:`max-nodes <elb_max_nodes>` for GCP).
 
     * Default: ``1``
     * Values: Positive integer
@@ -523,6 +527,8 @@ Input/output configuration options
 
     GCS or AWS S3 bucket URI where to save the results from ElasticBLAST. 
 
+    **This value uniquely identifies a single ElasticBLAST search - please keep track of this**.
+
     **Note**: This bucket *must* exist prior to invoking ElasticBLAST and it
     *must* include the ``gs://`` or ``s3://`` prefix.
 
@@ -533,6 +539,27 @@ Input/output configuration options
 
     [blast]
     results = ${YOUR_RESULTS_BUCKET}
+
+.. _elb_logfile:
+
+``Log file`` 
+^^^^^^^^^^^^
+
+    File name to save logging output. Can only be set via the command line argument ``--logfile``.
+
+    * Default: ``elastic-blast.log``
+    * Values: String
+
+.. _elb_loglevel:
+
+``Log level`` 
+^^^^^^^^^^^^^
+
+    Sets the logging threshold. Can only be set via the command line argument ``--loglevel``.
+
+    * Default: ``INFO``
+    * Values: One of ``DEBUG``, ``INFO``, ``WARNING``, ``ERROR``, ``CRITICAL``
+
 
 Timeout configuration options
 -----------------------------

@@ -53,3 +53,5 @@ Amazon Web Services (AWS)
   * EC2
   * ECS
   * S3
+
+  For a sample IAM policy, please see :ref:`iam-policy`.

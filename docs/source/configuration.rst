@@ -36,6 +36,7 @@ Cloud provider configuration
 
     * Default: None
     * Values: String, see `Identifying projects <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_
+    * Applies to: GCP
 
     Also supported via the environment variable: ``ELB_GCP_PROJECT``.
 
@@ -53,6 +54,7 @@ Cloud provider configuration
 
     * Default: None
     * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
+    * Applies to: GCP
 
     Also supported via the environment variable: ``ELB_GCP_REGION``.
 
@@ -70,6 +72,7 @@ Cloud provider configuration
 
     * Default: None
     * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
+    * Applies to: GCP
 
     Also supported via the environment variable: ``ELB_GCP_ZONE``.
 
@@ -87,6 +90,7 @@ Cloud provider configuration
 
     * Default: None
     * Values: String, any region that supports Batch, see `AWS documentation for details <https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/>`_
+    * Applies to: AWS
 
     For background information about AWS regions, please see the `AWS
     documentation
@@ -107,6 +111,7 @@ Cloud provider configuration
 
     * Default: None
     * Values: String
+    * Applies to: AWS
 
 .. _elb_aws_subnet:
 
@@ -118,6 +123,7 @@ Cloud provider configuration
 
     * Default: None
     * Values: String
+    * Applies to: AWS
 
 .. code-block::
 
@@ -134,6 +140,7 @@ Cloud provider configuration
 
     * Default: None
     * Values: String
+    * Applies to: AWS
 
 .. code-block::
 
@@ -149,6 +156,7 @@ Cloud provider configuration
 
     * Default: None
     * Values: String
+    * Applies to: AWS
 
 .. code-block::
 
@@ -237,8 +245,8 @@ Cluster configuration
 
     We recommend that you choose a machine with at least 50% more RAM than the BLASTDB size.
 
-    * Default: ``n1-standard-32``.
-    * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-types#general_purpose>`_
+    * Default: ``n1-standard-32`` for GCP, ``m5.8xlarge`` for AWS.
+    * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-types#general_purpose>`_ or `AWS instance types <https://aws.amazon.com/ec2/instance-types>`_ accordingly.
 
 .. code-block::
 
@@ -269,13 +277,13 @@ Cluster configuration
 ``Persistent disk size``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Size of the persistent disk attached to the cluster. This should be large
-    enough to store the BLAST database, query sequence data and the BLAST
+    Size of the persistent disk attached to the cluster (GCP) or individual instances (AWS). 
+    This should be large enough to store the BLAST database, query sequence data and the BLAST
     results.
 
     Format as <number> immediately followed by G for gigabytes, M for megabytes.
 
-    **Note**: Smaller disks than ``1000G`` result in performance degradation.
+    **Note**: Smaller disks than ``1000G`` result in performance degradation in GCP.
 
     * Default: ``3000G``
     * Values: String
@@ -294,12 +302,11 @@ Cluster configuration
 
     Specifies the minimum number of worker nodes to use, enabling auto-scaling.
 
-    **Applies to GCP only**.
-
     Requires `Maximum number of nodes`_.
 
     * Default: None
     * Values: Positive integer
+    * Applies to: GCP
 
 .. code-block::
 
@@ -315,12 +322,11 @@ Cluster configuration
 
     Specifies the maximum number of worker nodes to use, enabling auto-scaling. 
 
-    **Applies to GCP only**.
-
     Requires `Minimum number of nodes`_.
 
     * Default: None
     * Values: Positive integer
+    * Applies to: GCP
 
 .. code-block::
 
@@ -448,6 +454,7 @@ or `GCP <https://cloud.google.com/storage/docs/uploading-objects>`_).
 
     * Default: `Auto-configured based on database choice`. Minimal value is ``0.5G``.
     * Values: String
+    * Applies to: GCP
 
     See also: 
 
@@ -546,6 +553,7 @@ Timeout configuration options
 
     * Default: ``10080``     (1 week)
     * Values: Positive integer
+    * Applies to: GCP
 
 .. code-block::
 
@@ -561,6 +569,7 @@ Timeout configuration options
 
     * Default: ``45``
     * Values: Positive integer
+    * Applies to: GCP
 
 .. code-block::
 
@@ -579,6 +588,7 @@ Developer configuration options
 
     * Default: Disabled
     * Values: Any string. Set to any value to enable.
+    * Applies to: GCP
 
     Do not delete the kubernetes setup jobs after they complete.
 
@@ -591,6 +601,7 @@ Developer configuration options
 
     * Default: 120
     * Values: Positive integer.
+    * Applies to: GCP
 
     Time in seconds to wait after persistent volume gets initialized to prevent
     mount errors on BLAST kubernetes jobs.

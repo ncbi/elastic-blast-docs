@@ -72,7 +72,7 @@ The minimal configuration requires:
 
 
 
-They can be provided on a standard ini configuration file, e.g.:
+They can be provided on a standard `ini configuration file format <https://en.wikipedia.org/wiki/INI_file>`_, e.g.:
 
 .. code-block::
     :name: minimal-config

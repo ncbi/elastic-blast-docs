@@ -82,12 +82,12 @@ accomplished by setting up environment variables or by saving those values in
     echo 'aws_secret_access_key = <YOUR_SECRET_ACCESS_KEY>' >> ~/.aws/config
 
 
-Configure it
-------------
+Configure ElasticBLAST
+----------------------
 
 The minimal configuration requires: 
 
-#. :ref:`AWS region <elb_aws_region>` to run ElasticBLAST on (``us-east-1`` recommended, see :ref:`AWS configuration <aws_conf>` for additional details),
+#. :ref:`AWS region <elb_aws_region>` (``us-east-1`` recommended, see :ref:`AWS configuration <aws_conf>`),
 #. :ref:`query sequences <elb_queries>`,
 
 #. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``s3://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
@@ -98,7 +98,7 @@ The minimal configuration requires:
 
 
 
-They can be provided on a standard ini configuration file, e.g.:
+They can be provided on a standard `ini configuration file format <https://en.wikipedia.org/wiki/INI_file>`_, e.g.:
 
 .. code-block::
     :name: minimal-config
@@ -121,8 +121,8 @@ They can be provided on a standard ini configuration file, e.g.:
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 See :ref:`configuration` for details on all the configuration parameters.
 
-Run it!
--------
+Run ElasticBLAST
+----------------
 
 .. code-block:: bash
 
@@ -143,8 +143,8 @@ You can obtain it with the following code:
 
 Monitor progress
 ----------------
-To check on the progress of the search, inspect the logfile
-(``elastic-blast.log`` by default) and/or run the command below:
+To check on the progress of the search, inspect the :ref:`logfile
+<elb_logfile>` and/or run the command below:
 
 .. code-block:: bash
     :name: status
@@ -160,8 +160,8 @@ to monitor the progress of your cloud resource creation and jobs respectively.
 
 Problems? Search taking too long? Please see :ref:`support`.
 
-Get results
------------
+Download results
+----------------
 
 Run the command below to download the results.
 
@@ -171,8 +171,8 @@ Run the command below to download the results.
 
     aws s3 cp ${YOUR_RESULTS_BUCKET}/ . --exclude "*" --include "*.out.gz" --recursive
 
-Clean up
---------
+Clean up cloud resources
+------------------------
 This step is **critical**, please do not omit it, even if you ran Ctrl-C when
 starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
 your cloud service provider or you may end up running out of available quota or

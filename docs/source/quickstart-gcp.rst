@@ -55,8 +55,8 @@ Set up an output bucket (if one doesn't exist)
     gsutil ls gs://elasticblast-${USER} >& /dev/null || gsutil mb gs://elasticblast-${USER}
 
 
-Configure it
-------------
+Configure ElasticBLAST
+----------------------
 
 The minimal configuration requires: 
 
@@ -98,8 +98,8 @@ The search above should take about 30 minutes to run and cost less than $3 in GC
 
 See :ref:`configuration` for details on all the configuration parameters.
 
-Run it!
--------
+Run ElasticBLAST
+----------------
 
 .. code-block:: bash
 
@@ -145,8 +145,8 @@ provides a graphical user interface to monitor your kubernetes cluster.
 
 Problems? Search taking too long? Please see :ref:`support`.
 
-Get results
------------
+Download results
+----------------
 
 Run the command below to download the results:
 
@@ -154,8 +154,8 @@ Run the command below to download the results:
 
     gsutil -qm cp ${YOUR_RESULTS_BUCKET}/*.out.gz .
 
-Clean up
---------
+Clean up cloud resources
+------------------------
 This step is **critical**, please do not omit it, even if you ran Ctrl-C when
 starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
 your cloud service provider or you may end up running out of available quota.

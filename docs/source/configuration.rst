@@ -335,8 +335,6 @@ BLAST configuration options
     * Default: None
     * Values: One of: ``blastp``, ``blastn``, ``megablast``, ``blastx``, ``tblastn``, ``tblastx``, ``psiblast``, ``rpsblast``, ``rpstblastn``
 
-    **NOTE**: Currently only ``blastn`` and ``blastp`` are supported in AWS.
-
 .. NOTE: keep these values in sync with get_query_batch_size
 
 .. code-block::

@@ -190,7 +190,7 @@ You may verify that your cloud resources have been deleted by running:
 
 .. code-block:: bash
 
-  aws cloudformation describe-stacks --stack-name elasticblast-${USER} --output text 
+  aws cloudformation describe-stack-events --stack-name $(awk '/name.:/ {print $NF}' elastic-blast.log | tr -d ",'" | head -1) --region $(awk '/region.:/ {print $NF}' elastic-blast.log | tr -d ",}'" | head -1) --output json
   aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Owner,Values=${USER} --query "Reservations[*].Instances[*].InstanceId" --output text 
 
 These commands will show the CloudFormation stack created by ElasticBLAST by

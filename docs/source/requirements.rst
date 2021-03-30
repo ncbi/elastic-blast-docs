@@ -53,3 +53,5 @@ Amazon Web Services (AWS)
   * EC2
   * ECS
   * S3
+
+* **Optional**: `AWS CLI SDK <https://aws.amazon.com/cli/>`_.

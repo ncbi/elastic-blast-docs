@@ -25,7 +25,7 @@ Required IAM Permissions
 ========================
 
 The following IAM policy lists the requirements to run ElasticBLAST on AWS.
-Please note that you **must** replace ``AWS_ACCOUNT`` with your AWS Account ID.
+Please note that you **must** replace ``$AWS_ACCOUNT`` with your AWS Account ID.
 
 .. code-block:: json
 

@@ -34,16 +34,19 @@ for cloud expenses incurred on your behalf by elastic-blast.
 
 Below are a few relevant links to documentation for AWS and GCP:
 
-https://aws.amazon.com/aws-cost-management/aws-budgets/
+AWS
+---
 
-https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitoring-costs.html
+* `Getting Started with AWS Budgets <https://aws.amazon.com/blogs/aws-cost-management/getting-started-with-aws-budgets/>`_
+* `Prevent overages with AWS Budgets Actions <https://aws.amazon.com/blogs/aws-cost-management/get-started-with-aws-budgets-actions>`_
+* `AWS Budgets <https://aws.amazon.com/aws-cost-management/aws-budgets>`_
+* `Monitoring your usage and costs <https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitoring-costs.html>`_
+* `Cost Explorer Forecasting API Improvement <https://aws.amazon.com/blogs/aws-cost-management/update-cost-explorer-forecasting-api-improvement>`_
 
-https://aws.amazon.com/blogs/aws-cost-management/update-cost-explorer-forecasting-api-improvement/
+GCP
+---
 
-
-https://cloud.google.com/cost-management
-
-https://cloud.google.com/billing/docs/how-to/budgets
-
-https://cloud.google.com/billing/docs/reports
+* `Cost Management <https://cloud.google.com/cost-management>`_
+* `Set budgets and budget alerts <https://cloud.google.com/billing/docs/how-to/budgets>`_
+* `Cloud Billing Reports <https://cloud.google.com/billing/docs/reports>`_
 

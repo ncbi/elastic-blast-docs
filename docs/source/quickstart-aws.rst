@@ -130,9 +130,9 @@ Run it!
 
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
-For a helpful script to run ElasticBLAST, wait for results and clean up, please
+For a helpful sample script to run ElasticBLAST, wait for results and clean up, please
 see `this script <https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh>`_.
-You can obtain it with the following code:
+You can obtain it via following commands:
 
 .. code-block:: bash
 
@@ -140,6 +140,14 @@ You can obtain it with the following code:
     [ -x submit-and-wait-for-results.sh ] || chmod +x submit-and-wait-for-results.sh
     ./submit-and-wait-for-results.sh ${YOUR_INI_FILE} ${TIMEOUT_IN_MINUTES}
 
+The script expects ``elastic-blast`` is available in your ``PATH``. If this is
+not the case, the script needs to be updated. Assuming ``elastic-blast`` is installed 
+in the current working directory, the command below would accomplish this.
+Please feel free to edit the script to suit your operating environment.
+
+.. code-block:: bash
+
+    sed -i~ -e 's,elastic-blast ,./elastic-blast ,' submit-and-wait-for-results.sh
 
 Monitor progress
 ----------------
@@ -190,7 +198,7 @@ You may verify that your cloud resources have been deleted by running:
 
 .. code-block:: bash
 
-  aws cloudformation describe-stacks --stack-name elasticblast-${USER} --output text 
+  aws cloudformation describe-stack-events --stack-name $(awk '/name.:/ {print $NF}' elastic-blast.log | tr -d ",'" | head -1) --region $(awk '/region.:/ {print $NF}' elastic-blast.log | tr -d ",}'" | head -1) --output json
   aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Owner,Values=${USER} --query "Reservations[*].Instances[*].InstanceId" --output text 
 
 These commands will show the CloudFormation stack created by ElasticBLAST by

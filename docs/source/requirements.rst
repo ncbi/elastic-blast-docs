@@ -47,11 +47,12 @@ Please visit also our page with :ref:`tips for GCP <gcp-tips>`.
 Amazon Web Services (AWS)
 -------------------------
 
-* You have AWS credentials available and have the necessary IAM permissions, which include the following AWS services:
+* You have AWS credentials available and have the necessary :ref:`IAM
+  permissions <iam-policy>`_, which include the following AWS services:
 
   * Batch
   * EC2
   * ECS
   * S3
 
-  For a sample IAM policy, please see :ref:`iam-policy`.
+* **Optional**: `AWS CLI SDK <https://aws.amazon.com/cli/>`_.

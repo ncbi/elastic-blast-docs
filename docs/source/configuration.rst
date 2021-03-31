@@ -422,14 +422,18 @@ BLAST configuration options
 cloud vendor documentation (`AWS <https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html>`_
 or `GCP <https://cloud.google.com/storage/docs/uploading-objects>`_).
 
-If you have BLAST+ available in your machine, you can select the appropriate cloud vendor (``gcp`` or ``aws``) and
-run the command below to get a list of BLAST databases provided by NCBI:
+If you have BLAST+ available in your machine, you can run the command below to
+get a list of BLAST databases provided by NCBI:
 
 .. code-block:: bash
+    :caption: When working on AWS
 
-    update_blastdb.pl --source [gcp|aws] --showall pretty
+    update_blastdb.pl --source aws --showall pretty
 
-.. :caption: If you have BLAST+ installed on your machine, you can run the command below to get a list of available options:
+.. code-block:: bash
+    :caption: When working on GCP
+
+    update_blastdb.pl --source gcp --showall pretty
 
 .. _elb_batch_len:
 

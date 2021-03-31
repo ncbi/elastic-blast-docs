@@ -47,7 +47,8 @@ Please visit also our page with :ref:`tips for GCP <gcp-tips>`.
 Amazon Web Services (AWS)
 -------------------------
 
-* You have AWS credentials available and have the necessary IAM permissions, which include the following AWS services:
+* You have AWS credentials available and have the necessary :ref:`IAM
+  permissions <iam-policy>`, which include the following AWS services:
 
   * Batch
   * EC2

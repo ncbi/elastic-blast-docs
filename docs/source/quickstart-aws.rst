@@ -213,9 +213,9 @@ The minimum required configuration parameters for running ElasticBLAST in AWS in
 
 * :ref:`region <elb_aws_region>`
 
-In addition, you must have the necessary credentials and permissions to run the AWS services required by ElasticBLAST.
+In addition, you must have the necessary credentials and :ref:`permissions <iam-policy>` to run the AWS services required by ElasticBLAST.
 
-If you are new to AWS, please review and follow the instructions in the link
+If you are new to AWS, please discuss the :ref:`permissions <iam-policy>` with your systems administrator, review and follow the instructions in the link
 below:
 
 * `Setting up for AWS Batch <https://docs.aws.amazon.com/batch/latest/userguide/get-set-up-for-aws-batch.html>`_

@@ -48,7 +48,7 @@ Amazon Web Services (AWS)
 -------------------------
 
 * You have AWS credentials available and have the necessary :ref:`IAM
-  permissions <iam-policy>`_, which include the following AWS services:
+  permissions <iam-policy>`, which include the following AWS services:
 
   * Batch
   * EC2

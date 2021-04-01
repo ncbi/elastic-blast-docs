@@ -395,14 +395,16 @@ BLAST configuration options
 ``BLAST database`` 
 ^^^^^^^^^^^^^^^^^^
 
-    BLAST database name to search. To search a database provided in the cloud by the NCBI use the database name. To search your own custom database, upload the database files to a cloud storage bucket and provide the bucket's universal resource identifier (URI) plus the database name (see example below).
+    BLAST database name to search. 
+
+    To search a `database provided in the cloud by the NCBI <https://github.com/ncbi/blast_plus_docs/blob/master/README.md#blast-databases>`_, simply use its name.
+
+    To search your own custom database, upload the database files to a cloud
+    storage bucket and provide the bucket's universal resource identifier (URI)
+    plus the database name (see example and tip below).
 
     * Default: None
-    * Values: String. Run the command below to get a list of available options:
-
-.. code-block:: bash
-
-    update_blastdb.pl --source gcp --showall pretty
+    * Values: String. 
 
 .. code-block::
     :caption: Sample BLAST database configuration
@@ -416,11 +418,22 @@ BLAST configuration options
     [blast]
     db = gs://my-database-bucket/mydatabase
 
-
 **Tip**: to upload your BLAST database to a cloud bucket, please refer to the
 cloud vendor documentation (`AWS <https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html>`_
 or `GCP <https://cloud.google.com/storage/docs/uploading-objects>`_).
 
+If you have BLAST+ available in your machine, you can run the command below to
+get a list of BLAST databases provided by NCBI:
+
+.. code-block:: bash
+    :caption: When working on AWS
+
+    update_blastdb.pl --source aws --showall pretty
+
+.. code-block:: bash
+    :caption: When working on GCP
+
+    update_blastdb.pl --source gcp --showall pretty
 
 .. _elb_batch_len:
 

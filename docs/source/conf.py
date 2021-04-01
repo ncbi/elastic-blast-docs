@@ -65,6 +65,9 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+# https://www.sphinx-doc.org/en/master/usage/configuration.html?highlight=linkcheck#options-for-the-linkcheck-builder
+#linkcheck_ignore = [r'blast_plus_docs']
+linkcheck_ignore = [r'https://github.com/ncbi/blast_plus_docs/blob/master/README.md#blast-databases']
 
 # -- Options for HTML output -------------------------------------------------
 

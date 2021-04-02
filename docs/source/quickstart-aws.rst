@@ -194,15 +194,15 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.
 
-You may verify that your cloud resources have been deleted by running: 
+After the ``elastic-blast delete`` command returns, you may verify that your
+cloud resources have been deleted by running the command below. Its output will
+show the EC2 instance IDs ``elastic-blast`` created on your behalf that are
+still in the ``running`` state.
 
 .. code-block:: bash
 
-  aws cloudformation describe-stack-events --stack-name $(awk '/name.:/ {print $NF}' elastic-blast.log | tr -d ",'" | head -1) --region $(awk '/region.:/ {print $NF}' elastic-blast.log | tr -d ",}'" | head -1) --output json
-  aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Owner,Values=${USER} --query "Reservations[*].Instances[*].InstanceId" --output text 
+  aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Owner,Values=${USER} --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
 
-These commands will show the CloudFormation stack created by ElasticBLAST by
-default as well as the instance IDs of the EC2 instances it created. 
 
 .. _aws_conf:
 

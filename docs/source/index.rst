@@ -48,7 +48,8 @@ Features
    taxid-filtering
    support
    troubleshooting
-   issues
+   aws-issues
+   gcp-issues
    privacy
    LICENSE
 

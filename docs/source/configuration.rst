@@ -106,10 +106,13 @@ Cloud provider configuration
 ``AWS VPC``
 ^^^^^^^^^^^
 
-    Optional: AWS VPC ID to use; must exist in the chosen :ref:`AWS region
-    <elb_aws_region>`.
+    Optional: AWS VPC ID to use (must exist in the chosen :ref:`AWS region
+    <elb_aws_region>`) or keyword ``none``.
 
-    * Default: None
+    * Default: 
+
+      * For AWS Accounts that support ``EC2-VPC``, the `default VPC <https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html>`_ will be used.
+      * For AWS accounts without default VPCs or if ``none`` is specified, a new VPC will be created with as many subnets as there are availability zones in the region.
     * Values: String
     * Applies to: AWS
 
@@ -121,7 +124,10 @@ Cloud provider configuration
     Optional: A comma-separated list of AWS Subnet IDs to use; must exist in the chosen :ref:`AWS region
     <elb_aws_region>` and :ref:`AWS VPC <elb_aws_vpc>`.
 
-    * Default: None
+    * Default:
+
+      * For AWS Accounts that support ``EC2-VPC``, the `default subnets <https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html>`_ will be used.
+      * For AWS accounts without default VPCs or if left unspecified, as many subnets as there are availability zones in the region will be created.
     * Values: String
     * Applies to: AWS
 

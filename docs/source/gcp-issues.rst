@@ -18,10 +18,10 @@
 ..   
 .. Please cite NCBI in any work or product based on this material.
 
-.. _issues:
+.. _gcp_issues:
 
-Known issues
-============
+Known issues on GCP
+===================
 
 .. _elb_batch_len_setting:
 

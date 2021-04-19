@@ -18,38 +18,29 @@
 ..   
 .. Please cite NCBI in any work or product based on this material.
 
+.. _aws_issues:
 
-ElasticBLAST, version |release|
-===============================
+Known issues on AWS
+===================
 
-ElasticBLAST is a *cloud-based* tool that facilitates running BLAST on *large
-amounts* (100,000+) of query sequence data against popular NCBI provided BLAST
-databases.
+.. _elb_batch_len_setting_aws:
 
-**This tool is under active development.**
+Batch length setting
+--------------------
 
-Features
---------
+The value of :ref:`ELB_BATCH_LEN` greatly affects performance. The defaults are reasonable, but may not be optimal in some cases. We are in the process of determining better values for various programs and use cases.
 
-* Supports :ref:`spot instances and preemptible nodes <ELB_USE_PREEMPTIBLE>` for cost savings!
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Contents:
+.. _elb_delete_failure:
 
-   requirements
-   overview
-   Budget <budget>
-   quickstart-aws
-   quickstart-gcp
-   exit-codes
-   configuration
-   tips-gcp
-   taxid-filtering
-   support
-   troubleshooting
-   aws-issues
-   gcp-issues
-   privacy
-   LICENSE
+ElasticBLAST delete failures
+----------------------------
 
+After ElasticBLAST starts the running (i.e.: ``elastic-blast status`` indicates
+that there is more than 1 job running), issuing the ``elastic-blast delete``
+command will take longer than usual (e.g.: greater than 15 minutes) and could
+eventually fail.
+
+In this case, the AWS resources need more time to shutdown and they eventually
+will, but the end user is required to repeat the ``elastic-blast delete`` 
+command to properly clean up all AWS resources created by ElasticBLAST.

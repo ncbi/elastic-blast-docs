@@ -37,20 +37,19 @@ Introduced in 2009, BLAST+ is a command line application. For a full description
 
 Cloud computing offers potential cost savings by using on-demand, scalable, and elastic computational resources.
 In cloud computing, you bring up machines (or instances) to perform computational work for a limited time, 
-and you only pay for the time the machine is running.  Cloud computing also has the concept of cloud buckets, which
-is a place to store files, independent of any instances you have running.  This is important, since you don't want to pay for instances merely to store a file, but instead you copy results to a 
-bucket when they are ready, and shut your instance down without losing results.  You also pay to keep data in a bucket, but you
-pay less than running an instance.  
+and only pay for time the machine is running.  Cloud computing also has the concept of cloud buckets, which
+is a place to store files, independent of any instances you have running.  This is important, since you don't want to pay for instances merely to store files, but instead you copy results to a 
+bucket when they are ready, and shut your instance down without losing results.  You also pay to keep data in a bucket, but it's less than running an instance.  
 
-The cloud concepts mentioned here are important for ElasticBLAST users.  ElasticBLAST can run on either Google Cloud Platform (GCP) or Amazon Web Services (AWS).  You can read about instances and buckets at `GCP (Google) <https://cloud.google.com/docs/overview/>`_ and `AWS (Amazon) <https://aws.amazon.com/what-is-aws/?nc1=f_cc/>`_.
+The cloud concepts mentioned here are important for ElasticBLAST users.  ElasticBLAST can run on either Google Cloud Platform (GCP) or Amazon Web Services (AWS).  You can read about `GCP (Google) <https://cloud.google.com/docs/overview/>`_ and `AWS (Amazon) <https://aws.amazon.com/what-is-aws/?nc1=f_cc/>`_.
 
 **Why use ElasticBLAST?**
 
 ElasticBLAST returns your results faster.  Rather than waiting days or even
 weeks (in some cases), ElasticBLAST runs your searches with large numbers of queries in hours.  
 ElasticBLAST also performs a lot of the cloud computing work for you.  It starts up instances for you, provisions
-them with the BLAST software and databases, schedules the searches, copies BLAST results to a cloud bucket.
-Finally, it shuts down all these instances when you tell them you are done.  You can start an ElasticBLAST run from
+them with the BLAST software and databases, schedules the searches, and copies the BLAST results to a cloud bucket.
+Finally, it shuts down all these instances when you use run the delete command.  You can start an ElasticBLAST run from
 your own computer, a cloudshell, or an instance in the cloud.  We've even heard from a group that doesn't have a lot of
 queries to search but is using ElasticBLAST since it does a lot of work they'd have to write scripts for.
 
@@ -62,7 +61,7 @@ queries to search but is using ElasticBLAST since it does a lot of work they'd h
 
 * ElasticBLAST starts instances for you, provisions them with BLAST software and loads the BLAST database you requested.
 
-* ElasticBLAST runs your batches on the instances, queuing up the work with cloud native scheduling software (Kubernetes on GCP and AWSBatch on AWS).  When the searches are done, the results are gzipped and stored in the cloud bucket you have specified.  The results are stored as one file per batch, so you'll have your results in multiple files even if you started with one very large FASTA file.
+* ElasticBLAST runs your batches on the instances, queuing up the work with cloud native scheduling software (Kubernetes on GCP and AWSBatch on AWS).  When the searches are done, the results are gzipped and stored in your cloud bucket.  The results are stored one file per batch, so you'll have your results in multiple files even if you started with one very large FASTA file.
 
 * You shut down ElasticBLAST after the search is done, deleting the resources.  
 

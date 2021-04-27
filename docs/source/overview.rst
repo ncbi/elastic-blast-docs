@@ -47,15 +47,17 @@ The cloud concepts mentioned here are important for ElasticBLAST users.  Elastic
 
 ElasticBLAST returns your results faster.  Rather than waiting days or even
 weeks (in some cases), ElasticBLAST runs your searches with large numbers of queries in hours.  
-ElasticBLAST also performs a lot of the cloud computing work for you.  It starts up instances for you, provisions
+ElasticBLAST performs many of the cloud configuration tasks for you.  It starts up instances for you, provisions
 them with the BLAST software and databases, schedules the searches, and copies the BLAST results to a cloud bucket.
 Finally, it shuts down all these instances when you use run the delete command.  You can start an ElasticBLAST run from
 your own computer, a cloudshell, or an instance in the cloud.  We've even heard from a group that doesn't have a lot of
 queries to search but is using ElasticBLAST since it does a lot of work they'd have to write scripts for.
 
+ElasticBLAST performs the searches with the BLAST+ package, so you can use the same command-lines you might have used with this stand-alone package.
+
 **How does ElasticBLAST work?**
 
-* You provide ElasticBLAST with queries and information about your BLAST search as well as a cloud bucket to hold results.  The queries are one or more FASTA files or a list of accessions.  They can be gzipped. The BLAST database is one of the databases hosted by the NCBI at a cloud provider or a database you provide.
+* You provide ElasticBLAST with queries and information about your BLAST search, a cloud bucket to hold results, and any BLAST+ options you want to use.  The queries are one or more FASTA files or a list of accessions.  They can be gzipped. The BLAST database is one of the databases hosted by the NCBI at a cloud provider or a database you provide.
 
 * ElasticBLAST breaks your queries into batches.  The number of letters in a batch depends upon the program (e.g., BLASTN, BLASTP, etc) but all batches are roughly the same size.
 

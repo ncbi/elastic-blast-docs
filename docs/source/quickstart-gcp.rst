@@ -40,6 +40,8 @@ As you work through this quickstart, you may occasionally see a message from the
 Get ElasticBLAST
 ----------------
 
+Copy and paste the commands below at the Cloud Shell prompt to install ElasticBLAST.
+
 .. code-block:: shell
 
     curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast
@@ -68,7 +70,7 @@ Set up an output bucket (if one doesn't exist)
 Configure ElasticBLAST
 ----------------------
 
-We will use a configuration file to specify our input to ElasticBLAST.  Once we have written the configuration file, we'll just need to tell ElasticBLAST about it when invoked.
+You will use a configuration file to specify your input to ElasticBLAST.  Once you have written the configuration file, you'll just need to tell ElasticBLAST about it when invoked.
 
 Start by, copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQE.ini".  Both nano and vi are available on the Cloud Shell.
 
@@ -92,6 +94,8 @@ Start by, copying the configuration file shown below.  Using an editor, write th
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname" 
 
 You will need to edit the file to provide a gcp-project and your results bucket. Read about how to identify your `GCP project <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_.  For your results bucket, you should append "/results/BDQE" to your output bucket.  If you created it with the gsutil command above, it would be as shown in the configuration file above.  
+
+ElasticBLAST will place your results in a folder called BDQE under gs://elasticblast-${USER}/results/.  For your next search, you should use a different token than BDQE, otherwise your new results will be placed in the same folder, possibly overwriting your first set of results.
 
 This configuration file will use two GCP instances, specified by "num-nodes", for your search.  The BLASTP program will search proteins from the BDQE WGS project (obtained from a cloud bucket) against the swissprot database.
 
@@ -125,7 +129,7 @@ To check on the progress of the search, inspect the logfile
     ./elastic-blast status --cfg BDQE.ini --loglevel DEBUG
 
 The status command will not return proper results until the submit command has finished.
-Once it returns, it should list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
+Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
 
 An alternate way to monitor the progress is to inspect the kubernetes pods/nodes activity:
 
@@ -196,7 +200,7 @@ Summary
 
 You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  The BLAST search was selected to be quick and inexpensive to run with a query set of only 171 proteins and the relatively small swissprot database.  
 
-You used the Cloud Shell to launch your search.  The Cloud Shell has the advantage that it is easy to start up and already has the GCP SDK, python, and kubectl (used by elastic-blast to submit searches) installed.  It is fine to keep using the Cloud Shell for other searches, but it is a very limited instance and has `limitations <https://cloud.google.com/shell/docs/limitations>`_.  ElasticBLAST can also be started from your own machine or a cloud instance you have brought up.  In that case, you will need to make sure that the :ref:`requirements <requirements>` have been met.
+You used the Cloud Shell to launch your search.  The Cloud Shell has the advantage that it is easy to start up and already has the GCP SDK, python, and kubectl (used by elastic-blast to submit searches) installed.  The Cloud Shell has `limitations <https://cloud.google.com/shell/docs/limitations>`_ and you may want to consider other environments for further work.  ElasticBLAST can also be started from your own machine or a cloud instance you have brought up.  In that case, you will need to make sure that the :ref:`requirements <requirements>` have been met.
 
 [IGNORE THE PART BELOW]
 

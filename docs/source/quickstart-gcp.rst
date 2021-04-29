@@ -72,7 +72,7 @@ Configure ElasticBLAST
 
 You will use a configuration file to specify your input to ElasticBLAST.  Once you have written the configuration file, you'll just need to tell ElasticBLAST about it when invoked.
 
-Start by, copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQE.ini".  Both nano and vi are available on the Cloud Shell.
+Start by copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQE.ini".  Both nano and vi are available on the Cloud Shell.
 
 .. code-block::
     :name: minimal-config

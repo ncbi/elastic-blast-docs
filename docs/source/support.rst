@@ -55,4 +55,4 @@ Please help the development team help you:
 
 Thanks! :)
 
-Please see also the list of :ref:`known issues<issues>`.
+Please see also the list of known issues in :ref:`AWS <aws_issues>` and :ref:`GCP <gcp_issues>`.

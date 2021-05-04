@@ -31,9 +31,12 @@ Overview of ElasticBLAST on AWS
    :alt: Overview of ElasticBLAST at AWS
    :class: with-border
 
+For this quickstart, you will use the AWS CloudShell.  The CloudShell already has some of the needed software installed and is easy to start up.  Read about starting the CloudShell `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#how-to-get-started>`_.
 
 Get ElasticBLAST
 ----------------
+
+Copy and paste the commands below at the CloudShell prompt to install ElasticBLAST.
 
 .. code-block:: shell
 
@@ -44,8 +47,14 @@ Get ElasticBLAST
     # Optional: move elastic-blast to the desired installation path
 
 
-The code examples below assume that ElasticBLAST was installed in the current
-working directory and that the :ref:`requirements <requirements>` have been met.
+The instructions in this quickstart assume that you are working from the directory where you installed ElasticBLAST.
+
+Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly installed, the first one will report the version of ElasticBLAST installed and the second one will give you the help message.
+
+.. code-block:: bash
+
+    ./elastic-blast --version
+    ./elastic-blast --help
 
 
 Set up an output bucket (if one doesn't exist)
@@ -53,52 +62,19 @@ Set up an output bucket (if one doesn't exist)
 
 .. code-block:: shell
 
-    aws s3 ls s3://elasticblast-${USER} || aws s3 mb s3://elasticblast-${USER}
+    aws s3 ls s3://elasticblast-YOURNAME || aws s3 mb s3://elasticblast-YOURNAME
 
-
-
-Provide AWS credentials
------------------------
-
-If not already present, please please provide your AWS credentials. This can be
-accomplished by setting up environment variables or by saving those values in
-``~/.aws/config``. Please see examples below:
-
-.. code-block:: shell
-
-    # Environment variable
-    export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY_ID>
-    export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
-
-.. code-block:: shell
-
-    # Check whether an AWS configuration file already exists
-    [ -f ~/.aws/config ] || echo "AWS configuration file already exists!"
-
-    # If not, enter the following information in it
-    [ -d ~/.aws ] || mkdir ~/.aws
-    echo '[default]' > ~/.aws/config
-    echo 'aws_access_key_id = <YOUR_ACCESS_KEY_ID>' >> ~/.aws/config
-    echo 'aws_secret_access_key = <YOUR_SECRET_ACCESS_KEY>' >> ~/.aws/config
+Substitute your name for "YOURNAME"
 
 
 Configure ElasticBLAST
 ----------------------
 
-The minimal configuration requires: 
+You will use a configuration file to specify your input to ElasticBLAST.  Once you have written the configuration file, you'll just need to tell ElasticBLAST about it when invoked.
 
-#. :ref:`AWS region <elb_aws_region>` (``us-east-1`` recommended, see :ref:`AWS configuration <aws_conf>`),
-#. :ref:`query sequences <elb_queries>`,
-
-#. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``s3://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
-
-#. basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
-
-#. :ref:`elb_num_nodes` to start.
+Start by, copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQE.ini".  Vi is pre-installed in the CloudShell.  Instructions for installing nano on the CloudShell can be found `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/vm-specs.html#installing-software>`_
 
 
-
-They can be provided on a standard `ini configuration file format <https://en.wikipedia.org/wiki/INI_file>`_, e.g.:
 
 .. code-block::
     :name: minimal-config
@@ -109,45 +85,37 @@ They can be provided on a standard `ini configuration file format <https://en.wi
 
     [cluster]
     machine-type = m5.8xlarge
-    num-nodes = 1
+    num-nodes = 2
 
     [blast]
     program = blastp
     db = swissprot
     queries = s3://elasticblast-test/queries/BDQE01.1.fsa_aa
-    results = ${YOUR_RESULTS_BUCKET}
-    options = -task blastp-fast -evalue 0.01 -outfmt 7 
+    results = s3://elasticblast-YOURNAME/results/BDQE
+    options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname"  
+
+You will need to edit the file to provide your results bucket. For your results bucket, you should append "/results/BDQE" to your output bucket.  If you created it with the s3 command above, it would be as shown in the configuration file once you replace YOURNAME with your real name.
+
+ElasticBLAST will place your results in a folder called BDQE under s3://elasticblast-YOURNAME/results/.  For your next search, you should use a different token than BDQE, otherwise your new results will be placed in the same folder, possibly overwriting your first set of results.
+
+This configuration file will use two AWS instances, specified by "num-nodes", for your search.  The BLASTP program will search proteins from the BDQE WGS project (obtained from a public cloud bucket) against the swissprot database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
-See :ref:`configuration` for details on all the configuration parameters.
+
+There is no need to change any lines in the configuration file (BDQE.ini) other than the results bucket.
+
+This search should take about 30 minutes to run and cost less than $3.
 
 Run ElasticBLAST
 ----------------
 
 .. code-block:: bash
 
-    ./elastic-blast submit --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast submit --cfg BDQE.ini --loglevel DEBUG
 
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
-For a helpful sample script to run ElasticBLAST, wait for results and clean up, please
-see `this script <https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh>`_.
-You can obtain it via following commands:
-
-.. code-block:: bash
-
-    [ -f submit-and-wait-for-results.sh ] || curl -sO https://raw.githubusercontent.com/ncbi/elastic-blast-demos/master/submit-and-wait-for-results.sh
-    [ -x submit-and-wait-for-results.sh ] || chmod +x submit-and-wait-for-results.sh
-    ./submit-and-wait-for-results.sh ${YOUR_INI_FILE} ${TIMEOUT_IN_MINUTES}
-
-The script expects ``elastic-blast`` is available in your ``PATH``. If this is
-not the case, the script needs to be updated. Assuming ``elastic-blast`` is installed 
-in the current working directory, the command below would accomplish this.
-Please feel free to edit the script to suit your operating environment.
-
-.. code-block:: bash
-
-    sed -i~ -e 's,elastic-blast ,./elastic-blast ,' submit-and-wait-for-results.sh
+You may also see an informational message about "awslimitchecker", which requires no action on your part. 
 
 Monitor progress
 ----------------
@@ -157,27 +125,35 @@ To check on the progress of the search, inspect the :ref:`logfile
 .. code-block:: bash
     :name: status
 
-    ./elastic-blast status --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast status --cfg BDQE.ini --loglevel DEBUG
 
 The status command will not return proper results until the submit command has finished.
+Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
 
-You can also visit the web intefaces for 
-`CloudFormation <https://console.aws.amazon.com/cloudformation/>`_ and
-`Batch <https://console.aws.amazon.com/batch/>`_ 
-to monitor the progress of your cloud resource creation and jobs respectively.
+Once all batches have finished, you can download results as shown below.
 
-Problems? Search taking too long? Please see :ref:`support`.
 
 Download results
 ----------------
 
-Run the command below to download the results.
-
-**Note**: this command requires the `AWS CLI SDK <https://aws.amazon.com/cli/>`_.
+Modify the command below to use the path to your results bucket (listed in BDEQ.ini) and then run it to download the results:
 
 .. code-block:: bash
 
     aws s3 cp ${YOUR_RESULTS_BUCKET}/ . --exclude "*" --include "*.out.gz" --recursive
+
+ElasticBLAST breaks your set of queries into multiple batches and runs one search per batch.  Your results are returned with the results of each batch in a separate file.
+
+Running "ls" in the CloudShell should list 10 files named something like "batch_000-blastp-swissprot.out.gz".
+
+Use the commands below to decompress the first batch and then view with "less".
+
+.. code-block:: bash
+
+    gunzip batch_000-blastp-swissprot.out.gz 
+    less batch_000-blastp-swissprot.out
+
+`BDQE <https://www.ncbi.nlm.nih.gov/Traces/wgs/BDQE01>`_ is a WGS study of viral metagenomes.  You will see tabular output with matches to the swissprot database.  The output also includes the Kingdom and scientific name of the database sequence found, so you can check whether it is viral or not.  Note that many of the queries have no matches.  A more comprehensive database might find more matches.
 
 Clean up cloud resources
 ------------------------
@@ -189,7 +165,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast delete --cfg BDQE.ini --loglevel DEBUG
 
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.
@@ -202,8 +178,18 @@ still in the ``running`` state.
 
 .. code-block:: bash
 
-  aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Name,Values=elasticblast-${USER}-$(echo -n ${YOUR_RESULTS_BUCKET} | md5sum | cut -b-9) --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
+  aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Name,Values=elasticblast-YOURNAME-$(echo -n ${YOUR_RESULTS_BUCKET} | md5sum | cut -b-9) --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
 
+Summary
+-------
+
+You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  The BLAST search was selected to be quick and inexpensive to run with a query set of only 171 proteins and the relatively small swissprot database.
+
+You used the CloudShell to launch your search.  The CloudShell has the advantage that it is easy to start up and already has the AWS CLI SDK  and python installed.  The CloudShell has `limitations <https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html>`_ and you may want to consider other environments for further work.  ElasticBLAST can also be started from your own machine or a cloud instance you have brought up.  In that case, you will need to make sure that the :ref:`requirements <requirements>` have been met.
+
+
+
+[IGNORE everything below for right now]
 
 .. _aws_conf:
 

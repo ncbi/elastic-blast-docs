@@ -22,26 +22,31 @@
 ElasticBLAST, version |release|
 ===============================
 
-ElasticBLAST is a *cloud-based* tool that facilitates running BLAST on *large
-amounts* (100,000+) of query sequence data against popular NCBI provided BLAST
-databases.
+ElasticBLAST is a cloud-based tool to run your searches faster and make you more effective.
 
-**This tool is under active development.**
+ElasticBLAST is ideal for users who have 100,000 or more queries to BLAST and don't want to wait for results.  It distributes your queries to machines in the cloud and runs them more quickly than you could with stand-alone BLAST.
 
-Features
---------
+It runs on AWS and GCP and requires that you have an account on one of those cloud providers.
 
-* Supports :ref:`spot instances and preemptible nodes <ELB_USE_PREEMPTIBLE>` for cost savings!
+Currently, ElasticBLAST is alpha software
+
+To get started, go to the :ref:`overview`
+
+
+     
+     
+     
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Contents:
 
-   requirements
    overview
-   Budget <budget>
    quickstart-aws
    quickstart-gcp
+   requirements
+   Budget <budget>
    exit-codes
    configuration
    tips-gcp
@@ -52,4 +57,3 @@ Features
    gcp-issues
    privacy
    LICENSE
-

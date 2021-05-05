@@ -33,6 +33,8 @@ The Basic Local Alignment Search Tool (BLAST) finds regions of local similarity 
 
 Introduced in 2009, BLAST+ is a command line application. For a full description of the features and capabilities of BLAST+, please refer to the `BLAST Command Line Applications User Manual <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.
 
+BLAST was developed and is supported by the National Center for Biotechnology Information, part of the National Library of Medicine, at the US National Institutes of Health.
+
 **What is Cloud Computing?**
 
 Cloud computing offers potential cost savings by using on-demand, scalable, and elastic computational resources.
@@ -68,8 +70,6 @@ ElasticBLAST performs the searches with the BLAST+ package, so you can use the s
 * You shut down ElasticBLAST after the search is done, deleting the resources.  
 
 * You can download the results from the cloud bucket to your local machine or leave them there for further processing in the cloud.  We also provide a script to start the search and download the results.  This is described in one of the tutorials in this documentation.
-
-[add figure with workflow]
 
 To do your first ElasticBLAST run, go to the :ref:`quickstart-gcp` or the :ref:`quickstart-aws`
 

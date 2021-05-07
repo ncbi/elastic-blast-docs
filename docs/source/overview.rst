@@ -23,9 +23,6 @@
 Overview
 ========
 
-.. figure:: ElasticBlastOperations.png
-   :alt: Overview of ElasticBLAST usage
-   :class: with-border
 
 **What is BLAST?**
 
@@ -37,23 +34,20 @@ BLAST was developed and is supported by the National Center for Biotechnology In
 
 **What is Cloud Computing?**
 
-Cloud computing offers potential cost savings by using on-demand, scalable, and elastic computational resources.
-In cloud computing, you bring up machines (or instances) to perform computational work for a limited time, 
-and only pay for time the machine is running.  Cloud computing also has the concept of cloud buckets, which
-is a place to store files, independent of any instances you have running.  This is important, since you don't want to pay for instances merely to store files, but instead you copy results to a 
-bucket when they are ready, and shut your instance down without losing results.  You also pay to keep data in a bucket, but it's less than running an instance.  
+Cloud computing offers the ability to use scalable, on-demand and elastic computational resources for nominal cost. The ability to scale resources across distributed CPUs allows more work to be done in a given amount of time. You access the CPU's by bringing up machines (or instances) and only pay for the time that your instance is running.  Cloud computing also offers cloud buckets to store files.  Using cloud buckets to store files is independent from CPU usage and much cheaper. Therefore, once your work is completed and results copied to a cloud bucket, your instances can be stopped and you can access your results without paying for CPUs.  
 
 The cloud concepts mentioned here are important for ElasticBLAST users.  ElasticBLAST can run on either Google Cloud Platform (GCP) or Amazon Web Services (AWS).  You can read about `GCP (Google) <https://cloud.google.com/docs/overview/>`_ and `AWS (Amazon) <https://aws.amazon.com/what-is-aws/?nc1=f_cc/>`_.
 
 **Why use ElasticBLAST?**
 
-ElasticBLAST returns your results faster.  Rather than waiting days or even
-weeks (in some cases), ElasticBLAST runs your searches with large numbers of queries in hours.  
-ElasticBLAST performs many of the cloud configuration tasks for you.  It starts up instances for you, provisions
+ElasticBLAST distributes your searches across multiple instances.  The ability to scale resources in this way allows larger numbers of queries to be searched in a shorter time than standard BLAST+ installations. 
+
+
+ElasticBLAST performs many cloud configuration tasks for you.  It starts up instances for you, provisions
 them with the BLAST software and databases, schedules the searches, and copies the BLAST results to a cloud bucket.
 Finally, it shuts down all these instances when you use run the delete command.  You can start an ElasticBLAST run from
 your own computer, a cloudshell, or an instance in the cloud.  We've even heard from a group that doesn't have a lot of
-queries to search but is using ElasticBLAST since it does a lot of tasks they'd have to write scripts for.
+queries to search but is using ElasticBLAST since it performs a lot of tasks they'd have to write scripts for.
 
 ElasticBLAST performs the searches with the BLAST+ package, so you can use the same command-lines you might have used with this stand-alone package.
 
@@ -61,7 +55,7 @@ ElasticBLAST performs the searches with the BLAST+ package, so you can use the s
 
 * You provide ElasticBLAST with queries and information about your BLAST search, a cloud bucket to hold results, and any BLAST+ options you want to use.  The queries are one or more FASTA files or a list of accessions.  They can be gzipped. The BLAST database is one of the databases hosted by the NCBI at a cloud provider or a database you provide.
 
-* ElasticBLAST breaks your queries into batches.  The number of letters in a batch depends upon the program (e.g., BLASTN, BLASTP, etc) but all batches are roughly the same size.
+* ElasticBLAST breaks your queries into batches.
 
 * ElasticBLAST starts instances for you, provisions them with BLAST software and loads the BLAST database you requested.
 

@@ -34,7 +34,7 @@ BLAST was developed and is supported by the National Center for Biotechnology In
 
 **What is Cloud Computing?**
 
-Cloud computing offers the ability to use scalable, on-demand and elastic computational resources for nominal cost. The ability to scale resources across distributed CPUs allows more work to be done in a given amount of time. You access the CPU's by bringing up machines (or instances) and only pay for the time that your instance is running.  Cloud computing also offers cloud buckets to store files.  Using cloud buckets to store files is independent from CPU usage and much cheaper. Therefore, once your work is completed and results copied to a cloud bucket, your instances can be stopped and you can access your results without paying for CPUs.  
+Cloud computing offers the ability to use scalable, on-demand and elastic computational resources for nominal cost. The ability to scale resources across multiple machines (called "instances" here) allows more work to be done in a given amount of time. Cloud computing also offers cloud buckets to store files.  Using cloud buckets to store files is independent from instance usage and much cheaper. Therefore, once your work is completed and results copied to a cloud bucket, your instances can be stopped and you can access your results without paying to run an instance.  
 
 The cloud concepts mentioned here are important for ElasticBLAST users.  ElasticBLAST can run on either Google Cloud Platform (GCP) or Amazon Web Services (AWS).  You can read about `GCP (Google) <https://cloud.google.com/docs/overview/>`_ and `AWS (Amazon) <https://aws.amazon.com/what-is-aws/?nc1=f_cc/>`_.
 

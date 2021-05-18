@@ -32,7 +32,7 @@ Taxids can be provided to ElasticBLAST using BLAST command-line options (see :re
 
 ElasticBLAST accepts taxids of any rank.
 
-You can read more about limiting search by taxonomy in command line BLAST+ tools `here <https://www.ncbi.nlm.nih.gov/books/NBK546209/>`_.
+You can read more about limiting search by taxonomy in command line BLAST+ tools `here <https://www.ncbi.nlm.nih.gov/books/NBK569846/>`_.
 
 Example:
 --------

@@ -30,7 +30,7 @@ The Basic Local Alignment Search Tool (BLAST) finds regions of local similarity 
 
 Introduced in 2009, BLAST+ is a command line application. For a full description of the features and capabilities of BLAST+, please refer to the `BLAST Command Line Applications User Manual <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.
 
-BLAST was developed and is supported by the National Center for Biotechnology Information, part of the National Library of Medicine, at the US National Institutes of Health.
+BLAST was developed and is supported by the `National Center for Biotechnology Information <https://www.ncbi.nlm.nih.gov/>`_, part of the National Library of Medicine, at the US National Institutes of Health.
 
 **What is Cloud Computing?**
 
@@ -40,7 +40,7 @@ The cloud concepts mentioned here are important for ElasticBLAST users.  Elastic
 
 **Why use ElasticBLAST?**
 
-ElasticBLAST distributes your searches across multiple instances.  The ability to scale resources in this way allows larger numbers of queries to be searched in a shorter time than standard BLAST+ installations. 
+ElasticBLAST distributes your searches across multiple instances.  The ability to scale resources in this way allows large numbers of queries to be searched in a shorter time than BLAST+ on a single machine.
 
 
 ElasticBLAST performs many cloud configuration tasks for you.  It starts up instances for you, provisions

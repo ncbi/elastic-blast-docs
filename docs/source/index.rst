@@ -26,6 +26,8 @@ ElasticBLAST is a cloud-based tool to perform your BLAST searches faster and mak
 
 ElasticBLAST is ideal for users who have a large number (thousands or more) of queries to BLAST or who prefer to use cloud infrastructure for their searches. It can run BLAST searches that cannot be done on `NCBI WebBLAST <https://blast.ncbi.nlm.nih.gov/Blast.cgi>`_ and runs them more quickly than stand-alone `BLAST+ <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.
 
+ElasticBLAST speeds up your work by distributing your searches across multiple cloud instances.  The ability to scale resources in this way allows large numbers of queries to be searched in a shorter time that you normally could with BLAST+.  
+
 The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.nih.gov/>`_), part of the National Library of Medicine at the NIH, developed and maintains ElasticBLAST.
 
 It runs on AWS and GCP and requires that you have an account on one of those cloud providers.

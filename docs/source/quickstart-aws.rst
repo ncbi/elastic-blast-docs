@@ -31,7 +31,7 @@ Overview of ElasticBLAST on AWS
    :alt: Overview of ElasticBLAST at AWS
    :class: with-border
 
-For this quickstart, you will use the AWS CloudShell.  The CloudShell already has some of the needed software installed and is easy to start up.  Read about starting the CloudShell `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#how-to-get-started>`_.
+For this quickstart, you will use the AWS CloudShell.  The CloudShell already has some of the needed software installed and is easy to start up.  Read about starting the CloudShell `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#how-to-get-started>`__.
 
 Get ElasticBLAST
 ----------------
@@ -72,7 +72,7 @@ Configure ElasticBLAST
 
 You will use a configuration file to specify your input to ElasticBLAST.  Once you have written the configuration file, you'll just need to tell ElasticBLAST about it when invoked.
 
-Start by, copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQE.ini".  Vi is pre-installed in the CloudShell.  Instructions for installing nano on the CloudShell can be found `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/vm-specs.html#installing-software>`_
+Start by, copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQE.ini".  Vi is pre-installed in the CloudShell.  Instructions for installing nano on the CloudShell can be found `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/vm-specs.html#installing-software>`__
 
 
 

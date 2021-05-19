@@ -43,13 +43,13 @@ The cloud concepts mentioned here are important for ElasticBLAST users.  Elastic
 ElasticBLAST distributes your searches across multiple instances.  The ability to scale resources in this way allows large numbers of queries to be searched in a shorter time than BLAST+ on a single machine.
 
 
-ElasticBLAST performs many cloud configuration tasks for you.  It starts up instances for you, provisions
+ElasticBLAST performs many cloud configuration and management tasks for you.  It starts up instances for you, provisions
 them with the BLAST software and databases, schedules the searches, and copies the BLAST results to a cloud bucket.
 Finally, it shuts down all these instances when you use run the delete command.  You can start an ElasticBLAST run from
 your own computer, a cloudshell, or an instance in the cloud.  We've even heard from a group that doesn't have a lot of
 queries to search but is using ElasticBLAST since it performs a lot of tasks they'd have to write scripts for.
 
-ElasticBLAST performs the searches with the BLAST+ package, so you can use the same command-lines you might have used with this stand-alone package.
+ElasticBLAST performs the searches with the BLAST+ package, and most of the BLAST+ command-line options are supported with ElasticBlast.
 
 **How does ElasticBLAST work?**
 
@@ -59,11 +59,11 @@ ElasticBLAST performs the searches with the BLAST+ package, so you can use the s
 
 * ElasticBLAST starts instances for you, provisions them with BLAST software and loads the BLAST database you requested.
 
-* ElasticBLAST runs your batches on the instances, queuing up the work with cloud native scheduling software (Kubernetes on GCP and AWSBatch on AWS).  When the searches are done, the results are gzipped and stored in your cloud bucket.  The results are stored one file per batch, so you'll have your results in multiple files even if you started with one very large FASTA file.
+* ElasticBLAST runs your batches on the instances, queuing up the work with cloud native scheduling software (Kubernetes on GCP and AWS Batch on AWS).  When the searches are done, the results are gzipped and stored in your cloud bucket.  The results are stored one file per batch, so you'll have your results in multiple files even if you started with one very large FASTA file.
 
-* You shut down ElasticBLAST after the search is done, deleting the resources.  
+* You shut down ElasticBLAST after the search is done, deleting the resources but not the results.  
 
-* You can download the results from the cloud bucket to your local machine or leave them there for further processing in the cloud.  We also provide a script to start the search and download the results.  This is described in one of the tutorials in this documentation.
+* You can download the results from the cloud bucket to your local machine or leave them there for further processing in the cloud.  We also provide a script to start the search and download the results.  This is described in one (FIXME: add link) of the tutorials in this documentation.
 
 To do your first ElasticBLAST run, go to the :ref:`quickstart-gcp` or the :ref:`quickstart-aws`
 

@@ -28,13 +28,13 @@ ElasticBLAST is ideal for users who have a large number (thousands or more) of q
 
 ElasticBLAST speeds up your work by distributing your searches across multiple cloud instances.  The ability to scale resources in this way allows large numbers of queries to be searched in a shorter time that you normally could with BLAST+.  
 
-The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.nih.gov/>`_), part of the National Library of Medicine at the NIH, developed and maintains ElasticBLAST.
+The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.nih.gov/>`_), part of the National Library of Medicine at the NIH, develops and maintains ElasticBLAST.
 
 It runs on AWS and GCP and requires that you have an account on one of those cloud providers.
 
-Currently, ElasticBLAST is alpha software
+Currently, ElasticBLAST is alpha software.
 
-To get started, go to the :ref:`overview`
+To get started, go to the :ref:`overview`.
 
 
      

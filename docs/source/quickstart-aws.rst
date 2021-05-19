@@ -24,14 +24,16 @@ Quickstart for AWS
 ==================
 
 
-Overview of ElasticBLAST on AWS
--------------------------------
-
 .. figure:: ElasticBLASTonAWS-architecture.png
    :alt: Overview of ElasticBLAST at AWS
    :class: with-border
 
-For this quickstart, you will use the AWS CloudShell.  The CloudShell already has some of the needed software installed and is easy to start up.  Read about starting the CloudShell `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#how-to-get-started>`__.
+Overview
+--------
+
+In this quickstart, you will run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.
+
+You will use AWS CloudShell for this first ElasticBLAST run. The CloudShell already has some of the needed software installed and is easy to start up.  Read about starting the CloudShell `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#how-to-get-started>`__.
 
 Get ElasticBLAST
 ----------------
@@ -72,7 +74,7 @@ Configure ElasticBLAST
 
 You will use a configuration file to specify your input to ElasticBLAST.  Once you have written the configuration file, you'll just need to tell ElasticBLAST about it when invoked.
 
-Start by, copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQE.ini".  Vi is pre-installed in the CloudShell.  Instructions for installing nano on the CloudShell can be found `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/vm-specs.html#installing-software>`__
+Start by, copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQE.ini".  Vi is pre-installed in the CloudShell.  Instructions for installing nano on the CloudShell can be found `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/vm-specs.html#installing-software>`__.
 
 
 
@@ -96,7 +98,7 @@ Start by, copying the configuration file shown below.  Using an editor, write th
 
 You will need to edit the file to provide your results bucket. For your results bucket, you should append "/results/BDQE" to your output bucket.  If you created it with the s3 command above, it would be as shown in the configuration file once you replace YOURNAME with your real name.
 
-ElasticBLAST will place your results in a folder called BDQE under s3://elasticblast-YOURNAME/results/.  For your next search, you should use a different token than BDQE, otherwise your new results will be placed in the same folder, possibly overwriting your first set of results.
+ElasticBLAST will place your results at s3://elasticblast-YOURNAME/results/BDQE.  For your next search, you should use a different token than BDQE, otherwise your new results will be placed at the same location, possibly overwriting your first set of results.
 
 This configuration file will use two AWS instances, specified by "num-nodes", for your search.  The BLASTP program will search proteins from the BDQE WGS project (obtained from a public cloud bucket) against the swissprot database.
 
@@ -135,8 +137,13 @@ Once all batches have finished, you can download results as shown below.
 
 Download results
 ----------------
+At this point you will find it convenient to set an environment variable for the location of your results.  You'll need to modify the command below to use the same path listed in BDQE.ini.
 
-Modify the command below to use the path to your results bucket (listed in BDEQ.ini) and then run it to download the results:
+.. code-block:: bash
+
+   export YOUR_RESULTS_BUCKET=s3://elasticblast-YOURNAME/results/BDQE
+
+Now, use the command below to download your results from your results bucket. This command assumes you have set ${YOUR_RESULTS_BUCKET}.  If you haven't done this, simply replace ${YOUR_RESULTS_BUCKET} by the path. 
 
 .. code-block:: bash
 
@@ -171,8 +178,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.
 
 After the ``elastic-blast delete`` command returns, you may verify that your
-cloud resources have been deleted by running the command below. The command requires that the
-``${ELB_RESULTS}`` environment variable be set to the value of ``${YOUR_RESULTS_BUCKET}``.
+cloud resources have been deleted by running the command below. The command requires that you have set ``${YOUR_RESULTS_BUCKET}``.
 Its output will show the EC2 instance IDs ``elastic-blast`` created on your behalf that are
 still in the ``running`` state.
 

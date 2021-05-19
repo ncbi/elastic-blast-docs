@@ -23,14 +23,18 @@
 Quickstart for GCP
 ==================
 
-Overview of ElasticBLAST on GCP
--------------------------------
 
 .. figure:: persistent-disk-architecture.png
    :alt: Overview of ElasticBLAST at GCP
    :class: with-border
 
-For this quickstart, you will use the Google Cloud Shell.  The Cloud Shell already has some of the needed software installed and is easy to start up.  
+
+Overview 
+--------
+
+In this quickstart, you will run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  
+
+You will use Google Cloud Shell for this first ElasticBLAST run.  The Cloud Shell already has some of the needed software installed and is easy to start up.  
 
 To start up the Cloud Shell, follow these `instructions <https://cloud.google.com/shell/docs/using-cloud-shell>`_.
 
@@ -93,9 +97,9 @@ Start by copying the configuration file shown below.  Using an editor, write thi
     results = gs://elasticblast-${USER}/results/BDQE
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname" 
 
-You will need to edit the file to provide a gcp-project and your results bucket. Read about how to identify your `GCP project <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_.  For your results bucket, you should append "/results/BDQE" to your output bucket.  If you created it with the gsutil command above, it would be as shown in the configuration file above.  
+You will need to edit the file to provide a GCP Project ID and your results bucket. Read about how to identify your `GCP project <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_.  For your results bucket, you should append "/results/BDQE" to your output bucket.  If you created it with the gsutil command above, it would be as shown in the configuration file above.  
 
-ElasticBLAST will place your results in a folder called BDQE under gs://elasticblast-${USER}/results/.  For your next search, you should use a different token than BDQE, otherwise your new results will be placed in the same folder, possibly overwriting your first set of results.
+ElasticBLAST will place your results gs://elasticblast-${USER}/results/BDQE.  For your next search, you should use a different token than BDQE, otherwise your new results will be placed at the same location, possibly overwriting your first set of results.
 
 This configuration file will use two GCP instances, specified by "num-nodes", for your search.  The BLASTP program will search proteins from the BDQE WGS project (obtained from a cloud bucket) against the swissprot database.
 
@@ -148,7 +152,14 @@ Once all batches have finished, you can download results as shown below.
 Download results
 ----------------
 
-Modify the command below to use the path to your results bucket (listed in BDEQ.ini) and then run it to download the results:
+At this point you will find it convenient to set an environment variable for the location of your results.  You'll need to modify the command below to use the same path listed in BDQE.ini.
+
+.. code-block:: bash
+
+   export YOUR_RESULTS_BUCKET=s3://elasticblast-YOURNAME/results/BDQE
+
+
+Now, use the command below to download your results from your results bucket. This command assumes you have set ${YOUR_RESULTS_BUCKET}.  If you haven't done this, simply replace ${YOUR_RESULTS_BUCKET} by the path.
 
 .. code-block:: bash
 

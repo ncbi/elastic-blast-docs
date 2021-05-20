@@ -23,7 +23,6 @@
 Overview
 ========
 
-
 **What is BLAST?**
 
 The Basic Local Alignment Search Tool (BLAST) finds regions of local similarity between sequences. The program compares nucleotide or protein sequences to sequence databases and calculates the statistical significance of matches. BLAST can be used to infer functional and evolutionary relationships between sequences as well as help identify members of gene families.
@@ -53,9 +52,14 @@ ElasticBLAST performs the searches with the BLAST+ package, and most of the BLAS
 
 **How does ElasticBLAST work?**
 
+.. figure:: eb_workflow.png
+   :alt: Overview of ElasticBLAST
+   :class: with-border
+
+
 * You provide ElasticBLAST with queries and information about your BLAST search, a cloud bucket to hold results, and any BLAST+ options you want to use.  The queries are one or more FASTA files or a list of accessions.  They can be gzipped. The BLAST database is one of the databases hosted by the NCBI at a cloud provider or a database you provide.
 
-* ElasticBLAST breaks your queries into batches.
+* ElasticBLAST breaks your queries into batches and uploads them to your cloud bucket.
 
 * ElasticBLAST starts instances for you, provisions them with BLAST software and loads the BLAST database you requested.
 

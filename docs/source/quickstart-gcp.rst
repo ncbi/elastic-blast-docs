@@ -215,6 +215,7 @@ You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabu
 
 You used the Cloud Shell to launch your search.  The Cloud Shell has the advantage that it is easy to start up and already has the GCP SDK, python, and kubectl (used by elastic-blast to submit searches) installed.  The Cloud Shell has `limitations <https://cloud.google.com/shell/docs/limitations>`_ and you may want to consider other environments for further work.  ElasticBLAST can also be started from your own machine or a cloud instance you have brought up.  In that case, you will need to make sure that the :ref:`requirements <requirements>` have been met.  You should also look at :ref:`GCP Configuration <gcp_conf>` (below).
 
+The :ref:`tutorials` page provides more ElasticBLAST examples. 
 
 .. _gcp_conf:
 

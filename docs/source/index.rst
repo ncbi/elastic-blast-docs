@@ -49,6 +49,7 @@ To get started, go to the :ref:`overview`.
    overview
    quickstart-aws
    quickstart-gcp
+   tutorials
    requirements
    Budget <budget>
    exit-codes

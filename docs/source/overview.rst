@@ -53,8 +53,8 @@ ElasticBLAST performs the searches with the BLAST+ package, and most of the BLAS
 **How does ElasticBLAST work?**
 
 .. figure:: eb_workflow.png
-   :alt: Overview of ElasticBLAST
    :class: with-border
+   :alt: Overview of ElasticBLAST
 
 
 * You provide ElasticBLAST with queries and information about your BLAST search, a cloud bucket to hold results, and any BLAST+ options you want to use.  The queries are one or more FASTA files or a list of accessions.  They can be gzipped. The BLAST database is one of the databases hosted by the NCBI at a cloud provider or a database you provide.
@@ -67,7 +67,7 @@ ElasticBLAST performs the searches with the BLAST+ package, and most of the BLAS
 
 * You shut down ElasticBLAST after the search is done, deleting the resources but not the results.  
 
-* You can download the results from the cloud bucket to your local machine or leave them there for further processing in the cloud.  We also provide a script to start the search and download the results.  This is described in one (FIXME: add link) of the tutorials in this documentation.
+* You can download the results from the cloud bucket to your local machine or leave them there for further processing in the cloud.  We also provide a script to start the search and download the results.  See :ref:`elb_submit_and_wait` for details.
 
 To do your first ElasticBLAST run, go to the :ref:`quickstart-gcp` or the :ref:`quickstart-aws`
 

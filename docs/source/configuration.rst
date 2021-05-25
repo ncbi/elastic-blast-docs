@@ -389,7 +389,7 @@ BLAST configuration options
 
     *Note*: the default output format in ElasticBLAST is 11 (BLAST archive). 
 
-    If you do not specify an output format (with -outfmt), you can use `blast_formatter <https://www.ncbi.nlm.nih.gov/books/NBK279697/>`_ to format the results in any desired output format.  
+    If you do not specify an output format (with -outfmt), you can use `blast_formatter <https://www.ncbi.nlm.nih.gov/books/NBK569843/>`_ to format the results in any desired output format.  
 
     Below, we have specified "-outfmt 7" for the BLAST tabular format and requested blastp-fast mode.
 

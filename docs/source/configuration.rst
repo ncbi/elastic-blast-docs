@@ -358,6 +358,7 @@ Cluster configuration
     [cluster]
     labels = key1=value1,key2=value2
 
+.. _blast_config_options:
 
 BLAST configuration options
 ---------------------------

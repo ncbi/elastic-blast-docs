@@ -34,17 +34,17 @@ In the first part of this section, we provide information that will help you to 
 
 **Environment**
 
-It is possible to run these examples using the Cloud Shell as was done with the GCP and AWS quickstarts.  On the other hand, there are advantages to using your own hardware or a cloud instance that you have started.  Some advantages to using your own hardware or cloud instance are increased disk space and more processing power, allowing you to better make use of ElasticBLAST as part of a pipeline.  If you will be using your own hardware or a cloud instance, you should review the :ref:`requirements`.  You should also look at the section below on providing credentials.
+It is possible to run these examples using the Cloud Shell as was done with the GCP and AWS quickstarts.  On the other hand, there are advantages to using your own hardware or a cloud instance that you have started.  Some advantages to using your own hardware or cloud instance are increased disk space and more processing power, allowing you to better make use of ElasticBLAST as part of a pipeline.  If you will be using your own hardware or a cloud instance, you should review the :ref:`requirements`.  You should also look at the section below on :ref:`Providing Credentials <credentials>`.
 
 **Configuration Files**
 
-We discuss the overall structure of the ElasticBLAST configuration files.  Below is the configuration file used in the AWS quickstart (the GCP file is similar).  This file contains three sections: cloud-provider, cluster, and blast. Each section contains a number of configuration variables (key/value pairs).  These are defined in :ref:`configuration`.  The needed changes to each section are as follows:
+Below is the configuration file used in the AWS quickstart (the GCP file is similar).  This file contains three sections: cloud-provider, cluster, and blast. Each section contains a number of configuration variables (key/value pairs).  These are defined in :ref:`configuration`.  The needed changes to each section are as follows:
 
-* cloud-provider: For GCP, the cloud-provider section requires the gcp-project, the gcp-region and the gcp-zone.  For AWS, the cloud-provider section requires just the aws-region.  These are described in the quickstarts.  You will be able to use the same configuration variables used in the quickstart, assuming the same account.  
+* cloud-provider: You will be able to use the same configuration variables used in the quickstart, assuming the same account.  If you will be changing any part of this section, please refer to :ref:`gcp_conf` or :ref:`aws_conf`.
 
-* cluster: You do not need to change the configuration variables in this section, though you may want to change the number of machines ("num-nodes").  In this section, you can also add a "use-preemptible = yes" key/value pair to indicate that you want to use a less expensive pre-emptible (GCP) or spot (AWS) instance.  The key "pre-emptible" applies both to AWS spot instances and GCP pre-emptible instances. See :ref:`elb_use_preemptible` for details.
+* cluster: You do not need to change the configuration variables in this section, though you may want to change the number of machines ("num-nodes").  In this section, you can also add a "use-preemptible = yes" key/value pair to indicate that you want to use a less expensive pre-emptible (GCP) or spot (AWS) instance.  The key "use-preemptible" applies both to AWS spot instances and GCP pre-emptible instances. See :ref:`elb_use_preemptible` for details.
 
-* blast: You will need to edit the configuration variables in this section in order to accomplish your goal.
+* blast: You will need to edit the configuration variables in this section in order to accomplish your goal.  You can provide BLAST specific paramters in this section such as the program, database and other BLAST command-line parameters.  See :ref:`BLAST Configuration Options <blast_config_options>` for details.
 
 .. code-block::
     :linenos:
@@ -65,11 +65,13 @@ We discuss the overall structure of the ElasticBLAST configuration files.  Below
 
 
 
-**Providing credentials**
+.. _credentials:
+
+**Providing Credentials**
 
 If you are not using the cloud shell, you will need to provide credentials if you have not already done so. 
 
-Read about providing credentials for GCP `here <https://cloud.google.com/sdk/docs/authorizing>`_
+Read about providing credentials for GCP `here <https://cloud.google.com/sdk/docs/authorizing>`_.
 
 For AWS, providing credentials can be
 accomplished by setting up environment variables or by saving those values in
@@ -191,9 +193,9 @@ Please feel free to edit the script to suit your operating environment.
 
     sed -i~ -e 's,elastic-blast ,./elastic-blast ,' submit-and-wait-for-results.sh
 
-After this script has finished, you will find all your results in the directory that you ran it from.   Additionally, they will stil be in your cloud bucket.
+After this script has finished, you will find all your results in the directory that you ran it from.   Additionally, they will still be in your cloud bucket.
 
-As noted earlier, ElasticBLAST will provide your results in multiple gzipped files, one for each batch it processed.  For many workflows, it is convenient to have all results in one file.  You can accomplish this easily with the command below, which will gunzip and concatenate all the gzipped files in the current directory starting with ``batch`` into the file MYRESULTS.tsv.  This command will leave the original gzipped files in place. 
+As noted earlier, ElasticBLAST will provide your results in multiple gzipped files, one for each batch it processed.  Some users prefer to have all results in one file.  You can accomplish this easily with the command below, which will gunzip and concatenate all the gzipped files in the current directory starting with ``batch`` into the file MYRESULTS.tsv.  This command will leave the original gzipped files in place. 
 
 .. code-block:: bash
 

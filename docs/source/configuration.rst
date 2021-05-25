@@ -521,7 +521,7 @@ get a list of BLAST databases provided by NCBI:
 
     Controls the usage reporting via the environment variable ``BLAST_USAGE_REPORT``.
 
-    For additional details, please see the `BLAST+ privacy statement <https://www.ncbi.nlm.nih.gov/books/NBK563686/>`_.
+    For additional details, please see the `BLAST+ privacy statement <https://www.ncbi.nlm.nih.gov/books/NBK569851/>`_.
 
     * Default: ``true``
     * Values: ``true`` or ``false``

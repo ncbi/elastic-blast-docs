@@ -102,7 +102,7 @@ You will need to edit the file to provide your results bucket. For your results 
 
 ElasticBLAST will place your results at s3://elasticblast-YOURNAME/results/BDQE.  For your next search, you should use a different token than BDQE, otherwise your new results will be placed at the same location, possibly overwriting your first set of results.
 
-This configuration file will use two AWS instances, specified by "num-nodes", for your search.  The BLASTP program will search proteins from the BDQE WGS project (obtained from a public cloud bucket) against the swissprot database.
+This configuration file specifies two AWS instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQE WGS project (obtained from a public cloud bucket) against the swissprot database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 

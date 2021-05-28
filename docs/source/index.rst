@@ -51,6 +51,7 @@ To get started, go to the :ref:`overview`.
    quickstart-gcp
    tutorials
    requirements
+   IAM Policy <iam-policy>
    Budget <budget>
    exit-codes
    configuration

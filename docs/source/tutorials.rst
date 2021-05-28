@@ -166,9 +166,8 @@ You should also run the checks outlined in the quickstart to double-check that a
 submit-and-wait-for-results script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-For a helpful sample script to run ElasticBLAST, wait for results and clean up, please
-see `this script <https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh>`_.
+In this example, you use a sample script to run ElasticBLAST.  The script submits your search, checks the status on a regular basis, downloads your results from the cloud bucket, and runs the delete command.  
+You can see the script `here <https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh>`_.
 You can obtain it via following commands:
 
 .. code-block:: bash
@@ -182,7 +181,7 @@ You can run it with the following command:
 
     ./submit-and-wait-for-results.sh ${YOUR_INI_FILE} ${TIMEOUT_IN_MINUTES}
 
-The second parameter (TIMEOUT_IN_MINUTES) is optional.  The default timeout is five minutes and is normally sufficient.  The configuration file (YOUR_INI_FILE) is a standard ElasticBLAST configuration file.
+The second parameter (TIMEOUT_IN_MINUTES) is optional.  The default timeout is 500 minutes and is normally sufficient.  The configuration file (YOUR_INI_FILE) is a standard ElasticBLAST configuration file.
 
 The script expects ``elastic-blast`` is available in your ``PATH``. If this is
 not the case, the script needs to be updated. Assuming ``elastic-blast`` is installed 
@@ -193,7 +192,10 @@ Please feel free to edit the script to suit your operating environment.
 
     sed -i~ -e 's,elastic-blast ,./elastic-blast ,' submit-and-wait-for-results.sh
 
+
 After this script has finished, you will find all your results in the directory that you ran it from.   Additionally, they will still be in your cloud bucket.
+
+As the script runs, it will print the number of batches that are Pending, Running, Succeeded, and Failed.  It is a good idea to check these results to make sure your search finished successfully. First, you want to make sure that no batches Failed.  Second, you should check that the script did not exit after the specified timeout as it could then return incomplete results.  The second case is only a concern if the search took longer than the specified timeout, which has a default value of more than 8 hours.
 
 As noted earlier, ElasticBLAST will provide your results in multiple gzipped files, one for each batch it processed.  Some users prefer to have all results in one file.  You can accomplish this easily with the command below, which will gunzip and concatenate all the gzipped files in the current directory starting with ``batch`` into the file MYRESULTS.tsv.  This command will leave the original gzipped files in place. 
 

@@ -101,9 +101,9 @@ Start by copying the configuration file shown below.  Using an editor, write thi
 
 You will need to edit the file to provide a GCP Project ID and your results bucket. Read about how to identify your `GCP project <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_.  For your results bucket, you should append "/results/BDQE" to your output bucket.  If you created it with the gsutil command above, it would be as shown in the configuration file above.  
 
-ElasticBLAST will place your results gs://elasticblast-${USER}/results/BDQE.  For your next search, you should use a different token than BDQE, otherwise your new results will be placed at the same location, possibly overwriting your first set of results.
+ElasticBLAST will place your results at gs://elasticblast-${USER}/results/BDQE.  For your next search, you should use a different token than BDQE, otherwise your new results will be placed at the same location, possibly overwriting your first set of results.
 
-This configuration file will use two GCP instances, specified by "num-nodes", for your search.  The BLASTP program will search proteins from the BDQE WGS project (obtained from a cloud bucket) against the swissprot database.
+This configuration file specifies two GCP instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQE WGS project (obtained from a cloud bucket) against the swissprot database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 

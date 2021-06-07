@@ -88,7 +88,6 @@ Start by, copying the configuration file shown below.  Using an editor, write th
     aws-region = us-east-1
 
     [cluster]
-    machine-type = m5.8xlarge
     num-nodes = 2
 
     [blast]

@@ -38,31 +38,28 @@ It is possible to run these examples using the Cloud Shell as was done with the 
 
 **Configuration Files**
 
-Below is the configuration file used in the AWS quickstart (the GCP file is similar).  This file contains three sections: cloud-provider, cluster, and blast. Each section contains a number of configuration variables (key/value pairs).  These are defined in :ref:`configuration`.  The needed changes to each section are as follows:
+Below is the configuration file used in the AWS quickstart (the GCP file is similar).  This file contains three sections: cloud-provider, cluster, and blast. Each section contains a number of configuration variables (key/value pairs).  These are defined in :ref:`configuration`.  Here are some changes you may need or want to make:
 
 * cloud-provider: You will be able to use the same configuration variables used in the quickstart, assuming the same account.  If you will be changing any part of this section, please refer to :ref:`gcp_conf` or :ref:`aws_conf`.
 
-* cluster: You do not need to change the configuration variables in this section, though you may want to change the number of machines ("num-nodes").  In this section, you can also add a "use-preemptible = yes" key/value pair to indicate that you want to use a less expensive pre-emptible (GCP) or spot (AWS) instance.  The key "use-preemptible" applies both to AWS spot instances and GCP pre-emptible instances. See :ref:`elb_use_preemptible` for details.
+* cluster: You do not need to change the configuration variables in this section, though you may want to change the number of machines ("num-nodes").  In this section, you can also add a "use-preemptible = yes" key/value pair to indicate that you want to use a less expensive pre-emptible (GCP) or spot (AWS) instance. See :ref:`elb_use_preemptible` for details.  You can also change the machine-type in this section.  See :ref:`elb_machine_type` for information on the default machine types and how to select a different machine type.
 
 * blast: You will need to edit the configuration variables in this section in order to accomplish your goal.  You can provide BLAST specific paramters in this section such as the program, database and other BLAST command-line parameters.  See :ref:`BLAST Configuration Options <blast_config_options>` for details.
 
 .. code-block::
-    :linenos:
 
     [cloud-provider]
     aws-region = us-east-1
 
     [cluster]
-    machine-type = m5.8xlarge
     num-nodes = 2
 
     [blast]
     program = blastp
-    db = swissprot
-    queries = s3://elasticblast-test/queries/BDQE01.1.fsa_aa
-    results = s3://elasticblast-YOURNAME/results/BDQE
-    options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname" 
-
+    db = refseq_protein
+    queries = s3://elasticblast-test/queries/BDQA01.1.fsa_aa
+    results = s3://elasticblast-YOURNAME/results/BDQA
+    options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname"
 
 
 .. _credentials:
@@ -97,9 +94,9 @@ accomplished by setting up environment variables or by saving those values in
 
 MegaBLAST on a large nucleotide set
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-In this example, you search 87,374 hepatitis sequences against the nt database, producing tabular output.  The search should take about 75 minutes and cost less than $10.  The pre-emptible or spot price could be as little as 20% of that.  
+In this example, you search 87,374 hepatitis sequences against the nt database, producing tabular output.  The search should take about 75 minutes and cost less than $10.  The pre-emptible or spot price could be as little as 20% of that, but may take longer to complete.  
 
-Below is the configuration file for this example.  Copy it into a new file with a text editor, then fill in the needed sections, which includes the cloud-provider information, the query path, and a bucket for your results.  Assuming you are using the same account as in the quickstart, use the same cloud-provider information.  For the query path, uncomment either the GCP (gs://) or the AWS (s3://) option and delete the other one.  You may use the results bucket used in the quickstart, but you should change the final location (BDQE).
+Below is the configuration file for this example.  Copy it into a new file with a text editor, then fill in the needed sections, which includes the cloud-provider information, the query path, and a bucket for your results.  Assuming you are using the same account as in the quickstart, use the same cloud-provider information.  For the query path, uncomment either the GCP (gs://) or the AWS (s3://) option and delete the other one.  You may use the results bucket used in the quickstart, but you should change the final location (BDQA).
 
 The instructions below assume the configuration file is named hepatitis.ini.  If you use a different name, you can simply modify the instructions.
 
@@ -129,8 +126,6 @@ First, run elastic-blast with the submit command:
 
     ./elastic-blast submit --cfg hepatitis.ini --loglevel DEBUG
 
-The above command uses a configuration file named hepatitis.ini.  Modify the command if your configuration file has a different name.
-
 Once the above command returns (which may take a few minutes), you can check the status of the search:
 
 .. code-block:: bash
@@ -151,6 +146,7 @@ For AWS, use the command:
 
     aws s3 cp ${YOUR_RESULTS_BUCKET}/ . --exclude "*" --include "*.out.gz" --recursive
 
+Here, YOUR_RESULTS_BUCKET should be set to the name of the results bucket used in your configuration file.
 
 Finally, make sure to delete your resources:
 
@@ -166,7 +162,7 @@ You should also run the checks outlined in the quickstart to double-check that a
 submit-and-wait-for-results script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this example, you use a sample script to run ElasticBLAST.  The script submits your search, checks the status on a regular basis, downloads your results from the cloud bucket, and runs the delete command.  
+In this example, you use a sample script to run ElasticBLAST. The script submits your search, checks the status on a regular basis, downloads your results from the cloud bucket, and runs the delete command once the timeout has expired or the search has completed (whichever happens first). The timeout (in minutes) can be specified when the script is invoked.
 You can see the script `here <https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh>`_.
 You can obtain it via following commands:
 
@@ -181,7 +177,7 @@ You can run it with the following command:
 
     ./submit-and-wait-for-results.sh ${YOUR_INI_FILE} ${TIMEOUT_IN_MINUTES}
 
-The second parameter (TIMEOUT_IN_MINUTES) is optional.  The default timeout is 500 minutes and is normally sufficient.  The configuration file (YOUR_INI_FILE) is a standard ElasticBLAST configuration file.
+The second parameter (TIMEOUT_IN_MINUTES) is optional and specifies the timeout mentioned above. The default value is 500. The configuration file (YOUR_INI_FILE) is a standard ElasticBLAST configuration file.
 
 The script expects ``elastic-blast`` is available in your ``PATH``. If this is
 not the case, the script needs to be updated. Assuming ``elastic-blast`` is installed 
@@ -195,7 +191,7 @@ Please feel free to edit the script to suit your operating environment.
 
 After this script has finished, you will find all your results in the directory that you ran it from.   Additionally, they will still be in your cloud bucket.
 
-As the script runs, it will print the number of batches that are Pending, Running, Succeeded, and Failed.  It is a good idea to check these results to make sure your search finished successfully. First, you want to make sure that no batches Failed.  Second, you should check that the script did not exit after the specified timeout as it could then return incomplete results.  The second case is only a concern if the search took longer than the specified timeout, which has a default value of more than 8 hours.
+As the script runs, it will print the number of batches that are Pending, Running, Succeeded, and Failed.  It is a good idea to check these results to make sure your search finished successfully. First, you want to make sure that no batches Failed.  Second, you should check that the script did not exit after the specified timeout as it could then return incomplete results.  The second case is only a concern if the search took longer than the specified timeout, which has a default value of 8 hours and 20 minutes.
 
 As noted earlier, ElasticBLAST will provide your results in multiple gzipped files, one for each batch it processed.  Some users prefer to have all results in one file.  You can accomplish this easily with the command below, which will gunzip and concatenate all the gzipped files in the current directory starting with ``batch`` into the file MYRESULTS.tsv.  This command will leave the original gzipped files in place. 
 

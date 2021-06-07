@@ -221,9 +221,9 @@ Cluster configuration
 ``Use preemptible nodes``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Use `spot instances <https://aws.amazon.com/ec2/spot/>`_ and `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ to run ElasticBLAST.
+    Use `spot instances <https://aws.amazon.com/ec2/spot/>`_ and `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ to run ElasticBLAST.  This may lead to reduced costs, but longer runtimes."
 
-    **Note**: This is an *experimental* feature in AWS. Turning this on bids on instance prices up to full price, which is almost guaranteed to save you money.
+    **Note**: This is an *experimental* feature in AWS. Turning this on bids on instance prices up to the full price, which is almost guaranteed to save you money.
 
     **Note**: Pre-emptible nodes are rebooted after 24 hours (by GCP).  This is
     fine in most cases as Kubernetes will restart the node and resubmit the
@@ -250,12 +250,10 @@ Cluster configuration
 
     Type of GCP or AWS machine to start as worker node(s). 
 
-    **NOTE**: The machine's available RAM must be as large as the size of the
-    BLASTDB specified by `BLAST database`_.
-
-    We recommend that you choose a machine with at least 50% more RAM than the BLASTDB size.
+    **NOTE**: The machine's available RAM should be large enough to contain the sequences in the database (one byte per residue or one byte per four bases) plus 20%.
 
     * Default: ``n1-standard-32`` for GCP, ``m5.8xlarge`` for AWS.
+    * The default machines have 32 cores and about 120GB of RAM.
     * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-types#general_purpose>`_ or `AWS instance types <https://aws.amazon.com/ec2/instance-types>`_ accordingly.
 
 .. code-block::

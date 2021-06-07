@@ -27,7 +27,7 @@ Overview
 
 The Basic Local Alignment Search Tool (BLAST) finds regions of local similarity between sequences. The program compares nucleotide or protein sequences to sequence databases and calculates the statistical significance of matches. BLAST can be used to infer functional and evolutionary relationships between sequences as well as help identify members of gene families.
 
-Introduced in 2009, BLAST+ is a command line application. For a full description of the features and capabilities of BLAST+, please refer to the `BLAST Command Line Applications User Manual <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.
+Introduced in 2009, BLAST+ is a suite of command line applications. For a full description of the features and capabilities of BLAST+, please refer to the `BLAST Command Line Applications User Manual <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.
 
 BLAST was developed and is supported by the `National Center for Biotechnology Information <https://www.ncbi.nlm.nih.gov/>`_, part of the National Library of Medicine, at the US National Institutes of Health.
 
@@ -44,7 +44,7 @@ ElasticBLAST distributes your searches across multiple instances.  The ability t
 
 ElasticBLAST performs many cloud configuration and management tasks for you.  It starts up instances for you, provisions
 them with the BLAST software and databases, schedules the searches, and copies the BLAST results to a cloud bucket.
-Finally, it shuts down all these instances when you use run the delete command.  You can start an ElasticBLAST run from
+Finally, it shuts down all these instances when you run the delete command.  You can start an ElasticBLAST run from
 your own computer, a cloudshell, or an instance in the cloud.  We've even heard from a group that doesn't have a lot of
 queries to search but is using ElasticBLAST since it performs a lot of tasks they'd have to write scripts for.
 

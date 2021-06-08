@@ -23,16 +23,30 @@
 Quickstart for GCP
 ==================
 
-Overview of ElasticBLAST on GCP
--------------------------------
 
 .. figure:: persistent-disk-architecture.png
    :alt: Overview of ElasticBLAST at GCP
    :class: with-border
 
 
+Overview 
+--------
+
+In this quickstart, you will run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  
+
+You will use Google Cloud Shell for this first ElasticBLAST run.  The Cloud Shell already has some of the needed software installed and is easy to start up.  
+
+To start up the Cloud Shell, follow these `instructions <https://cloud.google.com/shell/docs/using-cloud-shell>`_.
+
+In order to complete this quickstart, you will need to be familiar with the GCP console, have an account at GCP, be comfortable with the command-line and editing files with a text editor.  
+
+As you work through this quickstart, you may occasionally see a message from the Cloud Shell asking you to authorize use of GCP API's.  Simply select the "Authorize" button. 
+
+
 Get ElasticBLAST
 ----------------
+
+Copy and paste the commands below at the Cloud Shell prompt to install ElasticBLAST.
 
 .. code-block:: shell
 
@@ -40,11 +54,15 @@ Get ElasticBLAST
     curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast.md5
     md5sum -c elastic-blast.md5
     chmod +x elastic-blast
-    # Optional: move elastic-blast to the desired installation path
 
+The instructions in this quickstart assume that you are working from the directory where you installed ElasticBLAST.
 
-The code examples below assume that ElasticBLAST was installed in the current
-working directory and that the :ref:`requirements <requirements>` have been met.
+Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly installed, the first one will report the version of ElasticBLAST installed and the second one will give you the help message.
+
+.. code-block:: bash
+
+    ./elastic-blast --version
+    ./elastic-blast --help
 
 
 Set up an output bucket (if one doesn't exist)
@@ -58,21 +76,9 @@ Set up an output bucket (if one doesn't exist)
 Configure ElasticBLAST
 ----------------------
 
-The minimal configuration requires: 
+You will use a configuration file to specify your input to ElasticBLAST.  Once you have written the configuration file, you'll just need to tell ElasticBLAST about it when invoked.
 
-#. Cloud service provider configuration (see :ref:`GCP configuration <gcp_conf>` for details),
-
-#. :ref:`query sequences <elb_queries>`, 
-
-#. a :ref:`cloud storage bucket for results <elb_results>`. This value must start with ``gs://`` and _uniquely_ identifies your ElasticBLAST search. **Please keep track of this**.
-
-#. basic BLAST parameters (:ref:`program <elb_blast_program>` and :ref:`database <elb_db>`), and
-
-#. :ref:`elb_num_nodes` to start.
-
-
-
-They can be provided on a standard `ini configuration file format <https://en.wikipedia.org/wiki/INI_file>`_, e.g.:
+Start by copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQA.ini".  Both nano and vi are available on the Cloud Shell.
 
 .. code-block::
     :name: minimal-config
@@ -84,40 +90,39 @@ They can be provided on a standard `ini configuration file format <https://en.wi
     gcp-zone = us-east4-b
 
     [cluster]
-    num-nodes = 3
+    num-nodes = 2
 
     [blast]
     program = blastp
-    db = nr
-    queries = gs://elastic-blast-samples/queries/protein/BDQE01.1.fsa_aa
-    results = ${YOUR_RESULTS_BUCKET}
-    options = -task blastp-fast -evalue 0.01 -outfmt 7 
+    db = refseq_protein
+    queries = gs://elastic-blast-samples/queries/protein/BDQA01.1.fsa_aa
+    results = gs://elasticblast-${USER}/results/BDQA
+    options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname" 
+
+You will need to edit the file to provide a GCP Project ID and your results bucket. Read about how to identify your `GCP project <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_.  For your results bucket, you should append "/results/BDQA" to your output bucket.  If you created it with the gsutil command above, it would be as shown in the configuration file above.  
+
+ElasticBLAST will place your results at gs://elasticblast-${USER}/results/BDQA.  For your next search, you should use a different token than BDQA, otherwise your new results will be placed at the same location, possibly overwriting your first set of results.
+
+This configuration file specifies two GCP instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a cloud bucket) against the refseq_protein database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
-The search above should take about 30 minutes to run and cost less than $3 in GCP in July 2020.  Using :ref:`preemptible nodes<ELB_USE_PREEMPTIBLE>` can make it less expensive.
+
+There is no need to change any lines in the configuration file (BDQA.ini) other than the gcp-project and the results.  
+
+This search should take about 30 minutes to run and cost less than $3.  
 
 See :ref:`configuration` for details on all the configuration parameters.
+
 
 Run ElasticBLAST
 ----------------
 
 .. code-block:: bash
 
-    ./elastic-blast submit --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
 
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
-
-For a helpful script to run ElasticBLAST, wait for results and clean up, please
-see `this script <https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh>`_.
-You can obtain it with the following code:
-
-.. code-block:: bash
-
-    [ -f submit-and-wait-for-results.sh ] || curl -sO https://raw.githubusercontent.com/ncbi/elastic-blast-demos/master/submit-and-wait-for-results.sh
-    [ -x submit-and-wait-for-results.sh ] || chmod +x submit-and-wait-for-results.sh
-    ./submit-and-wait-for-results.sh ${YOUR_INI_FILE} ${TIMEOUT_IN_MINUTES}
-
-
+Once it returns, you can move on to the next step.
 
 Monitor progress
 ----------------
@@ -127,9 +132,10 @@ To check on the progress of the search, inspect the logfile
 .. code-block:: bash
     :name: status
 
-    ./elastic-blast status --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast status --cfg BDQA.ini --loglevel DEBUG
 
 The status command will not return proper results until the submit command has finished.
+Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
 
 An alternate way to monitor the progress is to inspect the kubernetes pods/nodes activity:
 
@@ -143,16 +149,52 @@ An alternate way to monitor the progress is to inspect the kubernetes pods/nodes
 The `GCP web console <https://console.cloud.google.com/kubernetes/list>`_
 provides a graphical user interface to monitor your kubernetes cluster.
 
-Problems? Search taking too long? Please see :ref:`support`.
+Once all batches have finished, you can download results as shown below.
 
 Download results
 ----------------
 
-Run the command below to download the results:
+You will find it convenient to set an environment variable for the location of your results.  You'll need to modify the command below to use the same path listed in BDQA.ini.
+
+.. code-block:: bash
+
+   export YOUR_RESULTS_BUCKET=gs://elasticblast-${USER}/results/BDQA
+
+
+Now, use the command below to download your results from your results bucket. This command assumes you have set ${YOUR_RESULTS_BUCKET}.  If you haven't done this, simply replace ${YOUR_RESULTS_BUCKET} by the path.
 
 .. code-block:: bash
 
     gsutil -qm cp ${YOUR_RESULTS_BUCKET}/*.out.gz .
+
+ElasticBLAST breaks your set of queries into multiple batches and runs one search per batch.  Your results are returned with the results of each batch in a separate file. 
+
+Running "ls" in the Cloud Shell should list 21 files named something like "batch_000-blastp-refseq_protein.out.gz".  
+
+Use the commands below to decompress the first batch and then view with "less".  
+
+.. code-block:: bash
+
+    gunzip batch_000-blastp-refseq_protein.out.gz 
+    less batch_000-blastp-refseq_protein.out
+
+You will see tabular output with matches to the refseq_protein database.  The output also includes the super-kingdom and scientific name of the database sequence found.  The queries come from a WGS study of viral metagnomes (`BDQA <https://www.ncbi.nlm.nih.gov/Traces/wgs/BDQA01>`_) so having the taxonomic information helps you to determine whether a query is really from a virus and which one.
+
+The results for one query, GBH21861.1, are shown below.  The first match covers the entire query, the second covers most of it, and both are statistically significant, as judged by the expect value.  This report lists the super-kingdom as "Viruses" in both cases. The scientific names are in the rightmost fields (scroll the window to see these).  
+
+::
+
+    # BLASTP 2.11.4+
+    # Query: GBH21861.1 hypothetical protein [viral metagenome]
+    # Database: refseq_protein
+    # Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score, subject super kingdoms, subject sci name
+    # 2 hits found
+    GBH21861.1      YP_009480351.1  81.384  419     78      0       1       419     1       419     0.0     712     Viruses Callinectes sapidus reovirus 1
+    GBH21861.1      YP_009665171.1  68.932  412     128     0       6       417     2       413     0.0     612     Viruses Eriocheir sinensis reovirus
+
+
+You can see more information on these database matches at `YP_009480351.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009480351.1>`_ and `YP_009665171.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009665171.1>`_
+
 
 Clean up cloud resources
 ------------------------
@@ -163,7 +205,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG
+    ./elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
 
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.
@@ -180,6 +222,16 @@ If nothing is returned, then no clusters are running and no disks are being
 used. Please see :ref:`PD_LEAK` if your cluster or disk are not properly
 deleted for instructions on deleting them.
 
+
+Summary
+-------
+
+You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  The BLAST search was selected to be quick and inexpensive to run with a query set of only 548 proteins and the relatively small refseq_protein database.  
+
+You used the Cloud Shell to launch your search.  The Cloud Shell has the advantage that it is easy to start up and already has the GCP SDK, python, and kubectl (used by elastic-blast to submit searches) installed.  The Cloud Shell has `limitations <https://cloud.google.com/shell/docs/limitations>`_ and you may want to consider other environments for further work.  ElasticBLAST can also be started from your own machine or a cloud instance you have brought up.  In that case, you will need to make sure that the :ref:`requirements <requirements>` have been met.  You should also look at :ref:`GCP Configuration <gcp_conf>` (below).
+
+The :ref:`tutorials` page provides more details on ElasticBLAST as well as examples. 
+
 .. _gcp_conf:
 
 GCP Configuration
@@ -192,4 +244,3 @@ The minimum required configuration parameters for running ElasticBLAST in GCP in
 * :ref:`zone <elb_gcp_zone>`
 
 In addition, you must be authenticated with the GCP project in the environment you are working on.
-A convenient way to accomplish this is to work on the `GCP cloud shell <https://console.cloud.google.com/?cloudshell=true>`_.

@@ -68,7 +68,7 @@ Set up an output bucket (if one doesn't exist)
 
     aws s3 ls s3://elasticblast-YOURNAME || aws s3 mb s3://elasticblast-YOURNAME
 
-Substitute your name for "YOURNAME"
+Substitute your name for "YOURNAME."
 
 
 Configure ElasticBLAST

@@ -198,15 +198,7 @@ Cluster configuration
 ``Number of worker nodes``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    This configuration setting operates slightly differently depending on whether ElasticBLAST runs on AWS or GCP.
-
-    **GCP**
-
-    Indicates the number of nodes of the configured :ref:`machine type <elb_machine_type>` to start in the kubernetes cluster.
-
-    **AWS**
-
-    Indicates the **maximum** number of EC2 instances of the configured :ref:`instance type <elb_machine_type>` that will be started by AWS Batch (i.e.: similar to :ref:`max-nodes <elb_max_nodes>` for GCP).
+    Specifies the maximum number of worker nodes of the configured :ref:`machine type <elb_machine_type>` to use.
 
     * Default: ``1``
     * Values: Positive integer
@@ -300,46 +292,6 @@ Cluster configuration
 
     [cluster]
     pd-size = 1000G
-
-.. _elb_min_nodes:
-
-``Minimum number of nodes``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-    **Experimental in GCP**.
-
-    Specifies the minimum number of worker nodes to use, enabling auto-scaling.
-
-    Requires `Maximum number of nodes`_.
-
-    * Default: None
-    * Values: Positive integer
-    * Applies to: GCP
-
-.. code-block::
-
-    [cluster]
-    min-nodes = 1
-
-.. _elb_max_nodes:
-
-``Maximum number of nodes``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-    **Experimental in GCP**.
-
-    Specifies the maximum number of worker nodes to use, enabling auto-scaling. 
-
-    Requires `Minimum number of nodes`_.
-
-    * Default: None
-    * Values: Positive integer
-    * Applies to: GCP
-
-.. code-block::
-
-    [cluster]
-    max-nodes = 1
 
 .. _elb_labels:
 

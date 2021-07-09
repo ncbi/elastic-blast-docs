@@ -73,6 +73,13 @@ To do your first ElasticBLAST run, go to the :ref:`quickstart-gcp` or the :ref:`
 
 **Are Cloud Credits available?**
 
-AWS and GCP have programs to award Cloud Credits to researchers at accredited research institutions.  You can read about the AWS program `here <https://aws.amazon.com/government-education/research-and-technical-computing/cloud-credit-for-research/>`_ and the GCP program `here <https://edu.google.com/programs/credits/research/?modal_active=none>`_.
+AWS and GCP have programs to award Cloud Credits to researchers at accredited research institutions: 
 
-AWS and GCP also have more limited Free Tiers.  Read about the AWS one `here <https://aws.amazon.com/free>`_ and the GCP one `here <https://cloud.google.com/free>`_.  While these are a good way to learn about the cloud, they may be too limited for you to effectively use ElasticBLAST.
+* https://aws.amazon.com/government-education/research-and-technical-computing/cloud-credit-for-research
+* https://edu.google.com/programs/credits/research
+
+Both cloud service providers also have Free Tiers:  
+* https://aws.amazon.com/free
+* https://cloud.google.com/free
+
+While these are a good way to learn about the cloud, they may be too limited for you to effectively use ElasticBLAST.

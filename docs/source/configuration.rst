@@ -242,11 +242,23 @@ Cluster configuration
 
     Type of GCP or AWS machine to start as worker node(s). 
 
-    **NOTE**: The machine's available RAM should be large enough to contain the sequences in the database (one byte per residue or one byte per four bases) plus 20%.
+    **NOTE**: The machine's available RAM should be large enough to contain the sequences in the database (one byte per residue or one byte per four bases) plus ~20%.
 
     * Default: ``n1-standard-32`` for GCP, ``m5.8xlarge`` for AWS.
     * The default machines have 32 cores and about 120GB of RAM.
-    * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-types#general_purpose>`_ or `AWS instance types <https://aws.amazon.com/ec2/instance-types>`_ accordingly.
+    * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-types>`_ or `AWS instance types <https://aws.amazon.com/ec2/instance-types>`_ accordingly.
+
+    **Note**: ElasticBLAST on AWS supports the specification of an ``optimal``
+    instance type. 
+
+    * This is an *experimental* feature. 
+    * **Requires** the specification of the :ref:`memory limit <elb_mem_limit>`
+      and the :ref:`number of CPUs <elb_num_cpus>` to use per BLAST job.
+    * Benefits include: greater breadth of available AWS instance types
+      (beneficial for getting spot instances) and freeing the end user from
+      having to match instance types to their BLAST search. 
+    * Potential downside: AWS Batch does not guarantee optimal performance of
+      the instances it selects.
 
 .. code-block::
 
@@ -301,7 +313,7 @@ Cluster configuration
     Specifies the labels to attach to cloud resources created by ElasticBLAST in GCP.
 
     * Default: ``cluster-name={cluster_name},client-hostname={hostname},created={create_date},owner={username},project=elastic-blast,creator={username},program={blast_program},db={db}``
-    * Values: String of key-value pairs separated by commas. See `GCP documentation on labels <https://cloud.google.com/compute/docs/labeling-resources#label_format>`_ for details.
+    * Values: String of key-value pairs separated by commas. See `GCP documentation on labels <https://cloud.google.com/compute/docs/labeling-resources>`_ for details.
 
 .. code-block::
 

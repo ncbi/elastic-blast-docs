@@ -274,9 +274,7 @@ Cluster configuration
 
     Must be less than the number of CPUs for the chosen :ref:`machine type <elb_machine_type>`.
 
-    For smaller BLAST databases (e.g.: ``swissprot``, ``pdbnt``) a smaller value (e.g.: 4) results in faster runtimes. For ``nt``, experiment using values of 15 and/or 30.
-
-    * Default: ``30``
+    * Default: As many CPUs as are available on the selected :ref:`machine type <elb_machine_type>`.
     * Values: Positive integer
 
 .. code-block::

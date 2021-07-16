@@ -273,7 +273,7 @@ Cluster configuration
 
     Must be less than the number of CPUs for the chosen :ref:`machine type <elb_machine_type>`.
 
-    * Default: 16 or as many CPUs as are available on the selected :ref:`machine type <elb_machine_type>`.
+    * Default: 16 or as many CPUs as are available on the selected :ref:`machine type <elb_machine_type>`, whichever is smaller.
     * Values: Positive integer
 
 .. code-block::

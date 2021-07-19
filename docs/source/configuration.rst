@@ -252,8 +252,7 @@ Cluster configuration
     instance type. 
 
     * This is an *experimental* feature. 
-    * **Requires** the specification of the :ref:`memory limit <elb_mem_limit>`
-      and the :ref:`number of CPUs <elb_num_cpus>` to use per BLAST job.
+    * **Requires** the specification of the :ref:`memory limit <elb_mem_limit>` to use per BLAST job.
     * Benefits include: greater breadth of available AWS instance types
       (beneficial for getting spot instances) and freeing the end user from
       having to match instance types to their BLAST search. 
@@ -274,13 +273,13 @@ Cluster configuration
 
     Must be less than the number of CPUs for the chosen :ref:`machine type <elb_machine_type>`.
 
-    * Default: As many CPUs as are available on the selected :ref:`machine type <elb_machine_type>`.
+    * Default: 16 or as many CPUs as are available on the selected :ref:`machine type <elb_machine_type>`, whichever is smaller.
     * Values: Positive integer
 
 .. code-block::
 
     [cluster]
-    num-cpus = 30
+    num-cpus = 16
 
 .. _elb_pd_size:
 

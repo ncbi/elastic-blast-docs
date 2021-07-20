@@ -307,10 +307,10 @@ Cluster configuration
 ``Cloud resource labels``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Specifies the labels to attach to cloud resources created by ElasticBLAST in GCP.
+    Specifies the labels to attach to cloud resources created by ElasticBLAST.
 
-    * Default: ``cluster-name={cluster_name},client-hostname={hostname},created={create_date},owner={username},project=elastic-blast,creator={username},program={blast_program},db={db}``
-    * Values: String of key-value pairs separated by commas. See `GCP documentation on labels <https://cloud.google.com/compute/docs/labeling-resources>`_ for details.
+    * Default: ``cluster-name={cluster_name},client-hostname={hostname},created={create_date},owner={username},project=elastic-blast,billingcode=elastic-blast,creator={username},program={blast_program},db={db},name={cluster_name},results={ELB_RESULTS}``
+    * Values: String of key-value pairs separated by commas. Keys must be all lowercase. Keys that overlap with the default labels are overriden with the values provided, otherwise key-value pairs are appended to the default set of labels.
 
 .. code-block::
 

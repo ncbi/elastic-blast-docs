@@ -30,11 +30,13 @@ ElasticBLAST speeds up your work by distributing your searches across multiple c
 
 The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.nih.gov/>`_), part of the National Library of Medicine at the NIH, develops and maintains ElasticBLAST.
 
-It runs on AWS and GCP and requires that you have an account on one of those cloud providers.
+**ElasticBLAST status:** alpha
 
-Currently, ElasticBLAST is alpha software.
+**Platforms available:** AWS, GCP (account required)
 
-To get started, go to the :ref:`overview`.
+**Bug affecting GCP implementation:** The current GCP implementation can leak cloud resources, potentially resulting in excess user charges. We are working to update the code and expect a fix soon. In the interim, we suggest using our AWS implementation, or for those who wish to use GCP, we have provided a workaround that, when applied, addresses this issue and eliminates the risk of excess user charges. For more information, see :ref:`pd_leak`. (Message date: July 21, 2021)
+
+**Getting started:** Go to the :ref:`overview`.
 
 
      

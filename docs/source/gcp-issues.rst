@@ -23,12 +23,7 @@
 Known issues on GCP
 ===================
 
-.. _elb_batch_len_setting:
-
-Batch length setting
---------------------
-
-The value of :ref:`ELB_BATCH_LEN` greatly affects performance. The defaults are reasonable, but may not be optimal in some cases. We are in the process of determining better values for various programs and use cases.
+**IMPORTANT:** The current GCP implementation can leak cloud resources, potentially resulting in excess user charges. We are working to update the code and expect a fix soon. In the interim, we suggest using our AWS implementation, or for those who wish to use GCP, we have provided a workaround that, when applied, addresses this issue and eliminates the risk of excess user charges. For more information, see items on this page. (Message date: July 21, 2021)
 
 
 .. _pd_leak:
@@ -36,10 +31,7 @@ The value of :ref:`ELB_BATCH_LEN` greatly affects performance. The defaults are 
 Persistent disk not properly deleted
 ------------------------------------
 
-As part of its normal operation ElasticBLAST starts a
-:ref:`persistent disk <elb_pd_size>` and under some circumstances it
-is not properly deleted. To double check and delete it, please run the commands
-below accordingly:
+As part of its normal operation ElasticBLAST starts a :ref:`persistent disk <elb_pd_size>`. We find that under some circumstances this disk is not properly deleted and will lead to excess charges for the user. We are working to update the code and expect a fix soon. In the interim, to delete the disk and avoid charges, run the following commands (Message date: July 21, 2021).
 
 .. code-block:: bash
 
@@ -81,6 +73,13 @@ To double check and delete them, please run the commands below.
 
    gsutil ls gs://${ELB_RESULTS}/metadata  # list metadata files
    gsutil -m rm gs://${ELB_RESULTS}/logs/*  # to delete metadata files
+
+.. _elb_batch_len_setting:
+
+Batch length setting
+--------------------
+
+The value of :ref:`ELB_BATCH_LEN` greatly affects performance. The defaults are reasonable, but may not be optimal in some cases. We are in the process of determining better values for various programs and use cases.
 
 
 .. _too_many_jobs:

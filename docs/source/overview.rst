@@ -79,7 +79,8 @@ AWS and GCP have programs to award Cloud Credits to researchers at accredited re
 * https://edu.google.com/programs/credits/research
 
 Both cloud service providers also have Free Tiers:  
+
 * https://aws.amazon.com/free
 * https://cloud.google.com/free
 
-While these are a good way to learn about the cloud, they may be too limited for you to effectively use ElasticBLAST.
+While the Free Tiers are a good way to learn about the cloud, they may be too limited for you to effectively use ElasticBLAST.

@@ -42,7 +42,7 @@ Below is the configuration file used in the AWS quickstart (the GCP file is simi
 
 * cloud-provider: You will be able to use the same configuration variables used in the quickstart, assuming the same account.  If you will be changing any part of this section, please refer to :ref:`gcp_conf` or :ref:`aws_conf`.
 
-* cluster: You do not need to change the configuration variables in this section, though you may want to change the number of machines ("num-nodes").  In this section, you can also add a "use-preemptible = yes" key/value pair to indicate that you want to use a less expensive pre-emptible (GCP) or spot (AWS) instance. See :ref:`elb_use_preemptible` for details.  You can also change the machine-type in this section.  See :ref:`elb_machine_type` for information on the default machine types and how to select a different machine type.
+* cluster: You do not need to change the configuration variables in this section, though you may want to change the number of machines ("num-nodes").  In this section, you can also add a "use-preemptible = yes" key/value pair to indicate that you want to use a less expensive preemptible (GCP) or spot (AWS) instance. See :ref:`elb_use_preemptible` for details.  You can also change the machine-type in this section.  See :ref:`elb_machine_type` for information on the default machine types and how to select a different machine type.
 
 * blast: You will need to edit the configuration variables in this section in order to accomplish your goal.  You can provide BLAST specific paramters in this section such as the program, database and other BLAST command-line parameters.  See :ref:`BLAST Configuration Options <blast_config_options>` for details.
 

@@ -23,7 +23,7 @@
 MegaBLAST on a large nucleotide set
 ===================================
 
-In this example, you search 87,374 hepatitis sequences against the nt database, producing tabular output.  The search should take about 75 minutes and cost less than $10.  The pre-emptible or spot price could be as little as 20% of that, but may take longer to complete.  
+In this example, you search 87,374 hepatitis sequences against the nt database, producing tabular output.  The search should take about 75 minutes and cost less than $10.  The preemptible or spot price could be as little as 20% of that, but may take longer to complete.  
 
 Below is the configuration file for this example.  Copy it into a new file with a text editor, then fill in the needed sections, which includes the cloud-provider information, the query path, and a bucket for your results.  Assuming you are using the same account as in the quickstart, use the same cloud-provider information.  For the query path, uncomment either the GCP (gs://) or the AWS (s3://) option and delete the other one.  You may use the results bucket used in the quickstart, but you should change the final location (BDQA).
 

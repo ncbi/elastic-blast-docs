@@ -67,7 +67,7 @@ ElasticBLAST performs the searches with the BLAST+ package, and most of the BLAS
 
 * You shut down ElasticBLAST after the search is done, deleting the resources but not the results.  
 
-* You can download the results from the cloud bucket to your local machine or leave them there for further processing in the cloud.  We also provide a script to start the search and download the results.  See :ref:`elb_submit_and_wait` for details.
+* You can download the results from the cloud bucket to your local machine or leave them there for further processing in the cloud.  We also provide a script to start the search and download the results.  See :ref:`tutorial_submit_and_wait_script` for details.
 
 To do your first ElasticBLAST run, go to the :ref:`quickstart-gcp` or the :ref:`quickstart-aws`
 

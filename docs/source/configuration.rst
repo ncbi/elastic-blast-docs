@@ -294,7 +294,7 @@ Cluster configuration
 
     **Note**: Smaller disks than ``1000G`` result in performance degradation in GCP.
 
-    * Default: ``3000G``
+    * Default: ``3000G`` for GCP, ``1000G`` for AWS.
     * Values: String
 
 .. code-block::

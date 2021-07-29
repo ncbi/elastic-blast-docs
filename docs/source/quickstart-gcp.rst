@@ -52,6 +52,9 @@ Copy and paste the commands below at the Cloud Shell prompt to install ElasticBL
 
     sudo pip3 install elastic-blast
 
+In some cases (e.g., not on the cloud), it may be preferable to run these commands without using "sudo"
+(which runs these commands with root permissions).
+
 The instructions in this quickstart assume that you are working from the directory where you installed ElasticBLAST.
 
 Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly installed, the first one will report the version of ElasticBLAST installed and the second one will give you the help message.

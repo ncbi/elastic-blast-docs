@@ -50,10 +50,9 @@ Copy and paste the commands below at the Cloud Shell prompt to install ElasticBL
 
 .. code-block:: shell
 
-    curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast
-    curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast.md5
-    md5sum -c elastic-blast.md5
-    chmod +x elastic-blast
+    sudo pip3 install elastic-blast
+
+In some cases (e.g., not on the cloud), it may be preferable to run these commands without using "sudo" (which runs these commands with root permissions). 
 
 The instructions in this quickstart assume that you are working from the directory where you installed ElasticBLAST.
 
@@ -61,8 +60,8 @@ Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly ins
 
 .. code-block:: bash
 
-    ./elastic-blast --version
-    ./elastic-blast --help
+    elastic-blast --version
+    elastic-blast --help
 
 If you are familiar with python, please see :ref:`tutorial_pypi`. Following these instructions will add ``elastic-blast`` to your ``PATH``.
 
@@ -120,7 +119,7 @@ Run ElasticBLAST
 
 .. code-block:: bash
 
-    ./elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
 
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 Once it returns, you can move on to the next step.
@@ -133,7 +132,7 @@ To check on the progress of the search, inspect the logfile
 .. code-block:: bash
     :name: status
 
-    ./elastic-blast status --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast status --cfg BDQA.ini --loglevel DEBUG
 
 The status command will not return proper results until the submit command has finished.
 Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
@@ -206,7 +205,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
 
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.

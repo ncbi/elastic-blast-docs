@@ -64,6 +64,7 @@ Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly ins
     ./elastic-blast --version
     ./elastic-blast --help
 
+If you are familiar with python, please see :ref:`tutorial_pypi`. Following these instructions will add ``elastic-blast`` to your ``PATH``.
 
 Set up an output bucket (if one doesn't exist)
 ----------------------------------------------

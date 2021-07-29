@@ -95,6 +95,7 @@ accomplished by setting up environment variables or by saving those values in
 Tutorials
 ^^^^^^^^^
 
+* :ref:`tutorial_pypi`
 * :ref:`tutorial_mb`
 * :ref:`tutorial_create_blastdb_metadata`
 * :ref:`tutorial_submit_and_wait_script`

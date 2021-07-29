@@ -44,11 +44,8 @@ Copy and paste the commands below at the CloudShell prompt to install ElasticBLA
 
 .. code-block:: shell
 
-    curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast
-    curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast.md5
-    md5sum -c elastic-blast.md5
-    chmod +x elastic-blast
-    # Optional: move elastic-blast to the desired installation path
+    sudo yum install python3-wheel
+    sudo pip3 install elastic-blast
 
 
 The instructions in this quickstart assume that you are working from the directory where you installed ElasticBLAST.
@@ -57,8 +54,8 @@ Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly ins
 
 .. code-block:: bash
 
-    ./elastic-blast --version
-    ./elastic-blast --help
+    elastic-blast --version
+    elastic-blast --help
 
 
 Set up an output bucket (if one doesn't exist)
@@ -114,7 +111,7 @@ Run ElasticBLAST
 
 .. code-block:: bash
 
-    ./elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
 
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
@@ -128,7 +125,7 @@ To check on the progress of the search, inspect the :ref:`logfile
 .. code-block:: bash
     :name: status
 
-    ./elastic-blast status --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast status --cfg BDQA.ini --loglevel DEBUG
 
 The status command will not return proper results until the submit command has finished.
 Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
@@ -190,7 +187,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
 
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.

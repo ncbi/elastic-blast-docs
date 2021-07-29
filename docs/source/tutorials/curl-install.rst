@@ -23,7 +23,7 @@
 Installation with curl
 ======================
 
-Please follow the steps below to install with curl.
+These commands will install ``elastic-blast`` in your current working directory. 
 
 .. code-block:: shell
 
@@ -32,5 +32,5 @@ Please follow the steps below to install with curl.
     md5sum -c elastic-blast.md5
     chmod +x elastic-blast
 
-These commands will install elastic-blast in your currrent directory.  You can also move it to a different installation path.
-
+You may want to consider moving into a different installation path (e.g.:
+``/usr/local/bin``) for convenient access.

@@ -43,7 +43,7 @@ The instructions below assume the configuration file is named hepatitis.ini.  If
     program = blastn 
     db = nt
     #queries = gs://elastic-blast-samples/queries/tests/hepatitis.fsa
-    #queries = s3://elastic-blast-test/queries/hepatitis.fsa
+    #queries = s3://elasticblast-test/queries/hepatitis.fsa.gz
     results = **FILL IN**
     options = -evalue 0.01 -outfmt 7
 

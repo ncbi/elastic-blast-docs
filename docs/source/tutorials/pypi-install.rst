@@ -69,4 +69,4 @@ If you run into installation problems on AWS, please run the command below and k
 
 .. code-block:: bash
 
-    sudo yum install python3-wheel
+    sudo yum install -y python3-wheel

@@ -44,7 +44,7 @@ Copy and paste the commands below at the CloudShell prompt to install ElasticBLA
 
 .. code-block:: shell
 
-    sudo yum install python3-wheel
+    sudo yum install -y python3-wheel
     sudo pip3 install elastic-blast
 
 

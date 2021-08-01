@@ -108,7 +108,7 @@ This configuration file specifies two GCP instances, specified by "num-nodes", f
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 
-There is no need to change any lines in the configuration file (BDQA.ini) other than the results bucket and the ``owner`` label (i.e.: replace ``YOURNAME`` with your name in all lowercase characters.
+There is no need to change any lines in the configuration file (BDQA.ini) other than the results bucket and the ``owner`` label (i.e.: replace ``$USER`` with your name in all lowercase characters.
 
 This search should take about 30 minutes to run and cost less than $3.  
 

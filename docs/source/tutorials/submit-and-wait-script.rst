@@ -40,7 +40,7 @@ You can run it with the following command:
 
     ./submit-and-wait-for-results.sh ${YOUR_INI_FILE} ${TIMEOUT_IN_MINUTES}
 
-The second parameter (TIMEOUT_IN_MINUTES) is optional and specifies the timeout mentioned above. The default value is 500. The configuration file (YOUR_INI_FILE) is a standard ElasticBLAST configuration file.
+The second parameter (TIMEOUT_IN_MINUTES) is optional and specifies the timeout mentioned above. The default value is 500 minutes. The configuration file (YOUR_INI_FILE) is a standard ElasticBLAST configuration file.
 
 The script expects ``elastic-blast`` is available in your ``PATH``. If this is
 not the case, the script needs to be updated. Assuming ``elastic-blast`` is installed 

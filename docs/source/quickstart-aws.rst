@@ -44,12 +44,11 @@ Copy and paste the commands below at the CloudShell prompt to install ElasticBLA
 
 .. code-block:: shell
 
-    curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast
-    curl -sO https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast.md5
-    md5sum -c elastic-blast.md5
-    chmod +x elastic-blast
-    # Optional: move elastic-blast to the desired installation path
+    sudo yum install -y python3-wheel
+    sudo pip3 install elastic-blast
 
+
+In some cases (e.g., not on the cloud), it may be preferable to run these commands without using "sudo" (which runs these commands with root permissions).  
 
 The instructions in this quickstart assume that you are working from the directory where you installed ElasticBLAST.
 
@@ -57,9 +56,10 @@ Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly ins
 
 .. code-block:: bash
 
-    ./elastic-blast --version
-    ./elastic-blast --help
+    elastic-blast --version
+    elastic-blast --help
 
+If you are familiar with python, please see :ref:`tutorial_pypi`. Following these instructions will add ``elastic-blast`` to your ``PATH``.
 
 Set up an output bucket (if one doesn't exist)
 ----------------------------------------------
@@ -68,7 +68,7 @@ Set up an output bucket (if one doesn't exist)
 
     aws s3 ls s3://elasticblast-YOURNAME || aws s3 mb s3://elasticblast-YOURNAME
 
-Substitute your name for "YOURNAME."
+Substitute your name for "YOURNAME" using all lower case letters.
 
 
 Configure ElasticBLAST
@@ -88,11 +88,15 @@ Start by, copying the configuration file shown below.  Using an editor, write th
     aws-region = us-east-1
 
     [cluster]
+    machine-type = m5.8xlarge
+    num-cpus = 16
     num-nodes = 2
+    labels = owner=YOURNAME
 
     [blast]
     program = blastp
     db = refseq_protein
+    mem-limit = 61G
     queries = s3://elasticblast-test/queries/BDQA01.1.fsa_aa
     results = s3://elasticblast-YOURNAME/results/BDQA
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname"  
@@ -105,7 +109,7 @@ This configuration file specifies two AWS instances, specified by "num-nodes", f
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 
-There is no need to change any lines in the configuration file (BDQA.ini) other than the results bucket.
+There is no need to change any lines in the configuration file (BDQA.ini) other than the results bucket and the ``owner`` label (i.e.: replace ``YOURNAME`` with your name in all lowercase characters.
 
 This search should take about 30 minutes to run and cost less than $3.
 
@@ -114,7 +118,7 @@ Run ElasticBLAST
 
 .. code-block:: bash
 
-    ./elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
 
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
@@ -128,7 +132,7 @@ To check on the progress of the search, inspect the :ref:`logfile
 .. code-block:: bash
     :name: status
 
-    ./elastic-blast status --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast status --cfg BDQA.ini --loglevel DEBUG
 
 The status command will not return proper results until the submit command has finished.
 Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
@@ -190,7 +194,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
 
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.

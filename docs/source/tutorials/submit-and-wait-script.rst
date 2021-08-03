@@ -37,13 +37,13 @@ The instructions below assume the configuration file is named hepatitis.ini.  If
 
     [cluster]
     num-nodes = 4
-    use-preemptible = yes
 
     [blast]
+    mem-limit = 61G
     program = blastn 
     db = nt
     #queries = gs://elastic-blast-samples/queries/tests/hepatitis.fsa
-    #queries = s3://elastic-blast-test/queries/hepatitis.fsa
+    #queries = s3://elasticblast-test/queries/hepatitis.fsa.gz
     results = **FILL IN**
     options = -evalue 0.01 -outfmt 7
 
@@ -53,13 +53,13 @@ First, run elastic-blast with the submit command:
 
 .. code-block:: bash
 
-    ./elastic-blast submit --cfg hepatitis.ini --loglevel DEBUG
+    elastic-blast submit --cfg hepatitis.ini --loglevel DEBUG
 
 Once the above command returns (which may take a few minutes), you can check the status of the search:
 
 .. code-block:: bash
 
-    ./elastic-blast status --cfg hepatitis.ini --loglevel DEBUG
+    elastic-blast status --cfg hepatitis.ini --loglevel DEBUG
 
 Once your search is done, you may download the results as shown below.
 
@@ -81,7 +81,7 @@ Finally, make sure to delete your resources:
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg hepatitis.ini --loglevel DEBUG
+    elastic-blast delete --cfg hepatitis.ini --loglevel DEBUG
 
 
 You should also run the checks outlined in the quickstart to double-check that all resources have been deleted.

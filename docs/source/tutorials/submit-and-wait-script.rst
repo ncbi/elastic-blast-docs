@@ -18,70 +18,46 @@
 ..   
 .. Please cite NCBI in any work or product based on this material.
 
-.. _tutorial_mb:
+.. _tutorial_submit_and_wait_script:
 
-MegaBLAST on a large nucleotide set
-===================================
+submit-and-wait-for-results script
+==================================
 
-In this example, you search 87,374 hepatitis sequences against the nt database, producing tabular output.  The search should take about 75 minutes and cost less than $10.  The preemptible or spot price could be as little as 20% of that, but may take longer to complete.  
+.. _script: https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh
 
-Below is the configuration file for this example.  Copy it into a new file with a text editor, then fill in the needed sections, which includes the cloud-provider information, the query path, and a bucket for your results.  Assuming you are using the same account as in the quickstart, use the same cloud-provider information.  For the query path, uncomment either the GCP (gs://) or the AWS (s3://) option and delete the other one.  You may use the results bucket used in the quickstart, but you should change the final location (BDQA).
-
-The instructions below assume the configuration file is named hepatitis.ini.  If you use a different name, you can simply modify the instructions.
-
-.. code-block::
-    :linenos:
-
-    [cloud-provider]
-    **FILL IN**
-
-    [cluster]
-    num-nodes = 4
-
-    [blast]
-    mem-limit = 61G
-    program = blastn 
-    db = nt
-    #queries = gs://elastic-blast-samples/queries/tests/hepatitis.fsa
-    #queries = s3://elasticblast-test/queries/hepatitis.fsa.gz
-    results = **FILL IN**
-    options = -evalue 0.01 -outfmt 7
-
-Once you have finished your edits to the configuration file, you are ready to start your run.  You should follow the same steps you used in your quickstart.
-
-First, run elastic-blast with the submit command:
+In this example, you use a sample script_ to run ElasticBLAST. The script_ submits your search, checks the status on a regular basis, downloads your results from the cloud bucket, and runs the delete command once the timeout has expired or the search has completed (whichever happens first). The timeout (in minutes) can be specified when the script is invoked.
+This script_ is freely available.
+You can obtain it via following commands:
 
 .. code-block:: bash
 
-    elastic-blast submit --cfg hepatitis.ini --loglevel DEBUG
+    [ -f submit-and-wait-for-results.sh ] || curl -sO https://raw.githubusercontent.com/ncbi/elastic-blast-demos/master/submit-and-wait-for-results.sh
+    [ -x submit-and-wait-for-results.sh ] || chmod +x submit-and-wait-for-results.sh
 
-Once the above command returns (which may take a few minutes), you can check the status of the search:
-
-.. code-block:: bash
-
-    elastic-blast status --cfg hepatitis.ini --loglevel DEBUG
-
-Once your search is done, you may download the results as shown below.
-
-For GCP, use the command:
+You can run it with the following command:
 
 .. code-block:: bash
 
-    gsutil -qm cp ${YOUR_RESULTS_BUCKET}/*.out.gz .
+    ./submit-and-wait-for-results.sh ${YOUR_INI_FILE} ${TIMEOUT_IN_MINUTES}
 
-For AWS, use the command:
+The second parameter (TIMEOUT_IN_MINUTES) is optional and specifies the timeout mentioned above. The default value is 500 minutes. The configuration file (YOUR_INI_FILE) is a standard ElasticBLAST configuration file.
 
-.. code-block:: bash
-
-    aws s3 cp ${YOUR_RESULTS_BUCKET}/ . --exclude "*" --include "*.out.gz" --recursive
-
-Here, YOUR_RESULTS_BUCKET should be set to the name of the results bucket used in your configuration file.
-
-Finally, make sure to delete your resources:
+The script expects ``elastic-blast`` is available in your ``PATH``. If this is
+not the case, the script needs to be updated. Assuming ``elastic-blast`` is installed 
+in the current working directory, the command below would accomplish this.
+Please feel free to edit the script to suit your operating environment.
 
 .. code-block:: bash
 
-    elastic-blast delete --cfg hepatitis.ini --loglevel DEBUG
+    sed -i~ -e 's,elastic-blast ,./elastic-blast ,' submit-and-wait-for-results.sh
 
 
-You should also run the checks outlined in the quickstart to double-check that all resources have been deleted.
+After this script has finished, you will find all your results in the directory that you ran it from.   Additionally, they will still be in your cloud bucket.
+
+As the script runs, it will print the number of batches that are Pending, Running, Succeeded, and Failed.  It is a good idea to check these results to make sure your search finished successfully. First, you want to make sure that no batches Failed.  Second, you should check that the script did not exit after the specified timeout as it could then return incomplete results.  The second case is only a concern if the search took longer than the specified timeout, which has a default value of 8 hours and 20 minutes.
+
+As noted earlier, ElasticBLAST will provide your results in multiple gzipped files, one for each batch it processed.  Some users prefer to have all results in one file.  You can accomplish this easily with the command below, which will gunzip and concatenate all the gzipped files in the current directory starting with ``batch`` into the file MYRESULTS.tsv.  This command will leave the original gzipped files in place. 
+
+.. code-block:: bash
+
+    gunzip -c batch_*.gz > MYRESULTS.tsv

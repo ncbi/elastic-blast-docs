@@ -18,7 +18,7 @@
 ..   
 .. Please cite NCBI in any work or product based on this material.
 
-.. _tutorial_pypi:
+.. _tutorial_conda:
 
 Installation from BioConda
 ==========================
@@ -28,7 +28,7 @@ Please follow the steps below to install `ElasticBLAST from BioConda <https://an
 Configure Conda
 ^^^^^^^^^^^^^^^
 
-If you already have a file called `$HOME/.condarc`, edit it to ensure it
+If you already have a file called ``$HOME/.condarc``, edit it to ensure it
 contains the text below, otherwise create a new file with its contents.
 
 .. code-block:: text
@@ -42,22 +42,15 @@ contains the text below, otherwise create a new file with its contents.
 Create a new Anaconda environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the next 3 steps, `elb-env` could be replaced by the name of your choosing.
+The command below creates a new (or overwrites an existing) conda environment and installs
+the latest version of ElasticBLAST.
+
+In the next 2 commands, ``elb-env`` can be replaced by the conda environment
+name of your choosing, as long as it is the same in both commands.
 
 .. code-block:: bash
 
-    conda create -n elb-env
-
-This program will display installation information and ask whether it should proceed as follows: ``Proceed ([y]/n)?``. Please type ``y``.
-
-Install the latest version of ElasticBLAST
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    conda install -n elb-env elastic-blast
-
-This program will display installation information and ask whether it should proceed as follows: ``Proceed ([y]/n)?``. Please type ``y``.
+    conda create -y -n elb-env elastic-blast=={VERSION}
 
 Activate the environment
 ^^^^^^^^^^^^^^^^^^^^^^^^

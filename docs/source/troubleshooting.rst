@@ -28,6 +28,49 @@ How do I report ElasticBLAST problems?
 
 Please see :ref:`support`.
 
+How do I figure out what happened with my failed jobs?
+------------------------------------------------------
+
+**This applies to AWS only**.
+
+If you find any jobs failed as a result of running ``elastic-blast status``,
+please re-run the command with the additional ``--verbose`` option, which
+will print more information about the jobs that failed, e.g.:
+
+.. code-block:: bash
+
+    [...]
+    14.
+     JobArn: arn:aws:batch:us-east-1:1234567890:job/d785c584-ea43-40a0-a781-4575628ea84e
+     JobName: elasticblast-cronaldo-blastx-batch-nr-job-17
+     StatusReason: Essential container in task exited
+     ContainerExitCode: 0
+     RuntimeInSeconds: 545.741
+   Failed 3
+    1.
+     JobArn: arn:aws:batch:us-east-1:1234567890:job/464cb1cc-04be-44e5-87a1-e466c41712f3
+     JobName: elasticblast-cronaldo-blastx-batch-nr-job-0
+     StatusReason: Task failed to start
+     ContainerReason: DockerTimeoutError: Could not transition to created; timed out after waiting 4m0s
+    2.
+     JobArn: arn:aws:batch:us-east-1:1234567890:job/d5cc71e3-cf39-4cdf-b638-efa2db20137a
+     JobName: elasticblast-cronaldo-blastx-batch-nr-job-10
+     StatusReason: Task failed to start
+     ContainerReason: DockerTimeoutError: Could not transition to created; timed out after waiting 4m0s
+    3.
+     JobArn: arn:aws:batch:us-east-1:1234567890:job/0227d96d-f347-4c4b-afee-0b372585a907
+     JobName: elasticblast-cronaldo-blastx-batch-nr-job-12
+     StatusReason: Task failed to start
+     ContainerReason: DockerTimeoutError: Could not transition to created; timed out after waiting 4m0s
+
+If you would like additional detail and have the `AWS CLI SDK <https://aws.amazon.com/cli/>`_ installed,
+please run the command below passing the ``JobArn`` from the output above:
+
+.. code-block:: bash
+
+    aws batch describe-jobs --jobs ${YOUR_JOB_ARN_HERE}
+
+
 How do I see resources created by ElasticBLAST?
 -----------------------------------------------
 

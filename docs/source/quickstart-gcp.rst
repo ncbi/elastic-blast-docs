@@ -127,13 +127,22 @@ Once it returns, you can move on to the next step.
 
 Monitor progress
 ----------------
+
+For the rest of this tutorial you will find it convenient to set an environment
+variable for the location of your results.  You'll need to modify the command
+below to use the same path listed in BDQA.ini.
+
+.. code-block:: bash
+
+   export YOUR_RESULTS_BUCKET=gs://elasticblast-${USER}/results/BDQA
+
 To check on the progress of the search, inspect the logfile
 (``elastic-blast.log`` by default) and/or run the command below:
 
 .. code-block:: bash
     :name: status
 
-    elastic-blast status --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast status --results ${YOUR_RESULTS_BUCKET} --loglevel DEBUG
 
 The status command will not return proper results until the submit command has finished.
 Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
@@ -155,14 +164,9 @@ Once all batches have finished, you can download results as shown below.
 Download results
 ----------------
 
-You will find it convenient to set an environment variable for the location of your results.  You'll need to modify the command below to use the same path listed in BDQA.ini.
-
-.. code-block:: bash
-
-   export YOUR_RESULTS_BUCKET=gs://elasticblast-${USER}/results/BDQA
-
-
-Now, use the command below to download your results from your results bucket. This command assumes you have set ${YOUR_RESULTS_BUCKET}.  If you haven't done this, simply replace ${YOUR_RESULTS_BUCKET} by the path.
+Use the command below to download your results from your results bucket. This
+command assumes you have set ``${YOUR_RESULTS_BUCKET}``. If you haven't done this,
+simply replace ``${YOUR_RESULTS_BUCKET}`` by the path.
 
 .. code-block:: bash
 
@@ -206,7 +210,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast delete --results ${YOUR_RESULTS_BUCKET} --loglevel DEBUG
 
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.

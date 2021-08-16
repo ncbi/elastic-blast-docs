@@ -59,7 +59,7 @@ Once the above command returns (which may take a few minutes), you can check the
 
 .. code-block:: bash
 
-    elastic-blast status --cfg hepatitis.ini --loglevel DEBUG
+    elastic-blast status --results ${YOUR_RESULTS_BUCKET} --loglevel DEBUG
 
 Once your search is done, you may download the results as shown below.
 
@@ -81,7 +81,7 @@ Finally, make sure to delete your resources:
 
 .. code-block:: bash
 
-    elastic-blast delete --cfg hepatitis.ini --loglevel DEBUG
+    elastic-blast delete --results ${YOUR_RESULTS_BUCKET} --loglevel DEBUG
 
 
 You should also run the checks outlined in the quickstart to double-check that all resources have been deleted.

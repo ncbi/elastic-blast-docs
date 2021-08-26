@@ -34,3 +34,42 @@ These commands will install ``elastic-blast`` in your current working directory.
 
 You may want to consider moving into a different installation path (e.g.:
 ``/usr/local/bin``) for convenient access.
+
+Note about python versions
+--------------------------
+
+The ``elastic-blast`` file downloaded by the code snippet above runs only on
+python 3.7. If this does not work for you, please follow the instructions below:
+
+
+Check the python version on your computer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Run the command below to find out what python version you have installed.
+
+.. code-block:: shell
+
+    python3 -V
+
+This will print something along the lines of ``Python 3.8.6``.
+
+Download the appropriate elastic-blast file for your python version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For python 3.8.x:
+
+.. code-block:: shell
+
+    curl -s https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast3.8 -o elastic-blast
+    curl -s https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast3.8.md5 -o elastic-blast.md5
+    md5sum -c elastic-blast.md5
+    chmod +x elastic-blast
+
+For python 3.9.x:
+
+.. code-block:: shell
+
+    curl -s https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast3.9 -o elastic-blast
+    curl -s https://storage.googleapis.com/elastic-blast/release/{VERSION}/elastic-blast3.9.md5 -o elastic-blast.md5
+    md5sum -c elastic-blast.md5
+    chmod +x elastic-blast

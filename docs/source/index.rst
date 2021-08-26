@@ -34,14 +34,8 @@ The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.n
 
 **Platforms available:** AWS, GCP (account required)
 
-**Bug affecting GCP implementation:** The current GCP implementation can leak cloud resources, potentially resulting in excess user charges. We are working to update the code and expect a fix soon. In the interim, we suggest using our AWS implementation, or for those who wish to use GCP, we have provided a workaround that, when applied, addresses this issue and eliminates the risk of excess user charges. For more information, see :ref:`pd_leak`. (Message date: July 21, 2021)
-
 **Getting started:** Go to the :ref:`overview`.
 
-
-     
-     
-     
 
 .. toctree::
    :maxdepth: 1

@@ -23,35 +23,6 @@
 Known issues on GCP
 ===================
 
-**IMPORTANT:** The current GCP implementation can leak cloud resources, potentially resulting in excess user charges. We are working to update the code and expect a fix soon. In the interim, we suggest using our AWS implementation, or for those who wish to use GCP, we have provided a workaround that, when applied, addresses this issue and eliminates the risk of excess user charges. For more information, see items on this page. (Message date: July 21, 2021)
-
-
-.. _pd_leak:
-
-Persistent disk not properly deleted
-------------------------------------
-
-As part of its normal operation ElasticBLAST starts a :ref:`persistent disk <elb_pd_size>`. We find that under some circumstances this disk is not properly deleted and will lead to excess charges for the user. We are working to update the code and expect a fix soon. In the interim, to delete the disk and avoid charges, run the following commands (Message date: July 21, 2021).
-
-.. code-block:: bash
-
-   gcloud compute disks list # to list disks in GCP
-   gcloud compute disks delete ${DISK_NAME}  # to delete relevant disks
-
-
-.. _cluster_leak:
-
-Compute cluster not properly deleted
-------------------------------------
-
-ElasticBLAST allocates a :ref:`compute cluster <elb_cluster_name>` in the cloud to perform BLAST searches. Under some circumstances it is not properly deleted. To check if the cluster is still active and delete it, please run the commands below:
-
-.. code-block:: bash
-
-   gcloud container clusters list  # to list GKE clusters
-   gcloud container clusters delete ${ELB_CLUSTER_NAME}  # to delete your cluster
-
-
 .. _file_leak:
 
 Files left in cloud storage

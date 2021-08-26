@@ -199,10 +199,11 @@ You can see more information on these database matches at `YP_009480351.1 <https
 
 Clean up cloud resources
 ------------------------
-This step is **critical**, please do not omit it, even if you ran Ctrl-C when
-starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
-your cloud service provider or you may end up running out of available quota.
-It is also recommended each time you start a new ElasticBLAST search. 
+This step is important, but not required unless the ``elastic-blast submit``
+command was interrupted or it did not complete successfully.
+In this case, ElasticBLAST may have started resources that were not properly 
+cleaned up, so you may accrue charges from your cloud service provider or you
+may end up running out of available quota.
 
 .. code-block:: bash
 

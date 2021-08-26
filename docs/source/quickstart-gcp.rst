@@ -199,16 +199,15 @@ You can see more information on these database matches at `YP_009480351.1 <https
 
 Clean up cloud resources
 ------------------------
-This step is important, but not required unless the ``elastic-blast submit``
-command was interrupted or it did not complete successfully.
-In this case, ElasticBLAST may have started resources that were not properly 
-cleaned up, so you may accrue charges from your cloud service provider or you
-may end up running out of available quota.
+
+When ElasticBLAST runs on GCP, it works very hard to clean up resources after
+the BLAST search completes. 
+It may be always prudent to run ``elastic-blast delete`` as a safety measure to prevent
+accruing charges and exhausting quotas.
 
 .. code-block:: bash
 
     elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
-
 
 The delete command will take a few minutes to run as it needs to manage multiple cloud resources.
 

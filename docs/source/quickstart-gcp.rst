@@ -220,8 +220,7 @@ You may verify that your cloud resources have been deleted by running:
 
 This will show all clusters and disks in your project (even from other users).
 If nothing is returned, then no clusters are running and no disks are being
-used. Please see :ref:`PD_LEAK` if your cluster or disk are not properly
-deleted for instructions on deleting them.
+used.
 
 
 Summary

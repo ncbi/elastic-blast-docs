@@ -107,9 +107,13 @@ Run the commands below to see what is running in your GCP GKE cluster:
 
 .. code-block:: bash
     
-   kubectl logs -l app=setup --timestamps
-   kubectl logs -l app=blast -c blast --timestamps
-   kubectl logs -l app=blast -c results-export --timestamps
+   kubectl describe pv,pvc
+   kubectl logs --timestamps --since=24h --tail=-1 -l app=setup -c get-blastdb
+   kubectl logs --timestamps --since=24h --tail=-1 -l app=setup -c import-query-batches
+   kubectl logs --timestamps --since=24h --tail=-1 -l app=blast -c load-blastdb-into-ram
+   kubectl logs --timestamps --since=24h --tail=-1 -l app=blast -c blast
+   kubectl logs --timestamps --since=24h --tail=-1 -l app=blast -c results-export
+   kubectl logs --timestamps --since=24h --tail=-1 -l app=janitor
    kubectl get pods -o name -l app=blast | sed 's,pod/,,' | xargs -t -I{} kubectl exec {} -c blast -- top -n1 -cb
    kubectl get pods -o name -l app=blast | sed 's,pod/,,' | xargs -t -I{} kubectl exec {} -c blast -- ps aux
 

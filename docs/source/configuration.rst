@@ -81,6 +81,44 @@ Cloud provider configuration
     [cloud-provider]
     gcp-zone = us-east4-b
 
+.. _elb_gcp_network:
+
+``GCP network``
+^^^^^^^^^^^^^^^
+
+    Optional: GCP network name to use. If provided, the GCP subnetwork must also be provided.
+
+    * Default: ``default``
+    * Values: String
+    * Applies to: GCP
+
+    To see the available networks, you can run the command ``gcloud compute networks list``.
+
+.. code-block::
+
+    [cloud-provider]
+    gcp-network = default
+    gcp-subnetwork = subnet-name
+
+.. _elb_gcp_subnetwork:
+
+``GCP sub-network``
+^^^^^^^^^^^^^^^^^^^
+
+    Optional: GCP sub-network name to use. If provided, the GCP network must also be provided.
+
+    * Default: N/A
+    * Values: String
+    * Applies to: GCP
+
+    To see the available sub-networks for a given network, you can run the command ``gcloud compute networks subnets list --filter="<INSERT_NETWORK_NAME_HERE>"``.
+
+.. code-block::
+
+    [cloud-provider]
+    gcp-network = default
+    gcp-subnetwork = subnet-name
+
 .. _elb_aws_region:
 
 ``AWS Region``

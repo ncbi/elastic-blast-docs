@@ -196,3 +196,17 @@ for further details.
     gsutil iam set serviceAccount:1234567890.gserviceaccount.com:roles/storage.admin ${YOUR_RESULTS_BUCKET}
     gsutil iam set user:${YOUR_GCP_ACCOUNT_ADDRESS}:roles/storage.admin ${YOUR_RESULTS_BUCKET}
 
+Project X has no network named "default"
+----------------------------------------
+
+If you see error message below, where ``X`` is your GCP project name, you need to configure ElasticBLAST with the
+GCP network and sub-network to use.
+
+.. code-block:: bash
+
+    ERROR: (gcloud.container.clusters.create) ResponseError: code=400, message=Project "X" has no network named "default".
+
+Please refer to their respective configuration entries for information on how to configure these:
+
+* :ref:`elb_gcp_network`
+* :ref:`elb_gcp_subnetwork`

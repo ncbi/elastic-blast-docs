@@ -650,6 +650,48 @@ Developer configuration options
     Time in seconds to wait after persistent volume gets initialized to prevent
     mount errors on BLAST kubernetes jobs.
 
+.. _elb_disable_janitor:
+
+``ELB_DISABLE_AUTO_SHUTDOWN``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    **Set via an environment variable**.
+
+    * Default: Disabled
+    * Values: Any string. Set to any value to enable.
+
+    Disables the auto-shutdown feature.
+
+.. _elb_janitor_schedule:
+
+``ELB_JANITOR_SCHEDULE``
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+    **Set via an environment variable**.
+
+    * Default: run every 5 minutes.
+
+      * For GCP: ``*/5 * * * *``
+      * For AWS: ``cron(*/5 * * * ? *)``
+    * Values: 
+
+      * For GCP: Please see the `kubernetes cron schedule syntax <https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#cron-schedule-syntax>`_
+      * For AWS: Please see the `AWS event rule syntax <https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html>`_
+
+    Configures the schedule for the auto-shutdown feature to run.
+
+.. _elb_disable_cloud_query_splitting:
+
+``ELB_DISABLE_JOB_SUBMISSION_ON_THE_CLOUD``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    **Set via an environment variable**.
+
+    * Default: Disabled
+    * Values: Any string. Set to any value to enable.
+
+    Disables the cloud job submission feature.
+
 .. .. _elb_enable_stackdriver_k8s:
 .. 
 .. ``ELB_ENABLE_STACKDRIVER_K8S``

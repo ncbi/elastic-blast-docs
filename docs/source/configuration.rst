@@ -692,6 +692,20 @@ Developer configuration options
 .. 
 ..     Disables the cloud job submission feature.
 .. 
+.. .. _elb_performance_testing:
+.. 
+.. ``ELB_PERFORMANCE_TESTING``
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. 
+..     * Default: Disabled
+..     * Values: Positive integer
+.. 
+..     Setting this environment variable to a positive interger value will only
+..     submit that number of query batches for processing and change the number of
+..     instances to 1. This is to help testing performance. 
+..     If set to any other value, the value of ``ELB_DFLT_NUM_BATCHES_FOR_TESTING``
+..     batches will be submitted.
+.. 
 .. .. _elb_enable_stackdriver_k8s:
 .. 
 .. ``ELB_ENABLE_STACKDRIVER_K8S``

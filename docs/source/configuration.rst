@@ -681,6 +681,17 @@ Developer configuration options
 ..     Configures the schedule for the auto-shutdown feature to run.
 .. 
 .. .. _elb_disable_cloud_query_splitting:
+..
+..``ELB_USE_CLIENT_SPLIT``
+.. ^^^^^^^^^^^^^^^^^^^^^^^^
+..     **Set via an environment variable**.
+.. 
+..     * Default: Disabled
+..     * Values: Any string. Set to any value to enable.
+.. 
+..     Disables the cloud query splitting feature.
+.. 
+.. .. _elb_disable_cloud_job_submission:
 .. 
 .. ``ELB_DISABLE_JOB_SUBMISSION_ON_THE_CLOUD``
 .. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -214,7 +214,7 @@ Please refer to their respective configuration entries for information on how to
 Cannot create resource "clusterrolebindings"
 --------------------------------------------
 
-If you see error message below, where ``USERNAME`` is your GCP user or service
+If you see the error message below, where ``USERNAME`` is your GCP user or service
 account name, you need to grant additional permissions to said user/service
 account.
 
@@ -235,4 +235,8 @@ the service account name (it will look like an email address, likely ending in
 If the command above fails, you may need to ask your GCP account administrator to run the command on your behalf. If this is not possible, 
 setting the ``ELB_DISABLE_AUTO_SHUTDOWN`` environment variable to any value will disable the auto-shutdown feature and
 remove the requirement for these additional permissions. 
+
+**Please keep in mind that disabling this feature requires you to invoke
+'elastic-blast delete' to avoid incurring charges after ElasticBLAST
+has completed its operation.**
 

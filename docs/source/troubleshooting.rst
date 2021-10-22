@@ -210,3 +210,33 @@ Please refer to their respective configuration entries for information on how to
 
 * :ref:`elb_gcp_network`
 * :ref:`elb_gcp_subnetwork`
+
+Cannot create resource "clusterrolebindings"
+--------------------------------------------
+
+If you see the error message below, where ``USERNAME`` is your GCP user or service
+account name, you need to grant additional permissions to said user/service
+account.
+
+.. code-block:: bash
+
+    ERROR: The command "kubectl --context=[...] -f/lib/python3.9/site-packages/elastic_blast/templates/elb-janitor-rbac.yaml" returned with exit code 1
+    Error from server (Forbidden): error when creating "/lib/python3.9/site-packages/elastic_blast/templates/elb-janitor-rbac.yaml": clusterrolebindings.rbac.authorization.k8s.io is forbidden: User "USERNAME" cannot create resource "clusterrolebindings" in API group "rbac.authorization.k8s.io" at the cluster scope: requires one of ["container.clusterRoleBindings.create"] permission(s).
+
+You can grant the required permissions as shown in the code snippet below. If using a service account,
+please replace ``gcloud config get-value account`` in the command below with
+the service account name (it will look like an email address, likely ending in
+``gserviceaccount.com`` (e.g.: ``281282530694-compute@developer.gserviceaccount.com``).
+
+.. code-block:: bash
+
+    gcloud projects add-iam-policy-binding `gcloud config get-value project` --member=`gcloud config get-value account` --role=roles/container.admin
+
+If the command above fails, you may need to ask your GCP account administrator to run the command on your behalf. If this is not possible, 
+setting the ``ELB_DISABLE_AUTO_SHUTDOWN`` environment variable to any value will disable the auto-shutdown feature and
+remove the requirement for these additional permissions. 
+
+**Please keep in mind that disabling this feature requires you to invoke
+'elastic-blast delete' to avoid incurring charges after ElasticBLAST
+has completed its operation.**
+

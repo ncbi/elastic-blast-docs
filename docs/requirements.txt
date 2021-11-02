@@ -1,3 +1,4 @@
 sphinx==3.0.1
 sphinx-copybutton
 recommonmark
+docutils==0.12

@@ -42,14 +42,35 @@ The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.n
 .. https://stackoverflow.com/questions/32340062/sphinx-restructuredtext-how-to-link-an-image-to-a-document-page
 
 .. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/PyPI_logo.svg/248px-PyPI_logo.svg.png
-   :name: pypi icon
-   :alt: PyPI icon
-   :target: tutorials/pypi-install.html
+  :name: pypi icon
+  :alt: PyPI icon
+  :target: tutorials/pypi-install.html
+  :height: 100px
+  :width: 30%
 
 .. image:: https://bioconda.github.io/_images/bioconda.png
-   :name: bioconda icon
-   :alt: Bioconda icon
-   :target: tutorials/conda-install.html
+  :name: bioconda icon
+  :alt: Bioconda icon
+  :target: tutorials/conda-install.html
+  :height: 40px
+  :width: 50%
+
+.. .. hlist::
+..    :columns: 2
+..
+..   .. image:: https://bioconda.github.io/_images/bioconda.png
+..      :name: bioconda icon
+..      :alt: Bioconda icon
+..      :target: tutorials/conda-install.html
+..      :height: 40px
+..      :width: 60%
+..   
+..   .. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/PyPI_logo.svg/248px-PyPI_logo.svg.png
+..      :name: pypi icon
+..      :alt: PyPI icon
+..      :target: tutorials/pypi-install.html
+..      :height: 90px
+..      :width: 60%
 
 .. toctree::
    :maxdepth: 1

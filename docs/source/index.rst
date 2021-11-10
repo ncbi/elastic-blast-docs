@@ -36,6 +36,20 @@ The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.n
 
 **Getting started:** Go to the :ref:`overview`.
 
+**Availability:** 
+
+.. 2021-11-10 The image :target: option cannot be used with :ref: :(
+.. https://stackoverflow.com/questions/32340062/sphinx-restructuredtext-how-to-link-an-image-to-a-document-page
+
+.. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/PyPI_logo.svg/248px-PyPI_logo.svg.png
+   :name: pypi icon
+   :alt: PyPI icon
+   :target: tutorials/pypi-install.html
+
+.. image:: https://bioconda.github.io/_images/bioconda.png
+   :name: bioconda icon
+   :alt: Bioconda icon
+   :target: tutorials/conda-install.html
 
 .. toctree::
    :maxdepth: 1

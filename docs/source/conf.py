@@ -67,7 +67,9 @@ exclude_patterns = []
 
 # https://www.sphinx-doc.org/en/master/usage/configuration.html?highlight=linkcheck#options-for-the-linkcheck-builder
 #linkcheck_ignore = [r'blast_plus_docs']
-linkcheck_ignore = [r'https://github.com/ncbi/blast_plus_docs/blob/master/README.md#blast-databases']
+linkcheck_ignore = [r'https://github.com/ncbi/blast_plus_docs/blob/master/README.md#blast-databases',
+        r'tutorials/pypi-install.html',
+        r'tutorials/conda-install.html']
 
 # -- Options for HTML output -------------------------------------------------
 

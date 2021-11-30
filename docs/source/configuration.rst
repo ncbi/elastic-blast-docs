@@ -409,7 +409,10 @@ BLAST configuration options
 
     To search your own custom database, upload the database files to a cloud
     storage bucket and provide the bucket's universal resource identifier (URI)
-    plus the database name (see example and tip below).
+    plus the database name (see example and tip below).  We also recommend that 
+    you include a metadata file for your database, which allows ElasticBLAST to 
+    better meet the memory requirements for your search. See :ref:`tutorial_create_blastdb_metadata`
+    for instructions on producing the metadata file.
 
     * Default: None
     * Values: String. 

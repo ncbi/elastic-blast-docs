@@ -224,7 +224,7 @@ Cluster configuration
     **Note**: This name must be unique for each of your ElasticBLAST searches, otherwise this may lead to undefined behavior.
 
 
-    * Default: ``elasticblast-${USER}``
+    * Default: ``elasticblast-${USER}-X``, where ``X`` is the first 8 characters of hashing the value of the :ref:`results <elb_results>` URI.
     * Values: String
 
     Also supported via the environment variable: ``ELB_CLUSTER_NAME``.

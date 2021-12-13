@@ -221,7 +221,10 @@ Cluster configuration
 
     The name may contain only lowercase alphanumerics and ‘-’, must start with a letter and end with an alphanumeric, and must be no longer than 40 characters.
 
-    * Default: ``elasticblast-${USER}``
+    **Note**: This name must be unique for each of your ElasticBLAST searches, otherwise this may lead to undefined behavior.
+
+
+    * Default: ``elasticblast-${USER}-X``, where ``X`` is the first 8 characters of hashing the value of the :ref:`results <elb_results>` URI.
     * Values: String
 
     Also supported via the environment variable: ``ELB_CLUSTER_NAME``.

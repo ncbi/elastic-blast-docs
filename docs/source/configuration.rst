@@ -330,7 +330,9 @@ Cluster configuration
 
     Format as <number> immediately followed by G for gigabytes, M for megabytes.
 
-    **Note**: Smaller disks than ``1000G`` result in performance degradation in GCP.
+    **Note**: ElasticBLAST uses ``pd-standard`` block storage by default. Per the
+    `GCP documentation on block storage <https://cloud.google.com/compute/docs/disks/performance#performance_by_disk_size>`_,
+    smaller disks than ``1000G`` result in performance degradation for ElasticBLAST in GCP.
 
     * Default: ``3000G`` for GCP, ``1000G`` for AWS.
     * Values: String
@@ -338,7 +340,7 @@ Cluster configuration
 .. code-block::
 
     [cluster]
-    pd-size = 1000G
+    pd-size = 3000G
 
 .. _elb_labels:
 

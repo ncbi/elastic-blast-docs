@@ -221,6 +221,9 @@ Cluster configuration
 
     The name may contain only lowercase alphanumerics and ‘-’, must start with a letter and end with an alphanumeric, and must be no longer than 40 characters.
 
+    **Note**: This name must be unique for each of your ElasticBLAST searches, otherwise this may lead to undefined behavior.
+
+
     * Default: ``elasticblast-${USER}``
     * Values: String
 

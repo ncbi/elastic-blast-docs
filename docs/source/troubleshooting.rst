@@ -242,7 +242,7 @@ has completed its operation.**
 
 .. _insufficient_cpu_quota:
 
-I got an quota error for CPUs
+I got a quota error for CPUs
 -----------------------------
 
 If you get an error like the one below, you will have to either `request an

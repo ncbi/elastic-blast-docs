@@ -124,6 +124,8 @@ The submit command can take several minutes as it brings up cloud resources and 
 
 You may also see an informational message about "awslimitchecker", which requires no action on your part. 
 
+If your cloud shell session disconnects, please see :ref:`cloud_shell_disconnect`.
+
 Monitor progress
 ----------------
 To check on the progress of the search, inspect the :ref:`logfile

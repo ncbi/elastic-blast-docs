@@ -125,6 +125,8 @@ Run ElasticBLAST
 The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 Once it returns, you can move on to the next step.
 
+If your cloud shell session disconnects, please see :ref:`cloud_shell_disconnect`.
+
 Monitor progress
 ----------------
 To check on the progress of the search, inspect the logfile
@@ -196,6 +198,8 @@ The results for one query, GBH21861.1, are shown below.  The first match covers 
 
 You can see more information on these database matches at `YP_009480351.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009480351.1>`_ and `YP_009665171.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009665171.1>`_
 
+
+.. _elb_cleanup:
 
 Clean up cloud resources
 ------------------------

@@ -240,3 +240,25 @@ remove the requirement for these additional permissions.
 'elastic-blast delete' to avoid incurring charges after ElasticBLAST
 has completed its operation.**
 
+.. _insufficient_cpu_quota:
+
+I got an quota error for CPUs
+-----------------------------
+
+If you get an error like the one below, you will have to either `request an
+increase in your CPU quota <https://cloud.google.com/compute/quotas#requesting_additional_quota>`_ or
+reduce the resources requested in your ElasticBLAST configuration.
+
+.. code-block:: shell
+
+    (gcloud.container.clusters.create) ResponseError: code=403, message=Insufficient regional 
+    quota to satisfy request: resource "CPUS": request requires '32.0' and is short '8.0'. 
+    project has a quota of '24.0' with '24.0' available. View and manage quotas at ...
+
+To reduce the resouces requested by ElasticBLAST, adjust the :ref:`number of worker nodes <elb_num_nodes>` and
+the :ref:`machine type <elb_machine_type>` so that the total number of CPUs requested does not exceed your quota.
+
+In the example above, the following alternatives would work:
+
+* machine-type: ``n1-standard-16``; num-cpus: ``1``
+* machine-type: ``n1-standard-8``; num-cpus: ``3``

@@ -48,3 +48,4 @@ If you are working on Debian or Ubuntu Linux distribution and have ``root`` perm
 
    sudo apt-get -yqm update
    sudo apt-get install -yq kubectl python3-distutils
+

@@ -263,14 +263,37 @@ reduce the resources requested in your ElasticBLAST configuration.
 
 .. code-block:: shell
 
-    (gcloud.container.clusters.create) ResponseError: code=403, message=Insufficient regional 
-    quota to satisfy request: resource "CPUS": request requires '32.0' and is short '8.0'. 
-    project has a quota of '24.0' with '24.0' available. View and manage quotas at ...
+    (gcloud.container.clusters.create) ResponseError: code=403, 
+    message=Insufficient regional quota to satisfy request: 
+    resource "CPUS": request requires '32.0' and is short '8.0'. 
+    project has a quota of '24.0' with '24.0' available. 
+    View and manage quotas at ...
 
 To reduce the resouces requested by ElasticBLAST, adjust the :ref:`number of worker nodes <elb_num_nodes>` and
 the :ref:`machine type <elb_machine_type>` so that the total number of CPUs requested does not exceed your quota.
 
-In the example above, the following alternatives would work:
+In the example above, either of the following alternative configurations would work:
 
-* machine-type: ``n1-standard-16``; num-cpus: ``1``
-* machine-type: ``n1-standard-8``; num-cpus: ``3``
+* For a total of 16 CPUs: ``machine-type = n1-standard-16`` and ``num-cpus = ``1``
+* For a total of 24 CPUs: ``machine-type = n1-standard-8`` and ``num-cpus = ``3``
+
+.. _kubectl_cache:
+
+$HOME/.kube uses a lot of disk space
+------------------------------------
+
+ElasticBLAST for GCP relies on ``kubectl``, which by default caches data in the
+user's home directory. You can see how much disk space is being used by
+``kubectl`` by running the following command:
+
+.. code-block:: shell
+
+    du -shc ~/.kube/* | sort -hr
+
+If this is too much disk utilization, you can try to delete old cached data to
+reduce it. The command below deletes ``kubectl`` cached data that is older
+than 90 days:
+
+.. code-block:: shell
+
+    find ~/.kube/cache ~/.kube/http-cache -type f -mtime +90 -delete

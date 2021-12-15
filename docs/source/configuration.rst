@@ -345,6 +345,29 @@ Cluster configuration
     [cluster]
     pd-size = 3000G
 
+.. _elb_exp_local_ssd:
+
+``Local SSD support``
+^^^^^^^^^^^^^^^^^^^^^
+
+    **Note**: This is an *experimental* feature in GCP. This limits local storage to 375GB.
+
+    Configure ElasticBLAST to use a `single local SSD disk <https://cloud.google.com/compute/docs/disks/local-ssd>`_ 
+    instead of a persistent disk to store BLAST database and query sequence batches.
+
+    Consider using this configuration setting if your disk quota is too small
+    (e.g.: 500GB) and it impacts performance (see `GCP documentation on block storage performance <https://cloud.google.com/compute/docs/disks/performance#performance_by_disk_size>`_), but only if the BLAST database
+    you are searching, your query sequence, and its results can fit into 375GB.
+
+    * Default: None
+    * Values: ``true`` or ``false``
+    * Applies to: GCP
+
+.. code-block::
+
+    [cluster]
+    exp-use-local-ssd = true
+
 .. _elb_labels:
 
 ``Cloud resource labels``

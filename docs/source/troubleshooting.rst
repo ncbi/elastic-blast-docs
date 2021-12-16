@@ -291,7 +291,8 @@ user's home directory. You can see how much disk space is being used by
     du -shc ~/.kube/* | sort -hr
 
 If this is too much disk utilization, you can try to delete old cached data to
-reduce it. The command below deletes ``kubectl`` cached data that is older
+reduce it (assuming this is appropriate for you).
+The command below deletes ``kubectl`` cached data that is older
 than 90 days:
 
 .. code-block:: shell

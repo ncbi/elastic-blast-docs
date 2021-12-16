@@ -278,8 +278,8 @@ the :ref:`machine type <elb_machine_type>` so that the total number of CPUs requ
 
 In the example above, either of the following alternative configurations would work:
 
-* For a total of 16 CPUs: ``machine-type = n1-standard-16`` and ``num-cpus = ``1``
-* For a total of 24 CPUs: ``machine-type = n1-standard-8`` and ``num-cpus = ``3``
+* For a total of 16 CPUs: ``machine-type = n1-standard-16`` and ``num-cpus = 1``
+* For a total of 24 CPUs: ``machine-type = n1-standard-8`` and ``num-cpus = 3``
 
 .. _kubectl_cache:
 

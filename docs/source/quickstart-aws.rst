@@ -120,7 +120,7 @@ Run ElasticBLAST
 
     elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
 
-The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
+The :ref:`submit` command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
 You may also see an informational message about "awslimitchecker", which requires no action on your part. 
 
@@ -137,7 +137,7 @@ To check on the progress of the search, inspect the :ref:`logfile
     elastic-blast status --cfg BDQA.ini --loglevel DEBUG
 
 For additional details, please see :ref:`the status sub-command documentation
-<submit>`.
+<status>`.
 
 Once all batches have finished, you can download results as shown below.
 

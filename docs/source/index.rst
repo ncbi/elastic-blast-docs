@@ -30,7 +30,7 @@ ElasticBLAST speeds up your work by distributing your searches across multiple c
 
 The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.nih.gov/>`_), part of the National Library of Medicine at the NIH, develops and maintains ElasticBLAST.
 
-**ElasticBLAST status:** alpha
+**ElasticBLAST status:** beta
 
 **Platforms available:** AWS, GCP (account required)
 

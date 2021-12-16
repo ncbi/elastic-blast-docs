@@ -97,7 +97,6 @@ Tutorials
 
 * :ref:`tutorial_pypi`
 * :ref:`tutorial_conda`
-* :ref:`tutorial_curl_install`
 * :ref:`tutorial_mb`
 * :ref:`tutorial_create_blastdb_metadata`
 * :ref:`tutorial_submit_and_wait_script`

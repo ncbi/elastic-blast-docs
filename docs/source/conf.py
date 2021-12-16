@@ -42,7 +42,7 @@ html_show_copyright = False
 author = 'Christiam Camacho'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.11'
+release = '0.2.0'
 
 
 # -- General configuration ---------------------------------------------------

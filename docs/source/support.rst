@@ -47,8 +47,7 @@ Please help the development team help you:
     aws cloudformation describe-stack-events --stack-name $(awk '/name.:/ {print $NF}' elastic-blast.log | tr -d ",'" | tail -1) --region $(awk '/region.:/ {print $NF}' elastic-blast.log | tr -d ",}'" | tail -1) --output json
 
 
-* **Always run elastic-blast delete after/before every ElasticBLAST search**.
-* Always use the ``--loglevel DEBUG`` option (for now).
+* If the :ref:`janitor` is **not** enabled, **always run elastic-blast delete after/before every ElasticBLAST search**.
 * Consider using the unix ``screen`` (`wikipedia <https://en.wikipedia.org/wiki/Script_(Unix)>`_, `man page <https://man7.org/linux/man-pages/man1/script.1.html>`_) tool to capture the
   output of your usage of ElasticBLAST and attaching the session log to your
   problem report. 

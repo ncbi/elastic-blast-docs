@@ -28,7 +28,7 @@ Known issues on GCP
 Files left in cloud storage
 ---------------------------
 
-ElasticBLAST uses cloud storage to temporally store query sequences and
+ElasticBLAST uses cloud storage to temporarily store query sequences and
 internal logs and metadata so that they are easily accessible during its
 operation. Sometimes deleting these files after the search is not successful.
 To double check and delete them, please run the commands below. 

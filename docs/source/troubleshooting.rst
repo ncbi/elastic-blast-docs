@@ -223,6 +223,8 @@ Please refer to their respective configuration entries for information on how to
 * :ref:`elb_gcp_network`
 * :ref:`elb_gcp_subnetwork`
 
+.. _cluster_admin:
+
 Cannot create resource "clusterrolebindings"
 --------------------------------------------
 
@@ -240,6 +242,8 @@ please replace ``gcloud config get-value account`` in the command below with
 the service account name (it will look like an email address, likely ending in
 ``gserviceaccount.com`` (e.g.: ``281282530694-compute@developer.gserviceaccount.com``).
 
+.. _grant_cluster_admin:
+
 .. code-block:: bash
 
     gcloud projects add-iam-policy-binding `gcloud config get-value project` --member=`gcloud config get-value account` --role=roles/container.admin
@@ -249,8 +253,8 @@ setting the ``ELB_DISABLE_AUTO_SHUTDOWN`` environment variable to any value will
 remove the requirement for these additional permissions. 
 
 **Please keep in mind that disabling this feature requires you to invoke
-'elastic-blast delete' to avoid incurring charges after ElasticBLAST
-has completed its operation.**
+"elastic-blast delete" to avoid incurring charges after ElasticBLAST
+has completed its operation or failed.**
 
 .. _insufficient_cpu_quota:
 

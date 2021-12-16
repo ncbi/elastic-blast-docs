@@ -18,13 +18,12 @@
 ..   
 .. Please cite NCBI in any work or product based on this material.
 
-.. _subcommands:
+.. _commands:
 
-Sub-commands
-============
+Commands
+========
 
-The ElasticBLAST command line interface supports the sub-commands listed
-below.
+The ElasticBLAST command line interface supports the commands listed below.
 
 The application's exit codes are documented :ref:`here <exit-codes>`.
 
@@ -43,9 +42,9 @@ status
 ------
 
 Checks the status of an ElasticBLAST search. This will not return proper
-results until the ``submit`` sub-command has completed successfully.
+results until the ``submit`` command has completed successfully.
 
-This sub-command prints the number of BLAST jobs in the following phases of
+This command prints the number of BLAST jobs in the following phases of
 processing:
 
 Pending 

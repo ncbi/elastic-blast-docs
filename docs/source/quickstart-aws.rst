@@ -136,7 +136,7 @@ To check on the progress of the search, inspect the :ref:`logfile
 
     elastic-blast status --cfg BDQA.ini --loglevel DEBUG
 
-For additional details, please see :ref:`the status sub-command documentation
+For additional details, please see :ref:`the status command documentation
 <status>`.
 
 Once all batches have finished, you can download results as shown below.

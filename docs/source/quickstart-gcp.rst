@@ -137,7 +137,7 @@ To check on the progress of the search, inspect the logfile
 
     elastic-blast status --cfg BDQA.ini --loglevel DEBUG
 
-For additional details, please see :ref:`the status sub-command documentation
+For additional details, please see :ref:`the status command documentation
 <status>`.
 
 An alternate way to monitor the progress is to inspect the kubernetes pods/nodes activity:

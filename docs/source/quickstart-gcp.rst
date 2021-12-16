@@ -137,8 +137,8 @@ To check on the progress of the search, inspect the logfile
 
     elastic-blast status --cfg BDQA.ini --loglevel DEBUG
 
-The status command will not return proper results until the submit command has finished.
-Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
+For additional details, please see :ref:`the status sub-command documentation
+<submit>`.
 
 An alternate way to monitor the progress is to inspect the kubernetes pods/nodes activity:
 

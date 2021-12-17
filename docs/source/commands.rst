@@ -44,7 +44,8 @@ status
 Checks the status of an ElasticBLAST search. This will not return proper
 results until the ``submit`` command has completed successfully.
 
-This command prints the number of BLAST jobs in the following phases of
+Once the search is in progress and as long as there are no failures, 
+this command prints the number of BLAST jobs in the following phases of
 processing:
 
 Pending 
@@ -58,6 +59,12 @@ Succeeded
 
 Failed
     Jobs that have failed.
+
+When the search is done, this command prints the message: "Your
+ElasticBLAST search succeeded, results can be found in ....". 
+
+When at least one job fails, this command prints "Your ElasticBLAST search
+failed".
 
 For additional details, please run ``elastic-blast status --help``.
 

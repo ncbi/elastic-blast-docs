@@ -122,7 +122,7 @@ resources created by ElasticBLAST. Your input file(s) will not be modified.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG
+    elastic-blast delete --cfg ${CONFIG_FILE}
 
 
 I cannot find python or an expected version when I run elastic-blast

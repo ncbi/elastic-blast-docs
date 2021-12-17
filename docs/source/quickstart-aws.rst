@@ -120,7 +120,7 @@ Run ElasticBLAST
 
     elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
 
-The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
+The :ref:`submit` command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
 You may also see an informational message about "awslimitchecker", which requires no action on your part. 
 
@@ -132,12 +132,11 @@ To check on the progress of the search, inspect the :ref:`logfile
 <elb_logfile>` and/or run the command below:
 
 .. code-block:: bash
-    :name: status
 
     elastic-blast status --cfg BDQA.ini --loglevel DEBUG
 
-The status command will not return proper results until the submit command has finished.
-Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
+For additional details, please see :ref:`the status command documentation
+<status>`.
 
 Once all batches have finished, you can download results as shown below.
 
@@ -206,7 +205,7 @@ It is also recommended each time you start a new ElasticBLAST search.
     elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
 
 
-The delete command will take a few minutes to run as it needs to manage multiple cloud resources.
+The :ref:`delete` command will take a few minutes to run as it needs to manage multiple cloud resources.
 
 After the ``elastic-blast delete`` command returns, you may verify that your
 cloud resources have been deleted by running the command below. The command requires that you have set ``${YOUR_RESULTS_BUCKET}``.

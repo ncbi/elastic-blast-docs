@@ -49,13 +49,13 @@ The instructions below assume the configuration file is named hepatitis.ini.  If
 
 Once you have finished your edits to the configuration file, you are ready to start your run.  You should follow the same steps you used in your quickstart.
 
-First, run elastic-blast with the submit command:
+First, run elastic-blast with the :ref:`submit` command:
 
 .. code-block:: bash
 
     elastic-blast submit --cfg hepatitis.ini --loglevel DEBUG
 
-Once the above command returns (which may take a few minutes), you can check the status of the search:
+Once the above command returns (which may take a few minutes), you can check the :ref:`status` of the search:
 
 .. code-block:: bash
 
@@ -77,7 +77,7 @@ For AWS, use the command:
 
 Here, YOUR_RESULTS_BUCKET should be set to the name of the results bucket used in your configuration file.
 
-Finally, make sure to delete your resources if the :ref:`janitor` is not
+Finally, make sure to :ref:`delete` your resources if the :ref:`janitor` is not
 enabled:
 
 .. code-block:: bash

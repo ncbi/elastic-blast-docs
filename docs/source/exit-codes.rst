@@ -18,6 +18,7 @@
 ..   
 .. Please cite NCBI in any work or product based on this material.
 
+.. _exit-codes:
 
 Exit codes
 ==========

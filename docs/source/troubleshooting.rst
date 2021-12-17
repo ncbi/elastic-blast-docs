@@ -140,6 +140,18 @@ If one of versions from 3.7 or 3.8 is found, then you can try the corresponding 
 script (e.g., ``elastic-blast3.8``).
 
 
+.. _cloud_shell_disconnect:
+
+My cloud shell session got disconnected
+---------------------------------------
+
+If your cloud shell session gets disconnected while ``elastic-blast submit`` or ``elastic-blast delete`` is running,
+we recommend you check the status of the search via ``elastic-blast status`` and delete it if it is not running.
+
+This will prevent unnecessary charges that may result from an ElasticBLAST search that was not properly submitted
+or deleted. Please see :ref:`elb_cleanup` for details.
+
+
 I get a message about not being able write into the bucket with submit command
 ------------------------------------------------------------------------------
 
@@ -210,3 +222,82 @@ Please refer to their respective configuration entries for information on how to
 
 * :ref:`elb_gcp_network`
 * :ref:`elb_gcp_subnetwork`
+
+.. _cluster_admin:
+
+Cannot create resource "clusterrolebindings"
+--------------------------------------------
+
+If you see the error message below, where ``USERNAME`` is your GCP user or service
+account name, you need to grant additional permissions to said user/service
+account.
+
+.. code-block:: bash
+
+    ERROR: The command "kubectl --context=[...] -f/lib/python3.9/site-packages/elastic_blast/templates/elb-janitor-rbac.yaml" returned with exit code 1
+    Error from server (Forbidden): error when creating "/lib/python3.9/site-packages/elastic_blast/templates/elb-janitor-rbac.yaml": clusterrolebindings.rbac.authorization.k8s.io is forbidden: User "USERNAME" cannot create resource "clusterrolebindings" in API group "rbac.authorization.k8s.io" at the cluster scope: requires one of ["container.clusterRoleBindings.create"] permission(s).
+
+You can grant the required permissions as shown in the code snippet below. If using a service account,
+please replace ``gcloud config get-value account`` in the command below with
+the service account name (it will look like an email address, likely ending in
+``gserviceaccount.com`` (e.g.: ``281282530694-compute@developer.gserviceaccount.com``).
+
+.. _grant_cluster_admin:
+
+.. code-block:: bash
+
+    gcloud projects add-iam-policy-binding `gcloud config get-value project` --member=`gcloud config get-value account` --role=roles/container.admin
+
+If the command above fails, you may need to ask your GCP account administrator to run the command on your behalf. If this is not possible, 
+setting the ``ELB_DISABLE_AUTO_SHUTDOWN`` environment variable to any value will disable the auto-shutdown feature and
+remove the requirement for these additional permissions. 
+
+**Please keep in mind that disabling this feature requires you to invoke
+"elastic-blast delete" to avoid incurring charges after ElasticBLAST
+has completed its operation or failed.**
+
+.. _insufficient_cpu_quota:
+
+I got a quota error for CPUs
+-----------------------------
+
+If you get an error like the one below, you will have to either `request an
+increase in your CPU quota <https://cloud.google.com/compute/quotas#requesting_additional_quota>`_ or
+reduce the resources requested in your ElasticBLAST configuration.
+
+.. code-block:: shell
+
+    (gcloud.container.clusters.create) ResponseError: code=403, 
+    message=Insufficient regional quota to satisfy request: 
+    resource "CPUS": request requires '32.0' and is short '8.0'. 
+    project has a quota of '24.0' with '24.0' available. 
+    View and manage quotas at ...
+
+To reduce the resouces requested by ElasticBLAST, adjust the :ref:`number of worker nodes <elb_num_nodes>` and
+the :ref:`machine type <elb_machine_type>` so that the total number of CPUs requested does not exceed your quota.
+
+In the example above, either of the following alternative configurations would work:
+
+* For a total of 16 CPUs: ``machine-type = n1-standard-16`` and ``num-cpus = 1``
+* For a total of 24 CPUs: ``machine-type = n1-standard-8`` and ``num-cpus = 3``
+
+.. _kubectl_cache:
+
+$HOME/.kube uses a lot of disk space
+------------------------------------
+
+ElasticBLAST for GCP relies on ``kubectl``, which by default caches data in the
+user's home directory. You can see how much disk space is being used by
+``kubectl`` by running the following command:
+
+.. code-block:: shell
+
+    du -shc ~/.kube/* | sort -hr
+
+If this is too much disk utilization, you can try to delete old cached data to
+reduce it. The command below deletes ``kubectl`` cached data that is older
+than 90 days:
+
+.. code-block:: shell
+
+    find ~/.kube/cache ~/.kube/http-cache -type f -mtime +90 -delete

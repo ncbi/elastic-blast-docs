@@ -221,7 +221,10 @@ Cluster configuration
 
     The name may contain only lowercase alphanumerics and ‘-’, must start with a letter and end with an alphanumeric, and must be no longer than 40 characters.
 
-    * Default: ``elasticblast-${USER}``
+    **Note**: This name must be unique for each of your ElasticBLAST searches, otherwise this may lead to undefined behavior.
+
+
+    * Default: ``elasticblast-${USER}-X``, where ``X`` is the first 8 characters of hashing the value of the :ref:`results <elb_results>` URI.
     * Values: String
 
     Also supported via the environment variable: ``ELB_CLUSTER_NAME``.
@@ -330,7 +333,9 @@ Cluster configuration
 
     Format as <number> immediately followed by G for gigabytes, M for megabytes.
 
-    **Note**: Smaller disks than ``1000G`` result in performance degradation in GCP.
+    **Note**: ElasticBLAST uses ``pd-standard`` block storage by default. Per the
+    `GCP documentation on block storage <https://cloud.google.com/compute/docs/disks/performance#performance_by_disk_size>`_,
+    smaller disks than ``1000G`` result in performance degradation for ElasticBLAST in GCP.
 
     * Default: ``3000G`` for GCP, ``1000G`` for AWS.
     * Values: String
@@ -338,7 +343,30 @@ Cluster configuration
 .. code-block::
 
     [cluster]
-    pd-size = 1000G
+    pd-size = 3000G
+
+.. _elb_exp_local_ssd:
+
+``Local SSD support``
+^^^^^^^^^^^^^^^^^^^^^
+
+    **Note**: This is an *experimental* feature in GCP. This limits local storage to 375GB.
+
+    Configure ElasticBLAST to use a `single local SSD disk <https://cloud.google.com/compute/docs/disks/local-ssd>`_ 
+    instead of a persistent disk to store BLAST database and query sequence batches.
+
+    Consider using this configuration setting if your disk quota is too small
+    (e.g.: 500GB) and it impacts performance (see `GCP documentation on block storage performance <https://cloud.google.com/compute/docs/disks/performance#performance_by_disk_size>`_), but only if the BLAST database
+    you are searching, your query sequence, and its results can fit into 375GB.
+
+    * Default: None
+    * Values: ``true`` or ``false``
+    * Applies to: GCP
+
+.. code-block::
+
+    [cluster]
+    exp-use-local-ssd = true
 
 .. _elb_labels:
 
@@ -409,7 +437,10 @@ BLAST configuration options
 
     To search your own custom database, upload the database files to a cloud
     storage bucket and provide the bucket's universal resource identifier (URI)
-    plus the database name (see example and tip below).
+    plus the database name (see example and tip below).  We also recommend that 
+    you include a metadata file for your database, which allows ElasticBLAST to 
+    better configure the memory requirements for your search. See :ref:`tutorial_create_blastdb_metadata`
+    for instructions on producing the metadata file.
 
     * Default: None
     * Values: String. 

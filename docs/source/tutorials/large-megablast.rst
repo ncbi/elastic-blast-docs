@@ -77,7 +77,8 @@ For AWS, use the command:
 
 Here, YOUR_RESULTS_BUCKET should be set to the name of the results bucket used in your configuration file.
 
-Finally, make sure to :ref:`delete` your resources:
+Finally, make sure to :ref:`delete` your resources if the :ref:`janitor` is not
+enabled:
 
 .. code-block:: bash
 

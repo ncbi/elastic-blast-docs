@@ -202,10 +202,17 @@ You can see more information on these database matches at `YP_009480351.1 <https
 Clean up cloud resources
 ------------------------
 
-When ElasticBLAST runs on GCP, it works very hard to clean up resources after
-the BLAST search completes. 
+ElasticBLAST works very hard to clean up resources after the BLAST search
+completes or in case of failure.
 It may be always prudent to run ``elastic-blast delete`` as a safety measure to prevent
 accruing charges and exhausting quotas.
+
+This step is **required** if the :ref:`janitor` is **not** enabled. Please do
+not omit it, even if you ran Ctrl-C when
+starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
+your cloud service provider or you may end up running out of available quota or
+into service limits.. 
+It is also recommended each time you start a new ElasticBLAST search. 
 
 .. code-block:: bash
 

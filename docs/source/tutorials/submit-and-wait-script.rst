@@ -25,7 +25,7 @@ submit-and-wait-for-results script
 
 .. _script: https://github.com/ncbi/elastic-blast-demos/blob/master/submit-and-wait-for-results.sh
 
-In this example, you use a sample script_ to run ElasticBLAST. The script_ submits your search, checks the status on a regular basis, downloads your results from the cloud bucket, and runs the delete command once the timeout has expired or the search has completed (whichever happens first). The timeout (in minutes) can be specified when the script is invoked.
+In this example, you use a sample script_ to run ElasticBLAST. The script_ submits your search, checks the status on a regular basis, downloads your results from the cloud bucket, and runs the delete command once the timeout has expired or the search has completed or failed (whichever happens first). The timeout (in minutes) can be specified when the script is invoked.
 This script_ is freely available.
 You can obtain it via following commands:
 

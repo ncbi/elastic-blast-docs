@@ -760,14 +760,3 @@ Developer configuration options
 .. 
 ..     Please see `GCP stackdriver documentation for associated pricing <https://cloud.google.com/stackdriver/pricing>_`.
 ..
-.. .. _elb_debug_job_submit_fail:
-.. 
-.. ``ELB_DEBUG_JOB_SUBMIT_FAIL``
-.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. 
-..     * Default: Disabled
-..     * Values: Any string. Set to any value to enable.
-..    * Applies to: GCP
-.. 
-..     Forces a failure in cloud job submission for GCP.
-.. 

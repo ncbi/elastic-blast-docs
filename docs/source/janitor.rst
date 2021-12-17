@@ -18,43 +18,37 @@
 ..   
 .. Please cite NCBI in any work or product based on this material.
 
-.. _requirements:
+.. _janitor:
 
-Requirements
-============
+Auto-shutdown feature
+=====================
 
-* `python3.7 or newer <https://www.python.org/downloads/>`_
-* ``python3-distutils``
+This feature enables ElasticBLAST to monitor its status and shutdown cloud
+resources in the event of failures or successful search completion. Please
+follow the instructions below to enable it on your user or service account.
+You only need to do this once per user or service account.
+
+**Please keep in mind that not enabling this feature requires you to invoke
+"elastic-blast delete" to avoid incurring charges after ElasticBLAST
+has completed its operation or failed.**
 
 Google Cloud Platform (GCP)
 ---------------------------
 
-* `GCP SDK CLI <https://cloud.google.com/sdk>`_
-* `kubectl <https://kubernetes.io/docs/tasks/tools/install-kubectl>`_: see `this link <https://cloud.google.com/kubernetes-engine/docs/release-notes>`_ for supported versions.
-* You are authenticated and have the necessary permissions in your GCP project.
-  If working on a newly created GCP instance, this likely requires running 
-  the command ``gcloud auth login``.
-
-  * GCP permissions
-
-    * GKE: to manage a kubernetes cluster on which to run ElasticBLAST.
-    * GCS: to store results and query splits.
-    * Permissions for :ref:`janitor`
-
-    *Note*: ``elastic-blast`` attempts to enable the relevant GCP APIs if they are not enabled already.
-
-Please visit also our page with :ref:`tips for GCP <gcp-tips>`.
+Add ``roles/container.admin`` to your :ref:`user or service account <grant_cluster_admin>`.
 
 Amazon Web Services (AWS)
 -------------------------
 
-* You have AWS credentials available and have the necessary :ref:`IAM
-  permissions <iam-policy>`, which include the following AWS services:
+This feature requires an AWS role with the necesary permissions to manage
+cloud resources on your behalf. This role can be created with the script
+below, which is included in the ElasticBLAST distribution:
 
-  * Batch
-  * EC2
-  * ECS
-  * S3
-  * Permissions for :ref:`janitor`
+.. code-block:: bash
 
-* **Optional**: `AWS CLI SDK <https://aws.amazon.com/cli/>`_.
+   aws-create-elastic-blast-janitor-role.sh
+
+The script will create a role named ``ncbi-elasticblast-janitor-role``. You
+can get information about this role via the script
+``aws-describe-elastic-blast-janitor-role.sh`` and delete it with
+``aws-delete-elastic-blast-janitor-role.sh``.

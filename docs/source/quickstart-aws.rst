@@ -188,7 +188,14 @@ You can see more information on these database matches at `YP_009480351.1 <https
 
 Clean up cloud resources
 ------------------------
-This step is **critical**, please do not omit it, even if you ran Ctrl-C when
+
+ElasticBLAST works very hard to clean up resources after the BLAST search
+completes or in case of failure.
+It may be always prudent to run ``elastic-blast delete`` as a safety measure to prevent
+accruing charges and exhausting quotas.
+
+This step is **required** if the :ref:`janitor` is **not** enabled. Please do
+not omit it, even if you ran Ctrl-C when
 starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
 your cloud service provider or you may end up running out of available quota or
 into `service limits <https://docs.aws.amazon.com/batch/latest/userguide/service_limits.html>`_. 
@@ -207,8 +214,14 @@ Its output will show the EC2 instance IDs ``elastic-blast`` created on your beha
 still in the ``running`` state.
 
 .. code-block:: bash
+   :caption: Run this on linux
 
-  aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Name,Values=elasticblast-YOURNAME-$(echo -n ${YOUR_RESULTS_BUCKET} | md5sum | cut -b-9) --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
+   aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Name,Values=elasticblast-YOURNAME-$(echo -n ${YOUR_RESULTS_BUCKET} | md5sum | cut -b-9) --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
+
+.. code-block:: bash
+   :caption: Run this on mac
+
+   aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Name,Values=elasticblast-YOURNAME-$(echo -n ${YOUR_RESULTS_BUCKET} | md5 | cut -b-9) --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
 
 Summary
 -------

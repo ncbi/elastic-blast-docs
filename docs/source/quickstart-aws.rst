@@ -88,15 +88,12 @@ Start by, copying the configuration file shown below.  Using an editor, write th
     aws-region = us-east-1
 
     [cluster]
-    machine-type = m5.8xlarge
-    num-cpus = 16
     num-nodes = 2
     labels = owner=YOURNAME
 
     [blast]
     program = blastp
     db = refseq_protein
-    mem-limit = 61G
     queries = s3://elasticblast-test/queries/BDQA01.1.fsa_aa
     results = s3://elasticblast-YOURNAME/results/BDQA
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname"  

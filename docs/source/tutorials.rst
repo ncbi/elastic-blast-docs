@@ -70,26 +70,11 @@ If you are not using the cloud shell, you will need to provide credentials if yo
 
 Read about providing credentials for GCP `here <https://cloud.google.com/sdk/docs/authorizing>`_.
 
-For AWS, providing credentials can be
-accomplished by setting up environment variables or by saving those values in
-``~/.aws/config``. Please see examples below:
-
-.. code-block:: shell
-
-    # Environment variable
-    export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY_ID>
-    export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
-
-.. code-block:: shell
-
-    # Check whether an AWS configuration file already exists
-    [ -f ~/.aws/config ] || echo "AWS configuration file already exists!"
-
-    # If not, enter the following information in it
-    [ -d ~/.aws ] || mkdir ~/.aws
-    echo '[default]' > ~/.aws/config
-    echo 'aws_access_key_id = <YOUR_ACCESS_KEY_ID>' >> ~/.aws/config
-    echo 'aws_secret_access_key = <YOUR_SECRET_ACCESS_KEY>' >> ~/.aws/config
+For AWS, you can configure access via any of the ways listed in the 
+`AWS CLI configuration documentation <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html>`_.
+If working with an AWS EC2 instance, you can also use 
+`AWS IAM roles <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_
+to grant permissions (see also :ref:`iam-policy`).
 
 
 Tutorials

@@ -24,11 +24,19 @@ Using ElasticBLAST with command line parameters
 ===============================================
 
 ElasticBLAST supports selected command line parameters illustrated by this
-example. This example accomplishes the same results as those provided in the
-quickstart.
+tutorial. This tutorial accomplishes the same goals as those provided in the
+quickstart, and assumes the same conventions.
 
 Search submission
 -----------------
+
+Use the appropriate command based on your cloud service provider to submit an
+ElasticBLAST search. 
+
+BLAST+ parameters are specified after a ``--`` at the end of the command.
+
+Please note that the the ``labels`` configuration parameter is not supported
+by the command line interface.
 
 .. code-block:: bash
    :caption: AWS
@@ -62,6 +70,9 @@ Search submission
 Checking search status
 ----------------------
 
+Use the appropriate command based on your cloud service provider to check the
+status of an ElasticBLAST search. 
+
 .. code-block:: bash
    :caption: AWS
 
@@ -79,6 +90,10 @@ Deleting cloud resources
 ------------------------
 
 This step is **required** if the :ref:`janitor` is **not** enabled.
+
+Use the appropriate command based on your cloud service provider to delete
+an ElasticBLAST search. 
+
 
 .. code-block:: bash
    :caption: AWS

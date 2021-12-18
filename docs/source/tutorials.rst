@@ -36,6 +36,8 @@ In the first part of this section, we provide information that will help you to 
 
 It is possible to run these examples using the Cloud Shell as was done with the GCP and AWS quickstarts.  On the other hand, there are advantages to using your own hardware or a cloud instance that you have started.  Some advantages to using your own hardware or cloud instance are increased disk space and more processing power, allowing you to better make use of ElasticBLAST as part of a pipeline.  If you will be using your own hardware or a cloud instance, you should review the :ref:`requirements`.  You should also look at the section below on :ref:`Providing Credentials <credentials>`.
 
+.. _tutorial_cfg:
+
 **Configuration Files**
 
 Below is the configuration file used in the AWS quickstart (its GCP equivalent

@@ -27,6 +27,15 @@ ElasticBLAST supports selected command line parameters illustrated by this
 tutorial. This tutorial accomplishes the same goals as those provided in the
 quickstart, and assumes the same conventions.
 
+The primary difference in ElasticBLAST parameters between cloud providers is
+that for AWS, the ``s3://`` prefix in the results is
+leveraged to determine that the Cloud Service Provider is AWS and the
+``us-east-1`` AWS region is used by default. The AWS region can be overriden
+with the ``--aws-region`` parameter.
+
+In contrast, GCP requires the explicit specification of the :ref:`elb_gcp_project`, 
+:ref:`elb_gcp_region`, and the :ref:`elb_gcp_zone`.
+
 Search submission
 -----------------
 

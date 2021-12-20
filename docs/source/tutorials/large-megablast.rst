@@ -23,7 +23,7 @@
 MegaBLAST on a large nucleotide set
 ===================================
 
-In this example, you search 87,374 hepatitis sequences against the nt database, producing tabular output.  The search should take about 75 minutes and cost less than $10.  The preemptible or spot price could be as little as 20% of that, but may take longer to complete.  
+In this example, you search 87,374 hepatitis virus sequences against the nt database, producing tabular output.  The search should take about 75 minutes and cost less than $10.  The preemptible or spot price could be as little as 20% of that, but may take longer to complete.  
 
 Below is the configuration file for this example.  Copy it into a new file with a text editor, then fill in the needed sections, which includes the cloud-provider information, the query path, and a bucket for your results.  Assuming you are using the same account as in the quickstart, use the same cloud-provider information.  For the query path, uncomment either the GCP (gs://) or the AWS (s3://) option and delete the other one.  You may use the results bucket used in the quickstart, but you should change the final location (BDQA).
 
@@ -75,7 +75,7 @@ For AWS, use the command:
 
     aws s3 cp ${YOUR_RESULTS_BUCKET}/ . --exclude "*" --include "*.out.gz" --recursive
 
-Here, YOUR_RESULTS_BUCKET should be set to the name of the results bucket used in your configuration file.
+Here, ``YOUR_RESULTS_BUCKET`` should be set to the name of the results bucket used in your configuration file.
 
 Finally, make sure to :ref:`delete` your resources if the :ref:`janitor` is not
 enabled:
@@ -86,3 +86,5 @@ enabled:
 
 
 You should also run the checks outlined in the quickstart to double-check that all resources have been deleted.
+Please see :ref:`clean up cloud resources for GCP <elb_gcp_cleanup>` or 
+:ref:`clean up cloud resources for AWS <elb_aws_cleanup>` for details.

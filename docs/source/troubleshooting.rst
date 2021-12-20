@@ -149,7 +149,8 @@ If your cloud shell session gets disconnected while ``elastic-blast submit`` or 
 we recommend you check the status of the search via ``elastic-blast status`` and delete it if it is not running.
 
 This will prevent unnecessary charges that may result from an ElasticBLAST search that was not properly submitted
-or deleted. Please see :ref:`elb_cleanup` for details.
+or deleted. Please see :ref:`clean up cloud resources for GCP <elb_gcp_cleanup>` or 
+:ref:`clean up cloud resources for AWS <elb_aws_cleanup>` for details.
 
 
 I get a message about not being able write into the bucket with submit command

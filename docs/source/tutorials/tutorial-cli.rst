@@ -55,9 +55,6 @@ by the command line interface.
        --db refseq_protein \
        --query s3://elasticblast-test/queries/BDQA01.1.fsa_aa \
        --results s3://elasticblast-YOURNAME/results/BDQA \
-       --machine-type m5.8xlarge \
-       --mem-limit 61G \
-       --num-cpus 16 \
        --num-nodes 2 \
        -- -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname"  
 

@@ -120,7 +120,7 @@ Run ElasticBLAST
 
 .. code-block:: bash
 
-    elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast submit --cfg BDQA.ini
 
 The :ref:`submit` command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 Once it returns, you can move on to the next step.
@@ -134,7 +134,7 @@ To check on the progress of the search, inspect the logfile
 
 .. code-block:: bash
 
-    elastic-blast status --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast status --cfg BDQA.ini
 
 For additional details, please see :ref:`the status command documentation <status>`.
 
@@ -216,7 +216,7 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast delete --cfg BDQA.ini
 
 The :ref:`delete` command will take a few minutes to run as it needs to manage multiple cloud resources.
 

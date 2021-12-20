@@ -65,7 +65,7 @@ ElasticBLAST divides query sequences into batches and searches them in parallel.
 blast-tuner application requires csp-target
 -------------------------------------------
 
-If the ``--csp-target`` parameter is not specified to ``blast-tuner``, an
+If the ``--csp-target`` parameter is not specified to ``blast-tuner.py``, an
 error message will be displayed. Please specify the appropriate cloud service
 provider to prevent this error.
 

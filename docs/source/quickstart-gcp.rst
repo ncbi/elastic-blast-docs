@@ -197,7 +197,7 @@ The results for one query, GBH21861.1, are shown below.  The first match covers 
 You can see more information on these database matches at `YP_009480351.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009480351.1>`_ and `YP_009665171.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009665171.1>`_
 
 
-.. _elb_cleanup:
+.. _elb_gcp_cleanup:
 
 Clean up cloud resources
 ------------------------

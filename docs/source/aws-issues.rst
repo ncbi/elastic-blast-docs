@@ -61,3 +61,4 @@ resources are shutdown. These particular resources do not incur in additional
 charges, but their existance counts towards your account's quota.
 We recommend you retry the ``elastic-blast delete`` command ~24 hours later to fully
 shutdown the aforementioned resources.
+

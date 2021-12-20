@@ -62,13 +62,3 @@ charges, but their existance counts towards your account's quota.
 We recommend you retry the ``elastic-blast delete`` command ~24 hours later to fully
 shutdown the aforementioned resources.
 
-.. _blast_tuner_requires_csp_target:
-
-blast-tuner application requires csp-target
--------------------------------------------
-
-If the ``--csp-target`` parameter is not specified to ``blast-tuner.py``, an
-error message will be displayed. Please specify the appropriate cloud service
-provider to prevent this error.
-
-This issue will be addressed in an upcoming release of ElasticBLAST.

@@ -122,7 +122,7 @@ resources created by ElasticBLAST. Your input file(s) will not be modified.
 
 .. code-block:: bash
 
-    ./elastic-blast delete --cfg ${CONFIG_FILE} --loglevel DEBUG
+    elastic-blast delete --cfg ${CONFIG_FILE}
 
 
 I cannot find python or an expected version when I run elastic-blast
@@ -223,6 +223,8 @@ Please refer to their respective configuration entries for information on how to
 * :ref:`elb_gcp_network`
 * :ref:`elb_gcp_subnetwork`
 
+.. _cluster_admin:
+
 Cannot create resource "clusterrolebindings"
 --------------------------------------------
 
@@ -240,6 +242,8 @@ please replace ``gcloud config get-value account`` in the command below with
 the service account name (it will look like an email address, likely ending in
 ``gserviceaccount.com`` (e.g.: ``281282530694-compute@developer.gserviceaccount.com``).
 
+.. _grant_cluster_admin:
+
 .. code-block:: bash
 
     gcloud projects add-iam-policy-binding `gcloud config get-value project` --member=`gcloud config get-value account` --role=roles/container.admin
@@ -249,8 +253,8 @@ setting the ``ELB_DISABLE_AUTO_SHUTDOWN`` environment variable to any value will
 remove the requirement for these additional permissions. 
 
 **Please keep in mind that disabling this feature requires you to invoke
-'elastic-blast delete' to avoid incurring charges after ElasticBLAST
-has completed its operation.**
+"elastic-blast delete" to avoid incurring charges after ElasticBLAST
+has completed its operation or failed.**
 
 .. _insufficient_cpu_quota:
 
@@ -274,8 +278,8 @@ the :ref:`machine type <elb_machine_type>` so that the total number of CPUs requ
 
 In the example above, either of the following alternative configurations would work:
 
-* For a total of 16 CPUs: ``machine-type = n1-standard-16`` and ``num-cpus = ``1``
-* For a total of 24 CPUs: ``machine-type = n1-standard-8`` and ``num-cpus = ``3``
+* For a total of 16 CPUs: ``machine-type = n1-standard-16`` and ``num-cpus = 1``
+* For a total of 24 CPUs: ``machine-type = n1-standard-8`` and ``num-cpus = 3``
 
 .. _kubectl_cache:
 
@@ -291,7 +295,8 @@ user's home directory. You can see how much disk space is being used by
     du -shc ~/.kube/* | sort -hr
 
 If this is too much disk utilization, you can try to delete old cached data to
-reduce it. The command below deletes ``kubectl`` cached data that is older
+reduce it (assuming this is appropriate for you).
+The command below deletes ``kubectl`` cached data that is older
 than 90 days:
 
 .. code-block:: shell

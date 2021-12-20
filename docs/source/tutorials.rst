@@ -26,7 +26,7 @@ Tutorials
 
 This section presents some ElasticBLAST searches that you can try out.  It assumes that you have read the :ref:`overview` and completed either the :ref:`quickstart-gcp` or the :ref:`quickstart-aws`. 
 
-You will be able to run these examples on either AWS or GCP.  For these examples, you will need to write a configuration file.  Below we describe how to write your file and the differences between files for GCP and AWS.
+You will be able to run these examples on either AWS or GCP.  For most of these examples, you will need to write a configuration file.  Below we describe how to write your file and the differences between files for GCP and AWS.
 
 View these examples as suggestions.  Once you are confident you understand how ElasticBLAST works, you can start modifying the examples.  You can use a local FASTA file, change the database or change the formatting options.
 
@@ -36,15 +36,37 @@ In the first part of this section, we provide information that will help you to 
 
 It is possible to run these examples using the Cloud Shell as was done with the GCP and AWS quickstarts.  On the other hand, there are advantages to using your own hardware or a cloud instance that you have started.  Some advantages to using your own hardware or cloud instance are increased disk space and more processing power, allowing you to better make use of ElasticBLAST as part of a pipeline.  If you will be using your own hardware or a cloud instance, you should review the :ref:`requirements`.  You should also look at the section below on :ref:`Providing Credentials <credentials>`.
 
+.. _tutorial_cfg:
+
 **Configuration Files**
 
-Below is the configuration file used in the AWS quickstart (the GCP file is similar).  This file contains three sections: cloud-provider, cluster, and blast. Each section contains a number of configuration variables (key/value pairs).  These are defined in :ref:`configuration`.  Here are some changes you may need or want to make:
+Below is the configuration file used in the AWS quickstart (its GCP equivalent
+is similar).  This file contains three sections: ``cloud-provider``, ``cluster``, and
+``blast``. Each section contains a number of configuration variables (key/value
+pairs).  These are defined in :ref:`configuration`.  Here are some changes you
+may need or want to make:
 
-* cloud-provider: You will be able to use the same configuration variables used in the quickstart, assuming the same account.  If you will be changing any part of this section, please refer to :ref:`gcp_conf` or :ref:`aws_conf`.
+``cloud-provider``
+    You will be able to use the same configuration variables used in the
+    quickstart, assuming the same account.  If you will be changing any part
+    of this section, please refer to :ref:`gcp_conf` or :ref:`aws_conf`.
 
-* cluster: You do not need to change the configuration variables in this section, though you may want to change the number of machines ("num-nodes").  In this section, you can also add a "use-preemptible = yes" key/value pair to indicate that you want to use a less expensive preemptible (GCP) or spot (AWS) instance. See :ref:`elb_use_preemptible` for details.  You can also change the machine-type in this section.  See :ref:`elb_machine_type` for information on the default machine types and how to select a different machine type.
+``cluster``
+    You do not need to change the configuration variables in this section,
+    though you may want to change the number of machines (``num-nodes``).  In
+    this section, you can also add a ``use-preemptible = yes`` key/value pair to
+    indicate that you want to use a less expensive preemptible (GCP) or spot
+    (AWS) instance. See :ref:`elb_use_preemptible` for details.  You can also
+    change the ``machine-type`` in this section.  See :ref:`elb_machine_type` for
+    information on the default machine types and how to select a different
+    machine type.
 
-* blast: You will need to edit the configuration variables in this section in order to accomplish your goal.  You can provide BLAST specific paramters in this section such as the program, database and other BLAST command-line parameters.  See :ref:`BLAST Configuration Options <blast_config_options>` for details.
+``blast``
+    You will need to edit the configuration variables in this section in order
+    to accomplish your goal. You can provide BLAST+ specific parameters in this
+    section such as the program, database and other BLAST+ command-line
+    parameters.  See :ref:`BLAST Configuration Options <blast_config_options>`
+    for details.
 
 .. code-block::
 
@@ -70,26 +92,11 @@ If you are not using the cloud shell, you will need to provide credentials if yo
 
 Read about providing credentials for GCP `here <https://cloud.google.com/sdk/docs/authorizing>`_.
 
-For AWS, providing credentials can be
-accomplished by setting up environment variables or by saving those values in
-``~/.aws/config``. Please see examples below:
-
-.. code-block:: shell
-
-    # Environment variable
-    export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY_ID>
-    export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
-
-.. code-block:: shell
-
-    # Check whether an AWS configuration file already exists
-    [ -f ~/.aws/config ] || echo "AWS configuration file already exists!"
-
-    # If not, enter the following information in it
-    [ -d ~/.aws ] || mkdir ~/.aws
-    echo '[default]' > ~/.aws/config
-    echo 'aws_access_key_id = <YOUR_ACCESS_KEY_ID>' >> ~/.aws/config
-    echo 'aws_secret_access_key = <YOUR_SECRET_ACCESS_KEY>' >> ~/.aws/config
+For AWS, you can configure access via any of the ways listed in the 
+`AWS CLI configuration documentation <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html>`_.
+If working with an AWS EC2 instance, you can also use 
+`AWS IAM roles <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_
+to grant permissions (see also :ref:`iam-policy`).
 
 
 Tutorials
@@ -100,3 +107,4 @@ Tutorials
 * :ref:`tutorial_mb`
 * :ref:`tutorial_create_blastdb_metadata`
 * :ref:`tutorial_submit_and_wait_script`
+* :ref:`tutorial_cli`

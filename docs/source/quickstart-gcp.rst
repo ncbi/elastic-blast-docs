@@ -120,9 +120,9 @@ Run ElasticBLAST
 
 .. code-block:: bash
 
-    elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast submit --cfg BDQA.ini
 
-The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
+The :ref:`submit` command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 Once it returns, you can move on to the next step.
 
 If your cloud shell session disconnects, please see :ref:`cloud_shell_disconnect`.
@@ -133,12 +133,10 @@ To check on the progress of the search, inspect the logfile
 (``elastic-blast.log`` by default) and/or run the command below:
 
 .. code-block:: bash
-    :name: status
 
-    elastic-blast status --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast status --cfg BDQA.ini
 
-The status command will not return proper results until the submit command has finished.
-Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
+For additional details, please see :ref:`the status command documentation <status>`.
 
 An alternate way to monitor the progress is to inspect the kubernetes pods/nodes activity:
 
@@ -204,16 +202,23 @@ You can see more information on these database matches at `YP_009480351.1 <https
 Clean up cloud resources
 ------------------------
 
-When ElasticBLAST runs on GCP, it works very hard to clean up resources after
-the BLAST search completes. 
+ElasticBLAST works very hard to clean up resources after the BLAST search
+completes or in case of failure.
 It may be always prudent to run ``elastic-blast delete`` as a safety measure to prevent
 accruing charges and exhausting quotas.
 
+This step is **required** if the :ref:`janitor` is **not** enabled. Please do
+not omit it, even if you ran Ctrl-C when
+starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
+your cloud service provider or you may end up running out of available quota or
+into service limits.. 
+It is also recommended each time you start a new ElasticBLAST search. 
+
 .. code-block:: bash
 
-    elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast delete --cfg BDQA.ini
 
-The delete command will take a few minutes to run as it needs to manage multiple cloud resources.
+The :ref:`delete` command will take a few minutes to run as it needs to manage multiple cloud resources.
 
 You may verify that your cloud resources have been deleted by running: 
 

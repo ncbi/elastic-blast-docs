@@ -88,15 +88,12 @@ Start by, copying the configuration file shown below.  Using an editor, write th
     aws-region = us-east-1
 
     [cluster]
-    machine-type = m5.8xlarge
-    num-cpus = 16
     num-nodes = 2
     labels = owner=YOURNAME
 
     [blast]
     program = blastp
     db = refseq_protein
-    mem-limit = 61G
     queries = s3://elasticblast-test/queries/BDQA01.1.fsa_aa
     results = s3://elasticblast-YOURNAME/results/BDQA
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname"  
@@ -118,9 +115,9 @@ Run ElasticBLAST
 
 .. code-block:: bash
 
-    elastic-blast submit --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast submit --cfg BDQA.ini
 
-The submit command can take several minutes as it brings up cloud resources and downloads the BLAST database.
+The :ref:`submit` command can take several minutes as it brings up cloud resources and downloads the BLAST database.
 
 You may also see an informational message about "awslimitchecker", which requires no action on your part. 
 
@@ -132,12 +129,11 @@ To check on the progress of the search, inspect the :ref:`logfile
 <elb_logfile>` and/or run the command below:
 
 .. code-block:: bash
-    :name: status
 
-    elastic-blast status --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast status --cfg BDQA.ini
 
-The status command will not return proper results until the submit command has finished.
-Once it returns, it will list the number of batches "Pending" (waiting), "Running" (searches ongoing), "Succeeded" (finished successfully), and "Failed".
+For additional details, please see :ref:`the status command documentation
+<status>`.
 
 Once all batches have finished, you can download results as shown below.
 
@@ -188,7 +184,14 @@ You can see more information on these database matches at `YP_009480351.1 <https
 
 Clean up cloud resources
 ------------------------
-This step is **critical**, please do not omit it, even if you ran Ctrl-C when
+
+ElasticBLAST works very hard to clean up resources after the BLAST search
+completes or in case of failure.
+It may be always prudent to run ``elastic-blast delete`` as a safety measure to prevent
+accruing charges and exhausting quotas.
+
+This step is **required** if the :ref:`janitor` is **not** enabled. Please do
+not omit it, even if you ran Ctrl-C when
 starting ElasticBLAST. If you do not clean up your cloud resources, you may accrue charges from
 your cloud service provider or you may end up running out of available quota or
 into `service limits <https://docs.aws.amazon.com/batch/latest/userguide/service_limits.html>`_. 
@@ -196,10 +199,10 @@ It is also recommended each time you start a new ElasticBLAST search.
 
 .. code-block:: bash
 
-    elastic-blast delete --cfg BDQA.ini --loglevel DEBUG
+    elastic-blast delete --cfg BDQA.ini
 
 
-The delete command will take a few minutes to run as it needs to manage multiple cloud resources.
+The :ref:`delete` command will take a few minutes to run as it needs to manage multiple cloud resources.
 
 After the ``elastic-blast delete`` command returns, you may verify that your
 cloud resources have been deleted by running the command below. The command requires that you have set ``${YOUR_RESULTS_BUCKET}``.
@@ -207,8 +210,14 @@ Its output will show the EC2 instance IDs ``elastic-blast`` created on your beha
 still in the ``running`` state.
 
 .. code-block:: bash
+   :caption: Run this on linux
 
-  aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Name,Values=elasticblast-YOURNAME-$(echo -n ${YOUR_RESULTS_BUCKET} | md5sum | cut -b-9) --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
+   aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Name,Values=elasticblast-YOURNAME-$(echo -n ${YOUR_RESULTS_BUCKET} | md5sum | cut -b-9) --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
+
+.. code-block:: bash
+   :caption: Run this on mac
+
+   aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Name,Values=elasticblast-YOURNAME-$(echo -n ${YOUR_RESULTS_BUCKET} | md5 | cut -b-9) --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
 
 Summary
 -------

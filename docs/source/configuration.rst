@@ -126,7 +126,7 @@ Cloud provider configuration
 
     Name of the AWS region to use. Recommended value: ``us-east-1``.
 
-    * Default: None
+    * Default: None for the :ref:`configuration file interface <tutorial_cfg>`, ``us-east-1`` for the :ref:`command line interface <tutorial_cli>`.
     * Values: String, any region that supports Batch, see `AWS documentation for details <https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/>`_
     * Applies to: AWS
 

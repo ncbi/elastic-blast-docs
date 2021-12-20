@@ -49,8 +49,9 @@ The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.n
    requirements
    IAM Policy <iam-policy>
    Budget <budget>
-   exit-codes
+   commands
    configuration
+   exit-codes
    tips-gcp
    taxid-filtering
    support

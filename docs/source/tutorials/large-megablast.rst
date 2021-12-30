@@ -39,7 +39,6 @@ The instructions below assume the configuration file is named hepatitis.ini.  If
     num-nodes = 4
 
     [blast]
-    mem-limit = 61G
     program = blastn 
     db = nt
     #queries = gs://elastic-blast-samples/queries/tests/hepatitis.fsa

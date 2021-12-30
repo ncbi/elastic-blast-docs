@@ -45,14 +45,6 @@ To double check and delete them, please run the commands below.
    gsutil ls gs://${ELB_RESULTS}/metadata  # list metadata files
    gsutil -m rm gs://${ELB_RESULTS}/logs/*  # to delete metadata files
 
-.. _elb_batch_len_setting:
-
-Batch length setting
---------------------
-
-The value of :ref:`ELB_BATCH_LEN` greatly affects performance. The defaults are reasonable, but may not be optimal in some cases. We are in the process of determining better values for various programs and use cases.
-
-
 .. _too_many_jobs:
 
 Too many query batches leads to failed execution

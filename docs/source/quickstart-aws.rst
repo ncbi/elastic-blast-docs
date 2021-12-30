@@ -98,15 +98,16 @@ Start by, copying the configuration file shown below.  Using an editor, write th
     results = s3://elasticblast-YOURNAME/results/BDQA
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname"  
 
-You will need to edit the file to provide your results bucket. For your results bucket, you should append "/results/BDQA" to your output bucket.  If you created it with the s3 command above, it would be as shown in the configuration file once you replace YOURNAME with your real name.
+You will need to make the following changes to the configuration file:
 
-ElasticBLAST will place your results at s3://elasticblast-YOURNAME/results/BDQA.  For your next search, you should use a different token than BDQA, otherwise your new results will be placed at the same location, possibly overwriting your first set of results.
+#. Replace YOURNAME on the "label" line with your name using all lower case letters.
+#. Replace YOURNAME on the "results" line with your name using all lower case letters.
+
+ElasticBLAST will place your results at gs://elasticblast-YOURNAME/results/BDQA.  For your next search, you should use a different token than BDQA or remove those results, otherwise elastic-blast will refuse to run as it would overwrite your old results.
 
 This configuration file specifies two AWS instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a public cloud bucket) against the refseq_protein database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
-
-There is no need to change any lines in the configuration file (BDQA.ini) other than the results bucket and the ``owner`` label (i.e.: replace ``YOURNAME`` with your name in all lowercase characters.
 
 This search should take about 30 minutes to run and cost less than $3.
 

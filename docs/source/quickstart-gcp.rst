@@ -85,30 +85,34 @@ Start by copying the configuration file shown below.  Using an editor, write thi
     :linenos:
 
     [cloud-provider]
-    gcp-project = ${YOUR_GCP_PROJECT_ID}
+    gcp-project = YOUR_GCP_PROJECT_ID
     gcp-region = us-east4   
     gcp-zone = us-east4-b
 
     [cluster]
     num-nodes = 2
-    labels = owner=${USER}
+    labels = owner=USER
 
     [blast]
     program = blastp
     db = refseq_protein
     queries = gs://elastic-blast-samples/queries/protein/BDQA01.1.fsa_aa
-    results = gs://elasticblast-${USER}/results/BDQA
+    results = gs://elasticblast-USER/results/BDQA
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname" 
 
-You will need to edit the file to provide a GCP Project ID and your results bucket. Read about how to identify your `GCP project <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_.  For your results bucket, you should append "/results/BDQA" to your output bucket.  If you created it with the gsutil command above, it would be as shown in the configuration file above.  
+You will need to make the following changes to the configuration file:
 
-ElasticBLAST will place your results at gs://elasticblast-${USER}/results/BDQA.  For your next search, you should use a different token than BDQA, otherwise your new results will be placed at the same location, possibly overwriting your first set of results.
+#. Replace YOUR_GCP_PROJECT_ID with your actual GCP Project ID.  Read how to identify your `GCP project <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_.  
+#. Replace USER on the "label" line with your actual username using all lower case letters (value of ${USER}).
+#. Replace USER on the "results" line with your actual username using all lower case letters (value of ${USER}).
+
+If you created your results bucket with the gsutil command above, it will be as shown in the configuration file above.  
+
+ElasticBLAST will place your results at gs://elasticblast-${USER}/results/BDQA.  For your next search, you should use a different token than BDQA or remove those results, otherwise elastic-blast will refuse to run as it would overwrite your old results.  
 
 This configuration file specifies two GCP instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a cloud bucket) against the refseq_protein database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
-
-There is no need to change any lines in the configuration file (BDQA.ini) other than the results bucket and the ``owner`` label (i.e.: replace ``$USER`` with your name in all lowercase characters.
 
 This search should take about 30 minutes to run and cost less than $3.  
 

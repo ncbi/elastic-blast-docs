@@ -47,7 +47,6 @@ Below is an example ElasticBLAST configuration file that limits search results b
     aws-region = us-east-1
 
     [cluster]
-    machine-type = m5.8xlarge
     num-nodes = 1
 
     [blast]

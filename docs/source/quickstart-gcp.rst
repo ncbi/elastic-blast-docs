@@ -224,12 +224,15 @@ You may verify that your cloud resources have been deleted by running:
 
 .. code-block:: bash
 
-  gcloud container clusters list --project <your-gcp-project-id>
-  gcloud compute disks list --project <your-gcp-project-id>
+  gcloud container clusters list --project YOUR_GCP_PROJECT_ID --filter='status=RUNNING AND resourceLabels.billingcode=elastic-blast'
+  gcloud compute disks list --project YOUR_GCP_PROJECT_ID --filter='labels.billingcode=elastic-blast'
+  gcloud compute instances list --project YOUR_GCP_PROJECT_ID --filter='labels.billingcode=elastic-blast'
 
-This will show all clusters and disks in your project (even from other users).
-If nothing is returned, then no clusters are running and no disks are being
-used.
+This will show all clusters, instances, and disks in your project (even from other users) started by ElasticBLAST.
+If nothing is returned, then no clusters or instances are running and no disks are being
+used. Alternatively, you can also invoke the script
+``cleanup-stale-gcp-resources.py --help`` to list or clean up are any stale GCP
+resources created by ElasticBLAST.
 
 
 Summary

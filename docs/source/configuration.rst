@@ -287,7 +287,7 @@ Cluster configuration
 
     **NOTE**: The machine's available RAM should be large enough to contain the sequences in the database (one byte per residue or one byte per four bases) plus ~20%.
 
-    * Default: ``n1-standard-32`` for GCP, ``m5.8xlarge`` for AWS.
+    * Default: ``n1-highmem-32`` for GCP, ``m5.8xlarge`` for AWS.
     * The default machines have 32 cores and about 120GB of RAM.
     * These default values only apply if you use a custom database and do not provide metadata.
     * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-types>`_ or `AWS instance types <https://aws.amazon.com/ec2/instance-types>`_ accordingly.

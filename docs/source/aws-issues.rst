@@ -23,14 +23,6 @@
 Known issues on AWS
 ===================
 
-.. _elb_batch_len_setting_aws:
-
-Batch length setting
---------------------
-
-The value of :ref:`ELB_BATCH_LEN` greatly affects performance. The defaults are reasonable, but may not be optimal in some cases. We are in the process of determining better values for various programs and use cases.
-
-
 .. _elb_delete_failure:
 
 ElasticBLAST delete failures

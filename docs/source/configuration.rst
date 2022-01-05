@@ -283,22 +283,14 @@ Cluster configuration
 
     Type of GCP or AWS machine to start as worker node(s). 
 
+    **WARNING**: ElasticBLAST will select a machine type for you with sufficient RAM to hold your database in memory if you search an NCBI provided database or provide metadata for your custom database (see :ref:`tutorial_create_blastdb_metadata`).  This is the recommended way to use ElasticBLAST.  Specifiying the machine type will override this feature, and you need to be sure that your machine type has sufficient memory to hold you database.  
+
     **NOTE**: The machine's available RAM should be large enough to contain the sequences in the database (one byte per residue or one byte per four bases) plus ~20%.
 
-    * Default: ``n1-standard-32`` for GCP, ``m5.8xlarge`` for AWS.
+    * Default: ``n1-highmem-32`` for GCP, ``m5.8xlarge`` for AWS.
     * The default machines have 32 cores and about 120GB of RAM.
+    * These default values only apply if you use a custom database and do not provide metadata.
     * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-types>`_ or `AWS instance types <https://aws.amazon.com/ec2/instance-types>`_ accordingly.
-
-    **Note**: ElasticBLAST on AWS supports the specification of an ``optimal``
-    instance type. 
-
-    * This is an *experimental* feature. 
-    * **Requires** the specification of the :ref:`memory limit <elb_mem_limit>` to use per BLAST job.
-    * Benefits include: greater breadth of available AWS instance types
-      (beneficial for getting spot instances) and freeing the end user from
-      having to match instance types to their BLAST search. 
-    * Potential downside: AWS Batch does not guarantee optimal performance of
-      the instances it selects.
 
 .. code-block::
 

@@ -56,8 +56,10 @@ may need or want to make:
     though you may want to change the number of machines (``num-nodes``).  In
     this section, you can also add a ``use-preemptible = yes`` key/value pair to
     indicate that you want to use a less expensive preemptible (GCP) or spot
-    (AWS) instance. See :ref:`elb_use_preemptible` for details.  You can also
-    change the ``machine-type`` in this section.  See :ref:`elb_machine_type` for
+    (AWS) instance. See :ref:`elb_use_preemptible` for details.  ElasticBLAST
+    will select an appropriate machine type with sufficient memory for your database.
+    You may override this feature and specify a ``machine-type`` in this section, but that
+    is not recommended.  See :ref:`elb_machine_type` for
     information on the default machine types and how to select a different
     machine type.
 

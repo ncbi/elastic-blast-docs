@@ -23,19 +23,19 @@
 Support
 =======
 
-You can email help requests to elastic-blast-support@ncbi.nlm.nih.gov
+Please email help requests or bug reports to elastic-blast-support@ncbi.nlm.nih.gov
 
 Please help the development team help you: 
 
 * When reporting problems, please provide us with:
 
-   * Your configuration file
+   * Your configuration file and command line invocation
    * The ElasticBLAST logfile (``elastic-blast.log`` by default)
-   * Your system's information, i.e. the output of the commands below:
+   * The output of ``elastic-blast status --verbose --cfg YOUR_CONFIG_FILE``
+   * Your system's information, i.e. the output of the commands below. It is OK if any of these commands fail ;)
 
 .. code-block:: bash
 
-    # It' is OK if any of these commands fail ;)
     uname -a
     python3 -m sysconfig
     env
@@ -44,7 +44,6 @@ Please help the development team help you:
     # For AWS only
     aws sts get-caller-identity
     aws configure list
-    aws cloudformation describe-stack-events --stack-name $(awk '/name.:/ {print $NF}' elastic-blast.log | tr -d ",'" | tail -1) --region $(awk '/region.:/ {print $NF}' elastic-blast.log | tr -d ",}'" | tail -1) --output json
 
 
 * If the :ref:`janitor` is not enabled, **always run elastic-blast delete after/before every ElasticBLAST search**.

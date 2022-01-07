@@ -221,6 +221,9 @@ still in the ``running`` state.
 
    aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Name,Values=elasticblast-YOURNAME-$(echo -n ${YOUR_RESULTS_BUCKET} | md5 | cut -b-9) --query "Reservations[*].Instances[?State.Name=='running'].InstanceId" --output text 
 
+Alternatively, you can also invoke the script
+``aws-show-my-undeleted-searches.sh`` to list any outstanding ElasticBLAST searches.
+
 Summary
 -------
 

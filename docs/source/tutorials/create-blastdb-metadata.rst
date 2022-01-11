@@ -110,7 +110,7 @@ Getting online help
 
 You can obtain the script's online help by running the command below:
 
-.. code-block:: bash
+.. code-block::
 
     create-blastdb-metadata.py --help
     usage: create-blastdb-metadata.py [-h] --db DBNAME --dbtype {prot,nucl} [--out FILENAME] [--output-prefix PATH] [--pretty] [--logfile LOGFILE] [--loglevel {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [--version]

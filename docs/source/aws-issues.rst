@@ -57,7 +57,7 @@ shutdown the aforementioned resources.
 
 .. _aws_out_of_memory:
 
-BLAST ran out of memory
+BLAST command killed
 -----------------------
 
 If an ElasticBLAST search fails and ``elastic-blast status --verbose`` reports

@@ -54,3 +54,21 @@ charges, but their existance counts towards your account's quota.
 We recommend you retry the ``elastic-blast delete`` command ~24 hours later to fully
 shutdown the aforementioned resources.
 
+
+.. _aws_out_of_memory
+
+BLAST ran out of memory
+-----------------------
+
+If an ElasticBLAST search fails and ``elastic-blast status --verbose`` reports
+a message similar to:
+
+::
+
+   The command "time blastn -query batch_002.fa -db ref_euk_rep_genomes -num_threads 16 -out batch_002-blastn-ref_euk_rep_genomes.out -evalue 0.01 -outfmt 7" returned with exit code 137
+   /blast/bin/blastn: line 25:    27 Killed                  blastn.REAL "$@"
+   Command exited with non-zero status 137
+
+the failure is most likely caused by at least one BLAST search job that has run out of memory. BLAST searches that produce large numbers of hits may require more memory than provided by the cloud instance type selected by ElasticBLAST. It may happen, for example, when searching large genomic databases, like `RefSeq Eukaryotic Representative Genome Database <https://github.com/ncbi/blast_plus_docs>`_.
+
+Selecting an instance type with more memory, like ``r5ad.16xlarge``, using :ref:`ELB_MACHINE_TYPE` configuration parameter, will fix the problem.

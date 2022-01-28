@@ -65,6 +65,14 @@ After running this command, you should get the following output:
 Troubleshooting
 ^^^^^^^^^^^^^^^
 
+If you run into installation problems that mention ``WARNING: The wheel
+package is not available``, please run the command below and kindly re-try
+the installation process.
+
+.. code-block:: bash
+
+    pip install wheel
+
 If you run into installation problems on AWS, please run the command below and kindly re-try the installation process.
 
 .. code-block:: bash

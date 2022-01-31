@@ -61,7 +61,7 @@ You should be able to run ElasticBLAST under the Free Trial following the instru
 
 Fro additional details about GCP's free tier (duration, products included, etc), please visit https://cloud.google.com/free/docs/gcp-free-tier .
 
-Below is a configuration file that should work under the Free Trial.  This file has been modified from the one in :ref:`quickstart-gcp` in the following ways:
+Below is a configuration file that should work under the Free Trial as of January 2022.  This file has been modified from the one in :ref:`quickstart-gcp` in the following ways:
 
 * num-nodes has been set to 1 rather than 2.
 * A machine-type, n1-highmem-8, with 8 CPUs has been specified. Normally, ElasticBLAST automatically sets the machine type based on the size of the database and the program.

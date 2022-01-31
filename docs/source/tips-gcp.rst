@@ -65,7 +65,7 @@ Below is a configuration file that should work under the Free Trial as of Januar
 
 * ``num-nodes`` has been set to 1 rather than 2.
 * A ``machine-type``, ``n1-highmem-8``, with 8 CPUs has been specified. Normally, ElasticBLAST automatically sets the machine type based on the size of the database and the program.
-* A persistent disk (pd) with 200G has been specified.
+* A persistent disk (``pd-size``) with 200G has been specified.
 * The database is set to swissprot, which is small enough to fit into the memory of the n1-highmem-8 machine.
 
 .. code-block::

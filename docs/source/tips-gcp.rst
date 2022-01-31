@@ -64,7 +64,7 @@ Fro additional details about GCP's free tier (duration, products included, etc),
 Below is a configuration file that should work under the Free Trial as of January 2022.  This file has been modified from the one in :ref:`quickstart-gcp` in the following ways:
 
 * ``num-nodes`` has been set to 1 rather than 2.
-* A machine-type, n1-highmem-8, with 8 CPUs has been specified. Normally, ElasticBLAST automatically sets the machine type based on the size of the database and the program.
+* A ``machine-type``, ``n1-highmem-8``, with 8 CPUs has been specified. Normally, ElasticBLAST automatically sets the machine type based on the size of the database and the program.
 * A persistent disk (pd) with 200G has been specified.
 * The database is set to swissprot, which is small enough to fit into the memory of the n1-highmem-8 machine.
 

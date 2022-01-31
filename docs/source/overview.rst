@@ -87,4 +87,4 @@ Both cloud service providers also have Free Tiers:
 * https://aws.amazon.com/free
 * https://cloud.google.com/free
 
-While the Free Tiers are a good way to learn about the cloud, they may be too limited for you to effectively use ElasticBLAST.
+While the Free Tiers are a good way to learn about the cloud, they may be too limited for you to effectively use ElasticBLAST. At :ref:`gcp_free_trial` we discuss how to use ElasticBLAST under the GCP Free Trial.

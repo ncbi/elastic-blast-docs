@@ -59,7 +59,7 @@ GCP has a Free Trial for new users (https://cloud.google.com/free).  The Free Tr
 
 You should be able to run ElasticBLAST under the Free Trial following the instructions at :ref:`quickstart-gcp`, but you will need to modify the configuration file to use fewer resources. You may not be able to use the cloud shell and the instance suggested below as that may exceed the quota on cores allowed at one time.  In that case, you will need to submit your ElasticBLAST search from your own computer.
 
-Remember also that the Free Trial only lasts 90 days.
+Fro additional details about GCP's free tier (duration, products included, etc), please visit https://cloud.google.com/free/docs/gcp-free-tier .
 
 Below is a configuration file that should work under the Free Trial.  This file has been modified from the one in :ref:`quickstart-gcp` in the following ways:
 

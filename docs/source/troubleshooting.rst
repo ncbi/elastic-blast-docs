@@ -31,11 +31,34 @@ Please see :ref:`support`.
 How do I figure out what happened with my failed jobs?
 ------------------------------------------------------
 
-**This applies to AWS only**.
 
-If you find any jobs failed as a result of running ``elastic-blast status``,
+If the ``elastic-blast status`` command reports a jobs as having failed,
 please re-run the command with the additional ``--verbose`` option, which
-will print more information about the jobs that failed, e.g.:
+will print more information about the jobs that failed.  You can ignore the 
+message about reporting the failure unless you find the message with ``--verbose``
+unhelpful.
+
+In the example below, there was a problem with a BLAST option.  The error message from the
+blastn executable returned with the ``--verbose`` option should be sufficient for a user to 
+correct the issue.
+
+.. code-block:: bash
+
+    elastic-blast status --cfg bad_options.ini --verbose
+    Your ElasticBLAST search failed, please help us improve ElasticBLAST by reporting this failure as described in https://blast.ncbi.nlm.nih.gov/doc/elastic-blast/support.html
+    USAGE
+    blastn [-h] [-help] [-import_search_strategy filename]
+     [-export_search_strategy filename] [-task task_name] [-db database_name]
+     [-dbsize num_letters] [-gilist filename] [-seqidlist filename]
+     [-negative_gilist filename] [-negative_seqidlist filename]
+     [-taxids taxids] [-negative_taxids taxids] [-taxidlist filename]
+     [-negative_taxidlist filename] [-entrez_query entrez_query]
+    [...]
+
+**This example applies to AWS only**.
+
+Other messages, besides incorrect BLAST options, may be reported with ``--verbose``
+The example below will only occur at AWS.
 
 .. code-block:: bash
 

@@ -38,7 +38,7 @@ will print more information about the jobs that failed.  You can ignore the
 message about reporting the failure unless you find the message with ``--verbose``
 unhelpful.
 
-In the example below, there was a problem with a BLAST option.  The error message from the
+In the example below, an invalid BLAST+ option was specified.  The error message from the
 blastn executable returned with the ``--verbose`` option should be sufficient for a user to 
 correct the issue.
 

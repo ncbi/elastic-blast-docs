@@ -44,6 +44,8 @@ Exit code  Meaning                                                              
 .. 10         Search is in progress                                                        Status, if flag is provided
 
 
+.. _status-via-exit-codes:
+
 Exit codes for elastic-blast status --exit-code
 -----------------------------------------------
 

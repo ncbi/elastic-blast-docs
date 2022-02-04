@@ -42,3 +42,25 @@ Exit code  Meaning                                                              
 .. 5          Timeout                                                                      Submit, status
 .. 8          Error communicating with cluster                                             All
 .. 10         Search is in progress                                                        Status, if flag is provided
+
+
+.. _status-via-exit-codes:
+
+Exit codes for elastic-blast status --exit-code
+-----------------------------------------------
+
+When using the ``--exit-code`` option to ``elastic-blast status``, the
+application exit code changes to report the status of the ElasticBLAST search
+in question. The exit code values have the following meanings:
+
+=========  ============================================================================
+Exit code  Meaning                                                                     
+=========  ============================================================================
+0          ElasticBLAST has completed its search successfully
+1          ElasticBLAST has failed
+2          Cloud resources for ElasticBLAST are being created/allocated
+3          ElasticBLAST jobs are being submitted to the cloud
+4          ElasticBLAST jobs are running
+5          ElasticBLAST resources are being deleted
+6          An unknown error has occurred
+=========  ============================================================================

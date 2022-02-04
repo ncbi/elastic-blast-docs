@@ -66,6 +66,11 @@ ElasticBLAST search succeeded, results can be found in ....".
 When at least one job fails, this command prints "Your ElasticBLAST search
 failed".
 
+Notably, the ``status`` command supports the ``--exit-code`` command line option,
+which changes the application's exit code to indicate the
+status of an ElasticBLAST search. Please see :ref:`status-via-exit-codes` for
+details.
+
 For additional details, please run ``elastic-blast status --help``.
 
 .. _delete:

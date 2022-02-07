@@ -72,6 +72,10 @@ Set up an output bucket (if one doesn't exist)
 
     gsutil ls gs://elasticblast-${USER} >& /dev/null || gsutil mb gs://elasticblast-${USER}
 
+Enable auto-shutdown feature
+----------------------------
+
+Please follow the instructions in :ref:`janitor`.
 
 Configure ElasticBLAST
 ----------------------

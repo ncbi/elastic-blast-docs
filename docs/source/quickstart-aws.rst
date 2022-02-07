@@ -70,6 +70,11 @@ Set up an output bucket (if one doesn't exist)
 
 Substitute your name for "YOURNAME" using all lower case letters.
 
+Enable auto-shutdown feature
+----------------------------
+
+Please follow the instructions in :ref:`janitor`.
+
 
 Configure ElasticBLAST
 ----------------------

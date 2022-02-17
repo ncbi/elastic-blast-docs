@@ -53,7 +53,7 @@ If you are working on Debian or Ubuntu Linux distribution and have ``root`` perm
 .. _gcp_free_trial:
 
 Using the Free Trial at GCP
---------------------------
+---------------------------
 
 GCP has a Free Trial for new users (https://cloud.google.com/free).  The Free Trial comes with some restrictions that are important for ElasticBLAST users.  These include only being able to run eight cores concurrently and limiting the persistent disk size to 250G (https://cloud.google.com/terms/free-trial).  Normally, ElasticBLAST would run more than eight cores at a time and the default persistent disk size is 3000G.  
 

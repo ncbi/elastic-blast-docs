@@ -50,6 +50,9 @@ Copy and paste the commands below at the Cloud Shell prompt to install ElasticBL
 
 .. code-block:: shell
 
+    sudo apt-get install python-wheel
+    sudo pip3 install --upgrade setuptools
+    sudo pip3 install --upgrade pip
     sudo pip3 install elastic-blast
 
 In some cases (e.g., not on the cloud), it may be preferable to run these commands without using "sudo" (which runs these commands with root permissions). 

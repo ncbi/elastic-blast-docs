@@ -23,7 +23,16 @@
 Support
 =======
 
+
 Please email help requests or bug reports to elastic-blast-support@ncbi.nlm.nih.gov
+Before submitting a bug report, please ensure you are using ElasticBLAST version {VERSION}.
+If not, please kindly upgrade your installation, as the issue you are running
+into may have been already addressed.
+
+Please also see the troubleshooting pages:
+
+* :ref:`PyPI installation troubleshooting <missing_wheel>`
+* :ref:`troubleshooting`
 
 Please help the development team help you: 
 

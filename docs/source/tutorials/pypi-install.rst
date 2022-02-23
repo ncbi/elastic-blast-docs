@@ -62,6 +62,8 @@ After running this command, you should get the following output:
     elastic-blast {VERSION}
 
 
+.. _missing_wheel:
+
 Troubleshooting
 ^^^^^^^^^^^^^^^
 

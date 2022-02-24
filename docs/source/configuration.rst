@@ -604,7 +604,7 @@ Input/output configuration options
 
     Sets the logging threshold. Can only be set via the command line argument ``--loglevel``.
 
-    * Default: ``INFO``
+    * Default: ``DEBUG``
     * Values: One of ``DEBUG``, ``INFO``, ``WARNING``, ``ERROR``, ``CRITICAL``
 
 

@@ -35,6 +35,9 @@ In this quickstart, you will run a BLASTP (protein-protein) search with ElasticB
 
 You will use AWS CloudShell for this first ElasticBLAST run. The CloudShell already has some of the needed software installed and is easy to start up.  Read about starting the CloudShell `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#how-to-get-started>`__.
 
+Please note that the cloudshell environment is best suited for evaluating and
+learning how to use ElasticBLAST. 
+
 In order to complete this quickstart, you will need to be familiar with the AWS console, have an account at AWS, be comfortable with the command-line and editing files with a text editor.
 
 Get ElasticBLAST

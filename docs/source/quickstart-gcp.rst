@@ -38,6 +38,9 @@ You will use Google Cloud Shell for this first ElasticBLAST run.  The Cloud Shel
 
 To start up the Cloud Shell, follow these `instructions <https://cloud.google.com/shell/docs/using-cloud-shell>`_.
 
+Please note that the cloudshell environment is best suited for evaluating and
+learning how to use ElasticBLAST. 
+
 In order to complete this quickstart, you will need to be familiar with the GCP console, have an account at GCP, be comfortable with the command-line and editing files with a text editor.  
 
 As you work through this quickstart, you may occasionally see a message from the Cloud Shell asking you to authorize use of GCP API's.  Simply select the "Authorize" button. 

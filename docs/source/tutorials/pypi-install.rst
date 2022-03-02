@@ -30,8 +30,8 @@ Create a new python virtual environment
 
 .. code-block:: bash
 
-    [ -d .elastic-blast-venv ] && rm -fr .elastic-blast-venv
-    python3 -m venv .elastic-blast-venv
+    [ -d .elb-venv ] && rm -fr .elb-venv
+    python3 -m venv .elb-venv
 
 
 Activate the virtual environment
@@ -39,7 +39,7 @@ Activate the virtual environment
 
 .. code-block:: bash
 
-    source .elastic-blast-venv/bin/activate
+    source .elb-venv/bin/activate
 
 Install the latest version of ElasticBLAST
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -69,14 +69,27 @@ Troubleshooting
 
 If you run into installation problems that mention ``WARNING: The wheel
 package is not available``, please run the command below and kindly re-try
-the installation process.
+installing ``elastic-blast``:
 
 .. code-block:: bash
 
     pip install wheel
+    pip install elastic-blast=={VERSION}
 
-If you run into installation problems on AWS, please run the command below and kindly re-try the installation process.
+If you run into installation problems on the AWS CloudShell, please run the
+commands below and kindly re-try the installation process.
 
 .. code-block:: bash
 
+    deactivate
     sudo yum install -y python3-wheel
+
+If you run into installation problems on the GCP CloudShell, please run the
+commands below and kindly re-try the installation process.
+
+.. code-block:: bash
+
+    deactivate
+    sudo apt-get install -y python-wheel
+    sudo pip3 install --upgrade setuptools
+    sudo pip3 install --upgrade pip

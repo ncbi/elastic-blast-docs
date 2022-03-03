@@ -49,20 +49,20 @@ As you work through this quickstart, you may occasionally see a message from the
 Get ElasticBLAST
 ----------------
 
-Copy and paste the commands below at the Cloud Shell prompt to install ElasticBLAST.
+Copy and paste the commands below at the CloudShell prompt to install
+ElasticBLAST.
 
-.. code-block:: shell
+.. code-block:: bash
 
-    sudo apt-get install python-wheel
-    sudo pip3 install --upgrade setuptools
-    sudo pip3 install --upgrade pip
-    sudo pip3 install elastic-blast
+    [ -d .elb-venv ] && rm -fr .elb-venv
+    python3 -m venv .elb-venv && source .elb-venv/bin/activate
+    pip install wheel
+    pip install elastic-blast=={VERSION}
 
-You may see a message about setuptools replacing distutils, but that can be safely ignored.
 
-In some cases (e.g., not on the cloud), it may be preferable to run these commands without using "sudo" (which runs these commands with root permissions). 
-
-The instructions in this quickstart assume that you are working from the directory where you installed ElasticBLAST.
+Following these instructions will add ``elastic-blast``
+to your ``PATH``. If you run into any trouble, please see the
+:ref:`missing_wheel` section.
 
 Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly installed, the first one will report the version of ElasticBLAST installed and the second one will give you the help message.
 
@@ -71,7 +71,7 @@ Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly ins
     elastic-blast --version
     elastic-blast --help
 
-If you are familiar with python, please see :ref:`tutorial_pypi`. Following these instructions will add ``elastic-blast`` to your ``PATH``.
+You may see a message about setuptools replacing distutils, but that can be safely ignored.
 
 Set up an output bucket (if one doesn't exist)
 ----------------------------------------------

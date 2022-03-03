@@ -43,8 +43,18 @@ In order to complete this quickstart, you will need to be familiar with the AWS 
 Get ElasticBLAST
 ----------------
 
-Please follow the instructions on :ref:`tutorial_pypi` or
-:ref:`tutorial_conda`. Following these instructions will add ``elastic-blast``
+Copy and paste the commands below at the CloudShell prompt to install
+ElasticBLAST.
+
+.. code-block:: bash
+
+    [ -d .elb-venv ] && rm -fr .elb-venv
+    python3 -m venv .elb-venv
+    source .elb-venv/bin/activate
+    pip install elastic-blast=={VERSION}
+
+
+Following these instructions will add ``elastic-blast``
 to your ``PATH``. If you run into any trouble, please see the
 :ref:`missing_wheel` section.
 

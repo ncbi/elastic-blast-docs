@@ -55,8 +55,8 @@ ElasticBLAST.
 .. code-block:: bash
 
     [ -d .elb-venv ] && rm -fr .elb-venv
-    python3 -m venv .elb-venv
-    source .elb-venv/bin/activate
+    python3 -m venv .elb-venv && source .elb-venv/bin/activate
+    pip install wheel
     pip install elastic-blast=={VERSION}
 
 

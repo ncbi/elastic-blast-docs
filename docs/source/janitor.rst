@@ -32,10 +32,39 @@ You only need to do this once per user or service account.
 "elastic-blast delete" to avoid incurring charges after ElasticBLAST
 has completed its operation or failed.**
 
+.. _grant_cluster_admin:
+
 Google Cloud Platform (GCP)
 ---------------------------
 
-Add ``roles/container.admin`` to your :ref:`user or service account <grant_cluster_admin>`.
+This feature requires to have the ``roles/container.admin`` added to your
+user, group, or service account. The script below (provided with ElasticBLAST) 
+can help you set this up. Invoking it as follows will display its online help:
+
+.. code-block:: bash
+
+   gcp-setup-elastic-blast-janitor.sh -h
+
+By default, the script assumes you are using your personal user account, but
+if you are using a service account (e.g.: the output of 
+``gcloud config get-value account`` ends in ``gserviceaccount.com``), you
+will need to specify its ``-u`` argument.  For instance, invoke the 
+command below replacing ``SVC_ACCT`` with the 
+appropriate value:
+
+.. code-block:: bash
+
+   gcp-setup-elastic-blast-janitor.sh -u serviceAccount:SVC_ACCT
+
+This script is a wrapper around the command ``gcloud projects add-iam-policy-binding``.
+Please see the `GCP documentation <https://cloud.google.com/sdk/gcloud/reference/projects/add-iam-policy-binding>`_ 
+for additional details.
+
+If this operation fails, you may need to ask your GCP account administrator to
+run the aforementioned script on your behalf. If this is not possible, setting the
+``ELB_DISABLE_AUTO_SHUTDOWN`` and ``ELB_DISABLE_JOB_SUBMISSION_ON_THE_CLOUD``
+environment variables to any value will disable the auto-shutdown feature.
+
 
 Amazon Web Services (AWS)
 -------------------------

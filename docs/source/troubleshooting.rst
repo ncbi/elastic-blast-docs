@@ -261,7 +261,7 @@ account.
     ERROR: The command "kubectl --context=[...] -f/lib/python3.9/site-packages/elastic_blast/templates/elb-janitor-rbac.yaml" returned with exit code 1
     Error from server (Forbidden): error when creating "/lib/python3.9/site-packages/elastic_blast/templates/elb-janitor-rbac.yaml": clusterrolebindings.rbac.authorization.k8s.io is forbidden: User "USERNAME" cannot create resource "clusterrolebindings" in API group "rbac.authorization.k8s.io" at the cluster scope: requires one of ["container.clusterRoleBindings.create"] permission(s).
 
-You can grant the :ref:`required permissions using the provided script {{gcp-setup-elastic-blast-janitor.sh}} <grant_cluster_admin>`.
+You can grant the :ref:`required permissions using the provided script <grant_cluster_admin>`.
 
 **Please keep in mind that disabling this feature requires you to invoke
 "elastic-blast delete" to avoid incurring charges after ElasticBLAST

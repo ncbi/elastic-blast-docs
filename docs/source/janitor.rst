@@ -48,15 +48,17 @@ can help you set this up. Invoking it as follows will display its online help:
 By default, the script assumes you are using your personal user account, but
 if you are using a service account (e.g.: the output of 
 ``gcloud config get-value account`` ends in ``gserviceaccount.com``), you
-will need to specify its ``-u`` argument.  For instance:
+will need to specify its ``-u`` argument.  For instance, invoke the 
+command below replacing ``SVC_ACCT`` with the 
+appropriate value:
 
 .. code-block:: bash
 
-   gcp-setup-elastic-blast-janitor.sh -u serviceAccount:281282530694-compute@developer.gserviceaccount.com
+   gcp-setup-elastic-blast-janitor.sh -u serviceAccount:SVC_ACCT
 
-This script is essentially a wrapper around the command ``gcloud projects add-iam-policy-binding``.
-Please see https://cloud.google.com/sdk/gcloud/reference/projects/add-iam-policy-binding
-for its documentation.
+This script is a wrapper around the command ``gcloud projects add-iam-policy-binding``.
+Please see the `GCP documentation <https://cloud.google.com/sdk/gcloud/reference/projects/add-iam-policy-binding>`_ 
+for additional details.
 
 If this operation fails, you may need to ask your GCP account administrator to
 run the command on your behalf. If this is not possible, setting the

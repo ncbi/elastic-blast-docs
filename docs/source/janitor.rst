@@ -61,11 +61,7 @@ Please see the `GCP documentation <https://cloud.google.com/sdk/gcloud/reference
 for additional details.
 
 If this operation fails, you may need to ask your GCP account administrator to
-run the command on your behalf. If this is not possible, setting the
-``ELB_DISABLE_AUTO_SHUTDOWN`` and ``ELB_DISABLE_JOB_SUBMISSION_ON_THE_CLOUD``
-environment variables to any value will disable
-the auto-shutdown feature and remove the requirement for these additional
-permissions. 
+run the aforementioned script on your behalf. 
 
 Amazon Web Services (AWS)
 -------------------------

@@ -33,8 +33,7 @@ leveraged to determine that the Cloud Service Provider is AWS and the
 ``us-east-1`` AWS region is used by default. The AWS region can be overriden
 with the ``--aws-region`` parameter.
 
-In contrast, GCP requires the explicit specification of the :ref:`elb_gcp_project`, 
-:ref:`elb_gcp_region`, and the :ref:`elb_gcp_zone`.
+In contrast, GCP requires the explicit specification of the :ref:`elb_gcp_project`.
 
 Search submission
 -----------------
@@ -64,8 +63,6 @@ by the command line interface.
 
    elastic-blast submit \
        --gcp-project ${YOUR_GCP_PROJECT_ID} \
-       --gcp-region us-east4 \
-       --gcp-zone us-east4-b \
        --program blastp \
        --db refseq_protein \
        --query gs://elastic-blast-samples/queries/protein/BDQA01.1.fsa_aa \
@@ -88,9 +85,7 @@ status of an ElasticBLAST search.
    :caption: GCP
 
     elastic-blast status --results ${YOUR_RESULTS_BUCKET} \
-       --gcp-project ${YOUR_GCP_PROJECT_ID} \
-       --gcp-region us-east4 \
-       --gcp-zone us-east4-b \
+       --gcp-project ${YOUR_GCP_PROJECT_ID}
 
 Deleting cloud resources
 ------------------------
@@ -110,6 +105,4 @@ an ElasticBLAST search.
    :caption: GCP
 
     elastic-blast delete --results ${YOUR_RESULTS_BUCKET} \
-       --gcp-project ${YOUR_GCP_PROJECT_ID} \
-       --gcp-region us-east4 \
-       --gcp-zone us-east4-b
+       --gcp-project ${YOUR_GCP_PROJECT_ID}

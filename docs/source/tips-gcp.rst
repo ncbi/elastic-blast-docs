@@ -73,8 +73,6 @@ Below is a configuration file that should work under the Free Trial as of Januar
 
     [cloud-provider]
     gcp-project = YOUR_GCP_PROJECT_ID
-    gcp-region = us-east4   
-    gcp-zone = us-east4-b
 
     [cluster]
     num-nodes = 1

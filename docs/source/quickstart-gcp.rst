@@ -98,8 +98,6 @@ Start by copying the configuration file shown below.  Using an editor, write thi
 
     [cloud-provider]
     gcp-project = YOUR_GCP_PROJECT_ID
-    gcp-region = us-east4   
-    gcp-zone = us-east4-b
 
     [cluster]
     num-nodes = 2

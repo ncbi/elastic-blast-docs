@@ -50,9 +50,9 @@ Cloud provider configuration
 ``GCP region``
 ^^^^^^^^^^^^^^
 
-    Name of the GCP region to use. Recommended value: ``us-east4``.
+    Name of the GCP region to use.
 
-    * Default: None
+    * Default: ``us-east4``
     * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
     * Applies to: GCP
 
@@ -68,9 +68,9 @@ Cloud provider configuration
 ``GCP zone`` 
 ^^^^^^^^^^^^
 
-    Name of the GCP zone to use. Recommended value: ``us-east4-b``.
+    Name of the GCP zone to use.
 
-    * Default: None
+    * Default: ``us-east4-b``
     * Values: String, see `GCP region/zone documentation <https://cloud.google.com/compute/docs/regions-zones#available>`_
     * Applies to: GCP
 

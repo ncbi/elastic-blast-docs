@@ -100,7 +100,7 @@ Start by copying the configuration file shown below.  Using an editor, write thi
     gcp-project = YOUR_GCP_PROJECT_ID
 
     [cluster]
-    num-nodes = 2
+    num-nodes = 6
     labels = owner=USER
 
     [blast]
@@ -120,7 +120,7 @@ If you created your results bucket with the gsutil command above, it will be as 
 
 ElasticBLAST will place your results at gs://elasticblast-${USER}/results/BDQA.  For your next search, you should use a different token than BDQA or remove those results, otherwise elastic-blast will refuse to run as it would overwrite your old results.  
 
-This configuration file specifies two GCP instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a cloud bucket) against the refseq_protein database.
+This configuration file specifies six GCP instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a cloud bucket) against the refseq_protein database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 

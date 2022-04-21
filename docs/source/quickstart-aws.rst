@@ -51,7 +51,7 @@ ElasticBLAST.
     [ -d .elb-venv ] && rm -fr .elb-venv
     python3 -m venv .elb-venv
     source .elb-venv/bin/activate
-    pip install elastic-blast=={VERSION}
+    pip install wheel elastic-blast=={VERSION}
 
 
 Following these instructions will add ``elastic-blast``
@@ -99,7 +99,7 @@ Start by, copying the configuration file shown below.  Using an editor, write th
     aws-region = us-east-1
 
     [cluster]
-    num-nodes = 2
+    num-nodes = 3
     labels = owner=YOURNAME
 
     [blast]
@@ -116,7 +116,7 @@ You will need to make the following changes to the configuration file:
 
 ElasticBLAST will place your results at gs://elasticblast-YOURNAME/results/BDQA.  For your next search, you should use a different token than BDQA or remove those results, otherwise elastic-blast will refuse to run as it would overwrite your old results.
 
-This configuration file specifies two AWS instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a public cloud bucket) against the refseq_protein database.
+This configuration file specifies three AWS instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a public cloud bucket) against the refseq_protein database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 
@@ -238,9 +238,9 @@ Alternatively, you can also invoke the script
 Summary
 -------
 
-You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  The BLAST search was selected to be quick and inexpensive to run with a query set of only 548 proteins and the relatively small refseq_protein database.
+You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  The BLAST search was selected to be quick and inexpensive to run with a query set of 548 proteins and the refseq_protein database.
 
-You used the CloudShell to launch your search.  The CloudShell has the advantage that it is easy to start up and already has the AWS CLI SDK  and python installed.  The CloudShell has `limitations <https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html>`_ and you may want to consider other environments for further work.  ElasticBLAST can also be started from your own machine or a cloud instance you have brought up.  In that case, you will need to make sure that the :ref:`requirements <requirements>` have been met.  You should also look at :ref:`AWS Configuration <aws_conf>` (below)
+You used the CloudShell to launch your search.  The CloudShell has the advantage that it is easy to start up and already has the AWS CLI SDK  and python installed.  The CloudShell has `limitations <https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html>`_ and you should consider other environments for further work.  ElasticBLAST can also be started from your own machine or a cloud instance you have brought up.  In that case, you will need to make sure that the :ref:`requirements <requirements>` have been met.  You should also look at :ref:`AWS Configuration <aws_conf>` (below)
 
 The :ref:`tutorials` page provides more details on ElasticBLAST as well as examples.
 

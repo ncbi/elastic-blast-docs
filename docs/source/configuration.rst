@@ -326,7 +326,7 @@ Cluster configuration
     Format as <number> immediately followed by G for gigabytes, M for megabytes.
 
     **Note**: ElasticBLAST uses ``pd-standard`` block storage by default. Per the
-    `GCP documentation on block storage <https://cloud.google.com/compute/docs/disks/performance#performance_by_disk_size>`_,
+    `GCP documentation on block storage <https://cloud.google.com/compute/docs/disks/performance>`_,
     smaller disks than ``1000G`` result in performance degradation for ElasticBLAST in GCP.
 
     * Default: ``3000G`` for GCP, ``1000G`` for AWS.
@@ -348,7 +348,7 @@ Cluster configuration
     instead of a persistent disk to store BLAST database and query sequence batches.
 
     Consider using this configuration setting if your disk quota is too small
-    (e.g.: 500GB) and it impacts performance (see `GCP documentation on block storage performance <https://cloud.google.com/compute/docs/disks/performance#performance_by_disk_size>`_), but only if the BLAST database
+    (e.g.: 500GB) and it impacts performance (see `GCP documentation on block storage performance <https://cloud.google.com/compute/docs/disks/performance>`_), but only if the BLAST database
     you are searching, your query sequence, and its results can fit into 375GB.
 
     * Default: None

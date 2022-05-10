@@ -93,7 +93,6 @@ Start by, copying the configuration file shown below.  Using an editor, write th
 
 .. code-block::
     :name: minimal-config
-    :linenos:
 
     [cloud-provider]
     aws-region = us-east-1

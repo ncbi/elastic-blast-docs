@@ -94,10 +94,11 @@ Start by copying the configuration file shown below.  Using an editor, write thi
 
 .. code-block::
     :name: minimal-config
-    :linenos:
 
     [cloud-provider]
     gcp-project = YOUR_GCP_PROJECT_ID
+    gcp-region = us-east4
+    gcp-zone = us-east4-c
 
     [cluster]
     num-nodes = 6

@@ -72,7 +72,7 @@ Set up an output bucket (if one doesn't exist)
 
 In the command below, substitute your name for "YOURNAME" using all lower case
 letters. If the bucket does not exist, there will be an error message followed
-by the creation of the bucket.
+by the creation of the bucket. You can safely ignore the error message.
 
 .. code-block:: shell
 

@@ -51,7 +51,8 @@ ElasticBLAST.
     [ -d .elb-venv ] && rm -fr .elb-venv
     python3 -m venv .elb-venv
     source .elb-venv/bin/activate
-    pip install wheel elastic-blast=={VERSION}
+    pip install wheel
+    pip install elastic-blast=={VERSION}
 
 
 Following these instructions will add ``elastic-blast``

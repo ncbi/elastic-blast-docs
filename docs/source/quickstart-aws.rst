@@ -71,11 +71,14 @@ You may see a message about setuptools replacing distutils, but that can be safe
 Set up an output bucket (if one doesn't exist)
 ----------------------------------------------
 
+In the command below, substitute your name for "YOURNAME" using all lower case
+letters. If the bucket does not exist, there will be an error message followed
+by the creation of the bucket. You can safely ignore the error message.
+
 .. code-block:: shell
 
     aws s3 ls s3://elasticblast-YOURNAME || aws s3 mb s3://elasticblast-YOURNAME
 
-Substitute your name for "YOURNAME" using all lower case letters.
 
 Enable auto-shutdown feature
 ----------------------------

@@ -2,3 +2,4 @@ sphinx
 sphinx-copybutton
 recommonmark
 docutils
+furo

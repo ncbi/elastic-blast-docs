@@ -74,12 +74,34 @@ linkcheck_ignore = [r'https://github.com/ncbi/blast_plus_docs/blob/master/README
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'furo'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+### # Taken from https://www.ncbi.nlm.nih.gov/style-guide
+### html_css_files = [
+###     'https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/css/uswds.css',
+###     'https://www.ncbi.nlm.nih.gov/style-guide/static/nwds/css/nwds.css',
+###     'https://www.ncbi.nlm.nih.gov/style-guide/static/nwds/css/header.css',
+###     'https://www.ncbi.nlm.nih.gov/style-guide/static/nwds/css/footer.css',
+###     'https://www.ncbi.nlm.nih.gov/style-guide/static/nwds/css/form.css',
+###     "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+###     'https://www.ncbi.nlm.nih.gov/style-guide/static/main/css/pre-nwds.css',
+###     'https://www.ncbi.nlm.nih.gov/style-guide/static/main/css/style-guide.css',
+###     'https://www.ncbi.nlm.nih.gov/style-guide/static/main/css/ncbi-datatable.css',
+###     "https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"
+### ]
+
+# https://pradyunsg.me/furo/customisation/edit-button/
+html_theme_options = {
+    "theme-color": 'light',
+    "source_repository": "https://github.com/ncbi/elastic-blast-docs",
+    "source_branch": "master",
+    "source_directory": "docs/",
+}
 
 # CopyButton configuration
 copybutton_prompt_text = ">>> "

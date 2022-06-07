@@ -79,6 +79,12 @@ by the creation of the bucket. You can safely ignore the error message.
 
     aws s3 ls s3://elasticblast-YOURNAME || aws s3 mb s3://elasticblast-YOURNAME
 
+You may verify that the bucket now exists by executing:
+
+.. code-block:: shell
+
+    aws s3 ls s3://elasticblast-YOURNAME
+
 
 Enable auto-shutdown feature
 ----------------------------
@@ -102,12 +108,12 @@ Start by, copying the configuration file shown below.  Using an editor, write th
     aws-region = us-east-1
 
     [cluster]
-    num-nodes = 3
+    num-nodes = 1
     labels = owner=YOURNAME
 
     [blast]
     program = blastp
-    db = refseq_protein
+    db = swissprot
     queries = s3://elasticblast-test/queries/BDQA01.1.fsa_aa
     results = s3://elasticblast-YOURNAME/results/BDQA
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname"  
@@ -117,13 +123,13 @@ You will need to make the following changes to the configuration file:
 #. Replace YOURNAME on the "label" line with your name using all lower case letters.
 #. Replace YOURNAME on the "results" line with your name using all lower case letters.
 
-ElasticBLAST will place your results at gs://elasticblast-YOURNAME/results/BDQA.  For your next search, you should use a different token than BDQA or remove those results, otherwise elastic-blast will refuse to run as it would overwrite your old results.
+ElasticBLAST will place your results at s3://elasticblast-YOURNAME/results/BDQA.  For your next search, you should use a different token than BDQA or remove those results, otherwise elastic-blast will refuse to run as it would overwrite your old results.
 
-This configuration file specifies three AWS instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a public cloud bucket) against the refseq_protein database.
+Since this is a small search, the configuration file specifies one AWS instance, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a public cloud bucket) against the swissprot database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 
-This search should take about 30 minutes to run and cost less than $3.
+This search should take about 10 minutes to run and cost less than $2.
 
 Run ElasticBLAST
 ----------------
@@ -132,7 +138,7 @@ Run ElasticBLAST
 
     elastic-blast submit --cfg BDQA.ini
 
-The :ref:`submit` command can take several minutes as it brings up cloud resources and downloads the BLAST database.
+The :ref:`submit` command can take a few minutes as it brings up cloud resources and downloads the BLAST database.
 
 You may also see an informational message about "awslimitchecker", which requires no action on your part. 
 
@@ -140,18 +146,17 @@ If your cloud shell session disconnects, please see :ref:`cloud_shell_disconnect
 
 Monitor progress
 ----------------
-To check on the progress of the search, inspect the :ref:`logfile
-<elb_logfile>` and/or run the command below:
+To check on the progress of the search, run the command below:
 
 .. code-block:: bash
 
     elastic-blast status --cfg BDQA.ini
 
-For additional details, please see :ref:`the status command documentation
-<status>`.
+At first, it will simply return the word "SUBMITTING", but that should quickly change
+to a report on the number of jobs and their status.  For additional details, please 
+see :ref:`the status command documentation <status>`.
 
 Once all batches have finished, you can download results as shown below.
-
 
 Download results
 ----------------
@@ -167,34 +172,33 @@ Now, use the command below to download your results from your results bucket. Th
 
     aws s3 cp ${YOUR_RESULTS_BUCKET}/ . --exclude "*" --include "*.out.gz" --recursive
 
-ElasticBLAST breaks your set of queries into multiple batches and runs one search per batch.  Your results are returned with the results of each batch in a separate file.
+Running "ls" in the CloudShell should list a file named "batch_000-blastp-swissprot.out.gz".
 
-Running "ls" in the CloudShell should list 21 files named something like "batch_000-blastp-refseq_protein.out.gz".
+ElasticBLAST breaks your set of queries into multiple batches and runs one search per batch.  Your results are returned with the results of each batch in a separate file.  For this small database, there is only one batch.  Larger searches will have multiple batches.
 
-Use the commands below to decompress the first batch and then view with "less".
+Use the commands below to decompress the results and then view with "less".
 
 .. code-block:: bash
 
-    gunzip batch_000-blastp-refseq_protein.out.gz 
-    less batch_000-blastp-refseq_protein.out
+    gunzip batch_000-blastp-swissprot.out.gz 
+    less batch_000-blastp-swissprot.out
 
-You will see tabular output with matches to the refseq_protein database.  The output also includes the super-kingdom and scientific name of the database sequence found.  The queries come from a WGS study of viral metagnomes (`BDQA <https://www.ncbi.nlm.nih.gov/Traces/wgs/BDQA01>`_) so having the taxonomic information helps you to determine whether a query is really from a virus and which one.
+You will see tabular output with matches to the swissprot database.  The output also includes the super-kingdom and scientific name of the database sequence found.  The queries come from a WGS study of viral metagnomes (`BDQA <https://www.ncbi.nlm.nih.gov/Traces/wgs/BDQA01>`_) so having the taxonomic information helps you to determine whether a query is really from a virus and which one.
 
 
-The results for one query, GBH21861.1, are shown below.  The first match covers the entire query, the second covers most of it, and both are statistically significant, as judged by the expect value.  This report lists the super-kingdom as "Viruses" in both cases. The scientific names are in the rightmost fields (scroll the window to see these).  
+The results for one query, GBH21753.1, are shown below.  Both matches cover most of the query and the database sequences, and both are statistically significant, as judged by the expect value.  This report lists the super-kingdom as "Viruses" in both cases. The scientific names are in the rightmost fields (scroll the window to see these).  
 
 ::
 
-    # BLASTP 2.11.4+
-    # Query: GBH21861.1 hypothetical protein [viral metagenome]
-    # Database: refseq_protein
+    # BLASTP 2.13.0+
+    # Query: GBH21753.1 RdRp [viral metagenome]
+    # Database: swissprot
     # Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score, subject super kingdoms, subject sci name
     # 2 hits found
-    GBH21861.1      YP_009480351.1  81.384  419     78      0       1       419     1       419     0.0     712     Viruses Callinectes sapidus reovirus 1
-    GBH21861.1      YP_009665171.1  68.932  412     128     0       6       417     2       413     0.0     612     Viruses Eriocheir sinensis reovirus
+    GBH21753.1      Q9INJ1.1        42.799  1236    661     21      8       1222    3       1213    0.0     894     Viruses Banna virus strain JKT-6423
+    GBH21753.1      Q698V5.1        27.635  1205    766     35      62      1210    62      1216    8.43e-95        333     Viruses Eriocheir sinensis reovirus isolate 905
 
-
-You can see more information on these database matches at `YP_009480351.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009480351.1>`_ and `YP_009665171.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009665171.1>`_
+You can see more information on these database matches at `Q9INJ1.1 <https://www.ncbi.nlm.nih.gov/protein/Q9INJ1.1>`_ and `Q698V5.1 <https://www.ncbi.nlm.nih.gov/protein/Q698V5.1>`_
 
 .. _elb_aws_cleanup:
 
@@ -241,7 +245,7 @@ Alternatively, you can also invoke the script
 Summary
 -------
 
-You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  The BLAST search was selected to be quick and inexpensive to run with a query set of 548 proteins and the refseq_protein database.
+You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  The BLAST search was selected to be quick and inexpensive to run with a query set of 548 proteins and the swissprot database.
 
 You used the CloudShell to launch your search.  The CloudShell has the advantage that it is easy to start up and already has the AWS CLI SDK  and python installed.  The CloudShell has `limitations <https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html>`_ and you should consider other environments for further work.  ElasticBLAST can also be started from your own machine or a cloud instance you have brought up.  In that case, you will need to make sure that the :ref:`requirements <requirements>` have been met.  You should also look at :ref:`AWS Configuration <aws_conf>` (below)
 

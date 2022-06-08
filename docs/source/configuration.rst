@@ -34,7 +34,7 @@ Cloud provider configuration
 
     Optional: GCP project ID to use.
 
-    * Default: Value from environment variable ``CLOUDSDK_CORE_PROJECT`` and if not set default project set in ``gcloud`` configuration.
+    * Default: Default ``gcloud`` project
     * Values: String, see `Identifying projects <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_
     * Applies to: GCP
 

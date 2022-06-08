@@ -32,13 +32,13 @@ Cloud provider configuration
 ``GCP project``
 ^^^^^^^^^^^^^^^
 
-    GCP project ID to use.
+    Optional: GCP project ID to use.
 
-    * Default: None
+    * Default: Value from environment variable ``CLOUDSDK_CORE_PROJECT`` and if not set default project set in ``gcloud`` configuration.
     * Values: String, see `Identifying projects <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_
     * Applies to: GCP
 
-    Also supported via the environment variable: ``ELB_GCP_PROJECT``.
+    Also supported via the environment variable: ``ELB_GCP_PROJECT``. To see the default ``gcloud`` project you can run the command: ``gcloud config get project``.
 
 .. code-block::
 
@@ -118,6 +118,24 @@ Cloud provider configuration
     [cloud-provider]
     gcp-network = default
     gcp-subnetwork = subnet-name
+
+.. _elb_gcp_gke_version:
+
+``Google Kubernetes Engine (GKE) version``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    GKE version to use.
+
+    * Default: 1.21
+    * Values: String
+    * Applies to: GCP
+
+    To see GKE versions available in GCP in a given zone, you can run the command ``gcloud container get-server-config --zone <INSERT_GCP_ZONE_HERE>``.
+
+.. code-block::
+
+    [cloud-provider]
+    gke-version = 1.21
 
 .. _elb_aws_region:
 

@@ -38,7 +38,7 @@ Cloud provider configuration
     * Values: String, see `Identifying projects <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_
     * Applies to: GCP
 
-    Also supported via the environment variable: ``ELB_GCP_PROJECT``. To see the default ``gcloud`` project you can run the command: ``gcloud config get project``.
+    Also supported via the environment variable: ``ELB_GCP_PROJECT``. To see the default ``gcloud`` project you can run the command: ``gcloud config get project``. To set the default project run the command: ``gcloud config set project <INSERT_YOUR_GCP_PROJECT_ID_HERE>``.
 
 .. code-block::
 

@@ -1,0 +1,97 @@
+<!-- ========== BEGIN HEADER ========== -->
+<div class="usa-overlay"></div>
+<section class="usa-banner">
+	<div class="usa-accordion">
+	  <header class="usa-banner-header">
+		<div class="usa-grid usa-banner-inner">
+		  <img src="https://www.ncbi.nlm.nih.gov/coreutils/uswds/img/favicons/favicon-57.png" alt="U.S. flag">
+		  <p>An official website of the United States government</p>
+		  <button class="usa-accordion-button usa-banner-button" aria-expanded="false" aria-controls="gov-banner-top">
+			<span class="usa-banner-button-text">Here's how you know</span>
+		  </button>
+		</div>
+	  </header>
+	  <div class="usa-banner-content usa-grid usa-accordion-content" id="gov-banner-top" aria-hidden="true">
+		<div class="usa-banner-guidance-gov usa-width-one-half">
+		  <img class="usa-banner-icon usa-media_block-img" src="https://www.ncbi.nlm.nih.gov/coreutils/uswds/img/icon-dot-gov.svg" alt="Dot gov">
+		  <div class="usa-media_block-body">
+			<p>
+			  <strong>The .gov means it’s official.</strong>
+			  <br>
+			  Federal government websites often end in .gov or .mil. Before
+			  sharing sensitive information, make sure you’re on a federal
+			  government site.
+			</p>
+		  </div>
+		</div>
+		<div class="usa-banner-guidance-ssl usa-width-one-half">
+		  <img class="usa-banner-icon usa-media_block-img" src="https://www.ncbi.nlm.nih.gov/coreutils/uswds/img/icon-https.svg" alt="Https">
+		  <div class="usa-media_block-body">
+			<p>
+			  <strong>The site is secure.</strong>
+			  <br>
+			  The <strong>https://</strong> ensures that you are connecting to the
+			  official website and that any information you provide is encrypted
+			  and transmitted securely.
+			</p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+<header class="ncbi-header" role="banner" data-section="Header">
+
+	<div class="usa-grid">
+		<div class="usa-width-one-whole">
+
+            <div class="ncbi-header__logo">
+                <a href="https://www.ncbi.nlm.nih.gov/" class="logo" aria-label="NCBI Logo" data-ga-action="click_image" data-ga-label="NIH NLM Logo">
+                  <img src="https://www.ncbi.nlm.nih.gov/coreutils/nwds/img/logos/AgencyLogo.svg" alt="NIH NLM Logo" />
+                </a>
+            </div>
+
+			<div class="ncbi-header__account">
+				<a id="account_login" href="https://account.ncbi.nlm.nih.gov" class="usa-button header-button" style="display:none" data-ga-action="open_menu" data-ga-label="account_menu">Log in</a>
+				<button id="account_info" class="header-button" style="display:none"
+						aria-controls="account_popup">
+					<span class="fa fa-user" aria-hidden="true"></span>
+					<span class="username desktop-only" aria-hidden="true" id="uname_short"></span>
+					<span class="sr-only">Show account info</span>
+				</button>
+			</div>
+
+			<div class="ncbi-popup-anchor">
+				<div class="ncbi-popup account-popup" id="account_popup" aria-hidden="true">
+					<div class="ncbi-popup-head">
+						<button class="ncbi-close-button" data-ga-action="close_menu" data-ga-label="account_menu"><span class="fa fa-times"></span><span class="usa-sr-only">Close</span></button>
+						<h4>Account</h4>
+					</div>
+					<div class="account-user-info">
+						Logged in as:<br/>
+						<b><span class="username" id="uname_long">username</span></b>
+					</div>
+					<div class="account-links">
+						<ul class="usa-unstyled-list">
+							<li><a id="account_myncbi" href="/myncbi/" class="set-base-url" data-ga-action="click_menu_item" data-ga-label="account_myncbi">Dashboard</a></li>
+							<li><a id="account_pubs" href="/myncbi/collections/bibliography/" class="set-base-url" data-ga-action="click_menu_item" data-ga-label="account_pubs">Publications</a></li>
+							<li><a id="account_settings" href="/account/settings/" class="set-base-url" data-ga-action="click_menu_item" data-ga-label="account_settings">Account settings</a></li>
+							<li><a id="account_logout" href="/account/signout/" class="set-base-url" data-ga-action="click_menu_item" data-ga-label="account_logout">Log out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</header>
+<div role="navigation" aria-label="access keys">
+<a id="nws_header_accesskey_0" href="https://www.ncbi.nlm.nih.gov/guide/browsers/#ncbi_accesskeys" class="usa-sr-only" accesskey="0" tabindex="-1">Access keys</a>
+<a id="nws_header_accesskey_1" href="https://www.ncbi.nlm.nih.gov" class="usa-sr-only" accesskey="1" tabindex="-1">NCBI Homepage</a>
+<a id="nws_header_accesskey_2" href="/myncbi/" class="set-base-url usa-sr-only" accesskey="2" tabindex="-1">MyNCBI Homepage</a>
+<a id="nws_header_accesskey_3" href="#maincontent" class="usa-sr-only" accesskey="3" tabindex="-1">Main Content</a>
+<a id="nws_header_accesskey_4" href="#" class="usa-sr-only" accesskey="4" tabindex="-1">Main Navigation</a>
+</div>
+<section data-section="Alerts">
+	<div class="ncbi-alerts-placeholder"></div>
+</section>
+<!-- ========== END HEADER ========== -->

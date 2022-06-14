@@ -1,0 +1,13 @@
+div.sphinxsidebarwrapper h1.logo { 
+    font-size: 200%;
+}
+
+div.sphinxsidebar #searchbox input[type="text"] { 
+    height: inherit;
+    padding: 1px 0.25em;
+}
+
+div.sphinxsidebar #searchbox input[type="submit"] { 
+    height: inherit;
+    margin: 2px 0 0 0 ;        
+}

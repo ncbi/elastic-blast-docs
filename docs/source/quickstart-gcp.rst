@@ -60,9 +60,7 @@ ElasticBLAST.
     pip install elastic-blast=={VERSION}
 
 
-Following these instructions will add ``elastic-blast``
-to your ``PATH``. If you run into any trouble, please see the
-:ref:`missing_wheel` section.
+Following these instructions will add ``elastic-blast`` to your ``PATH``. 
 
 Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly installed, the first one will report the version of ElasticBLAST installed and the second one will give you the help message.
 
@@ -76,19 +74,25 @@ You may see a message about setuptools replacing distutils, but that can be safe
 Set up an output bucket (if one doesn't exist)
 ----------------------------------------------
 
-Please run the command below to create or verify that a results bucket
-rexists. If the bucket does not exist, there will be an error message followed
-by the creation of the bucket. You can safely ignore the error message.
+To run ElasticBLAST, you will need a cloud bucket to store files.  Cloud buckets are
+independent from a running instance and much cheaper.  ElasticBLAST uses your cloud
+bucket to stage files and also deliver your final results.
 
-.. code-block:: shell
-
-    gsutil ls gs://elasticblast-${USER} >& /dev/null || gsutil mb gs://elasticblast-${USER}
-
-You may verify that the bucket now exists by executing:
+If you already have a cloud bucket named gs://elasticblast-${USER} (with ${USER} being your username),
+then run the command below to verify that it exists.
 
 .. code-block:: shell
 
     gsutil ls gs://elasticblast-${USER}
+
+
+If your bucket exists (no error message) then you should move onto the next section.
+
+If you do not have a bucket, then you need to make one using the command below.  
+
+.. code-block:: shell
+
+    gsutil mb gs://elasticblast-${USER}
 
 
 Enable auto-shutdown feature
@@ -100,6 +104,11 @@ Configure ElasticBLAST
 ----------------------
 
 You will use a configuration file to specify your input to ElasticBLAST.  Once you have written the configuration file, you'll just need to tell ElasticBLAST about it when invoked.
+
+You will need to make the following changes to the configuration file:
+
+#. Replace USER on the "label" line with your actual username using all lower case letters (value of ${USER}).
+#. Replace USER on the "results" line with your actual username using all lower case letters (value of ${USER}).
 
 Start by copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQA.ini".  Both nano and vi are available on the Cloud Shell.
 
@@ -119,10 +128,6 @@ Start by copying the configuration file shown below.  Using an editor, write thi
     results = gs://elasticblast-USER/results/BDQA
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname" 
 
-You will need to make the following changes to the configuration file:
-
-#. Replace USER on the "label" line with your actual username using all lower case letters (value of ${USER}).
-#. Replace USER on the "results" line with your actual username using all lower case letters (value of ${USER}).
 
 If you created your results bucket with the gsutil command above, it will be as shown in the configuration file above.  
 

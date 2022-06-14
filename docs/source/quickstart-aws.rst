@@ -35,10 +35,13 @@ In this quickstart, you will run a BLASTP (protein-protein) search with ElasticB
 
 You will use AWS CloudShell for this first ElasticBLAST run. The CloudShell already has some of the needed software installed and is easy to start up.  Read about starting the CloudShell `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#how-to-get-started>`__.
 
-Please note that the cloudshell environment is best suited for evaluating and
-learning how to use ElasticBLAST. 
+Please note that the cloudshell environment is best suited for evaluating and learning how to use ElasticBLAST. 
 
 In order to complete this quickstart, you will need to be familiar with the AWS console, have an account at AWS, be comfortable with the command-line and editing files with a text editor.
+
+In this quickstart, we will ask you to replace YOURNAME (all capitals) with your real name, in all lower-case letters
+(as only lower-case letters are accepted for some cloud variables). For example, if your name is Jane Smith, you will need to 
+change s3://elasticblast-YOURNAME to s3://elasticblast-janesmith
 
 Get ElasticBLAST
 ----------------
@@ -71,20 +74,25 @@ You may see a message about setuptools replacing distutils, but that can be safe
 Set up an output bucket (if one doesn't exist)
 ----------------------------------------------
 
-In the command below, substitute your name for "YOURNAME" using all lower case
-letters. If the bucket does not exist, there will be an error message followed
-by the creation of the bucket. You can safely ignore the error message.
+To run ElasticBLAST, you will need a cloud bucket to store files.  Cloud buckets are 
+independent from a running instance and much cheaper.  ElasticBLAST uses your cloud
+bucket to stage files and also deliver your final results.
 
-.. code-block:: shell
-
-    aws s3 ls s3://elasticblast-YOURNAME || aws s3 mb s3://elasticblast-YOURNAME
-
-You may verify that the bucket now exists by executing:
+If you already have a cloud bucket named "s3://elasticblast-YOURNAME" (with YOURNAME substituted by your real name in 
+*lower-case* letters) then run the command below to verify that it exists.  
 
 .. code-block:: shell
 
     aws s3 ls s3://elasticblast-YOURNAME
 
+If your bucket exists (no error message) then you should move onto the next section. 
+
+If you do not have a bucket, then you need to make one using the command below.  In the command below, 
+substitute your name for "YOURNAME" using all *lower-case* letters. 
+
+.. code-block:: shell
+
+    aws s3 mb s3://elasticblast-YOURNAME
 
 Enable auto-shutdown feature
 ----------------------------
@@ -96,6 +104,11 @@ Configure ElasticBLAST
 ----------------------
 
 You will use a configuration file to specify your input to ElasticBLAST.  Once you have written the configuration file, you'll just need to tell ElasticBLAST about it when invoked.
+
+You will need to personalize the configuration file by making the following changes:
+
+#. Replace YOURNAME on the "label" line with your name using all lower case letters.
+#. Replace YOURNAME on the "results" line with your name using all lower case letters. 
 
 Start by, copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQA.ini".  Vi is pre-installed in the CloudShell.  Instructions for installing nano on the CloudShell can be found `here <https://docs.aws.amazon.com/cloudshell/latest/userguide/vm-specs.html#installing-software>`__.
 
@@ -118,10 +131,6 @@ Start by, copying the configuration file shown below.  Using an editor, write th
     results = s3://elasticblast-YOURNAME/results/BDQA
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname"  
 
-You will need to make the following changes to the configuration file:
-
-#. Replace YOURNAME on the "label" line with your name using all lower case letters.
-#. Replace YOURNAME on the "results" line with your name using all lower case letters.
 
 ElasticBLAST will place your results at s3://elasticblast-YOURNAME/results/BDQA.  For your next search, you should use a different token than BDQA or remove those results, otherwise elastic-blast will refuse to run as it would overwrite your old results.
 

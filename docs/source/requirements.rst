@@ -29,7 +29,7 @@ Requirements
 Google Cloud Platform (GCP)
 ---------------------------
 
-* `GCP SDK CLI <https://cloud.google.com/sdk>`_
+* `Google Cloud Command Line Interface <https://cloud.google.com/cli>`_
 * `kubectl <https://kubernetes.io/docs/tasks/tools/install-kubectl>`_: see `this link <https://cloud.google.com/kubernetes-engine/docs/release-notes>`_ for supported versions.
 * You are authenticated and have the necessary permissions in your GCP project.
   If working on a newly created GCP instance, this likely requires running 

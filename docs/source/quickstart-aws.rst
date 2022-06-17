@@ -79,7 +79,7 @@ independent from a running instance and much cheaper.  ElasticBLAST uses your cl
 bucket to stage files and also deliver your final results.
 
 If you already have a cloud bucket named "s3://elasticblast-YOURNAME" (with YOURNAME substituted by your real name in 
-*lower-case* letters) then run the command below to verify that it exists.  
+*lower-case* letters) then run the command below to verify that it exists (replace YOURNAME with your real name in *lower-case* letters).  
 
 .. code-block:: shell
 

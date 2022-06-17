@@ -1,0 +1,22 @@
+{% extends "!layout.html" %}
+{% block linktags %}
+<link href="_static/uswds/uswds.css" rel="stylesheet">
+<link rel="stylesheet" href="_static/nwds/css/nwds.css">
+<link rel="stylesheet" href="_static/nwds/css/header.css">
+<link rel="stylesheet" href="_static/nwds/css/footer.css">
+<link rel="stylesheet" href="_static/nwds/css/form.css">        
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">               
+<link rel="stylesheet" href="_static/styles.css">
+{{ super() }}
+{% endblock %}
+
+{% block header %}
+<div class="pageheader">
+  {% include '_header.html' %}  
+{% endblock %}
+
+{% block footer %}
+  {% include '_footer.html' %}  
+{% endblock %}
+
+

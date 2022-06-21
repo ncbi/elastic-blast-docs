@@ -60,9 +60,7 @@ ElasticBLAST.
     pip install elastic-blast=={VERSION}
 
 
-Following these instructions will add ``elastic-blast``
-to your ``PATH``. If you run into any trouble, please see the
-:ref:`missing_wheel` section.
+Following these instructions will add ``elastic-blast`` to your ``PATH``. 
 
 Run the two ElasticBLAST commands listed below.  If ElasticBLAST is properly installed, the first one will report the version of ElasticBLAST installed and the second one will give you the help message.
 
@@ -76,13 +74,26 @@ You may see a message about setuptools replacing distutils, but that can be safe
 Set up an output bucket (if one doesn't exist)
 ----------------------------------------------
 
-Please run the command below to create or verify that a results bucket
-rexists. If the bucket does not exist, there will be an error message followed
-by the creation of the bucket. You can safely ignore the error message.
+To run ElasticBLAST, you will need a cloud bucket to store files.  Cloud buckets are
+independent from a running instance and much cheaper.  ElasticBLAST uses your cloud
+bucket to stage files and also deliver your final results.
+
+If you already have a cloud bucket named gs://elasticblast-${USER} (with ${USER} being your username),
+then run the command below to verify that it exists.
 
 .. code-block:: shell
 
-    gsutil ls gs://elasticblast-${USER} >& /dev/null || gsutil mb gs://elasticblast-${USER}
+    gsutil ls gs://elasticblast-${USER}
+
+
+If your bucket exists (no error message) then you should move onto the next section.
+
+If you do not have a bucket, then you need to make one using the command below.  
+
+.. code-block:: shell
+
+    gsutil mb gs://elasticblast-${USER}
+
 
 Enable auto-shutdown feature
 ----------------------------
@@ -94,45 +105,44 @@ Configure ElasticBLAST
 
 You will use a configuration file to specify your input to ElasticBLAST.  Once you have written the configuration file, you'll just need to tell ElasticBLAST about it when invoked.
 
+You will need to make the following changes to the configuration file:
+
+#. Replace USER on the "label" line with your actual username using all lower case letters (value of ${USER}).
+#. Replace USER on the "results" line with your actual username using all lower case letters (value of ${USER}).
+
 Start by copying the configuration file shown below.  Using an editor, write this text to a new file called "BDQA.ini".  Both nano and vi are available on the Cloud Shell.
 
 .. code-block::
     :name: minimal-config
 
     [cloud-provider]
-    gcp-project = YOUR_GCP_PROJECT_ID
-    gcp-region = us-east4
-    gcp-zone = us-east4-c
 
     [cluster]
-    num-nodes = 6
+    num-nodes = 1
     labels = owner=USER
 
     [blast]
     program = blastp
-    db = refseq_protein
+    db = swissprot
     queries = gs://elastic-blast-samples/queries/protein/BDQA01.1.fsa_aa
     results = gs://elasticblast-USER/results/BDQA
     options = -task blastp-fast -evalue 0.01 -outfmt "7 std sskingdoms ssciname" 
 
-You will need to make the following changes to the configuration file:
-
-#. Replace YOUR_GCP_PROJECT_ID with your actual GCP Project ID.  Read how to identify your `GCP project <https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects>`_.  
-#. Replace USER on the "label" line with your actual username using all lower case letters (value of ${USER}).
-#. Replace USER on the "results" line with your actual username using all lower case letters (value of ${USER}).
 
 If you created your results bucket with the gsutil command above, it will be as shown in the configuration file above.  
 
 ElasticBLAST will place your results at gs://elasticblast-${USER}/results/BDQA.  For your next search, you should use a different token than BDQA or remove those results, otherwise elastic-blast will refuse to run as it would overwrite your old results.  
 
-This configuration file specifies six GCP instances, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a cloud bucket) against the refseq_protein database.
+Since this is a small search, the  configuration file specifies one GCP instance, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a cloud bucket) against the swissprot database.
 
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 
-This search should take about 30 minutes to run and cost less than $3.  
+ElasticBLAST will run your search by default in the us-east4 region and the us-east4-b zone.
+You may modify this by following the instructions in the :ref:`configuration` section.  
 
 See :ref:`configuration` for details on all the configuration parameters.
 
+This search should take about 10 minutes to run and cost less than $2.  
 
 Run ElasticBLAST
 ----------------
@@ -141,7 +151,7 @@ Run ElasticBLAST
 
     elastic-blast submit --cfg BDQA.ini
 
-The :ref:`submit` command can take several minutes as it brings up cloud resources and downloads the BLAST database.
+The :ref:`submit` command can take a few minutes minutes as it brings up cloud resources and downloads the BLAST database.
 Once it returns, you can move on to the next step.
 
 If your cloud shell session disconnects, please see :ref:`cloud_shell_disconnect`.
@@ -187,33 +197,34 @@ Now, use the command below to download your results from your results bucket. Th
 
     gsutil -qm cp ${YOUR_RESULTS_BUCKET}/*.out.gz .
 
-ElasticBLAST breaks your set of queries into multiple batches and runs one search per batch.  Your results are returned with the results of each batch in a separate file. 
+Running "ls" in the Cloud Shell should list a file named "batch_000-blastp-swissprot.out.gz
+".
+ElasticBLAST breaks your set of queries into multiple batches and runs one search per batch.  Your results are returned with the results of each batch in a separate file.  For this small database, there is only one batch.  Larger searches will have multiple batches.
 
-Running "ls" in the Cloud Shell should list 21 files named something like "batch_000-blastp-refseq_protein.out.gz".  
+Running "ls" in the Cloud Shell should list one file named something like "batch_000-blastp-swissprot.out.gz".  
 
-Use the commands below to decompress the first batch and then view with "less".  
+Use the commands below to decompress the results and then view with "less".
 
 .. code-block:: bash
 
-    gunzip batch_000-blastp-refseq_protein.out.gz 
-    less batch_000-blastp-refseq_protein.out
+    gunzip batch_000-blastp-swissprot.out.gz 
+    less batch_000-blastp-swissprot.out
 
-You will see tabular output with matches to the refseq_protein database.  The output also includes the super-kingdom and scientific name of the database sequence found.  The queries come from a WGS study of viral metagnomes (`BDQA <https://www.ncbi.nlm.nih.gov/Traces/wgs/BDQA01>`_) so having the taxonomic information helps you to determine whether a query is really from a virus and which one.
+You will see tabular output with matches to the swissprot database.  The output also includes the super-kingdom and scientific name of the database sequence found.  The queries come from a WGS study of viral metagnomes (`BDQA <https://www.ncbi.nlm.nih.gov/Traces/wgs/BDQA01>`_) so having the taxonomic information helps you to determine whether a query is really from a virus and which one.
 
-The results for one query, GBH21861.1, are shown below.  The first match covers the entire query, the second covers most of it, and both are statistically significant, as judged by the expect value.  This report lists the super-kingdom as "Viruses" in both cases. The scientific names are in the rightmost fields (scroll the window to see these).  
+The results for one query, GBH21753.1, are shown below.  Both matches cover most of the query and the database sequences, and both are statistically significant, as judged by the expect value.  This report lists the super-kingdom as "Viruses" in both cases. The scientific names are in the rightmost fields (scroll the window to see these).  
 
 ::
 
-    # BLASTP 2.11.4+
-    # Query: GBH21861.1 hypothetical protein [viral metagenome]
-    # Database: refseq_protein
+    # BLASTP 2.13.0+
+    # Query: GBH21753.1 RdRp [viral metagenome]
+    # Database: swissprot
     # Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score, subject super kingdoms, subject sci name
     # 2 hits found
-    GBH21861.1      YP_009480351.1  81.384  419     78      0       1       419     1       419     0.0     712     Viruses Callinectes sapidus reovirus 1
-    GBH21861.1      YP_009665171.1  68.932  412     128     0       6       417     2       413     0.0     612     Viruses Eriocheir sinensis reovirus
+    GBH21753.1      Q9INJ1.1        42.799  1236    661     21      8       1222    3       1213    0.0     894     Viruses Banna virus strain JKT-6423
+    GBH21753.1      Q698V5.1        27.635  1205    766     35      62      1210    62      1216    8.43e-95        333     Viruses Eriocheir sinensis reovirus isolate 905
 
-
-You can see more information on these database matches at `YP_009480351.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009480351.1>`_ and `YP_009665171.1 <https://www.ncbi.nlm.nih.gov/protein/YP_009665171.1>`_
+You can see more information on these database matches at `Q9INJ1.1 <https://www.ncbi.nlm.nih.gov/protein/Q9INJ1.1>`_ and `Q698V5.1 <https://www.ncbi.nlm.nih.gov/protein/Q698V5.1>`_
 
 
 .. _elb_gcp_cleanup:
@@ -257,7 +268,7 @@ resources created by ElasticBLAST.
 Summary
 -------
 
-You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  The BLAST search was selected to be quick and inexpensive to run with a query set of 548 proteins and the refseq_protein database.  
+You have run a BLASTP (protein-protein) search with ElasticBLAST, producing tabular output that also lists taxonomic information about your matches.  The BLAST search was selected to be quick and inexpensive to run with a query set of 548 proteins and the swissprot database.  
 
 You used the Cloud Shell to launch your search.  The Cloud Shell has the advantage that it is easy to start up and already has the GCP SDK, python, and kubectl (used by elastic-blast to submit searches) installed.  The Cloud Shell has `limitations <https://cloud.google.com/shell/docs/limitations>`_ and you should consider other environments for further work.  ElasticBLAST can also be started from your own machine or a cloud instance you have brought up.  In that case, you will need to make sure that the :ref:`requirements <requirements>` have been met.  You should also look at :ref:`GCP Configuration <gcp_conf>` (below).
 
@@ -268,10 +279,4 @@ The :ref:`tutorials` page provides more details on ElasticBLAST as well as examp
 GCP Configuration
 -----------------
 
-The minimum required configuration parameters for running ElasticBLAST in GCP include:
-
-* :ref:`project <elb_gcp_project>`
-* :ref:`region <elb_gcp_region>`
-* :ref:`zone <elb_gcp_zone>`
-
-In addition, you must be authenticated with the GCP project in the environment you are working on.
+You must be authenticated with the GCP project in the environment you are working on.

@@ -81,6 +81,31 @@ html_theme = 'alabaster'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_css_files = ['uswds/uswds.css',
+                  'nwds/css/nwds.css',
+                  'nwds/css/header.css',
+                  'nwds/css/footer.css',
+                  'nwds/css/form.css',
+                  'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+                  'styles.css'                  
+                ]
+
+
+html_theme_options = {    
+    'sidebar_link' : 'rgb(0, 113, 188)' ,
+}
+
+
+html_sidebars = {
+    '**': [
+        'navigation.html',
+    ]
+}
+
+
+
+
+
 # CopyButton configuration
 copybutton_prompt_text = ">>> "
 

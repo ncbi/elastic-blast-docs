@@ -11,3 +11,143 @@ div.sphinxsidebar #searchbox input[type="submit"] {
     height: inherit;
     margin: 2px 0 0 0 ;        
 }
+
+@media screen and (min-width: 481px){
+.usa-search.usa-search-small [type=submit], .usa-search.usa-search-small .usa-search-submit {
+    background-image: url(https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/img/search.png);
+    background-image: url(https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/img/search.svg);    
+}
+}
+.usa-search [type=submit], .usa-search .usa-search-submit {
+    background-image: url(https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/img/search.png);
+    background-image: url(https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/img/search.svg);
+}
+    
+#breadcrumbs {
+    display: inline;    
+    height: 1em;    
+    font-size: 88%;
+    font-weight: bold;
+    padding: 0.5em;
+    float: left;
+}
+
+#searchbox
+{
+    display: inline;
+    float: right;
+    position: relative;
+}
+
+form.search input {
+    display: inline;
+    height: 1em;
+    width: auto;
+    font-size: 1.6rem;
+}
+
+#searchbox button {
+    height: 1.37em;
+    margin-left: -4px;
+}
+
+div.sphinxsidebarwrapper h1.logo {
+    margin-top: 1.1em; 
+}
+
+div.sphinxsidebar ul li.toctree-l1 > a.current {
+    border-left: 3px solid rgb(0, 113, 188);
+    padding-left: 6px;
+    margin-left: -3px;
+    font-weight: bold; 
+}
+
+body,
+div.body h1,
+div.body h2,
+div.body h3,
+div.body h4,
+div.body h5,
+div.body h6,
+div.sphinxsidebar h3, 
+div.sphinxsidebar h4 {
+    font-family: "Roboto", "Helvetica Neue", Arial, Tahoma;         
+}
+
+
+div.body h1{
+    font-size: 200%;
+    font-weight: bold;
+}
+div.body h2 {
+    font-size: 140%;
+    font-weight: bold;
+}
+
+div.body h3,div.sphinxsidebar h3{
+    font-size: 125%;
+}
+
+span.del {
+    margin: 0.5em;
+}
+
+#ncbi_subheader {
+    margin-bottom: 1em;
+    display: block;
+    height: 2em;
+}
+
+div.body input[name='q']{
+    pointer-events: none;
+    border-color: lightgray;
+    border: 1px solid lightgrey;
+}
+div.body input[name='q']::first-line {
+    background-color: #fbe54e;
+}
+
+#searchPromt
+{
+    font-size: 73%;
+    color: grey;
+}
+
+
+p.highlight-link {
+    font-size: 80%;     
+}
+
+body, div.sphinxsidebar ul li.toctree-l1 > a  {
+    font-size: 1.6rem;
+}
+
+#brlast
+{
+    font-weight: normal;
+}
+
+strong {
+ font-size: 1.4em;
+}
+
+div.sphinxsidebarwrapper
+{
+    padding-top: 0;
+}
+
+li.toctree-l1 {
+    border-bottom: 1px solid rgb(0, 113, 188);
+}
+
+div.sphinxsidebar ul li.toctree-l1 > a {
+    border-bottom: none;
+    padding-left: 3px;
+}
+ul > li.toctree-l1:first-child {
+    border-top: 1px solid rgb(0, 113, 188);
+    padding-top: 0.5em;
+}
+div#search-results h2:first-child {
+    display: none;
+}

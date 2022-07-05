@@ -18,11 +18,12 @@
 ..   
 .. Please cite NCBI in any work or product based on this material.
 
+.. _elasticblast:
 
-ElasticBLAST, version |release|
+ElasticBLAST
 ===============================
 
-ElasticBLAST is a cloud-based tool to perform your BLAST searches faster and make you more effective.
+ElasticBLAST (version |release|) is a cloud-based tool to perform your BLAST searches faster and make you more effective.
 
 ElasticBLAST is ideal for users who have a large number (thousands or more) of queries to BLAST or who prefer to use cloud infrastructure for their searches. It can run BLAST searches that cannot be done on `NCBI WebBLAST <https://blast.ncbi.nlm.nih.gov/Blast.cgi>`_ and runs them more quickly than stand-alone `BLAST+ <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.
 
@@ -35,30 +36,3 @@ The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.n
 **Platforms available:** AWS, GCP (account required)
 
 **Getting started:** Go to the :ref:`overview`.
-
-
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-   
-
-   elasticblast
-   overview
-   quickstart-aws
-   quickstart-gcp
-   tutorials
-   requirements
-   IAM Policy <iam-policy>
-   Budget <budget>
-   commands
-   configuration
-   exit-codes
-   tips-gcp
-   taxid-filtering
-   support
-   troubleshooting
-   aws-issues
-   gcp-issues
-   privacy
-   LICENSE
-   DISCLAIMER

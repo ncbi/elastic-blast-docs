@@ -1,0 +1,8 @@
+{% extends "!search.html" %}
+
+
+  {% block body %}
+  <h1 id="search-documentation">{{ _('Search Results') }}</h1>
+  {% block scriptwarning %} {{ super() }} {% endblock %}  
+  {% block searchresults %} {{ super() }} {% endblock %}
+{% endblock %}

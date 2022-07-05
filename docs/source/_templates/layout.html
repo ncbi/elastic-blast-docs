@@ -1,14 +1,4 @@
 {% extends "!layout.html" %}
-{% block linktags %}
-<link href="_static/uswds/uswds.css" rel="stylesheet">
-<link rel="stylesheet" href="_static/nwds/css/nwds.css">
-<link rel="stylesheet" href="_static/nwds/css/header.css">
-<link rel="stylesheet" href="_static/nwds/css/footer.css">
-<link rel="stylesheet" href="_static/nwds/css/form.css">        
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">               
-<link rel="stylesheet" href="_static/styles.css">
-{{ super() }}
-{% endblock %}
 
 {% block header %}
 <div class="pageheader">
@@ -20,3 +10,12 @@
 {% endblock %}
 
 
+  {%- block document %}
+    <div id="ncbi_subheader">
+      <div id="breadcrumbs">
+        <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs">Blast-help</a><span class="del">></span><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=CloudBlast">Blast Searches at a Cloud Provider</a><span class="del">></span><span id="brlast">ElasticBlast</span>
+      </div>
+      {%- include "searchbox.html" %}
+      </div>
+      {{ super() }}      
+  {%- endblock %}

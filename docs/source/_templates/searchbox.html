@@ -1,0 +1,16 @@
+{%- if builder != "singlehtml" %}
+<div id="searchbox" style="display: none" role="search">  
+  <label class="usa-sr-only" for="search-field-small">{{ _('Search') }}</label>
+    <div class="searchformwrapper">
+    <form class="search usa-search usa-search-small" action="{{ pathto('search') }}" method="get">
+      <input id="search-field-small" type="text" name="q" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>      
+      <button type="submit">
+        <span class="usa-sr-only">{{ _('Search') }}</span>
+        &nbsp;
+      </button>      
+    </form>    
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "inline"</script>
+{%- endif %}
+

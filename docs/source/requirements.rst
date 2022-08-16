@@ -23,7 +23,7 @@
 Requirements
 ============
 
-* `python3.7 or newer <https://www.python.org/downloads/>`_
+* `python 3.7 or newer <https://www.python.org/downloads/>`_
 * ``python3-distutils``
 
 Google Cloud Platform (GCP)
@@ -31,9 +31,13 @@ Google Cloud Platform (GCP)
 
 * `Google Cloud Command Line Interface <https://cloud.google.com/cli>`_
 * `kubectl <https://kubernetes.io/docs/tasks/tools/install-kubectl>`_: see `this link <https://cloud.google.com/kubernetes-engine/docs/release-notes>`_ for supported versions.
-* You are authenticated and have the necessary permissions in your GCP project.
+* You are authenticated, have configured ``gcloud`` with the appropriate GCP
+  project, and have the necessary permissions in that GCP project.
   If working on a newly created GCP instance, this likely requires running 
   the command ``gcloud auth login``.
+
+  You can configure ``gcloud`` with the GCP project with the command
+  ``gcloud config set project GCP_PROJECT_ID``.
 
   * GCP permissions
 

@@ -55,7 +55,7 @@ correct the issue.
      [-negative_taxidlist filename] [-entrez_query entrez_query]
     [...]
 
-**This example applies to AWS only**.
+*This example applies to AWS only*.
 
 Other messages, besides incorrect BLAST options, may be reported with ``--verbose``
 The example below will only occur at AWS.
@@ -97,7 +97,7 @@ please run the command below passing the ``JobArn`` from the output above:
 How do I see resources created by ElasticBLAST?
 -----------------------------------------------
 
-**If you are running ElasticBLAST on GCP**:
+*If you are running ElasticBLAST on GCP*:
 
 Please check the GCP web console or run the commands below:
 
@@ -110,7 +110,7 @@ Please check the GCP web console or run the commands below:
    gcloud compute disks list
 
 
-**If you are running ElasticBLAST on AWS**:
+*If you are running ElasticBLAST on AWS*:
 
 Please check the AWS web console or run the commands below:
 
@@ -123,8 +123,12 @@ Please check the AWS web console or run the commands below:
    aws ec2 describe-instances --filter Name=tag:billingcode,Values=elastic-blast Name=tag:Owner,Values=${USER} --query "Reservations[*].Instances[*].InstanceId" --output text 
 
 
-My search seems to be stalled
------------------------------
+My search seems to be stalled on GCP
+------------------------------------
+
+If the commands below do not help you determine what is wrong with your
+ElasticBLAST search, please save the output and contact us along with the
+information requested in the :ref:`support` page.
 
 Run the commands below to see what is running in your GCP GKE cluster:
 
@@ -146,6 +150,50 @@ resources created by ElasticBLAST. Your input file(s) will not be modified.
 .. code-block:: bash
 
     elastic-blast delete --cfg ${CONFIG_FILE}
+
+
+
+My search seems to be stalled on AWS
+------------------------------------
+
+If the commands below do not help you determine what is wrong with your
+ElasticBLAST search, please save the output and contact us along with the
+information requested in the :ref:`support` page.
+
+Run the command below (included in the ElasticBLAST distribution) to see the
+autoscaling events, which may reveal whether there were any errors during that
+operation.
+
+.. code-block:: bash
+
+   aws-get-auto-scaling-events.sh
+
+
+If this reveals nothing suspicious, please invoke the command below. This
+application is an ElasticBLAST dependency, so you should be able to run it
+once the ElasticBLAST virtual environment is activated. The “EC2/Running
+On-Demand All Standard (A, C, D, H, I, M, R, T, Z) instances “ quota indicates
+how many on-demand vCPUs you can run on your account. If this value is
+less than the total number of vCPUs requested by your ElasticBLAST search, then
+your ElasticBLAST search may stall. You can compute how many vCPUs your
+ElasticBLAST search requests by multiplying the number of vCPUs in the instance
+type by the number of instances configured.
+
+.. code-block:: bash
+
+   awslimitchecker -l | egrep Demand
+
+Run the commands below to see the status of query splitting and job submission jobs ElasticBLAST submits
+on your behalf to AWS Batch, as well as a description of your compute environment.:
+
+.. code-block:: bash
+   :caption: Commands to determine status of query splitting and job submission jobs
+
+   aws s3 cp ${YOUR_RESULTS_BUCKET}/metadata/job-ids-v2.json .
+   aws batch describe-jobs --jobs `jq -Mr .query_splitting job-ids-v2.json` --output json
+   aws batch describe-jobs --jobs `jq -Mr .job_submission job-ids-v2.json` --output json
+   aws batch describe-compute-environments --output json
+    
 
 
 I cannot find python or an expected version when I run elastic-blast

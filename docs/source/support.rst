@@ -50,9 +50,13 @@ Please help the development team help you:
     env
     # For GCP only
     gcloud info
+    gsutil ls -lr ${YOUR_RESULTS_BUCKET}
+    gsutil cat ${YOUR_RESULTS_BUCKET}/metadata/FAILURE.txt
     # For AWS only
     aws sts get-caller-identity
     aws configure list
+    aws s3 ls --recursive ${YOUR_RESULTS_BUCKET}
+    aws s3 cp --only-show-errors ${YOUR_RESULTS_BUCKET}/metadata/FAILURE.txt -
 
 
 * If the :ref:`janitor` is not enabled, **always run elastic-blast delete after/before every ElasticBLAST search**.

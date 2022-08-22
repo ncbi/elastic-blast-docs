@@ -41,22 +41,30 @@ Please help the development team help you:
    * Your configuration file and command line invocation
    * The ElasticBLAST logfile (``elastic-blast.log`` by default)
    * The output of ``elastic-blast status --verbose --cfg YOUR_CONFIG_FILE``
-   * Your system's information, i.e. the output of the commands below. It is OK if any of these commands fail ;)
+   * Your system's information and ElasticBLAST working files, i.e. the output
+     of the commands below and the ``elastic-blast-diagnostics.tgz`` file. It
+     is OK if any of these commands fail ;)
 
 .. code-block:: bash
 
     uname -a
     python3 -m sysconfig
     env
+
     # For GCP only
     gcloud info
     gsutil ls -lr ${YOUR_RESULTS_BUCKET}
-    gsutil cat ${YOUR_RESULTS_BUCKET}/metadata/FAILURE.txt
+    gsutil -qm cp -r ${YOUR_RESULTS_BUCKET}/logs .
+    gsutil -qm cp -r ${YOUR_RESULTS_BUCKET/}metadata .
+    tar czf elastic-blast-diagnostics.tgz logs metadata
+
     # For AWS only
     aws sts get-caller-identity
     aws configure list
     aws s3 ls --recursive ${YOUR_RESULTS_BUCKET}
-    aws s3 cp --only-show-errors ${YOUR_RESULTS_BUCKET}/metadata/FAILURE.txt -
+    aws s3 cp --recursive ${YOUR_RESULTS_BUCKET}/logs logs
+    aws s3 cp --recursive ${YOUR_RESULTS_BUCKET}/metadata metadata
+    tar czf elastic-blast-diagnostics.tgz logs metadata
 
 
 * If the :ref:`janitor` is not enabled, **always run elastic-blast delete after/before every ElasticBLAST search**.

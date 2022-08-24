@@ -32,6 +32,26 @@ buckets, but if you are working with your own BLAST database, you will benefit
 from creating the metadata file and uploading it to the cloud alongside the
 BLAST database files. This tutorial will show you how to do that.
 
+**Note:**
+If you create a BLAST database using ``makeblastdb`` version 2.13 or greater,
+you do not need to use the ``create-blastdb-metadata.py`` script. Instead,
+you can use the ``metadata_output_prefix`` command line option to specify
+the cloud bucket where the BLAST database will be stored and upload the resulting
+files to the cloud. The code sample below assumes you are creating a nucleotide
+BLAST database from a FASTA file called ``MY_FASTA_FILE.fsa`` and uploading the
+database to the AWS S3 bucket ``s3://mybucket/blastdb``.
+
+.. code-block:: bash
+
+   # Create BLASTDB
+   makeblastdb -in MY_FASTA_FILE.fsa -dbtype nucl --title "My database title" \
+        --out my-database -metadata_output_prefix s3://mybucket/blastdb
+   # Upload BLASTDB
+   aws s3 cp my-database* s3://mybucket/blastdb/
+
+If you do not have ``makeblastdb`` version 2.13 or greater, please follow the
+instructions below.
+
 The example below assumes that you have a nucleotide BLAST database called 
 ``ecoli`` located in your computer's ``/blast/db`` directory and that you
 will store said BLAST database in ``s3://mybucket/blastdb``. Please update 

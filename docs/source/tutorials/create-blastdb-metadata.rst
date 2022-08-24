@@ -24,15 +24,37 @@ Create BLAST database metadata
 ==============================
 
 ElasticBLAST includes the ``create-blastdb-metadata.py`` script to generate a
-file containing metadata used by ElasticBLAST to configure the memory limit for
-each BLAST job.
+file containing `metadata <https://www.ncbi.nlm.nih.gov/books/NBK569839/#usrman_BLAST_feat.BLAST_database_metadat>`_
+used by ElasticBLAST to configure the memory limit for each BLAST job.
 
 These metadata files are provided and maintained by NCBI in both GCP and AWS
 buckets, but if you are working with your own BLAST database, you will benefit
 from creating the metadata file and uploading it to the cloud alongside the
 BLAST database files. This tutorial will show you how to do that.
 
-The example below assumes that you have a nucleotide BLAST database called 
+**Note:**
+
+If you create a BLAST database using ``makeblastdb`` 
+`version 2.13 <https://www.ncbi.nlm.nih.gov/books/NBK131777/#Blast_ReleaseNotes.BLAST_2_13_0_March_11>`_
+or newer, you do not need to use the ``create-blastdb-metadata.py`` script. Just upload
+the BLAST database files to the cloud bucket of your choice!
+
+The code sample below assumes you are creating a nucleotide
+BLAST database from a FASTA file called ``MY_FASTA_FILE.fsa`` and uploading the
+database to the AWS S3 bucket ``s3://mybucket/blastdb``.
+
+.. code-block:: bash
+
+   # Create BLASTDB
+   makeblastdb -in MY_FASTA_FILE.fsa -dbtype nucl --title "My database title" --out my-database 
+   # Upload BLASTDB
+   aws s3 cp my-database* s3://mybucket/blastdb/
+
+If you do not have ``makeblastdb`` 
+`version 2.13 <https://www.ncbi.nlm.nih.gov/books/NBK131777/#Blast_ReleaseNotes.BLAST_2_13_0_March_11>`_
+or newer, please follow the instructions below.
+
+The examples below assume that you have a nucleotide BLAST database called 
 ``ecoli`` located in your computer's ``/blast/db`` directory and that you
 will store said BLAST database in ``s3://mybucket/blastdb``. Please update 
 these values accordingly.
@@ -40,12 +62,11 @@ these values accordingly.
 Create BLASTDB metadata file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Run the command below to create a BLASTDB metadata file for ``/blast/db/ecoli``
-to be uploaded to ``s3://mybucket/blastdb``.
+Run the command below to create a BLASTDB metadata file for ``/blast/db/ecoli``.
 
 .. code-block:: bash
 
-   create-blastdb-metadata.py --db /blast/db/ecoli --dbtype nucl --pretty  --output-prefix s3://mybucket/blastdb
+   create-blastdb-metadata.py --db /blast/db/ecoli --dbtype nucl --pretty
 
 You can verify that the metadata file was generated as follows:
 
@@ -65,17 +86,17 @@ The output will resemble what is shown below:
      "number-of-letters": 4662239,
      "number-of-sequences": 400,
      "files": [
-       "s3://mybucket-name/blastdbs/ecoli.ndb",
-       "s3://mybucket-name/blastdbs/ecoli.nhr",
-       "s3://mybucket-name/blastdbs/ecoli.nin",
-       "s3://mybucket-name/blastdbs/ecoli.nnd",
-       "s3://mybucket-name/blastdbs/ecoli.nni",
-       "s3://mybucket-name/blastdbs/ecoli.nos",
-       "s3://mybucket-name/blastdbs/ecoli.not",
-       "s3://mybucket-name/blastdbs/ecoli.nsq",
-       "s3://mybucket-name/blastdbs/ecoli.ntf",
-       "s3://mybucket-name/blastdbs/ecoli.nto",
-       "s3://mybucket-name/blastdbs/ecoli.nog"
+       "ecoli.ndb",
+       "ecoli.nhr",
+       "ecoli.nin",
+       "ecoli.nnd",
+       "ecoli.nni",
+       "ecoli.nos",
+       "ecoli.not",
+       "ecoli.nsq",
+       "ecoli.ntf",
+       "ecoli.nto",
+       "ecoli.nog"
      ],
      "last-updated": "2020-01-10",
      "bytes-total": 1319541,
@@ -95,7 +116,7 @@ like the one below (again, please update the values accordingly):
 .. code-block:: bash
 
     aws s3 cp ecoli-nucl-metadata.json s3://mybucket/blastdb/
-    for f in /blast/db/ecoli.n* ; do aws s3 cp $f s3://elasticblast-camacho/blastdb/; done
+    for f in /blast/db/ecoli.n* ; do aws s3 cp $f s3://mybucket/blastdb/; done
 
 To upload your BLAST database and metadata file to GCP please run a command
 like the one below (again, please update the values accordingly):

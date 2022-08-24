@@ -34,8 +34,9 @@ BLAST database files. This tutorial will show you how to do that.
 
 **Note:**
 
-If you create a BLAST database using ``makeblastdb`` version 2.13 or newer,
-you do not need to use the ``create-blastdb-metadata.py`` script. Just upload
+If you create a BLAST database using ``makeblastdb`` 
+`version 2.13 <https://www.ncbi.nlm.nih.gov/books/NBK131777/#Blast_ReleaseNotes.BLAST_2_13_0_March_11>`_
+or newer, you do not need to use the ``create-blastdb-metadata.py`` script. Just upload
 the BLAST database files to the cloud bucket of your choice!
 
 The code sample below assumes you are creating a nucleotide
@@ -49,8 +50,9 @@ database to the AWS S3 bucket ``s3://mybucket/blastdb``.
    # Upload BLASTDB
    aws s3 cp my-database* s3://mybucket/blastdb/
 
-If you do not have ``makeblastdb`` version 2.13 or newer, please follow the
-instructions below.
+If you do not have ``makeblastdb`` 
+`version 2.13 <https://www.ncbi.nlm.nih.gov/books/NBK131777/#Blast_ReleaseNotes.BLAST_2_13_0_March_11>`_
+or newer, please follow the instructions below.
 
 The examples below assume that you have a nucleotide BLAST database called 
 ``ecoli`` located in your computer's ``/blast/db`` directory and that you

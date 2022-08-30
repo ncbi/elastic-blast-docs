@@ -55,7 +55,7 @@ Please help the development team help you:
     gcloud info
     gsutil ls -lr ${YOUR_RESULTS_BUCKET}
     gsutil -qm cp -r ${YOUR_RESULTS_BUCKET}/logs .
-    gsutil -qm cp -r ${YOUR_RESULTS_BUCKET/}metadata .
+    gsutil -qm cp -r ${YOUR_RESULTS_BUCKET}/metadata .
     tar czf elastic-blast-diagnostics.tgz logs metadata
 
     # For AWS only

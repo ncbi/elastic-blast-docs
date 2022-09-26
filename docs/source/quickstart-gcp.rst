@@ -106,6 +106,10 @@ You need to enable some GCP API calls that ElasticBLAST needs to make.  This has
 .. code-block:: shell
 
     gcloud services enable compute.googleapis.com
+    gcloud services enable serviceusage.googleapis.com
+    gcloud services enable container.googleapis.com
+    gcloud services enable storage-api.googleapis.com
+    gcloud services enable storage-component.googleapis.com
 
 
 Enable auto-shutdown feature

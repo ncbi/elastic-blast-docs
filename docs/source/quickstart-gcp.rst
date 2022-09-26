@@ -45,6 +45,9 @@ In order to complete this quickstart, you will need to be familiar with the GCP 
 
 As you work through this quickstart, you may occasionally see a message from the Cloud Shell asking you to authorize use of GCP API's.  Simply select the "Authorize" button. 
 
+You may also find it convenient to start a new project for this quickstart.  You can do this by clicking on your project name in the blue bar at the top of the page.  This will bring up a dialogue, and you can select "NEW PROJECT" in the top right-hand corner.
+
+
 
 Get ElasticBLAST
 ----------------
@@ -116,6 +119,8 @@ Start by copying the configuration file shown below.  Using an editor, write thi
     :name: minimal-config
 
     [cloud-provider]
+    gcp-region = us-east4
+    gcp-zone = us-east4-b
 
     [cluster]
     num-nodes = 1
@@ -135,14 +140,15 @@ ElasticBLAST will place your results at gs://elasticblast-${USER}/results/BDQA. 
 
 Since this is a small search, the  configuration file specifies one GCP instance, specified by "num-nodes", for your search.  The BLASTP program searches proteins from the BDQA WGS project (obtained from a cloud bucket) against the swissprot database.
 
+
 In addition to the minimal parameters, the configuration file above includes some BLAST options.
 
-ElasticBLAST will run your search by default in the us-east4 region and the us-east4-b zone.
+ElasticBLAST will run your search in the us-east4 region and the us-east4-b zone.
 You may modify this by following the instructions in the :ref:`configuration` section.  
 
 See :ref:`configuration` for details on all the configuration parameters.
 
-This search should take about 10 minutes to run and cost less than $2.  
+This search should take about 10 minutes to run and cost less than $1.  
 
 Run ElasticBLAST
 ----------------
@@ -153,6 +159,13 @@ Run ElasticBLAST
 
 The :ref:`submit` command can take a few minutes minutes as it brings up cloud resources and downloads the BLAST database.
 Once it returns, you can move on to the next step.
+
+You may see an error message about your disk size being too large ("Requested disk size 3000.0G is larger than allowed..").  In that case you should add the line below to the [cluster] section of BDQA.ini and retry.
+
+.. code-block::
+
+   pd-size = 500G
+
 
 If your cloud shell session disconnects, please see :ref:`cloud_shell_disconnect`.
 

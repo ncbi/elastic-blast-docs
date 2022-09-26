@@ -98,6 +98,16 @@ If you do not have a bucket, then you need to make one using the command below.
     gsutil mb gs://elasticblast-${USER}
 
 
+Enable GCP APIs
+---------------
+
+You need to enable some GCP API calls that ElasticBLAST needs to make.  This has to be done only once per project.
+
+.. code-block:: shell
+
+    gcloud services enable compute.googleapis.com
+
+
 Enable auto-shutdown feature
 ----------------------------
 

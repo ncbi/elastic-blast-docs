@@ -1,5 +1,8 @@
 {% extends "!layout.html" %}
 
+{% set metatags = ' <meta content="elastic-blast-docs" name="ncbi_pdid"> ' %}
+{% set metatags = metatags + ' <meta content="elastic-blast" name="ncbi_app"> ' %}
+
 {% block header %}
 <div class="pageheader">
   {% include '_header.html' %}  

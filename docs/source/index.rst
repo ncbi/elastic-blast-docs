@@ -34,7 +34,7 @@ The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.n
 
 **Platforms available:** AWS, GCP (account required)
 
-**Getting started:** Go to the :ref:`overview`.
+**Getting started:** Go to the :ref:`overview` or try out the `demos <https://github.com/ncbi/elastic-blast-demos>`_.
 
 
 .. toctree::

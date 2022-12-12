@@ -82,9 +82,8 @@ AWS and GCP have programs to award Cloud Credits to researchers at accredited re
 * https://aws.amazon.com/government-education/research-and-technical-computing/cloud-credit-for-research
 * https://edu.google.com/programs/credits/research
 
-Both cloud service providers also have Free Tiers:  
+ElasticBLAST requires an instance with at least 2 GB of memory. GCP has a Free Trial that can be used with ElasticBLAST:
 
-* https://aws.amazon.com/free
-* https://cloud.google.com/free
+At :ref:`gcp_free_trial` we discuss how to use ElasticBLAST under the GCP Free Trial.
 
-While the Free Tiers are a good way to learn about the cloud, they may be too limited for you to effectively use ElasticBLAST. At :ref:`gcp_free_trial` we discuss how to use ElasticBLAST under the GCP Free Trial.
+The Free Trial is a good way to learn about the cloud, but it may be too limited for you to effectively use ElasticBLAST. 

@@ -23,6 +23,19 @@
 Known issues on GCP
 ===================
 
+.. _eol_gke_121:
+
+Upgrade required for GCP ElasticBLAST users
+-------------------------------------------
+
+ElasticBLAST versions prior to 1.0.0 will stop working because version 1.21
+of kubernetes at GKE has reached end of life on January 31, 2023:
+
+https://cloud.google.com/kubernetes-engine/docs/release-schedule
+
+To ensure ElasticBLAST continues to work for you on GCP, please upgrade
+ElasticBLAST to its latest version.
+
 .. _file_leak:
 
 Files left in cloud storage

@@ -64,14 +64,3 @@ Too many query batches leads to failed execution
 ------------------------------------------------
 
 ElasticBLAST divides query sequences into batches and searches them in parallel. The :ref:`ELB_BATCH_LEN` parameter controls the size of a single batch. If the ElasticBLAST configuration leads to more than 5,000 query batches, ElasticBLAST will exit with an error message prompting you to increase :ref:`ELB_BATCH_LEN` parameter to decrease the number of query batches.
-
-.. _blast_tuner_requires_csp_target:
-
-blast-tuner application requires csp-target
--------------------------------------------
-
-If the ``--csp-target`` parameter is not specified to ``blast-tuner.py``, an
-error message will be displayed. Please always use `--csp-target` parameter and specify the appropriate cloud service
-provider to prevent this error.
-
-This issue will be addressed in an upcoming release of ElasticBLAST.

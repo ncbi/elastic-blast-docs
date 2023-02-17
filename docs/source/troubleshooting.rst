@@ -156,7 +156,7 @@ resources created by ElasticBLAST. Your input file(s) will not be modified.
 My search seems to be stalled on AWS
 ------------------------------------
 
-If the commands below do not help you determine what is wrong with your
+If the instructions below do not help you determine what is wrong with your
 ElasticBLAST search, please save the output and contact us along with the
 information requested in the :ref:`support` page.
 
@@ -169,21 +169,44 @@ operation.
    aws-get-auto-scaling-events.sh
 
 
-If this reveals nothing suspicious, please invoke the command below. This
-application is an ElasticBLAST dependency, so you should be able to run it
-once the ElasticBLAST virtual environment is activated. The “EC2/Running
-On-Demand All Standard (A, C, D, H, I, M, R, T, Z) instances “ quota indicates
-how many on-demand vCPUs you can run on your account. If this value is
-less than the total number of vCPUs requested by your ElasticBLAST search, then
-your ElasticBLAST search may stall. You can compute how many vCPUs your
-ElasticBLAST search requests by multiplying the number of vCPUs in the instance
-type by the number of instances configured.
+If the command above reveals nothing suspicious (e.g.: error messages), you
+should check your AWS account's quota. In particular, please note the
+“EC2/Running On-Demand All Standard (A, C, D, H, I, M, R, T, Z) instances“
+quota, which indicates how many on-demand vCPUs you can run on your account.
+You can check this with the commands in the code block below.
+This application is an ElasticBLAST dependency, so you should be able to run it
+once the ElasticBLAST virtual environment is activated. 
+
+If the “EC2/Running On-Demand All Standard (A, C, D, H, I, M, R, T, Z)
+instances“ quota is less than the total number of vCPUs requested by your
+ElasticBLAST search, then your ElasticBLAST search will stall (i.e.: appear in
+``PENDING`` status forever). 
+You can compute how many vCPUs your ElasticBLAST search requests by multiplying
+the number of vCPUs in the instance type by the number of instances configured.
+
+Note that if you have ElasticBLAST searches running or other EC2 instances running,
+these reduce your available vCPUs.
 
 .. code-block:: bash
 
-   awslimitchecker -l | egrep Demand
+   # Get the quota (i.e.: limit) for EC2 on this account
+   awslimitchecker -S EC2 -l | egrep Demand
+   # Get the current usage for EC2 on this account
+   awslimitchecker -S EC2 -u | egrep Demand
 
-Run the commands below to see the status of query splitting and job submission jobs ElasticBLAST submits
+An alternative approach to check your quota by the approaches described in the page below:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#monitoring-on-demand-limits
+
+Also, please note that there is a different quota for Spot instances:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-limits.html
+
+If it turns out that your vCPU quota is too low, you can request an increase following
+the instructions here:
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#vcpu-limits-request-increase
+
+If the vCPU quota is not an impediment to running ElasticBLAST on your account, run the
+commands below to see the status of query splitting and job submission jobs ElasticBLAST submits
 on your behalf to AWS Batch, as well as a description of your compute environment.:
 
 .. code-block:: bash

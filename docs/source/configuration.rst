@@ -121,12 +121,13 @@ Cloud provider configuration
 
 .. _elb_gcp_gke_version:
 
-``Google Kubernetes Engine (GKE) version``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``Kubernetes version``
+^^^^^^^^^^^^^^^^^^^^^^
 
-    GKE version to use.
+    Kubernetes version version to use; must be one of the supported versions in GKE.
+    For additional details, please see the `GKE release notes <https://cloud.google.com/kubernetes-engine/docs/release-notes/>`_.
 
-    * Default: 1.21
+    * Default: The default kubernetes version from the regular GKE release channel. For additional details, please see the relevant `GKE documentation <https://cloud.google.com/kubernetes-engine/versioning#regular>`_
     * Values: String
     * Applies to: GCP
 
@@ -135,7 +136,7 @@ Cloud provider configuration
 .. code-block::
 
     [cloud-provider]
-    gke-version = 1.21
+    gke-version = 1.24
 
 .. _elb_aws_region:
 

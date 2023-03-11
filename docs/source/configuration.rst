@@ -127,8 +127,8 @@ Cloud provider configuration
     Kubernetes version version to use; must be one of the supported versions in GKE.
     For additional details, please see the `GKE release notes <https://cloud.google.com/kubernetes-engine/docs/release-notes/>`_.
 
-    * Default: The default kubernetes version from the regular GKE release channel. For additional details, please see the relevant `GKE documentation <https://cloud.google.com/kubernetes-engine/versioning#regular>`_
-    * Values: String
+    * Default: The default kubernetes version from the regular GKE release channel. 
+    * Values: String. Examples: ``1.24``, ``1.24.9``, or ``1.26.1-gke.1500``. For additional details, please see the relevant `GKE documentation <https://cloud.google.com/kubernetes-engine/versioning#regular>`_
     * Applies to: GCP
 
     To see GKE versions available in GCP in a given zone, you can run the command ``gcloud container get-server-config --zone <INSERT_GCP_ZONE_HERE>``.

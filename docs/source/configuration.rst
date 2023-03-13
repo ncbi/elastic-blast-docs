@@ -119,7 +119,7 @@ Cloud provider configuration
     gcp-network = default
     gcp-subnetwork = subnet-name
 
-.. _elb_gcp_gke_version:
+.. _elb_gcp_k8s_version:
 
 ``Kubernetes version``
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -131,12 +131,12 @@ Cloud provider configuration
     * Values: String. Examples: ``1.24``, ``1.24.9``, or ``1.26.1-gke.1500``. For additional details, please see the relevant `GKE documentation <https://cloud.google.com/kubernetes-engine/versioning#regular>`_
     * Applies to: GCP
 
-    To see GKE versions available in GCP in a given zone, you can run the command ``gcloud container get-server-config --zone <INSERT_GCP_ZONE_HERE>``.
+    To see kubernetes versions available in GCP in a given zone, you can run the command ``gcloud container get-server-config --zone <INSERT_GCP_ZONE_HERE>``.
 
 .. code-block::
 
     [cloud-provider]
-    gke-version = 1.24
+    k8s-version = 1.24
 
 .. _elb_aws_region:
 

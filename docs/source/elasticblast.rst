@@ -36,3 +36,7 @@ The National Center for Biotechnology Information (`NCBI <https://www.ncbi.nlm.n
 **Platforms available:** AWS, GCP (account required)
 
 **Getting started:** Go to the :ref:`overview`.
+
+**Publication:**
+
+Camacho C, Boratyn GM, Joukov V, Vera Alvarez R, Madden TL. ElasticBLAST: accelerating sequence search via cloud computing. *BMC Bioinformatics*. 2023 Mar 26;24(1):117. doi: `10.1186/s12859-023-05245-9 <https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-023-05245-9/>`_. PMID: `36967390 <https://pubmed.ncbi.nlm.nih.gov/36967390>`_;

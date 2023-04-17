@@ -73,7 +73,9 @@ ElasticBLAST performs the searches with the BLAST+ package, and most of the BLAS
 
 * You can download the results from the cloud bucket to your local machine or leave them there for further processing in the cloud.  We also provide a script to start the search and download the results.  See :ref:`tutorial_submit_and_wait_script` for details.
 
-To do your first ElasticBLAST run, go to the :ref:`quickstart-gcp` or the :ref:`quickstart-aws`
+**Run Your First ElasticBLAST Search!**
+
+To do your first ElasticBLAST search, go to the :ref:`quickstart-gcp` or the :ref:`quickstart-aws`
 
 **Are Cloud Credits available?**
 

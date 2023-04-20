@@ -151,6 +151,7 @@ Please note that you **must** replace ``$AWS_ACCOUNT`` with your AWS Account ID.
                     "batch:UntagResource",
                     "cloudformation:DeleteStack",
                     "ec2:DescribeInstanceTypes",
+                    "ec2:DescribeInstanceTypeOfferings",
                     "batch:RegisterJobDefinition",
                     "batch:DescribeJobDefinitions",
                     "cloudformation:UntagResource",

@@ -1,31 +1,31 @@
-div.sphinxsidebarwrapper h1.logo { 
+div.sphinxsidebarwrapper h1.logo {
     font-size: 200%;
 }
 
-div.sphinxsidebar #searchbox input[type="text"] { 
+div.sphinxsidebar #searchbox input[type="text"] {
     height: inherit;
     padding: 1px 0.25em;
 }
 
-div.sphinxsidebar #searchbox input[type="submit"] { 
+div.sphinxsidebar #searchbox input[type="submit"] {
     height: inherit;
-    margin: 2px 0 0 0 ;        
+    margin: 2px 0 0 0 ;
 }
 
 @media screen and (min-width: 481px){
 .usa-search.usa-search-small [type=submit], .usa-search.usa-search-small .usa-search-submit {
     background-image: url(https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/img/search.png);
-    background-image: url(https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/img/search.svg);    
+    background-image: url(https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/img/search.svg);
 }
 }
 .usa-search [type=submit], .usa-search .usa-search-submit {
     background-image: url(https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/img/search.png);
     background-image: url(https://www.ncbi.nlm.nih.gov/style-guide/static/django_uswds/uswds/img/search.svg);
 }
-    
+
 #breadcrumbs {
-    display: inline;    
-    height: 1em;    
+    display: inline;
+    height: 1em;
     font-size: 88%;
     font-weight: bold;
     padding: 0.5em;
@@ -52,14 +52,14 @@ form.search input {
 }
 
 div.sphinxsidebarwrapper h1.logo {
-    margin-top: 1.1em; 
+    margin-top: 1.1em;
 }
 
 div.sphinxsidebar ul li.toctree-l1 > a.current {
     border-left: 3px solid rgb(0, 113, 188);
     padding-left: 6px;
     margin-left: -3px;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 body,
@@ -69,9 +69,9 @@ div.body h3,
 div.body h4,
 div.body h5,
 div.body h6,
-div.sphinxsidebar h3, 
+div.sphinxsidebar h3,
 div.sphinxsidebar h4 {
-    font-family: "Roboto", "Helvetica Neue", Arial, Tahoma;         
+    font-family: "Roboto", "Helvetica Neue", Arial, Tahoma;
 }
 
 
@@ -115,7 +115,7 @@ div.body input[name='q']::first-line {
 
 
 p.highlight-link {
-    font-size: 80%;     
+    font-size: 80%;
 }
 
 body, div.sphinxsidebar ul li.toctree-l1 > a  {
@@ -151,3 +151,74 @@ ul > li.toctree-l1:first-child {
 div#search-results h2:first-child {
     display: none;
 }
+
+div#banner_ad {
+    background-color: #e1f3f8;
+    position: relative;
+    font-weight: bold;
+    text-align: center;
+    font-size: 146%;
+    margin-bottom: 0.5em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+  }
+
+  body#type-d div#banner_ad, body#type-e div#banner_ad {
+    font-size: 1.3em;
+  }
+
+  #banner_ad input.sbt {
+    background-color: #e1f3f8;
+    padding: 10px 3em;
+    margin-top: 3px;
+    margin-left: 6em;
+    color: #0071bc;
+    border: 2px solid #0071bc;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 80%;
+    border-radius: 5px;
+  }
+
+  #banner_ad input.sbt:hover
+  {
+    background-color: #0071bc;
+    color:white;
+  }
+
+  #banner_ad > div {
+    display: inline-block;
+  }
+  #banner_ad > div span{
+    padding-left: 0.2em;
+  }
+  #banner_ad .help {
+    color: #666;
+    font-size: 90%;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+    font-size: 0.7em;
+  }
+  #banner_ad a
+  {
+    color: initial;
+  }
+
+  #banner_ad button.close {
+    cursor: pointer;
+    position: absolute;
+    top: 1px;
+    right: 6px;
+    width: auto;
+    height: auto;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    vertical-align: super;
+    line-height: 0.5em;
+    color: #212121;
+    font-size: 0.6em;
+  }
+
+

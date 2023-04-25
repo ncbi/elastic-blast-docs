@@ -1,13 +1,13 @@
 #                           PUBLIC DOMAIN NOTICE
 #              National Center for Biotechnology Information
-#  
+#
 # This software is a "United States Government Work" under the
 # terms of the United States Copyright Act.  It was written as part of
 # the authors' official duties as United States Government employees and
 # thus cannot be copyrighted.  This software is freely available
 # to the public for use.  The National Library of Medicine and the U.S.
 # Government have not placed any restriction on its use or reproduction.
-#   
+#
 # Although all reasonable efforts have been taken to ensure the accuracy
 # and reliability of the software and data, the NLM and the U.S.
 # Government do not and cannot warrant the performance or results that
@@ -15,7 +15,7 @@
 # Government disclaim all warranties, express or implied, including
 # warranties of performance, merchantability or fitness for any particular
 # purpose.
-#   
+#
 # Please cite NCBI in any work or product based on this material.
 
 # Configuration file for the Sphinx documentation builder.
@@ -87,11 +87,15 @@ html_css_files = ['uswds/uswds.css',
                   'nwds/css/footer.css',
                   'nwds/css/form.css',
                   'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-                  'styles.css'                  
+                  'styles.css'
                 ]
 
+html_js_files = [
+                  'jquery-3.5.0.min.js',
+                  'init.js'
+                ]
 
-html_theme_options = {    
+html_theme_options = {
     'sidebar_link' : 'rgb(0, 113, 188)' ,
 }
 

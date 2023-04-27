@@ -136,7 +136,7 @@ Cloud provider configuration
 .. code-block::
 
     [cloud-provider]
-    k8s-version = 1.24
+    gke-version = 1.24
 
 .. _elb_aws_region:
 

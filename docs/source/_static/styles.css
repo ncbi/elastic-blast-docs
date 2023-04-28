@@ -221,4 +221,7 @@ div#banner_ad {
     font-size: 0.6em;
   }
 
-
+#banner_ad .help.adinf {
+    font-weight: bold;
+    padding: 3px 0;
+}

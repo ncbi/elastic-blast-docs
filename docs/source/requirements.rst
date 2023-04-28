@@ -34,6 +34,7 @@ Google Cloud Platform (GCP)
 
   * You must use ``kubectl`` version 1.25 or lower. Use ``kubectl version --client=true`` to see which version of ``kubectl`` you have.
   * Note that kubernetes version 1.21 at GKE has reached its end of life on January 31, 2023. Please see `this link <https://cloud.google.com/kubernetes-engine/docs/release-notes>`_ for supported versions at GCP.
+  * If you are using ElasticBLAST version 1.0.0, please follow the instructions in :ref:`k8s_ver_2023_04`.
 
 * You are authenticated, have configured ``gcloud`` with the appropriate GCP
   project, and have the necessary permissions in that GCP project.

@@ -32,9 +32,8 @@ Google Cloud Platform (GCP)
 * `Google Cloud Command Line Interface <https://cloud.google.com/cli>`_
 * `kubectl <https://kubernetes.io/docs/tasks/tools/install-kubectl>`_  Make sure to install a version supported by ElasticBLAST:
 
-  * You must use `kubectl` version 1.25 or lower.  
-  *  Note that `kubectl` version 1.21 will reach end of life on January 31, 2023. Please see `this link <https://cloud.google.com/kubernetes-engine/docs/release-notes>`_ for supported versions at GCP.
-  * Use ``kubectl version --client=true`` to see which version of kubectl you have.
+  * You must use ``kubectl`` version 1.25 or lower. Use ``kubectl version --client=true`` to see which version of ``kubectl`` you have.
+  * Note that kubernetes version 1.21 at GKE has reached its end of life on January 31, 2023. Please see `this link <https://cloud.google.com/kubernetes-engine/docs/release-notes>`_ for supported versions at GCP.
 
 * You are authenticated, have configured ``gcloud`` with the appropriate GCP
   project, and have the necessary permissions in that GCP project.

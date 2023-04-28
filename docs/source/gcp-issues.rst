@@ -25,8 +25,8 @@ Known issues on GCP
 
 .. _k8s_ver_2023_04:
 
-Upgrade required for GCP ElasticBLAST users
--------------------------------------------
+Specific Kubernetes version required for ElasticBLAST 1.0.0 users
+-----------------------------------------------------------------
 
 On April 19, 2023 GKE upgraded the default version of Kubernetes, so
 ElasticBLAST version 1.0.0 users on GCP will have to add the following

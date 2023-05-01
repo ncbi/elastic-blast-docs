@@ -113,7 +113,8 @@ Please note that you **must** replace ``$AWS_ACCOUNT`` with your AWS Account ID.
                     "iam:DetachRolePolicy",
                     "iam:UntagPolicy",
                     "iam:UntagInstanceProfile",
-                    "iam:TagInstanceProfile"
+                    "iam:TagInstanceProfile",
+                    "iam:ListRoles"
                 ],
                 "Resource": [
                     "arn:aws:iam::$AWS_ACCOUNT:role/*",
@@ -180,7 +181,9 @@ Please note that you **must** replace ``$AWS_ACCOUNT`` with your AWS Account ID.
                     "cloudformation:CreateStack",
                     "ec2:DescribeVpcs",
                     "cloudformation:TagResource",
-                    "batch:UpdateJobQueue"
+                    "batch:UpdateJobQueue",
+                    "cloudformation:ListStacks",
+                    "ec2:DescribeRegions"
                 ],
                 "Resource": "*"
             }

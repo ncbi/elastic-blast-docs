@@ -26,6 +26,9 @@ Requirements
 * `python 3.7 or newer <https://www.python.org/downloads/>`_
 * ``python3-distutils``
 
+ElasticBLAST has been tested on Linux and macOS. ElasticBLAST on Windows is not
+supported at this time.
+
 Google Cloud Platform (GCP)
 ---------------------------
 

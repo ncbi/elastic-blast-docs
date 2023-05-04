@@ -27,7 +27,8 @@ Requirements
 * ``python3-distutils``
 
 ElasticBLAST has been tested on Linux and macOS. ElasticBLAST on Windows is not
-supported at this time.
+supported at this time. On a Windows machine you can use the `Google <https://cloud.google.com/shell>`_ or 
+`AWS <https://aws.amazon.com/cloudshell/>`_ Cloud Shells respectively.
 
 Google Cloud Platform (GCP)
 ---------------------------

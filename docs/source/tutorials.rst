@@ -104,6 +104,7 @@ to grant permissions (see also :ref:`iam-policy`).
 Tutorials
 ^^^^^^^^^
 
+* :ref:`quickstart`
 * :ref:`tutorial_pypi`
 * :ref:`tutorial_conda`
 * :ref:`tutorial_mb`

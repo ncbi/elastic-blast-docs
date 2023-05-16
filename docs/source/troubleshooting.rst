@@ -207,17 +207,16 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html
 
 If the vCPU quota is not an impediment to running ElasticBLAST on your account, run the
 commands below to see the status of query splitting and job submission jobs ElasticBLAST submits
-on your behalf to AWS Batch, as well as a description of your compute environment.:
+on your behalf to AWS Batch, as well as a description of your compute environment:
 
 .. code-block:: bash
    :caption: Commands to determine status of query splitting and job submission jobs
 
    aws s3 cp ${YOUR_RESULTS_BUCKET}/metadata/job-ids-v2.json .
-   aws batch describe-jobs --jobs `jq -Mr .query_splitting job-ids-v2.json` --output json
-   aws batch describe-jobs --jobs `jq -Mr .job_submission job-ids-v2.json` --output json
+   aws batch describe-jobs --jobs `awk -F, '{print $1}' job-ids-v2.json | awk -F: '{print $2}'` --output json
+   aws batch describe-jobs --jobs `awk -F, '{print $2}' job-ids-v2.json | awk -F: '{print $2}'` --output json
    aws batch describe-compute-environments --output json
     
-
 
 I cannot find python or an expected version when I run elastic-blast
 --------------------------------------------------------------------

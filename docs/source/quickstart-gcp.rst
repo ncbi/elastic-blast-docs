@@ -127,7 +127,7 @@ Start by copying the configuration file shown below.  Using an editor, write thi
     num-nodes = 1
     labels = owner=USER
     #Uncomment next line if error "Requested disk size 3000.0G is larger than allowed." occurs.
-    #pd-size = 500G
+    #pd-size = 400G
 
     [blast]
     program = blastp
@@ -163,7 +163,7 @@ Run ElasticBLAST
 The :ref:`submit` command can take a few minutes minutes as it brings up cloud resources and downloads the BLAST database.
 Once it returns, you can move on to the next step.
 
-You may see an error message about your disk size being too large ("Requested disk size 3000.0G is larger than allowed..").  In that case you should uncomment the line "pd-size = 500G" line in your config file.  That disk will be large enough for this quick-start.
+You may see an error message about your disk size being too large ("Requested disk size 3000.0G is larger than allowed..").  In that case you should uncomment the line "pd-size = 400G" line in your config file.  That disk will be large enough for this quick-start.
 
 
 If your cloud shell session disconnects, please see :ref:`cloud_shell_disconnect`.

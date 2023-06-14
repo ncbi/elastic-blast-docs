@@ -340,7 +340,7 @@ I got a quota error for CPUs
 -----------------------------
 
 If you get an error like the one below, you will have to either `request an
-increase in your CPU quota <https://cloud.google.com/compute/quotas#requesting_additional_quota>`_ or
+increase in your CPU quota <https://cloud.google.com/compute/resource-usage#edit_your_quota>`_ or
 reduce the resources requested in your ElasticBLAST configuration.
 
 .. code-block:: shell

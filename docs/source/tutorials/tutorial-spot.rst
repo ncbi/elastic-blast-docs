@@ -20,18 +20,18 @@
 
 .. _tutorial_spot:
 
-Using discounted instances with ElasticBLAST
-============================================
+Using ElasticBLAST with Spot and Preemptible Instances
+======================================================
 
-Discounted instances allows you to run ElasticBLAST at a fraction of the full (on-demand) cost.  On AWS, you can use spot instances that have a floating price, which you can view `here <https://aws.amazon.com/ec2/spot/pricing/>`.  Note that these rates vary by region and instance type.  On GCP, you can use preemptible instances, with the pricing described `here <https://cloud.google.com/compute/docs/instances/spot#pricing>`
+Discounted instances allow you to run ElasticBLAST at a fraction of the full (on-demand) cost.  On AWS, you can use spot instances with a `floating price <https://aws.amazon.com/ec2/spot/pricing/>`_.  These rates vary by region and instance type.  On GCP, you can use `preemptible instances <https://cloud.google.com/compute/docs/instances/spot#pricing>`_
 
-In `Table 3 of our ElasticBLAST article <https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-023-05245-9/tables/3/>`, we show that ElasticBLAST runs well with discounted instances and costs less than on-demand instances.
+In `Table 3 of our ElasticBLAST article <https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-023-05245-9/tables/3/>`_, we show that ElasticBLAST runs well with discounted instances and costs less than on-demand instances.
 
 
 ``How to request discounted instance``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can request a spot (AWS) or preemptible (GCP) instance with ElasticBLAST by simply adding a line to your configuration file in the cluster section.  See the example below.  You use the same keyword ("use-preemptible") for both AWS and GCP.  You can read more about this configuration variable here ref:`_elb_use_preemptible`
+You can request a spot (AWS) or preemptible (GCP) instance with ElasticBLAST by adding a line to your configuration file in the cluster section.  See the example below.  You use the same keyword ("use-preemptible") for both AWS and GCP.  You can read more about the :ref:`elb_use_preemptible` configuration variable.
 
 .. code-block::
 
@@ -40,11 +40,11 @@ You can request a spot (AWS) or preemptible (GCP) instance with ElasticBLAST by 
 
 
 ``What happens if the discounted instance is terminated?``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If the discounted instance is terminated, ElasticBLAST will bid on a new instance and restart your batches (i.e., your BLAST searches).  No action will be required on your part.
 
-You will lose a minimal amount of work if the instance is terminated. ElasticBLAST works through your queries in batches and saves the results of a batch to a cloud bucket (S3 in AWS or GCS in GCP), so only the work for the currently running batch will be lost.  According to `AWS Spot Instance Advisor page <https://aws.amazon.com/ec2/spot/instance-advisor/#:~:text=The%20average%20frequency%20of%20interruption,instance%20types%20is%20%3C5%25.>`, the average frequency of interruption across all regions and instances is less than 10% (accessed July 21, 2023).indicating that your instance may never be terminated or that it will finish a large number of batches before it is.  
+You will lose a minimal amount of work if the instance is terminated. ElasticBLAST works through your queries in batches and saves the results of a batch to a cloud bucket (S3 in AWS or GCS in GCP), so only the work for the currently running batch will be lost.  According to `AWS Spot Instance Advisor page <https://aws.amazon.com/ec2/spot/instance-advisor>`_, the average frequency of interruption across all regions and instances is less than 5% (accessed July 24, 2023).
 
 
 ``What type of instance is used?``
@@ -52,6 +52,6 @@ You will lose a minimal amount of work if the instance is terminated. ElasticBLA
 
 ElasticBLAST selects the same instance type for you that it normally would for an on-demand instance. ElasticBLAST selects the instance based on your database size and the program, so we think this is still the best way to run your searches efficiently. 
 
-You may specify another instance type if you want by using the ref:`elb_machine_type` configuration variable.  We do not recommend this.
+You may specify another instance type if you want by using the :ref:`elb_machine_type` configuration variable.  We do not recommend this.
 
 

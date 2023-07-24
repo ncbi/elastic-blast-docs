@@ -273,17 +273,12 @@ Cluster configuration
 ``Use preemptible nodes``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Use `spot instances <https://aws.amazon.com/ec2/spot/>`_ and `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ to run ElasticBLAST.  This may lead to reduced costs, but longer runtimes."
-
-    **Note**: This is an *experimental* feature in AWS. Turning this on bids on instance prices up to the full price, which is almost guaranteed to save you money.
+    Use `spot instances <https://aws.amazon.com/ec2/spot/>`_ and `preemptible nodes <https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms>`_ to run ElasticBLAST.  This can reduce costs substantially.
 
     **Note**: Pre-emptible nodes are rebooted after 24 hours (by GCP).  This is
-    fine in most cases as Kubernetes will restart the node and resubmit the
+    fine as Kubernetes will restart the node and resubmit the
     search (i.e., batch) that was interrupted.  The batches that have already
-    been processed are not lost.  The only issue is if a single batch takes
-    longer than 24 hours. We expect the overwhelming majority of
-    Elastic-BLAST searches to take at most several hours, so this should not be
-    an issue at all.
+    been processed are not lost. ElasticBLAST batches take at most several hours.
 
     * Default: ``no``
     * Values: Any string. Set to ``yes`` enable.
@@ -309,7 +304,7 @@ Cluster configuration
     * Default: ``n1-highmem-32`` for GCP, ``m5.8xlarge`` for AWS.
     * The default machines have 32 cores and about 120GB of RAM.
     * These default values only apply if you use a custom database and do not provide metadata.
-    * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-types>`_ or `AWS instance types <https://aws.amazon.com/ec2/instance-types>`_ accordingly.
+    * Values: String, see `GCP machine types <https://cloud.google.com/compute/docs/machine-resource>`_ or `AWS instance types <https://aws.amazon.com/ec2/instance-types>`_ accordingly.
 
 .. code-block::
 

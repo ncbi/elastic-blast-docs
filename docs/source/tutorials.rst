@@ -111,3 +111,4 @@ Tutorials
 * :ref:`tutorial_create_blastdb_metadata`
 * :ref:`tutorial_submit_and_wait_script`
 * :ref:`tutorial_cli`
+* :ref:`tutorial_spot`

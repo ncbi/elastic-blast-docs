@@ -44,7 +44,7 @@ You can request a spot (AWS) or preemptible (GCP) instance with ElasticBLAST by 
 
 If the discounted instance is terminated, ElasticBLAST will bid on a new instance and restart your batches (i.e., your BLAST searches).  No action will be required on your part.
 
-You will lose a minimal amount of work if the instance is terminated. ElasticBLAST works through your queries in batches and saves the results of a batch to a cloud bucket (S3 in AWS or GCS in GCP), so only the work for the currently running batch will be lost.  According to `AWS Spot Instance Advisor page <https://aws.amazon.com/ec2/spot/instance-advisor>`_, the average frequency of interruption across all regions and instances is less than 5% (accessed July 24, 2023).
+You will lose a minimal amount of time if the instance is terminated. ElasticBLAST works through your queries in batches and saves the results of a batch to a cloud bucket (S3 in AWS or GCS in GCP), so only the work for the currently running batch will be repeated.  According to `AWS Spot Instance Advisor page <https://aws.amazon.com/ec2/spot/instance-advisor>`_, the average frequency of interruption across all regions and instances is less than 5% (accessed July 24, 2023).
 
 
 ``What type of instance is used?``

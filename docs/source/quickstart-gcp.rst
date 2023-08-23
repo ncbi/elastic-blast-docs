@@ -121,7 +121,7 @@ Start by copying the configuration file shown below.  Using an editor, write thi
     [cloud-provider]
     gcp-region = us-east4
     gcp-zone = us-east4-b
-    gke-version = 1.24
+    gke-version = 1.25
 
     [cluster]
     num-nodes = 1

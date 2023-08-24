@@ -39,7 +39,7 @@ configuration parameter to their ElasticBLAST configuration file(s):
 
 This will not be necessary for ElasticBLAST versions greater than 1.0.0.
 This will *not* work after October 31 2023 as version 1.24 will reach its
-end-of-life.
+end-of-life. Please, update ElasticBLAST to the latest version.
 
 .. _eol_gke_121:
 

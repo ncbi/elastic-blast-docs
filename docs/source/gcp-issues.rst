@@ -38,6 +38,8 @@ configuration parameter to their ElasticBLAST configuration file(s):
     gke-version = 1.24
 
 This will not be necessary for ElasticBLAST versions greater than 1.0.0.
+This configuration will *not* work after October 31 2023 as Kubernetes version 1.24 will reach its
+end-of-life. Please, update ElasticBLAST to the latest version.
 
 .. _eol_gke_121:
 

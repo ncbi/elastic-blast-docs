@@ -38,7 +38,7 @@ Google Cloud Platform (GCP)
 
   * If you are using ElasticBLAST version 1.0.0, please follow the instructions in :ref:`k8s_ver_2023_04`.
 
-* `gke-cloud-auth-plugin <https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke>`_ if you are using ``kubectl`` version 1.26 or later.
+* `gke-cloud-auth-plugin <https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke>`_
 * You are authenticated, have configured ``gcloud`` with the appropriate GCP
   project, and have the necessary permissions in that GCP project.
   If working on a newly created GCP instance, this likely requires running 

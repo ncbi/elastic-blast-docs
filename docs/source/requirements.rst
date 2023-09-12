@@ -34,7 +34,7 @@ Google Cloud Platform (GCP)
 ---------------------------
 
 * `Google Cloud Command Line Interface <https://cloud.google.com/cli>`_
-* `kubectl <https://kubernetes.io/docs/tasks/tools/install-kubectl>`_  Make sure to install a version supported by ElasticBLAST:
+* `kubectl <https://kubernetes.io/docs/tasks/tools/install-kubectl>`_: Please be sure to install a version supported by GCP (see `this link <https://cloud.google.com/kubernetes-engine/docs/release-notes>`_ for supported versions)
 
   * If you are using ElasticBLAST version 1.0.0, please follow the instructions in :ref:`k8s_ver_2023_04`.
 

@@ -660,6 +660,25 @@ Timeout configuration options
 Developer configuration options
 -------------------------------
 
+.. _elb_min_query_size_to_split_on_client_compressed:
+
+``Minimal compressed query file size to split on client``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    For single compressed query files stored on the cloud, this configuration setting 
+    specifies the minimal size to download the file and split on the local machine.
+    Files larger than this threshold will be split in the cloud.
+
+    * Default: 5MB
+    * Values: Any string. Set to any value to enable.
+
+.. code-block::
+
+    [timeouts]
+    init-pv = 45
+
+
+
 .. _elb_dont_delete_setup_jobs:
 
 ``ELB_DONT_DELETE_SETUP_JOBS``

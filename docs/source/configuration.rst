@@ -665,18 +665,37 @@ Developer configuration options
 ``Minimal compressed query file size to split on client``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    For single compressed query files stored on the cloud, this configuration setting 
-    specifies the minimal size to download the file and split on the local machine.
-    Files larger than this threshold will be split in the cloud.
+    For single, compressed (i.e.: those with a file name ending in ``.gz``)
+    query files stored on the cloud, this configuration setting
+    specifies the minimal file size (in bytes) to download the file and split
+    on the local machine. Files larger than this threshold will be split in the cloud.
 
-    * Default: 5MB
-    * Values: Any string. Set to any value to enable.
+    * Default: 5 000 000
+    * Values: Positive integer
 
 .. code-block::
 
-    [timeouts]
-    init-pv = 45
+    [blast]
+    min-qsize-for-client-split-compressed = 10000000
 
+
+.. _elb_min_query_size_to_split_on_client_uncompressed:
+
+``Minimal uncompressed query file size to split on client``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    For single, uncompressed (i.e.: those any file extension except ``.gz``)
+    query files stored on the cloud, this configuration setting
+    specifies the minimal file size (in bytes) to download the file and split
+    on the local machine. Files larger than this threshold will be split in the cloud.
+
+    * Default: 20 000 000
+    * Values: Positive integer
+
+.. code-block::
+
+    [blast]
+    min-qsize-for-client-split-uncompressed = 100000000
 
 
 .. _elb_dont_delete_setup_jobs:

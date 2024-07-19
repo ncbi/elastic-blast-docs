@@ -231,28 +231,6 @@ Cloud provider configuration
 Cluster configuration
 ---------------------
 
-.. _elb_cluster_name:
-
-``Cluster name``
-^^^^^^^^^^^^^^^^
-
-    Name of the GKE cluster created or the AWS CloudFormation stack (and related resources).  
-
-    The name may contain only lowercase alphanumerics and ‘-’, must start with a letter and end with an alphanumeric, and must be no longer than 40 characters.
-
-    **Note**: This name must be unique for each of your ElasticBLAST searches, otherwise this may lead to undefined behavior.
-
-
-    * Default: ``elasticblast-${USER}-X``, where ``X`` is the first 8 characters of hashing the value of the :ref:`results <elb_results>` URI.
-    * Values: String
-
-    Also supported via the environment variable: ``ELB_CLUSTER_NAME``.
-
-.. code-block::
-
-    [cluster]
-    name = my-cluster
-
 .. _elb_num_nodes:
 
 ``Number of worker nodes``
@@ -659,6 +637,30 @@ Timeout configuration options
 
 Developer configuration options
 -------------------------------
+
+.. _elb_cluster_name:
+
+``Cluster name``
+^^^^^^^^^^^^^^^^
+
+    Name of the GKE cluster created or the AWS CloudFormation stack (and related resources).
+
+    The name may contain only lowercase alphanumerics and ‘-’, must start with a letter and end with an alphanumeric, and must be no longer than 40 characters.
+
+    **Note**: This name must be unique for each of your ElasticBLAST searches, otherwise this may lead to undefined behavior.
+
+    **IMPORTANT**: Please do not set configuration variable unless you are intimately familiar with the internals of ElasticBLAST. This is **NOT** a way to reuse an existing GKE cluster to run ElasticBLAST.
+
+
+    * Default: ``elasticblast-${USER}-X``, where ``X`` is the first 8 characters of hashing the value of the :ref:`results <elb_results>` URI.
+    * Values: String
+
+    Also supported via the environment variable: ``ELB_CLUSTER_NAME``.
+
+.. code-block::
+
+    [cluster]
+    name = my-cluster
 
 .. _elb_min_query_size_to_split_on_client_compressed:
 

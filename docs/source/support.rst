@@ -64,6 +64,12 @@ Please help the development team help you:
     aws s3 ls --recursive ${YOUR_RESULTS_BUCKET}
     aws s3 cp --recursive ${YOUR_RESULTS_BUCKET}/logs logs
     aws s3 cp --recursive ${YOUR_RESULTS_BUCKET}/metadata metadata
+    aws-get-auto-scaling-events.sh > logs/auto-scaling-events.log
+    awslimitchecker -l > logs/aws-quota.log
+    awslimitchecker -u > logs/aws-usage.log
+    aws batch describe-jobs --jobs `awk -F, '{print $1}' metadata/job-ids-v2.json | awk -F: '{print $2}'` --output json > logs/aws-batch-qs-jobs.log
+    aws batch describe-jobs --jobs `awk -F, '{print $2}' metadata/job-ids-v2.json | awk -F: '{print $2}'` --output json > logs/aws-batch-js-jobs.log
+    aws batch describe-compute-environments --output json > logs/aws-batch-ce.log
     tar czf elastic-blast-diagnostics.tgz logs metadata
 
 

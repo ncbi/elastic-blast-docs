@@ -290,7 +290,7 @@ Run the command below and check whether the service account ``1234567890-compute
 If it is not listed, you may need to run a command along the lines of the
 examples below (only one of them, both are *not* required).
 Please refer to `the GCP documentation
-<https://cloud.google.com/storage/docs/access-control/using-iam-permissions#gsutil>`_
+<https://cloud.google.com/storage/docs/access-control/using-iam-permissions#bucket-view>`_
 for further details.
 
 

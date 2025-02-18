@@ -67,7 +67,17 @@ exclude_patterns = []
 
 # https://www.sphinx-doc.org/en/master/usage/configuration.html?highlight=linkcheck#options-for-the-linkcheck-builder
 #linkcheck_ignore = [r'blast_plus_docs']
-linkcheck_ignore = [r'https://github.com/ncbi/blast_plus_docs/blob/master/README.md#blast-databases']
+linkcheck_ignore = [r'https://github.com/ncbi/blast_plus_docs/blob/master/README.md#blast-databases',
+                    r'https://www.ncbi.nlm.nih.gov/books/NBK131777/#Blast_ReleaseNotes.BLAST_2_13_0_March_11',
+                    r'https://www.ncbi.nlm.nih.gov/books/NBK279684/#appendices.Options_for_the_commandline_a',
+                    r'https://www.ncbi.nlm.nih.gov/books/NBK53758/#_taxonomyqs_Data_Model_',
+                    r'https://www.ncbi.nlm.nih.gov/books/NBK569839/#usrman_BLAST_feat.BLAST_database_metadat',
+                    r'https://www.ncbi.nlm.nih.gov/books/NBK279690/',
+                    r'https://www.ncbi.nlm.nih.gov/books/NBK569851/#intro_Privacy.Optout_of_Usage_Reporting',
+                    r'https://www.ncbi.nlm.nih.gov/books/NBK569843/',
+                    r'https://www.ncbi.nlm.nih.gov/books/NBK569846/',
+                    r'https://www.ncbi.nlm.nih.gov/books/NBK569851/'
+                    ]
 
 # -- Options for HTML output -------------------------------------------------
 

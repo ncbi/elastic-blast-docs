@@ -225,3 +225,14 @@ div#banner_ad {
     font-weight: bold;
     padding: 3px 0;
 }
+
+
+#searchbox .ncbi-vote-helpful button {
+    height: initial;
+    margin-left: initial;
+}
+
+span.ncbi-vote-helpful {
+    float: right;
+    margin-right: -0.5em;
+}

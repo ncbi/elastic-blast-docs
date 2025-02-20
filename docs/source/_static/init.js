@@ -17,7 +17,6 @@ jQuery( document ).ready(function() {
     bannerAdInit();
     jQuery("#vote_helpful_yes,#vote_helpful_no").bind("click", function (e) {
         if(jQuery(":target").length) {
-            //file:///U:/blast64/django/elastic-blast-sphynx/WB-5728-add-missing-static-files/elastic-blast-docs/docs/build/html/janitor.html#auto-shutdown-feature
             var currSubSection = jQuery(":target").attr("id");        //#auto-shutdown-feature                 
         }
         var currSection = jQuery("div.body section").first().attr("id");

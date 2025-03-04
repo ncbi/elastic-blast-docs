@@ -26,8 +26,8 @@ ElasticBLAST, version |release|
 potentially resulting in excess user charges. We are working to update the code
 and expect a fix soon. In the interim, we suggest using our AWS implementation,
 or for those who wish to use GCP, we have provided a workaround that, when
-applied, addresses this issue and eliminates the risk of excess user charges.
-For more information, please see :ref:`k8s_ver_2025_02`. (Message date: March 04, 2025)
+applied, addresses this issue. For more information, please see
+:ref:`k8s_ver_2025_02`. (Message date: March 04, 2025)
 
 ----
 

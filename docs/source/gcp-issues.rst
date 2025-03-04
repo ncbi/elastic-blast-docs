@@ -23,36 +23,53 @@
 Known issues on GCP
 ===================
 
-.. _k8s_ver_2023_04:
+.. _k8s_ver_2025_02:
 
-Specific Kubernetes version required for ElasticBLAST 1.0.0 users
------------------------------------------------------------------
+Specific Kubernetes version required for ElasticBLAST users on GCP
+------------------------------------------------------------------
 
-On April 19, 2023 GKE upgraded the default version of Kubernetes, so
-ElasticBLAST version 1.0.0 users on GCP will have to add the following
+Around October 22 2024, 2023 GKE upgraded the default version of Kubernetes, so
+ElasticBLAST users on GCP will have to add the following
 configuration parameter to their ElasticBLAST configuration file(s):
 
 .. code-block:: bash
 
     [cloud-provider]
-    gke-version = 1.24
+    gke-version = 1.30
 
-This will not be necessary for ElasticBLAST versions greater than 1.0.0.
-This configuration will *not* work after October 31 2023 as Kubernetes version 1.24 will reach its
-end-of-life. Please, update ElasticBLAST to the latest version.
+This will not be necessary for ElasticBLAST versions greater than 1.3.1.
 
-.. _eol_gke_121:
+.. 
+    .. _k8s_ver_2023_04:
 
-Upgrade required for GCP ElasticBLAST users
--------------------------------------------
+    Specific Kubernetes version required for ElasticBLAST 1.0.0 users
+    -----------------------------------------------------------------
 
-ElasticBLAST versions prior to 1.0.0 will stop working because version 1.21
-of kubernetes at GKE has reached end of life on January 31, 2023:
+    On April 19, 2023 GKE upgraded the default version of Kubernetes, so
+    ElasticBLAST version 1.0.0 users on GCP will have to add the following
+    configuration parameter to their ElasticBLAST configuration file(s):
 
-https://cloud.google.com/kubernetes-engine/docs/release-schedule
+    .. code-block:: bash
 
-To ensure ElasticBLAST continues to work for you on GCP, please upgrade
-ElasticBLAST to its latest version.
+        [cloud-provider]
+        gke-version = 1.24
+
+    This will not be necessary for ElasticBLAST versions greater than 1.0.0.
+    This configuration will *not* work after October 31 2023 as Kubernetes version 1.24 will reach its
+    end-of-life. Please, update ElasticBLAST to the latest version.
+
+    .. _eol_gke_121:
+
+    Upgrade required for GCP ElasticBLAST users
+    -------------------------------------------
+
+    ElasticBLAST versions prior to 1.0.0 will stop working because version 1.21
+    of kubernetes at GKE has reached end of life on January 31, 2023:
+
+    https://cloud.google.com/kubernetes-engine/docs/release-schedule
+
+    To ensure ElasticBLAST continues to work for you on GCP, please upgrade
+    ElasticBLAST to its latest version.
 
 .. _file_leak:
 

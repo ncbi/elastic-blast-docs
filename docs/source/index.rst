@@ -22,6 +22,15 @@
 ElasticBLAST, version |release|
 ===============================
 
+**IMPORTANT:** The current GCP implementation may fail to properly release
+cloud resources, which could lead to excess user charges. We are working to update the code
+and expect a fix soon. In the interim, we suggest using our AWS implementation,
+or for those who wish to use GCP, we have provided a workaround that, when
+applied, addresses this issue. For more information, please see
+:ref:`k8s_ver_2025_02`. (Message date: March 04, 2025)
+
+----
+
 ElasticBLAST is a cloud-based tool to perform your BLAST searches faster and make you more effective.
 
 ElasticBLAST is ideal for users who have a large number (thousands or more) of queries to BLAST or who prefer to use cloud infrastructure for their searches. It can run BLAST searches that cannot be done on `NCBI WebBLAST <https://blast.ncbi.nlm.nih.gov/Blast.cgi>`_ and runs them more quickly than stand-alone `BLAST+ <https://www.ncbi.nlm.nih.gov/books/NBK279690/>`_.

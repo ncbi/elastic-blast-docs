@@ -28,7 +28,7 @@ Known issues on GCP
 Specific Kubernetes version required for ElasticBLAST users on GCP
 ------------------------------------------------------------------
 
-Around October 22 2024, 2023 GKE upgraded the default version of Kubernetes, so
+Around October 22 2024, GKE upgraded the default version of Kubernetes, so
 ElasticBLAST users on GCP will have to add the following
 configuration parameter to their ElasticBLAST configuration file(s):
 

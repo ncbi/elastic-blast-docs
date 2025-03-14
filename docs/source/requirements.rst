@@ -23,7 +23,7 @@
 Requirements
 ============
 
-* `python 3.9, 3.11 <https://www.python.org/downloads/>`_
+* `python 3.9, 3.10, 3.11, 3.13 <https://www.python.org/downloads/>`_
 * ``python3-distutils``
 
 ElasticBLAST has been tested on Linux and macOS. ElasticBLAST on Windows is not

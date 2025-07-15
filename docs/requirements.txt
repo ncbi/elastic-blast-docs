@@ -3,4 +3,4 @@ sphinx-copybutton
 recommonmark
 docutils
 urllib3<2; python_version < "3.11"
-urllib3; python_version >= "3.11"
+urllib3>=2.5.0; python_version >= "3.11"
